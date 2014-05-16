@@ -4,29 +4,29 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package matchrepo
+ * @package Matchrepo
  */
 
-if ( ! function_exists( 'matchrepo_paging_nav' ) ) :
+if ( ! function_exists( 'Matchrepo_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
-function matchrepo_paging_nav() {
+function Matchrepo_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><? _e( 'Posts navigation', 'matchrepo' ); ?></h1>
+		<h1 class="screen-reader-text"><? _e( 'Posts navigation', 'Matchrepo' ); ?></h1>
 		<div class="nav-links">
 
 			<? if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><? next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'matchrepo' ) ); ?></div>
+			<div class="nav-previous"><? next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'Matchrepo' ) ); ?></div>
 			<? endif; ?>
 
 			<? if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><? previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'matchrepo' ) ); ?></div>
+			<div class="nav-next"><? previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'Matchrepo' ) ); ?></div>
 			<? endif; ?>
 
 		</div><!-- .nav-links -->
@@ -35,11 +35,11 @@ function matchrepo_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'matchrepo_post_nav' ) ) :
+if ( ! function_exists( 'Matchrepo_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  */
-function matchrepo_post_nav() {
+function Matchrepo_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -49,11 +49,11 @@ function matchrepo_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><? _e( 'Post navigation', 'matchrepo' ); ?></h1>
+		<h1 class="screen-reader-text"><? _e( 'Post navigation', 'Matchrepo' ); ?></h1>
 		<div class="nav-links">
 			<?
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'matchrepo' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link',     'matchrepo' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'Matchrepo' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link',     'Matchrepo' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -61,11 +61,11 @@ function matchrepo_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'matchrepo_posted_on' ) ) :
+if ( ! function_exists( 'Matchrepo_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function matchrepo_posted_on() {
+function Matchrepo_posted_on() {
 	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
@@ -78,7 +78,7 @@ function matchrepo_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'matchrepo' ),
+	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'Matchrepo' ),
 		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
 			esc_url( get_permalink() ),
 			$time_string
@@ -96,8 +96,8 @@ endif;
  *
  * @return bool
  */
-function matchrepo_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'matchrepo_categories' ) ) ) {
+function Matchrepo_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'Matchrepo_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -110,24 +110,24 @@ function matchrepo_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'matchrepo_categories', $all_the_cool_cats );
+		set_transient( 'Matchrepo_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so matchrepo_categorized_blog should return true.
+		// This blog has more than 1 category so Matchrepo_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so matchrepo_categorized_blog should return false.
+		// This blog has only 1 category so Matchrepo_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in matchrepo_categorized_blog.
+ * Flush out the transients used in Matchrepo_categorized_blog.
  */
-function matchrepo_category_transient_flusher() {
+function Matchrepo_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'matchrepo_categories' );
+	delete_transient( 'Matchrepo_categories' );
 }
-add_action( 'edit_category', 'matchrepo_category_transient_flusher' );
-add_action( 'save_post',     'matchrepo_category_transient_flusher' );
+add_action( 'edit_category', 'Matchrepo_category_transient_flusher' );
+add_action( 'save_post',     'Matchrepo_category_transient_flusher' );

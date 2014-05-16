@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress user administration API.
  *

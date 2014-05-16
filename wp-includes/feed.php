@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Feed API
  *

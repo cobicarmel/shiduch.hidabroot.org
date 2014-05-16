@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Add Link Administration Screen.
  *

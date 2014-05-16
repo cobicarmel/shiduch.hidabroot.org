@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main WordPress Formatting API.
  *

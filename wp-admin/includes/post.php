@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Post Administration API.
  *
@@ -1390,10 +1390,10 @@ function _admin_notice_post_locked() {
 	$hidden = $locked ? '' : ' hidden';
 
 	?>
-	<div id="post-lock-dialog" class="notification-dialog-wrap<? echo $hidden; ?>">
+	<div id="post-lock-dialog" class="notification-dialog-wrap<?php echo $hidden; ?>">
 	<div class="notification-dialog-background"></div>
 	<div class="notification-dialog">
-	<?
+	<?php
 
 	if ( $locked ) {
 		if ( get_post_type_object( $post->post_type )->public ) {
@@ -1428,15 +1428,15 @@ function _admin_notice_post_locked() {
 
 		?>
 		<div class="post-locked-message">
-		<div class="post-locked-avatar"><? echo get_avatar( $user->ID, 64 ); ?></div>
+		<div class="post-locked-avatar"><?php echo get_avatar( $user->ID, 64 ); ?></div>
 		<p class="currently-editing wp-tab-first" tabindex="0">
-		<?
+		<?php
 			_e( 'This content is currently locked.' );
 			if ( $override )
 				printf( ' ' . __( 'If you take over, %s will be blocked from continuing to edit.' ), esc_html( $user->display_name ) );
 		?>
 		</p>
-		<?
+		<?php
 		/**
 		 * Fires inside the post locked dialog before the buttons are displayed.
 		 *
@@ -1447,33 +1447,33 @@ function _admin_notice_post_locked() {
 		do_action( 'post_locked_dialog', $post );
 		?>
 		<p>
-		<a class="button" href="<? echo esc_url( $sendback ); ?>"><? echo $sendback_text; ?></a>
-		<? if ( $preview_link ) { ?>
-		<a class="button<? echo $tab_last; ?>" href="<? echo esc_url( $preview_link ); ?>"><? _e('Preview'); ?></a>
-		<?
+		<a class="button" href="<?php echo esc_url( $sendback ); ?>"><?php echo $sendback_text; ?></a>
+		<?php if ( $preview_link ) { ?>
+		<a class="button<?php echo $tab_last; ?>" href="<?php echo esc_url( $preview_link ); ?>"><?php _e('Preview'); ?></a>
+		<?php
 		}
 
 		// Allow plugins to prevent some users overriding the post lock
 		if ( $override ) {
 			?>
-			<a class="button button-primary wp-tab-last" href="<? echo esc_url( add_query_arg( 'get-post-lock', '1', get_edit_post_link( $post->ID, 'url' ) ) ); ?>"><? _e('Take over'); ?></a>
-			<?
+			<a class="button button-primary wp-tab-last" href="<?php echo esc_url( add_query_arg( 'get-post-lock', '1', get_edit_post_link( $post->ID, 'url' ) ) ); ?>"><?php _e('Take over'); ?></a>
+			<?php
 		}
 
 		?>
 		</p>
 		</div>
-		<?
+		<?php
 	} else {
 		?>
 		<div class="post-taken-over">
 			<div class="post-locked-avatar"></div>
 			<p class="wp-tab-first" tabindex="0">
 			<span class="currently-editing"></span><br>
-			<span class="locked-saving hidden"><img src="images/wpspin_light-2x.gif" width="16" height="16" /> <? _e('Saving revision...'); ?></span>
-			<span class="locked-saved hidden"><? _e('Your latest changes were saved as a revision.'); ?></span>
+			<span class="locked-saving hidden"><img src="images/wpspin_light-2x.gif" width="16" height="16" /> <?php _e('Saving revision...'); ?></span>
+			<span class="locked-saved hidden"><?php _e('Your latest changes were saved as a revision.'); ?></span>
 			</p>
-			<?
+			<?php
 			/**
 			 * Fires inside the dialog displayed when a user has lost the post lock.
 			 *
@@ -1483,15 +1483,15 @@ function _admin_notice_post_locked() {
 			 */
 			do_action( 'post_lock_lost_dialog', $post );
 			?>
-			<p><a class="button button-primary wp-tab-last" href="<? echo esc_url( $sendback ); ?>"><? echo $sendback_text; ?></a></p>
+			<p><a class="button button-primary wp-tab-last" href="<?php echo esc_url( $sendback ); ?>"><?php echo $sendback_text; ?></a></p>
 		</div>
-		<?
+		<?php
 	}
 
 	?>
 	</div>
 	</div>
-	<?
+	<?php
 }
 
 /**

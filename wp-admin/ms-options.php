@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite network settings administration panel.
  *

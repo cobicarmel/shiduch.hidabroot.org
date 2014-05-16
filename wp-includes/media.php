@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress API for media display.
  *
@@ -1123,7 +1123,7 @@ function wp_underscore_playlist_templates() {
 		<# } #>
 	</div>
 </script>
-<?
+<?php
 }
 
 /**
@@ -1137,8 +1137,8 @@ function wp_playlist_scripts( $type ) {
 	wp_enqueue_style( 'wp-mediaelement' );
 	wp_enqueue_script( 'wp-playlist' );
 ?>
-<!--[if lt IE 9]><script>document.createElement('<? echo esc_js( $type ) ?>');</script><![endif]-->
-<?
+<!--[if lt IE 9]><script>document.createElement('<?php echo esc_js( $type ) ?>');</script><![endif]-->
+<?php
 	add_action( 'wp_footer', 'wp_underscore_playlist_templates', 0 );
 	add_action( 'admin_footer', 'wp_underscore_playlist_templates', 0 );
 }
@@ -1345,27 +1345,29 @@ function wp_playlist_shortcode( $attr ) {
 		 */
 		do_action( 'wp_playlist_scripts', $type, $style );
 	} ?>
-<div class="wp-playlist wp-<? echo $safe_type ?>-playlist wp-playlist-<? echo $safe_style ?>">
-	<? if ( 'audio' === $type ): ?>
+<div class="wp-playlist wp-<?php echo $safe_type ?>-playlist wp-playlist-<?php echo $safe_style ?>">
+	<?php if ( 'audio' === $type ): ?>
 	<div class="wp-playlist-current-item"></div>
-	<? endif ?>
-	<<? echo $safe_type ?> controls="controls" preload="none" width="<?
+	<?php endif ?>
+	<<?php echo $safe_type ?> controls="controls" preload="none" width="<?php
 		echo (int) $theme_width;
-	?>"<? if ( 'video' === $safe_type ):
+	?>"<?php if ( 'video' === $safe_type ):
 		echo ' height="', (int) $theme_height, '"';
-	endif; ?>></<? echo $safe_type ?>>
+	else:
+		echo ' style="visibility: hidden"';
+	endif; ?>></<?php echo $safe_type ?>>
 	<div class="wp-playlist-next"></div>
 	<div class="wp-playlist-prev"></div>
 	<noscript>
-	<ol><?
+	<ol><?php
 	foreach ( $attachments as $att_id => $attachment ) {
 		printf( '<li>%s</li>', wp_get_attachment_link( $att_id ) );
 	}
 	?></ol>
 	</noscript>
-	<script type="application/json"><? echo json_encode( $data ) ?></script>
+	<script type="application/json"><?php echo json_encode( $data ) ?></script>
 </div>
-	<?
+	<?php
 	return ob_get_clean();
 }
 add_shortcode( 'playlist', 'wp_playlist_shortcode' );
@@ -1555,7 +1557,7 @@ function wp_audio_shortcode( $attr, $content = '' ) {
 		'loop'     => $loop,
 		'autoplay' => $autoplay,
 		'preload'  => $preload,
-		'style'    => 'width: 100%',
+		'style'    => 'width: 100%; visibility: hidden;',
 	);
 
 	// These ones should just be omitted altogether if they are blank
@@ -2654,7 +2656,7 @@ function wp_enqueue_media( $args = array() ) {
 	if ( did_action( 'wp_enqueue_media' ) )
 		return;
 
-	global $content_width;
+	global $content_width, $wpdb;
 
 	$defaults = array(
 		'post' => null,
@@ -2693,15 +2695,20 @@ function wp_enqueue_media( $args = array() ) {
 		}
 	}
 
-	$audio = $video = 0;
-	$counts = (array) wp_count_attachments();
-	foreach ( $counts as $mime => $total ) {
-		if ( 0 === strpos( $mime, 'audio/' ) ) {
-			$audio += (int) $total;
-		} elseif ( 0 === strpos( $mime, 'video/' ) ) {
-			$video += (int) $total;
-		}
-	}
+	$has_audio = $wpdb->get_var( "
+		SELECT ID
+		FROM $wpdb->posts
+		WHERE post_type = 'attachment'
+		AND post_mime_type LIKE 'audio%'
+		LIMIT 1
+	" );
+	$has_video = $wpdb->get_var( "
+		SELECT ID
+		FROM $wpdb->posts
+		WHERE post_type = 'attachment'
+		AND post_mime_type LIKE 'video%'
+		LIMIT 1
+	" );
 
 	$settings = array(
 		'tabs'      => $tabs,
@@ -2717,8 +2724,8 @@ function wp_enqueue_media( $args = array() ) {
 		),
 		'defaultProps' => $props,
 		'attachmentCounts' => array(
-			'audio' => $audio,
-			'video' => $video
+			'audio' => (int) $has_audio,
+			'video' => (int) $has_video,
 		),
 		'embedExts'    => $exts,
 		'embedMimes'   => $ext_mimes,
@@ -2829,7 +2836,7 @@ function wp_enqueue_media( $args = array() ) {
 		'videoReplaceTitle'     => __( 'Replace Video' ),
 		'videoAddSourceTitle'   => __( 'Add Video Source' ),
 		'videoDetailsCancel'    => __( 'Cancel Edit' ),
-		'videoSelectPosterImageTitle' => _( 'Select Poster Image' ),
+		'videoSelectPosterImageTitle' => __( 'Select Poster Image' ),
 		'videoAddTrackTitle'	=> __( 'Add Subtitles' ),
 
  		// Playlist

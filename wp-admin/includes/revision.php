@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Administration Revisions API
  *

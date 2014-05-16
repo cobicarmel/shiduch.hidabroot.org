@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * BackPress Styles enqueue.
  *

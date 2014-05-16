@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Build Administration Menu.
  *

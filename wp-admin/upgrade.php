@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Upgrade WordPress Page.
  *
@@ -48,26 +48,26 @@ else
 @header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" <? language_attributes(); ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta name="viewport" content="width=device-width" />
-	<meta http-equiv="Content-Type" content="<? bloginfo( 'html_type' ); ?>; charset=<? echo get_option( 'blog_charset' ); ?>" />
-	<title><? _e( 'WordPress &rsaquo; Update' ); ?></title>
-	<?
+	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php echo get_option( 'blog_charset' ); ?>" />
+	<title><?php _e( 'WordPress &rsaquo; Update' ); ?></title>
+	<?php
 	wp_admin_css( 'install', true );
 	wp_admin_css( 'ie', true );
 	?>
 </head>
 <body class="wp-core-ui">
-<h1 id="logo"><a href="<? echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><? _e( 'WordPress' ); ?></a></h1>
+<h1 id="logo"><a href="<?php echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><?php _e( 'WordPress' ); ?></a></h1>
 
-<? if ( get_option( 'db_version' ) == $wp_db_version || !is_blog_installed() ) : ?>
+<?php if ( get_option( 'db_version' ) == $wp_db_version || !is_blog_installed() ) : ?>
 
-<h2><? _e( 'No Update Required' ); ?></h2>
-<p><? _e( 'Your WordPress database is already up-to-date!' ); ?></p>
-<p class="step"><a class="button button-large" href="<? echo get_option( 'home' ); ?>/"><? _e( 'Continue' ); ?></a></p>
+<h2><?php _e( 'No Update Required' ); ?></h2>
+<p><?php _e( 'Your WordPress database is already up-to-date!' ); ?></p>
+<p class="step"><a class="button button-large" href="<?php echo get_option( 'home' ); ?>/"><?php _e( 'Continue' ); ?></a></p>
 
-<? elseif ( !$php_compat || !$mysql_compat ) :
+<?php elseif ( !$php_compat || !$mysql_compat ) :
 	if ( !$mysql_compat && !$php_compat )
 		printf( __('You cannot update because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s.'), $wp_version, $required_php_version, $required_mysql_version, $php_version, $mysql_version );
 	elseif ( !$php_compat )
@@ -75,18 +75,18 @@ else
 	elseif ( !$mysql_compat )
 		printf( __('You cannot update because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s.'), $wp_version, $required_mysql_version, $mysql_version );
 ?>
-<? else :
+<?php else :
 switch ( $step ) :
 	case 0:
 		$goback = wp_get_referer();
 		$goback = esc_url_raw( $goback );
 		$goback = urlencode( $goback );
 ?>
-<h2><? _e( 'Database Update Required' ); ?></h2>
-<p><? _e( 'WordPress has been updated! Before we send you on your way, we have to update your database to the newest version.' ); ?></p>
-<p><? _e( 'The update process may take a little while, so please be patient.' ); ?></p>
-<p class="step"><a class="button button-large" href="upgrade.php?step=1&amp;backto=<? echo $goback; ?>"><? _e( 'Update WordPress Database' ); ?></a></p>
-<?
+<h2><?php _e( 'Database Update Required' ); ?></h2>
+<p><?php _e( 'WordPress has been updated! Before we send you on your way, we have to update your database to the newest version.' ); ?></p>
+<p><?php _e( 'The update process may take a little while, so please be patient.' ); ?></p>
+<p class="step"><a class="button button-large" href="upgrade.php?step=1&amp;backto=<?php echo $goback; ?>"><?php _e( 'Update WordPress Database' ); ?></a></p>
+<?php
 		break;
 	case 1:
 		wp_upgrade();
@@ -95,19 +95,19 @@ switch ( $step ) :
 			$backto = esc_url( $backto );
 			$backto = wp_validate_redirect($backto, __get_option( 'home' ) . '/');
 ?>
-<h2><? _e( 'Update Complete' ); ?></h2>
-	<p><? _e( 'Your WordPress database has been successfully updated!' ); ?></p>
-	<p class="step"><a class="button button-large" href="<? echo $backto; ?>"><? _e( 'Continue' ); ?></a></p>
+<h2><?php _e( 'Update Complete' ); ?></h2>
+	<p><?php _e( 'Your WordPress database has been successfully updated!' ); ?></p>
+	<p class="step"><a class="button button-large" href="<?php echo $backto; ?>"><?php _e( 'Continue' ); ?></a></p>
 
 <!--
 <pre>
-<? printf( __( '%s queries' ), $wpdb->num_queries ); ?>
+<?php printf( __( '%s queries' ), $wpdb->num_queries ); ?>
 
-<? printf( __( '%s seconds' ), timer_stop( 0 ) ); ?>
+<?php printf( __( '%s seconds' ), timer_stop( 0 ) ); ?>
 </pre>
 -->
 
-<?
+<?php
 		break;
 endswitch;
 endif;

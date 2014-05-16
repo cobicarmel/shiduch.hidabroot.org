@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Add New User network administration panel.
  *
@@ -69,8 +69,8 @@ $parent_file = 'users.php';
 require( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 
 <div class="wrap">
-<h2 id="add-new-user"><? _e('Add New User') ?></h2>
-<?
+<h2 id="add-new-user"><?php _e('Add New User') ?></h2>
+<?php
 if ( ! empty( $messages ) ) {
 	foreach ( $messages as $msg )
 		echo '<div id="message" class="updated"><p>' . $msg . '</p></div>';
@@ -78,29 +78,29 @@ if ( ! empty( $messages ) ) {
 
 if ( isset( $add_user_errors ) && is_wp_error( $add_user_errors ) ) { ?>
 	<div class="error">
-		<?
+		<?php
 			foreach ( $add_user_errors->get_error_messages() as $message )
 				echo "<p>$message</p>";
 		?>
 	</div>
-<? } ?>
-	<form action="<? echo network_admin_url('user-new.php?action=add-user'); ?>" id="adduser" method="post">
+<?php } ?>
+	<form action="<?php echo network_admin_url('user-new.php?action=add-user'); ?>" id="adduser" method="post">
 	<table class="form-table">
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Username' ) ?></th>
+			<th scope="row"><?php _e( 'Username' ) ?></th>
 			<td><input type="text" class="regular-text" name="user[username]" /></td>
 		</tr>
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Email' ) ?></th>
+			<th scope="row"><?php _e( 'Email' ) ?></th>
 			<td><input type="text" class="regular-text" name="user[email]" /></td>
 		</tr>
 		<tr class="form-field">
-			<td colspan="2"><? _e( 'Username and password will be mailed to the above email address.' ) ?></td>
+			<td colspan="2"><?php _e( 'Username and password will be mailed to the above email address.' ) ?></td>
 		</tr>
 	</table>
-	<? wp_nonce_field( 'add-user', '_wpnonce_add-user' ); ?>
-	<? submit_button( __('Add User'), 'primary', 'add-user' ); ?>
+	<?php wp_nonce_field( 'add-user', '_wpnonce_add-user' ); ?>
+	<?php submit_button( __('Add User'), 'primary', 'add-user' ); ?>
 	</form>
 </div>
-<?
+<?php
 require( ABSPATH . 'wp-admin/admin-footer.php' );

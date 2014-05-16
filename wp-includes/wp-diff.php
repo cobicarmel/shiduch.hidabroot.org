@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Diff bastard child of old MediaWiki Diff Formatter.
  *

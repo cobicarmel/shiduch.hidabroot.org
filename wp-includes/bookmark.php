@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Link/Bookmark API
  *

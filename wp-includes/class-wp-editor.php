@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Facilitates adding of the WordPress editor as used on the Write and Edit screens.
  *
@@ -241,11 +241,11 @@ final class _WP_Editors {
 
 		if ( empty(self::$first_init) ) {
 			if ( is_admin() ) {
-				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'editor_js'), 50 );
-				add_action( 'admin_footer', array( __CLASS__, 'enqueue_scripts'), 1 );
+				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'editor_js' ), 50 );
+				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'enqueue_scripts' ), 1 );
 			} else {
-				add_action( 'wp_print_footer_scripts', array( __CLASS__, 'editor_js'), 50 );
-				add_action( 'wp_footer', array( __CLASS__, 'enqueue_scripts'), 1 );
+				add_action( 'wp_print_footer_scripts', array( __CLASS__, 'editor_js' ), 50 );
+				add_action( 'wp_print_footer_scripts', array( __CLASS__, 'enqueue_scripts' ), 1 );
 			}
 		}
 
@@ -1061,22 +1061,22 @@ final class _WP_Editors {
 
 		<script type="text/javascript">
 		tinyMCEPreInit = {
-			baseURL: "<? echo self::$baseurl; ?>",
-			suffix: "<? echo $suffix; ?>",
-			<?
+			baseURL: "<?php echo self::$baseurl; ?>",
+			suffix: "<?php echo $suffix; ?>",
+			<?php
 
 			if ( self::$drag_drop_upload ) {
 				echo 'dragDropUpload: true,';
 			}
 
 			?>
-			mceInit: <? echo $mceInit; ?>,
-			qtInit: <? echo $qtInit; ?>,
-			ref: <? echo self::_parse_init( $ref ); ?>,
+			mceInit: <?php echo $mceInit; ?>,
+			qtInit: <?php echo $qtInit; ?>,
+			ref: <?php echo self::_parse_init( $ref ); ?>,
 			load_ext: function(url,lang){var sl=tinymce.ScriptLoader;sl.markDone(url+'/langs/'+lang+'.js');sl.markDone(url+'/langs/'+lang+'_dlg.js');}
 		};
 		</script>
-		<?
+		<?php
 
 		$baseurl = self::$baseurl;
 		// Load tinymce.js when running from /src, else load wp-tinymce.js.gz (production) or tinymce.min.js (SCRIPT_DEBUG)
@@ -1110,7 +1110,7 @@ final class _WP_Editors {
 
 		?>
 		<script type="text/javascript">
-		<?
+		<?php
 
 		if ( self::$ext_plugins )
 			echo self::$ext_plugins . "\n";
@@ -1174,7 +1174,7 @@ final class _WP_Editors {
 			}
 		}());
 		</script>
-		<?
+		<?php
 
 		if ( in_array( 'wplink', self::$plugins, true ) || in_array( 'link', self::$qt_buttons, true ) )
 			self::wp_link_dialog();
@@ -1202,21 +1202,21 @@ final class _WP_Editors {
 		$save = isset( $post->post_status ) && $post->post_status == 'publish' ? __('Update') : __('Save');
 
 		?>
-		<div id="wp-fullscreen-body" class="wp-core-ui<? if ( is_rtl() ) echo ' rtl'; ?>" data-theme-width="<? echo (int) $width; ?>" data-dfw-width="<? echo (int) $dfw_width; ?>">
+		<div id="wp-fullscreen-body" class="wp-core-ui<?php if ( is_rtl() ) echo ' rtl'; ?>" data-theme-width="<?php echo (int) $width; ?>" data-dfw-width="<?php echo (int) $dfw_width; ?>">
 		<div id="fullscreen-topbar">
 			<div id="wp-fullscreen-toolbar">
-			<div id="wp-fullscreen-close"><a href="#" onclick="wp.editor.fullscreen.off();return false;"><? _e('Exit fullscreen'); ?></a></div>
-			<div id="wp-fullscreen-central-toolbar" style="width:<? echo $width; ?>px;">
+			<div id="wp-fullscreen-close"><a href="#" onclick="wp.editor.fullscreen.off();return false;"><?php _e('Exit fullscreen'); ?></a></div>
+			<div id="wp-fullscreen-central-toolbar" style="width:<?php echo $width; ?>px;">
 
 			<div id="wp-fullscreen-mode-bar">
 				<div id="wp-fullscreen-modes" class="button-group">
-					<a class="button wp-fullscreen-mode-tinymce" href="#" onclick="wp.editor.fullscreen.switchmode( 'tinymce' ); return false;"><? _e( 'Visual' ); ?></a>
-					<a class="button wp-fullscreen-mode-html" href="#" onclick="wp.editor.fullscreen.switchmode( 'html' ); return false;"><? _ex( 'Text', 'Name for the Text editor tab (formerly HTML)' ); ?></a>
+					<a class="button wp-fullscreen-mode-tinymce" href="#" onclick="wp.editor.fullscreen.switchmode( 'tinymce' ); return false;"><?php _e( 'Visual' ); ?></a>
+					<a class="button wp-fullscreen-mode-html" href="#" onclick="wp.editor.fullscreen.switchmode( 'html' ); return false;"><?php _ex( 'Text', 'Name for the Text editor tab (formerly HTML)' ); ?></a>
 				</div>
 			</div>
 
 			<div id="wp-fullscreen-button-bar"><div id="wp-fullscreen-buttons" class="mce-toolbar">
-		<?
+		<?php
 
 		$buttons = array(
 			// format: title, onclick, show in both editors
@@ -1250,12 +1250,12 @@ final class _WP_Editors {
 			$title = esc_attr( $args['title'] );
 			?>
 
-			<div class="mce-widget mce-btn<? if ( $args['both'] ) { ?> wp-fullscreen-both<? } ?>">
-			<button type="button" aria-label="<? echo $title; ?>" title="<? echo $title; ?>"<? echo $onclick; ?> id="wp_fs_<? echo $button; ?>">
-				<i class="mce-ico mce-i-<? echo $button; ?>"></i>
+			<div class="mce-widget mce-btn<?php if ( $args['both'] ) { ?> wp-fullscreen-both<?php } ?>">
+			<button type="button" aria-label="<?php echo $title; ?>" title="<?php echo $title; ?>"<?php echo $onclick; ?> id="wp_fs_<?php echo $button; ?>">
+				<i class="mce-ico mce-i-<?php echo $button; ?>"></i>
 			</button>
 			</div>
-			<?
+			<?php
 		}
 
 		?>
@@ -1263,9 +1263,9 @@ final class _WP_Editors {
 		</div></div>
 
 		<div id="wp-fullscreen-save">
-			<input type="button" class="button button-primary right" value="<? echo $save; ?>" onclick="wp.editor.fullscreen.save();" />
-			<span class="wp-fullscreen-saved-message"><? if ( $post->post_status == 'publish' ) _e('Updated.'); else _e('Saved.'); ?></span>
-			<span class="wp-fullscreen-error-message"><? _e('Save failed.'); ?></span>
+			<input type="button" class="button button-primary right" value="<?php echo $save; ?>" onclick="wp.editor.fullscreen.save();" />
+			<span class="wp-fullscreen-saved-message"><?php if ( $post->post_status == 'publish' ) _e('Updated.'); else _e('Saved.'); ?></span>
+			<span class="wp-fullscreen-error-message"><?php _e('Save failed.'); ?></span>
 			<span class="spinner"></span>
 		</div>
 
@@ -1274,15 +1274,15 @@ final class _WP_Editors {
 	</div>
 	<div id="wp-fullscreen-statusbar">
 		<div id="wp-fullscreen-status">
-			<div id="wp-fullscreen-count"><? printf( __( 'Word count: %s' ), '<span class="word-count">0</span>' ); ?></div>
-			<div id="wp-fullscreen-tagline"><? _e('Just write.'); ?></div>
+			<div id="wp-fullscreen-count"><?php printf( __( 'Word count: %s' ), '<span class="word-count">0</span>' ); ?></div>
+			<div id="wp-fullscreen-tagline"><?php _e('Just write.'); ?></div>
 		</div>
 	</div>
 	</div>
 
 	<div class="fullscreen-overlay" id="fullscreen-overlay"></div>
 	<div class="fullscreen-overlay fullscreen-fader fade-300" id="fullscreen-fader"></div>
-	<?
+	<?php
 	}
 
 	/**
@@ -1385,31 +1385,31 @@ final class _WP_Editors {
 		// display: none is required here, see #WP27605
 		?>
 		<div id="wp-link-backdrop" style="display: none"></div>
-		<div id="wp-link-wrap" class="wp-core-ui<? echo $search_panel_visible; ?>" style="display: none">
+		<div id="wp-link-wrap" class="wp-core-ui<?php echo $search_panel_visible; ?>" style="display: none">
 		<form id="wp-link" tabindex="-1">
-		<? wp_nonce_field( 'internal-linking', '_ajax_linking_nonce', false ); ?>
+		<?php wp_nonce_field( 'internal-linking', '_ajax_linking_nonce', false ); ?>
 		<div id="link-modal-title">
-			<? _e( 'Insert/edit link' ) ?>
+			<?php _e( 'Insert/edit link' ) ?>
 			<div id="wp-link-close" tabindex="0"></div>
 	 	</div>
 		<div id="link-selector">
 			<div id="link-options">
-				<p class="howto"><? _e( 'Enter the destination URL' ); ?></p>
+				<p class="howto"><?php _e( 'Enter the destination URL' ); ?></p>
 				<div>
-					<label><span><? _e( 'URL' ); ?></span><input id="url-field" type="text" name="href" /></label>
+					<label><span><?php _e( 'URL' ); ?></span><input id="url-field" type="text" name="href" /></label>
 				</div>
 				<div>
-					<label><span><? _e( 'Title' ); ?></span><input id="link-title-field" type="text" name="linktitle" /></label>
+					<label><span><?php _e( 'Title' ); ?></span><input id="link-title-field" type="text" name="linktitle" /></label>
 				</div>
 				<div class="link-target">
-					<label><span>&nbsp;</span><input type="checkbox" id="link-target-checkbox" /> <? _e( 'Open link in a new window/tab' ); ?></label>
+					<label><span>&nbsp;</span><input type="checkbox" id="link-target-checkbox" /> <?php _e( 'Open link in a new window/tab' ); ?></label>
 				</div>
 			</div>
-			<p class="howto" id="wp-link-search-toggle"><? _e( 'Or link to existing content' ); ?></p>
+			<p class="howto" id="wp-link-search-toggle"><?php _e( 'Or link to existing content' ); ?></p>
 			<div id="search-panel">
 				<div class="link-search-wrapper">
 					<label>
-						<span class="search-label"><? _e( 'Search' ); ?></span>
+						<span class="search-label"><?php _e( 'Search' ); ?></span>
 						<input type="search" id="search-field" class="link-search-field" autocomplete="off" />
 						<span class="spinner"></span>
 					</label>
@@ -1421,7 +1421,7 @@ final class _WP_Editors {
 					</div>
 				</div>
 				<div id="most-recent-results" class="query-results">
-					<div class="query-notice"><em><? _e( 'No search term specified. Showing recent items.' ); ?></em></div>
+					<div class="query-notice"><em><?php _e( 'No search term specified. Showing recent items.' ); ?></em></div>
 					<ul></ul>
 					<div class="river-waiting">
 						<span class="spinner"></span>
@@ -1431,14 +1431,14 @@ final class _WP_Editors {
 		</div>
 		<div class="submitbox">
 			<div id="wp-link-update">
-				<input type="submit" value="<? esc_attr_e( 'Add Link' ); ?>" class="button button-primary" id="wp-link-submit" name="wp-link-submit">
+				<input type="submit" value="<?php esc_attr_e( 'Add Link' ); ?>" class="button button-primary" id="wp-link-submit" name="wp-link-submit">
 			</div>
 			<div id="wp-link-cancel">
-				<a class="submitdelete deletion" href="#"><? _e( 'Cancel' ); ?></a>
+				<a class="submitdelete deletion" href="#"><?php _e( 'Cancel' ); ?></a>
 			</div>
 		</div>
 		</form>
 		</div>
-		<?
+		<?php
 	}
 }

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Revisions administration panel
  *
@@ -126,8 +126,8 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-	<h2 class="long-header"><? echo $h2; ?></h2>
-	<? echo $return_to_post; ?>
+	<h2 class="long-header"><?php echo $h2; ?></h2>
+	<?php echo $return_to_post; ?>
 </div>
 
 <script id="tmpl-revisions-frame" type="text/html">
@@ -137,11 +137,11 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 <script id="tmpl-revisions-buttons" type="text/html">
 	<div class="revisions-previous">
-		<input class="button" type="button" value="<? echo esc_attr_x( 'Previous', 'Button label for a previous revision' ); ?>" />
+		<input class="button" type="button" value="<?php echo esc_attr_x( 'Previous', 'Button label for a previous revision' ); ?>" />
 	</div>
 
 	<div class="revisions-next">
-		<input class="button" type="button" value="<? echo esc_attr_x( 'Next', 'Button label for a next revision' ); ?>" />
+		<input class="button" type="button" value="<?php echo esc_attr_x( 'Next', 'Button label for a next revision' ); ?>" />
 	</div>
 </script>
 
@@ -155,7 +155,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 			}
 			#>
 			/>
-			<? esc_attr_e( 'Compare any two revisions' ); ?>
+			<?php esc_attr_e( 'Compare any two revisions' ); ?>
 		</label>
 	</div>
 </script>
@@ -164,38 +164,38 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	<# if ( ! _.isUndefined( data.attributes ) ) { #>
 		<div class="diff-title">
 			<# if ( 'from' === data.type ) { #>
-				<strong><? _ex( 'From:', 'Followed by post revision info' ); ?></strong>
+				<strong><?php _ex( 'From:', 'Followed by post revision info' ); ?></strong>
 			<# } else if ( 'to' === data.type ) { #>
-				<strong><? _ex( 'To:', 'Followed by post revision info' ); ?></strong>
+				<strong><?php _ex( 'To:', 'Followed by post revision info' ); ?></strong>
 			<# } #>
 			<div class="author-card<# if ( data.attributes.autosave ) { #> autosave<# } #>">
 				{{{ data.attributes.author.avatar }}}
 				<div class="author-info">
 				<# if ( data.attributes.autosave ) { #>
-					<span class="byline"><? printf( __( 'Autosave by %s' ),
+					<span class="byline"><?php printf( __( 'Autosave by %s' ),
 						'<span class="author-name">{{ data.attributes.author.name }}</span>' ); ?></span>
 				<# } else if ( data.attributes.current ) { #>
-					<span class="byline"><? printf( __( 'Current Revision by %s' ),
+					<span class="byline"><?php printf( __( 'Current Revision by %s' ),
 						'<span class="author-name">{{ data.attributes.author.name }}</span>' ); ?></span>
 				<# } else { #>
-					<span class="byline"><? printf( __( 'Revision by %s' ),
+					<span class="byline"><?php printf( __( 'Revision by %s' ),
 						'<span class="author-name">{{ data.attributes.author.name }}</span>' ); ?></span>
 				<# } #>
 					<span class="time-ago">{{ data.attributes.timeAgo }}</span>
 					<span class="date">({{ data.attributes.dateShort }})</span>
 				</div>
 			<# if ( 'to' === data.type && data.attributes.restoreUrl ) { #>
-				<input  <? if ( wp_check_post_lock( $post->ID ) ) { ?>
+				<input  <?php if ( wp_check_post_lock( $post->ID ) ) { ?>
 					disabled="disabled"
-				<? } else { ?>
+				<?php } else { ?>
 					<# if ( data.attributes.current ) { #>
 						disabled="disabled"
 					<# } #>
-				<? } ?>
+				<?php } ?>
 				<# if ( data.attributes.autosave ) { #>
-					type="button" class="restore-revision button button-primary" value="<? esc_attr_e( 'Restore This Autosave' ); ?>" />
+					type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Autosave' ); ?>" />
 				<# } else { #>
-					type="button" class="restore-revision button button-primary" value="<? esc_attr_e( 'Restore This Revision' ); ?>" />
+					type="button" class="restore-revision button button-primary" value="<?php esc_attr_e( 'Restore This Revision' ); ?>" />
 				<# } #>
 			<# } #>
 		</div>
@@ -207,7 +207,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 <script id="tmpl-revisions-diff" type="text/html">
 	<div class="loading-indicator"><span class="spinner"></span></div>
-	<div class="diff-error"><? _e( 'Sorry, something went wrong. The requested comparison could not be loaded.' ); ?></div>
+	<div class="diff-error"><?php _e( 'Sorry, something went wrong. The requested comparison could not be loaded.' ); ?></div>
 	<div class="diff">
 	<# _.each( data.fields, function( field ) { #>
 		<h3>{{ field.name }}</h3>
@@ -217,5 +217,5 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 </script>
 
 
-<?
+<?php
 require_once( ABSPATH . 'wp-admin/admin-footer.php' );

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * BackPress Scripts Procedural API
  *

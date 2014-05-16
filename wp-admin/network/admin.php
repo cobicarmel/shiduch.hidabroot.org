@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Network Administration Bootstrap
  *

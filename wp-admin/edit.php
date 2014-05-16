@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit Posts Administration Screen.
  *
@@ -265,7 +265,7 @@ $bulk_counts = array_filter( $bulk_counts );
 require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <div class="wrap">
-<h2><?
+<h2><?php
 echo esc_html( $post_type_object->labels->name );
 if ( current_user_can( $post_type_object->cap->create_posts ) )
 	echo ' <a href="' . esc_url( admin_url( $post_new_file ) ) . '" class="add-new-h2">' . esc_html( $post_type_object->labels->add_new ) . '</a>';
@@ -273,7 +273,7 @@ if ( ! empty( $_REQUEST['s'] ) )
 	printf( ' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() );
 ?></h2>
 
-<?
+<?php
 // If we have a bulk message to issue:
 $messages = array();
 foreach ( $bulk_counts as $message => $count ) {
@@ -295,23 +295,23 @@ unset( $messages );
 $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'deleted', 'trashed', 'untrashed' ), $_SERVER['REQUEST_URI'] );
 ?>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <form id="posts-filter" action="" method="get">
 
-<? $wp_list_table->search_box( $post_type_object->labels->search_items, 'post' ); ?>
+<?php $wp_list_table->search_box( $post_type_object->labels->search_items, 'post' ); ?>
 
-<input type="hidden" name="post_status" class="post_status_page" value="<? echo !empty($_REQUEST['post_status']) ? esc_attr($_REQUEST['post_status']) : 'all'; ?>" />
-<input type="hidden" name="post_type" class="post_type_page" value="<? echo $post_type; ?>" />
-<? if ( ! empty( $_REQUEST['show_sticky'] ) ) { ?>
+<input type="hidden" name="post_status" class="post_status_page" value="<?php echo !empty($_REQUEST['post_status']) ? esc_attr($_REQUEST['post_status']) : 'all'; ?>" />
+<input type="hidden" name="post_type" class="post_type_page" value="<?php echo $post_type; ?>" />
+<?php if ( ! empty( $_REQUEST['show_sticky'] ) ) { ?>
 <input type="hidden" name="show_sticky" value="1" />
-<? } ?>
+<?php } ?>
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 
 </form>
 
-<?
+<?php
 if ( $wp_list_table->has_items() )
 	$wp_list_table->inline_edit();
 ?>
@@ -320,5 +320,5 @@ if ( $wp_list_table->has_items() )
 <br class="clear" />
 </div>
 
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

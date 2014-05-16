@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit Site Settings Administration Screen
  *
@@ -87,9 +87,9 @@ require( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2 id="edit-site"><? echo $title_site_url_linked ?></h2>
+<h2 id="edit-site"><?php echo $title_site_url_linked ?></h2>
 <h3 class="nav-tab-wrapper">
-<?
+<?php
 $tabs = array(
 	'site-info'     => array( 'label' => __( 'Info' ),     'url' => 'site-info.php'     ),
 	'site-users'    => array( 'label' => __( 'Users' ),    'url' => 'site-users.php'    ),
@@ -102,16 +102,16 @@ foreach ( $tabs as $tab_id => $tab ) {
 }
 ?>
 </h3>
-<?
+<?php
 if ( ! empty( $messages ) ) {
 	foreach ( $messages as $msg )
 		echo '<div id="message" class="updated"><p>' . $msg . '</p></div>';
 } ?>
 <form method="post" action="site-settings.php?action=update-site">
-	<? wp_nonce_field( 'edit-site' ); ?>
-	<input type="hidden" name="id" value="<? echo esc_attr( $id ) ?>" />
+	<?php wp_nonce_field( 'edit-site' ); ?>
+	<input type="hidden" name="id" value="<?php echo esc_attr( $id ) ?>" />
 	<table class="form-table">
-		<?
+		<?php
 		$blog_prefix = $wpdb->get_blog_prefix( $id );
 		$options = $wpdb->get_results( "SELECT * FROM {$blog_prefix}options WHERE option_name NOT LIKE '\_%' AND option_name NOT LIKE '%user_roles'" );
 		foreach ( $options as $option ) {
@@ -131,21 +131,21 @@ if ( ! empty( $messages ) ) {
 			if ( strpos( $option->option_value, "\n" ) !== false ) {
 			?>
 				<tr class="form-field">
-					<th scope="row"><? echo ucwords( str_replace( "_", " ", $option->option_name ) ) ?></th>
-					<td><textarea class="<? echo $class; ?>" rows="5" cols="40" name="option[<? echo esc_attr( $option->option_name ) ?>]" id="<? echo esc_attr( $option->option_name ) ?>"<? disabled( $disabled ) ?>><? echo esc_textarea( $option->option_value ) ?></textarea></td>
+					<th scope="row"><?php echo ucwords( str_replace( "_", " ", $option->option_name ) ) ?></th>
+					<td><textarea class="<?php echo $class; ?>" rows="5" cols="40" name="option[<?php echo esc_attr( $option->option_name ) ?>]" id="<?php echo esc_attr( $option->option_name ) ?>"<?php disabled( $disabled ) ?>><?php echo esc_textarea( $option->option_value ) ?></textarea></td>
 				</tr>
-			<?
+			<?php
 			} else {
 			?>
 				<tr class="form-field">
-					<th scope="row"><? echo esc_html( ucwords( str_replace( "_", " ", $option->option_name ) ) ); ?></th>
-					<? if ( $is_main_site && in_array( $option->option_name, array( 'siteurl', 'home' ) ) ) { ?>
-					<td><code><? echo esc_html( $option->option_value ) ?></code></td>
-					<? } else { ?>
-					<td><input class="<? echo $class; ?>" name="option[<? echo esc_attr( $option->option_name ) ?>]" type="text" id="<? echo esc_attr( $option->option_name ) ?>" value="<? echo esc_attr( $option->option_value ) ?>" size="40" <? disabled( $disabled ) ?> /></td>
-					<? } ?>
+					<th scope="row"><?php echo esc_html( ucwords( str_replace( "_", " ", $option->option_name ) ) ); ?></th>
+					<?php if ( $is_main_site && in_array( $option->option_name, array( 'siteurl', 'home' ) ) ) { ?>
+					<td><code><?php echo esc_html( $option->option_value ) ?></code></td>
+					<?php } else { ?>
+					<td><input class="<?php echo $class; ?>" name="option[<?php echo esc_attr( $option->option_name ) ?>]" type="text" id="<?php echo esc_attr( $option->option_name ) ?>" value="<?php echo esc_attr( $option->option_value ) ?>" size="40" <?php disabled( $disabled ) ?> /></td>
+					<?php } ?>
 				</tr>
-			<?
+			<?php
 			}
 		} // End foreach
 		/**
@@ -158,9 +158,9 @@ if ( ! empty( $messages ) ) {
 		do_action( 'wpmueditblogaction', $id );
 		?>
 	</table>
-	<? submit_button(); ?>
+	<?php submit_button(); ?>
 </form>
 
 </div>
-<?
+<?php
 require( ABSPATH . 'wp-admin/admin-footer.php' );

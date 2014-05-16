@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Category Template Tags and API.
  *

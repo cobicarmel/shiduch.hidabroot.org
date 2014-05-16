@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress FTP Filesystem.
  *

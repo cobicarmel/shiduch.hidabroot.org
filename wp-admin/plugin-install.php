@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Install plugin administration panel.
  *
@@ -73,12 +73,12 @@ get_current_screen()->set_help_sidebar(
 include(ABSPATH . 'wp-admin/admin-header.php');
 ?>
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <br class="clear" />
-<?
+<?php
 /**
  * Fires after the plugins list table in each tab of the Install Plugins screen.
  *
@@ -90,9 +90,9 @@ include(ABSPATH . 'wp-admin/admin-header.php');
  * @param int $paged The current page number of the plugins list table.
  */
 ?>
-<? do_action( "install_plugins_$tab", $paged ); ?>
+<?php do_action( "install_plugins_$tab", $paged ); ?>
 </div>
-<?
+<?php
 /**
  * WordPress Administration Template Footer.
  */

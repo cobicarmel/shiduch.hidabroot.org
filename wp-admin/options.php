@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Options Management Administration Screen.
  *
@@ -200,13 +200,13 @@ if ( 'update' == $action ) {
 include( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 
 <div class="wrap">
-  <h2><? esc_html_e('All Settings'); ?></h2>
+  <h2><?php esc_html_e('All Settings'); ?></h2>
   <form name="form" action="options.php" method="post" id="all-options">
-  <? wp_nonce_field('options-options') ?>
+  <?php wp_nonce_field('options-options') ?>
   <input type="hidden" name="action" value="update" />
   <input type='hidden' name='option_page' value='options' />
   <table class="form-table">
-<?
+<?php
 $options = $wpdb->get_results( "SELECT * FROM $wpdb->options ORDER BY option_name" );
 
 foreach ( (array) $options as $option ) :
@@ -244,12 +244,12 @@ endforeach;
 ?>
   </table>
 
-<input type="hidden" name="page_options" value="<? echo esc_attr( implode( ',', $options_to_update ) ); ?>" />
+<input type="hidden" name="page_options" value="<?php echo esc_attr( implode( ',', $options_to_update ) ); ?>" />
 
-<? submit_button( __( 'Save Changes' ), 'primary', 'Update' ); ?>
+<?php submit_button( __( 'Save Changes' ), 'primary', 'Update' ); ?>
 
   </form>
 </div>
 
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

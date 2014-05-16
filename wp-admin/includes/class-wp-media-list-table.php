@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Media Library List Table class.
  *
@@ -86,7 +86,7 @@ class WP_Media_List_Table extends WP_List_Table {
 	function extra_tablenav( $which ) {
 ?>
 		<div class="alignleft actions">
-<?
+<?php
 		if ( 'top' == $which && !is_singular() && !$this->detached && !$this->is_trash ) {
 			$this->months_dropdown( 'attachment' );
 
@@ -101,7 +101,7 @@ class WP_Media_List_Table extends WP_List_Table {
 			submit_button( __( 'Empty Trash' ), 'apply', 'delete_all', false );
 		} ?>
 		</div>
-<?
+<?php
 	}
 
 	function current_action() {
@@ -209,8 +209,8 @@ class WP_Media_List_Table extends WP_List_Table {
 			$post_owner = ( get_current_user_id() == $post->post_author ) ? 'self' : 'other';
 			$att_title = _draft_or_post_title();
 ?>
-	<tr id='post-<? echo $post->ID; ?>' class='<? echo trim( $alt . ' author-' . $post_owner . ' status-' . $post->post_status ); ?>'>
-<?
+	<tr id='post-<?php echo $post->ID; ?>' class='<?php echo trim( $alt . ' author-' . $post_owner . ' status-' . $post->post_status ); ?>'>
+<?php
 
 list( $columns, $hidden ) = $this->get_column_info();
 foreach ( $columns as $column_name => $column_display_name ) {
@@ -227,75 +227,75 @@ foreach ( $columns as $column_name => $column_display_name ) {
 	case 'cb':
 ?>
 		<th scope="row" class="check-column">
-			<? if ( $user_can_edit ) { ?>
-				<label class="screen-reader-text" for="cb-select-<? the_ID(); ?>"><? echo sprintf( __( 'Select %s' ), $att_title );?></label>
-				<input type="checkbox" name="media[]" id="cb-select-<? the_ID(); ?>" value="<? the_ID(); ?>" />
-			<? } ?>
+			<?php if ( $user_can_edit ) { ?>
+				<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>"><?php echo sprintf( __( 'Select %s' ), $att_title );?></label>
+				<input type="checkbox" name="media[]" id="cb-select-<?php the_ID(); ?>" value="<?php the_ID(); ?>" />
+			<?php } ?>
 		</th>
-<?
+<?php
 		break;
 
 	case 'icon':
 		$attributes = 'class="column-icon media-icon"' . $style;
 ?>
-		<td <? echo $attributes ?>><?
+		<td <?php echo $attributes ?>><?php
 			if ( $thumb = wp_get_attachment_image( $post->ID, array( 80, 60 ), true ) ) {
 				if ( $this->is_trash || ! $user_can_edit ) {
 					echo $thumb;
 				} else {
 ?>
-				<a href="<? echo get_edit_post_link( $post->ID, true ); ?>" title="<? echo esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $att_title ) ); ?>">
-					<? echo $thumb; ?>
+				<a href="<?php echo get_edit_post_link( $post->ID, true ); ?>" title="<?php echo esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $att_title ) ); ?>">
+					<?php echo $thumb; ?>
 				</a>
 
-<?			}
+<?php			}
 			}
 ?>
 		</td>
-<?
+<?php
 		break;
 
 	case 'title':
 ?>
-		<td <? echo $attributes ?>><strong>
-			<? if ( $this->is_trash || ! $user_can_edit ) {
+		<td <?php echo $attributes ?>><strong>
+			<?php if ( $this->is_trash || ! $user_can_edit ) {
 				echo $att_title;
 			} else { ?>
-			<a href="<? echo get_edit_post_link( $post->ID, true ); ?>"
-				title="<? echo esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $att_title ) ); ?>">
-				<? echo $att_title; ?></a>
-			<? };
+			<a href="<?php echo get_edit_post_link( $post->ID, true ); ?>"
+				title="<?php echo esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $att_title ) ); ?>">
+				<?php echo $att_title; ?></a>
+			<?php };
 			_media_states( $post ); ?></strong>
 			<p>
-<?
+<?php
 			if ( preg_match( '/^.*?\.(\w+)$/', get_attached_file( $post->ID ), $matches ) )
 				echo esc_html( strtoupper( $matches[1] ) );
 			else
 				echo strtoupper( str_replace( 'image/', '', get_post_mime_type() ) );
 ?>
 			</p>
-<?
+<?php
 		echo $this->row_actions( $this->_get_row_actions( $post, $att_title ) );
 ?>
 		</td>
-<?
+<?php
 		break;
 
 	case 'author':
 ?>
-		<td <? echo $attributes ?>><?
+		<td <?php echo $attributes ?>><?php
 			printf( '<a href="%s">%s</a>',
 				esc_url( add_query_arg( array( 'author' => get_the_author_meta('ID') ), 'upload.php' ) ),
 				get_the_author()
 			);
 		?></td>
-<?
+<?php
 		break;
 
 	case 'desc':
 ?>
-		<td <? echo $attributes ?>><? echo has_excerpt() ? $post->post_excerpt : ''; ?></td>
-<?
+		<td <?php echo $attributes ?>><?php echo has_excerpt() ? $post->post_excerpt : ''; ?></td>
+<?php
 		break;
 
 	case 'date':
@@ -314,8 +314,8 @@ foreach ( $columns as $column_name => $column_display_name ) {
 			}
 		}
 ?>
-		<td <? echo $attributes ?>><? echo $h_time ?></td>
-<?
+		<td <?php echo $attributes ?>><?php echo $h_time ?></td>
+<?php
 		break;
 
 	case 'parent':
@@ -328,42 +328,42 @@ foreach ( $columns as $column_name => $column_display_name ) {
 			$title = _draft_or_post_title( $post->post_parent );
 			$parent_type = get_post_type_object( $parent->post_type );
 ?>
-			<td <? echo $attributes ?>><strong>
-				<? if ( current_user_can( 'edit_post', $post->post_parent ) && $parent_type && $parent_type->show_ui ) { ?>
-					<a href="<? echo get_edit_post_link( $post->post_parent ); ?>">
-						<? echo $title ?></a><?
+			<td <?php echo $attributes ?>><strong>
+				<?php if ( current_user_can( 'edit_post', $post->post_parent ) && $parent_type && $parent_type->show_ui ) { ?>
+					<a href="<?php echo get_edit_post_link( $post->post_parent ); ?>">
+						<?php echo $title ?></a><?php
 				} else {
 					echo $title;
 				} ?></strong>,
-				<? echo get_the_time( __( 'Y/m/d' ) ); ?>
+				<?php echo get_the_time( __( 'Y/m/d' ) ); ?>
 			</td>
-<?
+<?php
 		} else {
 ?>
-			<td <? echo $attributes ?>><? _e( '(Unattached)' ); ?><br />
-			<? if ( $user_can_edit ) { ?>
+			<td <?php echo $attributes ?>><?php _e( '(Unattached)' ); ?><br />
+			<?php if ( $user_can_edit ) { ?>
 				<a class="hide-if-no-js"
-					onclick="findPosts.open( 'media[]','<? echo $post->ID ?>' ); return false;"
+					onclick="findPosts.open( 'media[]','<?php echo $post->ID ?>' ); return false;"
 					href="#the-list">
-					<? _e( 'Attach' ); ?></a>
-			<? } ?></td>
-<?
+					<?php _e( 'Attach' ); ?></a>
+			<?php } ?></td>
+<?php
 		}
 		break;
 
 	case 'comments':
 		$attributes = 'class="comments column-comments num"' . $style;
 ?>
-		<td <? echo $attributes ?>>
+		<td <?php echo $attributes ?>>
 			<div class="post-com-count-wrapper">
-<?
+<?php
 		$pending_comments = get_pending_comments_num( $post->ID );
 
 		$this->comments_bubble( $post->ID, $pending_comments );
 ?>
 			</div>
 		</td>
-<?
+<?php
 		break;
 
 	default:
@@ -400,8 +400,8 @@ foreach ( $columns as $column_name => $column_display_name ) {
 			break;
 		}
 ?>
-		<td <? echo $attributes ?>>
-			<?
+		<td <?php echo $attributes ?>>
+			<?php
 				/**
 				 * Fires for each custom column in the Media list table.
 				 *
@@ -413,15 +413,15 @@ foreach ( $columns as $column_name => $column_display_name ) {
 				 * @param int    $post_id     Attachment ID.
 				 */
 			?>
-			<? do_action( 'manage_media_custom_column', $column_name, $post->ID ); ?>
+			<?php do_action( 'manage_media_custom_column', $column_name, $post->ID ); ?>
 		</td>
-<?
+<?php
 		break;
 	}
 }
 ?>
 	</tr>
-<? endwhile;
+<?php endwhile;
 	}
 
 	function _get_row_actions( $post, $att_title ) {

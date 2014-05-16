@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Object Cache API
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress AJAX Process Execution.
  *

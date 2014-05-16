@@ -2,7 +2,7 @@
 /**
  * The template for displaying Search Results pages.
  *
- * @package matchrepo
+ * @package Matchrepo
  */
 
 get_header(); ?>
@@ -13,7 +13,7 @@ get_header(); ?>
 		<? if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title"><? printf( __( 'Search Results for: %s', 'matchrepo' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<h1 class="page-title"><? printf( __( 'Search Results for: %s', 'Matchrepo' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header><!-- .page-header -->
 
 			<? /* Start the Loop */ ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 
 			<? endwhile; ?>
 
-			<? matchrepo_paging_nav(); ?>
+			<? Matchrepo_paging_nav(); ?>
 
 		<? else : ?>
 

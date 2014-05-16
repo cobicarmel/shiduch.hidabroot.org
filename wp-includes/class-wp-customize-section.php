@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Customize Section Class.
  *
@@ -163,18 +163,18 @@ class WP_Customize_Section {
 	 */
 	protected function render() {
 		?>
-		<li id="accordion-section-<? echo esc_attr( $this->id ); ?>" class="control-section accordion-section">
-			<h3 class="accordion-section-title" tabindex="0"><? echo esc_html( $this->title ); ?></h3>
+		<li id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="control-section accordion-section">
+			<h3 class="accordion-section-title" tabindex="0"><?php echo esc_html( $this->title ); ?></h3>
 			<ul class="accordion-section-content">
-				<? if ( ! empty( $this->description ) ) : ?>
-				<li><p class="description"><? echo $this->description; ?></p></li>
-				<? endif; ?>
-				<?
+				<?php if ( ! empty( $this->description ) ) : ?>
+				<li><p class="description"><?php echo $this->description; ?></p></li>
+				<?php endif; ?>
+				<?php
 				foreach ( $this->controls as $control )
 					$control->maybe_render();
 				?>
 			</ul>
 		</li>
-		<?
+		<?php
 	}
 }

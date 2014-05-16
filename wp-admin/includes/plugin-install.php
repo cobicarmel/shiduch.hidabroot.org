@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Plugin Install Administration API
  *
@@ -126,14 +126,14 @@ function install_popular_tags( $args = array() ) {
 
 function install_dashboard() {
 	?>
-	<p><? printf( __( 'Plugins extend and expand the functionality of WordPress. You may automatically install plugins from the <a href="%1$s">WordPress Plugin Directory</a> or upload a plugin in .zip format via <a href="%2$s">this page</a>.' ), 'https://wordpress.org/plugins/', self_admin_url( 'plugin-install.php?tab=upload' ) ); ?></p>
+	<p><?php printf( __( 'Plugins extend and expand the functionality of WordPress. You may automatically install plugins from the <a href="%1$s">WordPress Plugin Directory</a> or upload a plugin in .zip format via <a href="%2$s">this page</a>.' ), 'https://wordpress.org/plugins/', self_admin_url( 'plugin-install.php?tab=upload' ) ); ?></p>
 
-	<h4><? _e('Search') ?></h4>
-	<? install_search_form( false ); ?>
+	<h4><?php _e('Search') ?></h4>
+	<?php install_search_form( false ); ?>
 
-	<h4><? _e('Popular tags') ?></h4>
-	<p class="install-help"><? _e('You may also browse based on the most popular tags in the Plugin Directory:') ?></p>
-	<?
+	<h4><?php _e('Popular tags') ?></h4>
+	<p class="install-help"><?php _e('You may also browse based on the most popular tags in the Plugin Directory:') ?></p>
+	<?php
 
 	$api_tags = install_popular_tags();
 
@@ -166,17 +166,17 @@ function install_search_form( $type_selector = true ) {
 
 	?><form id="search-plugins" method="get" action="">
 		<input type="hidden" name="tab" value="search" />
-		<? if ( $type_selector ) : ?>
+		<?php if ( $type_selector ) : ?>
 		<select name="type" id="typeselector">
-			<option value="term"<? selected('term', $type) ?>><? _e('Keyword'); ?></option>
-			<option value="author"<? selected('author', $type) ?>><? _e('Author'); ?></option>
-			<option value="tag"<? selected('tag', $type) ?>><? _ex('Tag', 'Plugin Installer'); ?></option>
+			<option value="term"<?php selected('term', $type) ?>><?php _e('Keyword'); ?></option>
+			<option value="author"<?php selected('author', $type) ?>><?php _e('Author'); ?></option>
+			<option value="tag"<?php selected('tag', $type) ?>><?php _ex('Tag', 'Plugin Installer'); ?></option>
 		</select>
-		<? endif; ?>
-		<input type="search" name="s" value="<? echo esc_attr($term) ?>" autofocus="autofocus" />
-		<label class="screen-reader-text" for="plugin-search-input"><? _e('Search Plugins'); ?></label>
-		<? submit_button( __( 'Search Plugins' ), 'button', 'plugin-search-input', false ); ?>
-	</form><?
+		<?php endif; ?>
+		<input type="search" name="s" value="<?php echo esc_attr($term) ?>" autofocus="autofocus" />
+		<label class="screen-reader-text" for="plugin-search-input"><?php _e('Search Plugins'); ?></label>
+		<?php submit_button( __( 'Search Plugins' ), 'button', 'plugin-search-input', false ); ?>
+	</form><?php
 }
 
 /**
@@ -187,15 +187,15 @@ function install_search_form( $type_selector = true ) {
  */
 function install_plugins_upload( $page = 1 ) {
 ?>
-	<h4><? _e('Install a plugin in .zip format'); ?></h4>
-	<p class="install-help"><? _e('If you have a plugin in a .zip format, you may install it by uploading it here.'); ?></p>
-	<form method="post" enctype="multipart/form-data" class="wp-upload-form" action="<? echo self_admin_url('update.php?action=upload-plugin'); ?>">
-		<? wp_nonce_field( 'plugin-upload'); ?>
-		<label class="screen-reader-text" for="pluginzip"><? _e('Plugin zip file'); ?></label>
+	<h4><?php _e('Install a plugin in .zip format'); ?></h4>
+	<p class="install-help"><?php _e('If you have a plugin in a .zip format, you may install it by uploading it here.'); ?></p>
+	<form method="post" enctype="multipart/form-data" class="wp-upload-form" action="<?php echo self_admin_url('update.php?action=upload-plugin'); ?>">
+		<?php wp_nonce_field( 'plugin-upload'); ?>
+		<label class="screen-reader-text" for="pluginzip"><?php _e('Plugin zip file'); ?></label>
 		<input type="file" id="pluginzip" name="pluginzip" />
-		<? submit_button( __( 'Install Now' ), 'button', 'install-plugin-submit', false ); ?>
+		<?php submit_button( __( 'Install Now' ), 'button', 'install-plugin-submit', false ); ?>
 	</form>
-<?
+<?php
 }
 add_action('install_plugins_upload', 'install_plugins_upload', 10, 1);
 
@@ -207,16 +207,16 @@ add_action('install_plugins_upload', 'install_plugins_upload', 10, 1);
 function install_plugins_favorites_form() {
 	$user = ! empty( $_GET['user'] ) ? wp_unslash( $_GET['user'] ) : get_user_option( 'wporg_favorites' );
 	?>
-	<p class="install-help"><? _e( 'If you have marked plugins as favorites on WordPress.org, you can browse them here.' ); ?></p>
+	<p class="install-help"><?php _e( 'If you have marked plugins as favorites on WordPress.org, you can browse them here.' ); ?></p>
 	<form method="get" action="">
 		<input type="hidden" name="tab" value="favorites" />
 		<p>
-			<label for="user"><? _e( 'Your WordPress.org username:' ); ?></label>
-			<input type="search" id="user" name="user" value="<? echo esc_attr( $user ); ?>" />
-			<input type="submit" class="button" value="<? esc_attr_e( 'Get Favorites' ); ?>" />
+			<label for="user"><?php _e( 'Your WordPress.org username:' ); ?></label>
+			<input type="search" id="user" name="user" value="<?php echo esc_attr( $user ); ?>" />
+			<input type="submit" class="button" value="<?php esc_attr_e( 'Get Favorites' ); ?>" />
 		</p>
 	</form>
-	<?
+	<?php
 }
 
 /**
@@ -373,36 +373,36 @@ function install_plugin_information() {
 	echo "</div>\n";
 
 	?>
-	<div id="<? echo $_tab; ?>-content">
+	<div id="<?php echo $_tab; ?>-content">
 	<div class="fyi">
 		<ul>
-<? if ( ! empty( $api->version ) ) : ?>
-			<li><strong><? _e('Version:') ?></strong> <? echo $api->version ?></li>
-<? endif; if ( ! empty( $api->author ) ) : ?>
-			<li><strong><? _e('Author:') ?></strong> <? echo links_add_target($api->author, '_blank') ?></li>
-<? endif; if ( ! empty( $api->last_updated ) ) : ?>
-			<li><strong><? _e('Last Updated:') ?></strong> <span title="<? echo $api->last_updated ?>"><?
+<?php if ( ! empty( $api->version ) ) : ?>
+			<li><strong><?php _e('Version:') ?></strong> <?php echo $api->version ?></li>
+<?php endif; if ( ! empty( $api->author ) ) : ?>
+			<li><strong><?php _e('Author:') ?></strong> <?php echo links_add_target($api->author, '_blank') ?></li>
+<?php endif; if ( ! empty( $api->last_updated ) ) : ?>
+			<li><strong><?php _e('Last Updated:') ?></strong> <span title="<?php echo $api->last_updated ?>"><?php
 							printf( __('%s ago'), human_time_diff(strtotime($api->last_updated)) ) ?></span></li>
-<? endif; if ( ! empty( $api->requires ) ) : ?>
-			<li><strong><? _e('Requires WordPress Version:') ?></strong> <? printf(__('%s or higher'), $api->requires) ?></li>
-<? endif; if ( ! empty( $api->tested ) ) : ?>
-			<li><strong><? _e('Compatible up to:') ?></strong> <? echo $api->tested ?></li>
-<? endif; if ( ! empty( $api->downloaded ) ) : ?>
-			<li><strong><? _e('Downloaded:') ?></strong> <? printf(_n('%s time', '%s times', $api->downloaded), number_format_i18n($api->downloaded)) ?></li>
-<? endif; if ( ! empty( $api->slug ) && empty( $api->external ) ) : ?>
-			<li><a target="_blank" href="https://wordpress.org/plugins/<? echo $api->slug ?>/"><? _e('WordPress.org Plugin Page &#187;') ?></a></li>
-<? endif; if ( ! empty( $api->homepage ) ) : ?>
-			<li><a target="_blank" href="<? echo $api->homepage ?>"><? _e('Plugin Homepage &#187;') ?></a></li>
-<? endif; ?>
+<?php endif; if ( ! empty( $api->requires ) ) : ?>
+			<li><strong><?php _e('Requires WordPress Version:') ?></strong> <?php printf(__('%s or higher'), $api->requires) ?></li>
+<?php endif; if ( ! empty( $api->tested ) ) : ?>
+			<li><strong><?php _e('Compatible up to:') ?></strong> <?php echo $api->tested ?></li>
+<?php endif; if ( ! empty( $api->downloaded ) ) : ?>
+			<li><strong><?php _e('Downloaded:') ?></strong> <?php printf(_n('%s time', '%s times', $api->downloaded), number_format_i18n($api->downloaded)) ?></li>
+<?php endif; if ( ! empty( $api->slug ) && empty( $api->external ) ) : ?>
+			<li><a target="_blank" href="https://wordpress.org/plugins/<?php echo $api->slug ?>/"><?php _e('WordPress.org Plugin Page &#187;') ?></a></li>
+<?php endif; if ( ! empty( $api->homepage ) ) : ?>
+			<li><a target="_blank" href="<?php echo $api->homepage ?>"><?php _e('Plugin Homepage &#187;') ?></a></li>
+<?php endif; ?>
 		</ul>
-		<? if ( ! empty( $api->rating ) ) : ?>
-		<h3><? _e('Average Rating') ?></h3>
-		<? wp_star_rating( array( 'rating' => $api->rating, 'type' => 'percent', 'number' => $api->num_ratings ) ); ?>
-		<small><? printf( _n('(based on %s rating)', '(based on %s ratings)', $api->num_ratings), number_format_i18n($api->num_ratings) ); ?></small>
-		<? endif; ?>
+		<?php if ( ! empty( $api->rating ) ) : ?>
+		<h3><?php _e('Average Rating') ?></h3>
+		<?php wp_star_rating( array( 'rating' => $api->rating, 'type' => 'percent', 'number' => $api->num_ratings ) ); ?>
+		<small><?php printf( _n('(based on %s rating)', '(based on %s ratings)', $api->num_ratings), number_format_i18n($api->num_ratings) ); ?></small>
+		<?php endif; ?>
 	</div>
 	<div id="section-holder" class="wrap">
-	<?
+	<?php
 		if ( ! empty( $api->tested ) && version_compare( substr( $GLOBALS['wp_version'], 0, strlen( $api->tested ) ), $api->tested, '>' ) )
 			echo '<div class="updated"><p>' . __('<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress.') . '</p></div>';
 

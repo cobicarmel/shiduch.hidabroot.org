@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Administration Template Header
  *
@@ -47,8 +47,8 @@ wp_user_settings();
 
 _wp_admin_html_begin();
 ?>
-<title><? echo $admin_title; ?></title>
-<?
+<title><?php echo $admin_title; ?></title>
+<?php
 
 wp_enqueue_style( 'colors' );
 wp_enqueue_style( 'ie' );
@@ -59,16 +59,16 @@ $admin_body_class = preg_replace('/[^a-z0-9_-]+/i', '-', $hook_suffix);
 ?>
 <script type="text/javascript">
 addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
-var ajaxurl = '<? echo admin_url( 'admin-ajax.php', 'relative' ); ?>',
-	pagenow = '<? echo $current_screen->id; ?>',
-	typenow = '<? echo $current_screen->post_type; ?>',
-	adminpage = '<? echo $admin_body_class; ?>',
-	thousandsSeparator = '<? echo addslashes( $wp_locale->number_format['thousands_sep'] ); ?>',
-	decimalPoint = '<? echo addslashes( $wp_locale->number_format['decimal_point'] ); ?>',
-	isRtl = <? echo (int) is_rtl(); ?>;
+var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>',
+	pagenow = '<?php echo $current_screen->id; ?>',
+	typenow = '<?php echo $current_screen->post_type; ?>',
+	adminpage = '<?php echo $admin_body_class; ?>',
+	thousandsSeparator = '<?php echo addslashes( $wp_locale->number_format['thousands_sep'] ); ?>',
+	decimalPoint = '<?php echo addslashes( $wp_locale->number_format['decimal_point'] ); ?>',
+	isRtl = <?php echo (int) is_rtl(); ?>;
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<?
+<?php
 
 /**
  * Enqueue scripts for all admin pages.
@@ -157,7 +157,7 @@ $admin_body_class .= ' no-customize-support no-svg';
 
 ?>
 </head>
-<?
+<?php
 /**
  * Filter the admin <body> CSS classes.
  *
@@ -170,23 +170,23 @@ $admin_body_class .= ' no-customize-support no-svg';
  * @param string $classes Space-separated string of CSS classes.
  */
 ?>
-<body class="wp-admin wp-core-ui no-js <? echo apply_filters( 'admin_body_class', '' ) . " $admin_body_class"; ?>">
+<body class="wp-admin wp-core-ui no-js <?php echo apply_filters( 'admin_body_class', '' ) . " $admin_body_class"; ?>">
 <script type="text/javascript">
 	document.body.className = document.body.className.replace('no-js','js');
 </script>
 
-<?
+<?php
 // Make sure the customize body classes are correct as early as possible.
 if ( current_user_can( 'edit_theme_options' ) )
 	wp_customize_support_script();
 ?>
 
 <div id="wpwrap">
-<a tabindex="1" href="#wpbody-content" class="screen-reader-shortcut"><? _e('Skip to main content'); ?></a>
-<? require(ABSPATH . 'wp-admin/menu-header.php'); ?>
+<a tabindex="1" href="#wpbody-content" class="screen-reader-shortcut"><?php _e('Skip to main content'); ?></a>
+<?php require(ABSPATH . 'wp-admin/menu-header.php'); ?>
 <div id="wpcontent">
 
-<?
+<?php
 /**
  * Fires at the beginning of the content section in an admin page.
  *
@@ -196,15 +196,15 @@ do_action( 'in_admin_header' );
 ?>
 
 <div id="wpbody">
-<?
+<?php
 unset($title_class, $blog_name, $total_update_count, $update_title);
 
 $current_screen->set_parentage( $parent_file );
 
 ?>
 
-<div id="wpbody-content" aria-label="<? esc_attr_e('Main content'); ?>" tabindex="0">
-<?
+<div id="wpbody-content" aria-label="<?php esc_attr_e('Main content'); ?>" tabindex="0">
+<?php
 
 $current_screen->render_screen_meta();
 

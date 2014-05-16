@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Network Credits administration panel.
  *

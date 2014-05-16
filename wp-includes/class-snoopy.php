@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Deprecated. Use WP_HTTP (http.php, class-http.php) instead.

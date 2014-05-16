@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite administration functions.
  *
@@ -388,8 +388,8 @@ function display_space_usage() {
 		$space .= __( 'MB' );
 	}
 	?>
-	<strong><? printf( __( 'Used: %1$s%% of %2$s' ), number_format( $percent_used ), $space ); ?></strong>
-	<?
+	<strong><?php printf( __( 'Used: %1$s%% of %2$s' ), number_format( $percent_used ), $space ); ?></strong>
+	<?php
 }
 
 /**
@@ -422,10 +422,10 @@ function upload_space_setting( $id ) {
 
 	?>
 	<tr>
-		<th><? _e( 'Site Upload Space Quota '); ?></th>
-		<td><input type="number" step="1" min="0" style="width: 100px" name="option[blog_upload_space]" value="<? echo $quota; ?>" /> <? _e( 'MB (Leave blank for network default)' ); ?></td>
+		<th><?php _e( 'Site Upload Space Quota '); ?></th>
+		<td><input type="number" step="1" min="0" style="width: 100px" name="option[blog_upload_space]" value="<?php echo $quota; ?>" /> <?php _e( 'MB (Leave blank for network default)' ); ?></td>
 	</tr>
-	<?
+	<?php
 }
 add_action( 'wpmueditblogaction', 'upload_space_setting' );
 
@@ -634,23 +634,23 @@ function choose_primary_blog() {
 	?>
 	<table class="form-table">
 	<tr>
-	<? /* translators: My sites label */ ?>
-		<th scope="row"><? _e( 'Primary Site' ); ?></th>
+	<?php /* translators: My sites label */ ?>
+		<th scope="row"><?php _e( 'Primary Site' ); ?></th>
 		<td>
-		<?
+		<?php
 		$all_blogs = get_blogs_of_user( get_current_user_id() );
 		$primary_blog = get_user_meta( get_current_user_id(), 'primary_blog', true );
 		if ( count( $all_blogs ) > 1 ) {
 			$found = false;
 			?>
 			<select name="primary_blog">
-				<? foreach( (array) $all_blogs as $blog ) {
+				<?php foreach( (array) $all_blogs as $blog ) {
 					if ( $primary_blog == $blog->userblog_id )
 						$found = true;
-					?><option value="<? echo $blog->userblog_id ?>"<? selected( $primary_blog, $blog->userblog_id ); ?>><? echo esc_url( get_home_url( $blog->userblog_id ) ) ?></option><?
+					?><option value="<?php echo $blog->userblog_id ?>"<?php selected( $primary_blog, $blog->userblog_id ); ?>><?php echo esc_url( get_home_url( $blog->userblog_id ) ) ?></option><?php
 				} ?>
 			</select>
-			<?
+			<?php
 			if ( !$found ) {
 				$blog = array_shift( $all_blogs );
 				update_user_meta( get_current_user_id(), 'primary_blog', $blog->userblog_id );
@@ -666,19 +666,19 @@ function choose_primary_blog() {
 		?>
 		</td>
 	</tr>
-	<? if ( in_array( get_site_option( 'registration' ), array( 'all', 'blog' ) ) ) : ?>
+	<?php if ( in_array( get_site_option( 'registration' ), array( 'all', 'blog' ) ) ) : ?>
 		<tr>
 			<th scope="row" colspan="2" class="th-full">
-				<?
+				<?php
 				$signup_url = network_site_url( 'wp-signup.php' );
 				/** This filter is documented in wp-login.php */
 				?>
-				<a href="<? echo apply_filters( 'wp_signup_location', $signup_url ); ?>"><? _e( 'Create a New Site' ); ?></a>
+				<a href="<?php echo apply_filters( 'wp_signup_location', $signup_url ); ?>"><?php _e( 'Create a New Site' ); ?></a>
 			</th>
 		</tr>
-	<? endif; ?>
+	<?php endif; ?>
 	</table>
-	<?
+	<?php
 }
 
 /**
@@ -811,5 +811,5 @@ function _thickbox_path_admin_subfolder() {
 var tb_pathToImage = "../../wp-includes/js/thickbox/loadingAnimation.gif";
 //]]>
 </script>
-<?
+<?php
 }

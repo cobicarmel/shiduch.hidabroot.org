@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit Site Themes Administration Screen
  *
@@ -139,9 +139,9 @@ $submenu_file = 'sites.php';
 require( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 
 <div class="wrap">
-<h2 id="edit-site"><? echo $title_site_url_linked ?></h2>
+<h2 id="edit-site"><?php echo $title_site_url_linked ?></h2>
 <h3 class="nav-tab-wrapper">
-<?
+<?php
 $tabs = array(
 	'site-info'     => array( 'label' => __( 'Info' ),     'url' => 'site-info.php'     ),
 	'site-users'    => array( 'label' => __( 'Users' ),    'url' => 'site-users.php'    ),
@@ -153,7 +153,7 @@ foreach ( $tabs as $tab_id => $tab ) {
 	echo '<a href="' . $tab['url'] . '?id=' . $id .'" class="nav-tab' . $class . '">' . esc_html( $tab['label'] ) . '</a>';
 }
 ?>
-</h3><?
+</h3><?php
 
 if ( isset( $_GET['enabled'] ) ) {
 	$_GET['enabled'] = absint( $_GET['enabled'] );
@@ -165,21 +165,21 @@ if ( isset( $_GET['enabled'] ) ) {
 	echo '<div id="message" class="error"><p>' . __( 'No theme selected.' ) . '</p></div>';
 } ?>
 
-<p><? _e( 'Network enabled themes are not shown on this screen.' ) ?></p>
+<p><?php _e( 'Network enabled themes are not shown on this screen.' ) ?></p>
 
 <form method="get" action="">
-<? $wp_list_table->search_box( __( 'Search Installed Themes' ), 'theme' ); ?>
-<input type="hidden" name="id" value="<? echo esc_attr( $id ) ?>" />
+<?php $wp_list_table->search_box( __( 'Search Installed Themes' ), 'theme' ); ?>
+<input type="hidden" name="id" value="<?php echo esc_attr( $id ) ?>" />
 </form>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <form method="post" action="site-themes.php?action=update-site">
-	<input type="hidden" name="id" value="<? echo esc_attr( $id ) ?>" />
+	<input type="hidden" name="id" value="<?php echo esc_attr( $id ) ?>" />
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 
 </form>
 
 </div>
-<? include(ABSPATH . 'wp-admin/admin-footer.php'); ?>
+<?php include(ABSPATH . 'wp-admin/admin-footer.php'); ?>

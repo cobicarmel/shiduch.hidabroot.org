@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Install theme administration panel.
  *
@@ -109,30 +109,30 @@ include(ABSPATH . 'wp-admin/admin-header.php');
 ?>
 <div class="wrap">
 	<h2>
-		<? echo esc_html( $title ); ?>
-		<a href="#" class="upload add-new-h2"><? _e( 'Upload Theme' ); ?></a>
-		<a href="#" class="browse-themes add-new-h2"><? _ex( 'Browse', 'themes' ); ?></a>
+		<?php echo esc_html( $title ); ?>
+		<a href="#" class="upload add-new-h2"><?php _e( 'Upload Theme' ); ?></a>
+		<a href="#" class="browse-themes add-new-h2"><?php _ex( 'Browse', 'themes' ); ?></a>
 	</h2>
 
 	<div class="upload-theme">
-	<? install_themes_upload(); ?>
+	<?php install_themes_upload(); ?>
 	</div>
 
 	<div class="theme-navigation">
 		<span class="theme-count"></span>
-		<a class="theme-section" href="#" data-sort="featured"><? _ex( 'Featured', 'themes' ); ?></a>
-		<a class="theme-section" href="#" data-sort="popular"><? _ex( 'Popular', 'themes' ); ?></a>
-		<a class="theme-section" href="#" data-sort="new"><? _ex( 'Latest', 'themes' ); ?></a>
+		<a class="theme-section" href="#" data-sort="featured"><?php _ex( 'Featured', 'themes' ); ?></a>
+		<a class="theme-section" href="#" data-sort="popular"><?php _ex( 'Popular', 'themes' ); ?></a>
+		<a class="theme-section" href="#" data-sort="new"><?php _ex( 'Latest', 'themes' ); ?></a>
 		<div class="theme-top-filters">
 			<!-- <span class="theme-filter" data-filter="photoblogging">Photography</span>
 			<span class="theme-filter" data-filter="responsive-layout">Responsive</span> -->
-			<a class="more-filters" href="#"><? _e( 'Feature Filter' ); ?></a>
+			<a class="more-filters" href="#"><?php _e( 'Feature Filter' ); ?></a>
 		</div>
 		<div class="more-filters-container">
-			<a class="apply-filters button button-secondary" href="#"><? _e( 'Apply Filters' ); ?><span></span></a>
-			<a class="clear-filters button button-secondary" href="#"><? _e( 'Clear' ); ?></a>
+			<a class="apply-filters button button-secondary" href="#"><?php _e( 'Apply Filters' ); ?><span></span></a>
+			<a class="clear-filters button button-secondary" href="#"><?php _e( 'Clear' ); ?></a>
 			<br class="clear" />
-		<?
+		<?php
 		$feature_list = get_theme_feature_list();
 		foreach ( $feature_list as $feature_name => $features ) {
 			if ( $feature_name === 'Features' || $feature_name === __( 'Features' ) ) { // hack hack hack
@@ -153,20 +153,20 @@ include(ABSPATH . 'wp-admin/admin-header.php');
 		}
 		?>
 			<div class="filtering-by">
-				<span><? _e( 'Filtering by:' ); ?></span>
+				<span><?php _e( 'Filtering by:' ); ?></span>
 				<div class="tags"></div>
-				<a href="#"><? _e( 'Edit' ); ?></a>
+				<a href="#"><?php _e( 'Edit' ); ?></a>
 			</div>
 		</div>
 	</div>
 	<div class="theme-browser"></div>
 	<div class="theme-install-overlay wp-full-overlay expanded"></div>
 
-	<p class="no-themes"><? _e( 'No themes found. Try a different search.' ); ?></p>
+	<p class="no-themes"><?php _e( 'No themes found. Try a different search.' ); ?></p>
 	<span class="spinner"></span>
 
 	<br class="clear" />
-<?
+<?php
 /**
  * Fires at the top of each of the tabs on the Install Themes page.
  *
@@ -192,34 +192,34 @@ if ( $tab ) {
 	<# } else { #>
 		<div class="theme-screenshot blank"></div>
 	<# } #>
-	<span class="more-details"><? _ex( 'Details &amp; Preview', 'theme' ); ?></span>
-	<div class="theme-author"><? printf( __( 'By %s' ), '{{ data.author }}' ); ?></div>
+	<span class="more-details"><?php _ex( 'Details &amp; Preview', 'theme' ); ?></span>
+	<div class="theme-author"><?php printf( __( 'By %s' ), '{{ data.author }}' ); ?></div>
 	<h3 class="theme-name">{{ data.name }}</h3>
 
 	<div class="theme-actions">
-		<a class="button button-primary" href="{{ data.install_url }}"><? esc_html_e( 'Install' ); ?></a>
-		<a class="button button-secondary preview install-theme-preview" href="#"><? esc_html_e( 'Preview' ); ?></a>
+		<a class="button button-primary" href="{{ data.install_url }}"><?php esc_html_e( 'Install' ); ?></a>
+		<a class="button button-secondary preview install-theme-preview" href="#"><?php esc_html_e( 'Preview' ); ?></a>
 	</div>
 
 	<# if ( data.installed ) { #>
-		<div class="theme-installed"><? _e( 'Already Installed' ); ?></div>
+		<div class="theme-installed"><?php _e( 'Already Installed' ); ?></div>
 	<# } #>
 </script>
 
 <script id="tmpl-theme-preview" type="text/template">
 	<div class="wp-full-overlay-sidebar">
 		<div class="wp-full-overlay-header">
-			<a href="#" class="close-full-overlay button-secondary"><? _e( 'Close' ); ?></a>
+			<a href="#" class="close-full-overlay button-secondary"><?php _e( 'Close' ); ?></a>
 		<# if ( data.installed ) { #>
-			<a href="#" class="button button-primary theme-install disabled"><? _e( 'Installed' ); ?></a>
+			<a href="#" class="button button-primary theme-install disabled"><?php _e( 'Installed' ); ?></a>
 		<# } else { #>
-			<a href="{{ data.install_url }}" class="button button-primary theme-install"><? _e( 'Install' ); ?></a>
+			<a href="{{ data.install_url }}" class="button button-primary theme-install"><?php _e( 'Install' ); ?></a>
 		<# } #>
 		</div>
 		<div class="wp-full-overlay-sidebar-content">
 			<div class="install-theme-info">
 				<h3 class="theme-name">{{ data.name }}</h3>
-				<span class="theme-by"><? printf( __( 'By %s' ), '{{ data.author }}' ); ?></span>
+				<span class="theme-by"><?php printf( __( 'By %s' ), '{{ data.author }}' ); ?></span>
 
 				<img class="theme-screenshot" src="{{ data.screenshot_url }}" alt="" />
 
@@ -233,22 +233,22 @@ if ( $tab ) {
 					<# if ( data.num_ratings ) { #>
 						<p class="ratings">{{ data.num_ratings }}</p>
 					<# } else { #>
-						<p class="ratings"><? _e( 'No ratings.' ); ?></p>
+						<p class="ratings"><?php _e( 'No ratings.' ); ?></p>
 					<# } #>
 					</div>
-					<div class="theme-version"><? printf( __( 'Version: %s' ), '{{ data.version }}' ); ?></div>
+					<div class="theme-version"><?php printf( __( 'Version: %s' ), '{{ data.version }}' ); ?></div>
 					<div class="theme-description">{{{ data.description }}}</div>
 				</div>
 			</div>
 		</div>
 		<div class="wp-full-overlay-footer">
-			<a href="#" class="collapse-sidebar" title="<? esc_attr_e( 'Collapse Sidebar' ); ?>">
-				<span class="collapse-sidebar-label"><? _e( 'Collapse' ); ?></span>
+			<a href="#" class="collapse-sidebar" title="<?php esc_attr_e( 'Collapse Sidebar' ); ?>">
+				<span class="collapse-sidebar-label"><?php _e( 'Collapse' ); ?></span>
 				<span class="collapse-sidebar-arrow"></span>
 			</a>
 			<div class="theme-navigation">
-				<a class="previous-theme button" href="#"><? _e( 'Previous' ); ?></a>
-				<a class="next-theme button" href="#"><? _e( 'Next' ); ?></a>
+				<a class="previous-theme button" href="#"><?php _e( 'Previous' ); ?></a>
+				<a class="next-theme button" href="#"><?php _e( 'Next' ); ?></a>
 			</div>
 		</div>
 	</div>
@@ -257,5 +257,5 @@ if ( $tab ) {
 	</div>
 </script>
 
-<?
+<?php
 include(ABSPATH . 'wp-admin/admin-footer.php');

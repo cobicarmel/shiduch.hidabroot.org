@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Upgrade API
  *
@@ -1850,10 +1850,10 @@ function make_site_theme_from_oldschool($theme_name, $template) {
 					$line = '//' . $line;
 
 				// Update stylesheet references.
-				$line = str_replace("<? echo __get_option('siteurl'); ?>/wp-layout.css", "<? bloginfo('stylesheet_url'); ?>", $line);
+				$line = str_replace("<?php echo __get_option('siteurl'); ?>/wp-layout.css", "<?php bloginfo('stylesheet_url'); ?>", $line);
 
 				// Update comments template inclusion.
-				$line = str_replace("<? include(ABSPATH . 'wp-comments.php'); ?>", "<? comments_template(); ?>", $line);
+				$line = str_replace("<?php include(ABSPATH . 'wp-comments.php'); ?>", "<?php comments_template(); ?>", $line);
 
 				fwrite($f, "{$line}\n");
 			}

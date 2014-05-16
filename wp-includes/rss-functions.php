@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Deprecated. Use rss.php instead.
  *

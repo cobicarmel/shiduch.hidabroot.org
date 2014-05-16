@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Customize Widgets Class
  *
@@ -749,17 +749,17 @@ final class WP_Customize_Widgets {
 		<div id="widgets-left"><!-- compatibility with JS which looks for widget templates here -->
 		<div id="available-widgets">
 			<div id="available-widgets-filter">
-				<label class="screen-reader-text" for="widgets-search"><? _e( 'Search Widgets' ); ?></label>
-				<input type="search" id="widgets-search" placeholder="<? esc_attr_e( 'Search widgets&hellip;' ) ?>" />
+				<label class="screen-reader-text" for="widgets-search"><?php _e( 'Search Widgets' ); ?></label>
+				<input type="search" id="widgets-search" placeholder="<?php esc_attr_e( 'Search widgets&hellip;' ) ?>" />
 			</div>
-			<? foreach ( $this->get_available_widgets() as $available_widget ): ?>
-				<div id="widget-tpl-<? echo esc_attr( $available_widget['id'] ) ?>" data-widget-id="<? echo esc_attr( $available_widget['id'] ) ?>" class="widget-tpl <? echo esc_attr( $available_widget['id'] ) ?>" tabindex="0">
-					<? echo $available_widget['control_tpl']; ?>
+			<?php foreach ( $this->get_available_widgets() as $available_widget ): ?>
+				<div id="widget-tpl-<?php echo esc_attr( $available_widget['id'] ) ?>" data-widget-id="<?php echo esc_attr( $available_widget['id'] ) ?>" class="widget-tpl <?php echo esc_attr( $available_widget['id'] ) ?>" tabindex="0">
+					<?php echo $available_widget['control_tpl']; ?>
 				</div>
-			<? endforeach; ?>
+			<?php endforeach; ?>
 		</div><!-- #available-widgets -->
 		</div><!-- #widgets-left -->
-		<?
+		<?php
 	}
 
 	/**
@@ -1021,7 +1021,7 @@ final class WP_Customize_Widgets {
 			z-index: 1;
 		}
 		</style>
-		<?
+		<?php
 	}
 
 	/**
@@ -1049,9 +1049,9 @@ final class WP_Customize_Widgets {
 
 		?>
 		<script type="text/javascript">
-			var _wpWidgetCustomizerPreviewSettings = <? echo json_encode( $settings ); ?>;
+			var _wpWidgetCustomizerPreviewSettings = <?php echo json_encode( $settings ); ?>;
 		</script>
-		<?
+		<?php
 	}
 
 	/**

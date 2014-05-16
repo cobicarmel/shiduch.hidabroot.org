@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Helper functions for displaying a list of items in an ajaxified HTML table.
  *

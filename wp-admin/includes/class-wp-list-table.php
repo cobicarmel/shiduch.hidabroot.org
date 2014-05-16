@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Base class for displaying a list of items in an ajaxified HTML table.
  *
@@ -208,11 +208,11 @@ class WP_List_Table {
 			echo '<input type="hidden" name="detached" value="' . esc_attr( $_REQUEST['detached'] ) . '" />';
 ?>
 <p class="search-box">
-	<label class="screen-reader-text" for="<? echo $input_id ?>"><? echo $text; ?>:</label>
-	<input type="search" id="<? echo $input_id ?>" name="s" value="<? _admin_search_query(); ?>" />
-	<? submit_button( $text, 'button', false, false, array('id' => 'search-submit') ); ?>
+	<label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
+	<input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+	<?php submit_button( $text, 'button', false, false, array('id' => 'search-submit') ); ?>
 </p>
-<?
+<?php
 	}
 
 	/**
@@ -398,8 +398,8 @@ class WP_List_Table {
 		$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
 ?>
 		<select name='m'>
-			<option<? selected( $m, 0 ); ?> value='0'><? _e( 'All dates' ); ?></option>
-<?
+			<option<?php selected( $m, 0 ); ?> value='0'><?php _e( 'All dates' ); ?></option>
+<?php
 		foreach ( $months as $arc_row ) {
 			if ( 0 == $arc_row->year )
 				continue;
@@ -416,7 +416,7 @@ class WP_List_Table {
 		}
 ?>
 		</select>
-<?
+<?php
 	}
 
 	/**
@@ -432,16 +432,16 @@ class WP_List_Table {
 		);
 
 ?>
-		<input type="hidden" name="mode" value="<? echo esc_attr( $current_mode ); ?>" />
+		<input type="hidden" name="mode" value="<?php echo esc_attr( $current_mode ); ?>" />
 		<div class="view-switch">
-<?
+<?php
 			foreach ( $modes as $mode => $title ) {
 				$class = ( $current_mode == $mode ) ? 'class="current"' : '';
 				echo "<a href='" . esc_url( add_query_arg( 'mode', $mode, $_SERVER['REQUEST_URI'] ) ) . "' $class><img id='view-switch-$mode' src='" . esc_url( includes_url( 'images/blank.gif' ) ) . "' width='20' height='20' title='$title' alt='$title' /></a>\n";
 			}
 		?>
 		</div>
-<?
+<?php
 	}
 
 	/**
@@ -765,24 +765,24 @@ class WP_List_Table {
 		$this->display_tablenav( 'top' );
 
 ?>
-<table class="wp-list-table <? echo implode( ' ', $this->get_table_classes() ); ?>">
+<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
 	<thead>
 	<tr>
-		<? $this->print_column_headers(); ?>
+		<?php $this->print_column_headers(); ?>
 	</tr>
 	</thead>
 
 	<tfoot>
 	<tr>
-		<? $this->print_column_headers( false ); ?>
+		<?php $this->print_column_headers( false ); ?>
 	</tr>
 	</tfoot>
 
-	<tbody id="the-list"<? if ( $singular ) echo " data-wp-lists='list:$singular'"; ?>>
-		<? $this->display_rows_or_placeholder(); ?>
+	<tbody id="the-list"<?php if ( $singular ) echo " data-wp-lists='list:$singular'"; ?>>
+		<?php $this->display_rows_or_placeholder(); ?>
 	</tbody>
 </table>
-<?
+<?php
 		$this->display_tablenav( 'bottom' );
 	}
 
@@ -808,19 +808,19 @@ class WP_List_Table {
 		if ( 'top' == $which )
 			wp_nonce_field( 'bulk-' . $this->_args['plural'] );
 ?>
-	<div class="tablenav <? echo esc_attr( $which ); ?>">
+	<div class="tablenav <?php echo esc_attr( $which ); ?>">
 
 		<div class="alignleft actions bulkactions">
-			<? $this->bulk_actions(); ?>
+			<?php $this->bulk_actions(); ?>
 		</div>
-<?
+<?php
 		$this->extra_tablenav( $which );
 		$this->pagination( $which );
 ?>
 
 		<br class="clear" />
 	</div>
-<?
+<?php
 	}
 
 	/**

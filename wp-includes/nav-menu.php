@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Navigation Menu functions
  *

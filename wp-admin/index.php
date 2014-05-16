@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Dashboard Administration Screen
  *
@@ -93,9 +93,9 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-	<h2><? echo esc_html( $title ); ?></h2>
+	<h2><?php echo esc_html( $title ); ?></h2>
 
-<? if ( has_action( 'welcome_panel' ) && current_user_can( 'edit_theme_options' ) ) :
+<?php if ( has_action( 'welcome_panel' ) && current_user_can( 'edit_theme_options' ) ) :
 	$classes = 'welcome-panel';
 
 	$option = get_user_meta( get_current_user_id(), 'show_welcome_panel', true );
@@ -104,10 +104,10 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 	if ( $hide )
 		$classes .= ' hidden'; ?>
 
-	<div id="welcome-panel" class="<? echo esc_attr( $classes ); ?>">
-		<? wp_nonce_field( 'welcome-panel-nonce', 'welcomepanelnonce', false ); ?>
-		<a class="welcome-panel-close" href="<? echo esc_url( admin_url( '?welcome=0' ) ); ?>"><? _e( 'Dismiss' ); ?></a>
-		<?
+	<div id="welcome-panel" class="<?php echo esc_attr( $classes ); ?>">
+		<?php wp_nonce_field( 'welcome-panel-nonce', 'welcomepanelnonce', false ); ?>
+		<a class="welcome-panel-close" href="<?php echo esc_url( admin_url( '?welcome=0' ) ); ?>"><?php _e( 'Dismiss' ); ?></a>
+		<?php
 		/**
 		 * Add content to the welcome panel on the admin dashboard.
 		 *
@@ -119,13 +119,13 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 		do_action( 'welcome_panel' );
 		?>
 	</div>
-<? endif; ?>
+<?php endif; ?>
 
 	<div id="dashboard-widgets-wrap">
-	<? wp_dashboard(); ?>
+	<?php wp_dashboard(); ?>
 	</div><!-- dashboard-widgets-wrap -->
 
 </div><!-- wrap -->
 
-<?
+<?php
 require( ABSPATH . 'wp-admin/admin-footer.php' );

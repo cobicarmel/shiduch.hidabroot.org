@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Post revision functions.
  *

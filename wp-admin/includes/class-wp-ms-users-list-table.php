@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite Users List Table class.
  *
@@ -156,8 +156,8 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 			}
 
 			?>
-			<tr class="<? echo $alt; ?>">
-			<?
+			<tr class="<?php echo $alt; ?>">
+			<?php
 
 			list( $columns, $hidden ) = $this->get_column_info();
 
@@ -173,10 +173,10 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 				switch ( $column_name ) {
 					case 'cb': ?>
 						<th scope="row" class="check-column">
-							<label class="screen-reader-text" for="blog_<? echo $user->ID; ?>"><? echo sprintf( __( 'Select %s' ), $user->user_login ); ?></label>
-							<input type="checkbox" id="blog_<? echo $user->ID ?>" name="allusers[]" value="<? echo esc_attr( $user->ID ) ?>" />
+							<label class="screen-reader-text" for="blog_<?php echo $user->ID; ?>"><?php echo sprintf( __( 'Select %s' ), $user->user_login ); ?></label>
+							<input type="checkbox" id="blog_<?php echo $user->ID ?>" name="allusers[]" value="<?php echo esc_attr( $user->ID ) ?>" />
 						</th>
-					<?
+					<?php
 					break;
 
 					case 'username':
@@ -184,12 +184,12 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 						$edit_link = esc_url( add_query_arg( 'wp_http_referer', urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ), get_edit_user_link( $user->ID ) ) );
 
 						echo "<td $attributes>"; ?>
-							<? echo $avatar; ?><strong><a href="<? echo $edit_link; ?>" class="edit"><? echo $user->user_login; ?></a><?
+							<?php echo $avatar; ?><strong><a href="<?php echo $edit_link; ?>" class="edit"><?php echo $user->user_login; ?></a><?php
 							if ( in_array( $user->user_login, $super_admins ) )
 								echo ' - ' . __( 'Super Admin' );
 							?></strong>
 							<br/>
-							<?
+							<?php
 								$actions = array();
 								$actions['edit'] = '<a href="' . $edit_link . '">' . __( 'Edit' ) . '</a>';
 
@@ -211,7 +211,7 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 								echo $this->row_actions( $actions );
 							?>
 						</td>
-					<?
+					<?php
 					break;
 
 					case 'name':
@@ -282,7 +282,7 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 							}
 							?>
 						</td>
-					<?
+					<?php
 					break;
 
 					default:
@@ -295,7 +295,7 @@ class WP_MS_Users_List_Table extends WP_List_Table {
 			endforeach
 			?>
 			</tr>
-			<?
+			<?php
 		}
 	}
 }

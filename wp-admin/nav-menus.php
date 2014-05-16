@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Administration for Navigation Menus
  * Interface functions
@@ -534,97 +534,97 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <div class="wrap">
 	<h2 class="nav-tab-wrapper">
-		<a href="<? echo admin_url( 'nav-menus.php' ); ?>" class="nav-tab<? if ( ! isset( $_GET['action'] ) || isset( $_GET['action'] ) && 'locations' != $_GET['action'] ) echo ' nav-tab-active'; ?>"><? esc_html_e( 'Edit Menus' ); ?></a>
-		<? if ( $num_locations && $menu_count ) : ?>
-			<a href="<? echo esc_url( add_query_arg( array( 'action' => 'locations' ), admin_url( 'nav-menus.php' ) ) ); ?>" class="nav-tab<? if ( $locations_screen ) echo ' nav-tab-active'; ?>"><? esc_html_e( 'Manage Locations' ); ?></a>
-		<? endif; ?>
+		<a href="<?php echo admin_url( 'nav-menus.php' ); ?>" class="nav-tab<?php if ( ! isset( $_GET['action'] ) || isset( $_GET['action'] ) && 'locations' != $_GET['action'] ) echo ' nav-tab-active'; ?>"><?php esc_html_e( 'Edit Menus' ); ?></a>
+		<?php if ( $num_locations && $menu_count ) : ?>
+			<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'locations' ), admin_url( 'nav-menus.php' ) ) ); ?>" class="nav-tab<?php if ( $locations_screen ) echo ' nav-tab-active'; ?>"><?php esc_html_e( 'Manage Locations' ); ?></a>
+		<?php endif; ?>
 	</h2>
-	<?
+	<?php
 	foreach( $messages as $message ) :
 		echo $message . "\n";
 	endforeach;
 	?>
-	<?
+	<?php
 	if ( $locations_screen ) :
 		echo '<p>' . sprintf( _n( 'Your theme supports %s menu. Select which menu you would like to use.', 'Your theme supports %s menus. Select which menu appears in each location.', $num_locations ), number_format_i18n( $num_locations ) ) . '</p>';
 	?>
 	<div id="menu-locations-wrap">
-		<form method="post" action="<? echo esc_url( add_query_arg( array( 'action' => 'locations' ), admin_url( 'nav-menus.php' ) ) ); ?>">
+		<form method="post" action="<?php echo esc_url( add_query_arg( array( 'action' => 'locations' ), admin_url( 'nav-menus.php' ) ) ); ?>">
 			<table class="widefat fixed" id="menu-locations-table">
 				<thead>
 				<tr>
-					<th scope="col" class="manage-column column-locations"><? _e( 'Theme Location' ); ?></th>
-					<th scope="col" class="manage-column column-menus"><? _e( 'Assigned Menu' ); ?></th>
+					<th scope="col" class="manage-column column-locations"><?php _e( 'Theme Location' ); ?></th>
+					<th scope="col" class="manage-column column-menus"><?php _e( 'Assigned Menu' ); ?></th>
 				</tr>
 				</thead>
 				<!--<tfoot>
 				<tr>
-					<th scope="col" class="manage-column column-locations"><? _e( 'Theme Location' ); ?></th>
-					<th scope="col" class="manage-column column-menus"><? _e( 'Assigned Menu' ); ?></th>
+					<th scope="col" class="manage-column column-locations"><?php _e( 'Theme Location' ); ?></th>
+					<th scope="col" class="manage-column column-menus"><?php _e( 'Assigned Menu' ); ?></th>
 				</tr>
 				</tfoot>-->
 				<tbody class="menu-locations">
-				<? foreach ( $locations as $_location => $_name ) { ?>
+				<?php foreach ( $locations as $_location => $_name ) { ?>
 					<tr id="menu-locations-row">
-						<td class="menu-location-title"><strong><? echo $_name; ?></strong></td>
+						<td class="menu-location-title"><strong><?php echo $_name; ?></strong></td>
 						<td class="menu-location-menus">
-							<select name="menu-locations[<? echo $_location; ?>]" id="locations-<? echo $_location; ?>">
-								<option value="0"><? printf( '&mdash; %s &mdash;', esc_html__( 'Select a Menu' ) ); ?></option>
-								<? foreach ( $nav_menus as $menu ) : ?>
-									<? $selected = isset( $menu_locations[$_location] ) && $menu_locations[$_location] == $menu->term_id; ?>
-									<option <? if ( $selected ) echo 'data-orig="true"'; ?> <? selected( $selected ); ?> value="<? echo $menu->term_id; ?>">
-										<? echo wp_html_excerpt( $menu->name, 40, '&hellip;' ); ?>
+							<select name="menu-locations[<?php echo $_location; ?>]" id="locations-<?php echo $_location; ?>">
+								<option value="0"><?php printf( '&mdash; %s &mdash;', esc_html__( 'Select a Menu' ) ); ?></option>
+								<?php foreach ( $nav_menus as $menu ) : ?>
+									<?php $selected = isset( $menu_locations[$_location] ) && $menu_locations[$_location] == $menu->term_id; ?>
+									<option <?php if ( $selected ) echo 'data-orig="true"'; ?> <?php selected( $selected ); ?> value="<?php echo $menu->term_id; ?>">
+										<?php echo wp_html_excerpt( $menu->name, 40, '&hellip;' ); ?>
 									</option>
-								<? endforeach; ?>
+								<?php endforeach; ?>
 							</select>
 							<div class="locations-row-links">
-								<? if ( isset( $menu_locations[ $_location ] ) && 0 != $menu_locations[ $_location ] ) : ?>
+								<?php if ( isset( $menu_locations[ $_location ] ) && 0 != $menu_locations[ $_location ] ) : ?>
 								<span class="locations-edit-menu-link">
-									<a href="<? echo esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => $menu_locations[$_location] ), admin_url( 'nav-menus.php' ) ) ); ?>">
-										<? _ex( 'Edit', 'menu' ); ?>
+									<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => $menu_locations[$_location] ), admin_url( 'nav-menus.php' ) ) ); ?>">
+										<?php _ex( 'Edit', 'menu' ); ?>
 									</a>
 								</span>
-								<? endif; ?>
+								<?php endif; ?>
 								<span class="locations-add-menu-link">
-									<a href="<? echo esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0, 'use-location' => $_location ), admin_url( 'nav-menus.php' ) ) ); ?>">
-										<? _ex( 'Use new menu', 'menu' ); ?>
+									<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0, 'use-location' => $_location ), admin_url( 'nav-menus.php' ) ) ); ?>">
+										<?php _ex( 'Use new menu', 'menu' ); ?>
 									</a>
 								</span>
 							</div><!-- #locations-row-links -->
 						</td><!-- .menu-location-menus -->
 					</tr><!-- #menu-locations-row -->
-				<? } // foreach ?>
+				<?php } // foreach ?>
 				</tbody>
 			</table>
-			<p class="button-controls"><? submit_button( __( 'Save Changes' ), 'primary left', 'nav-menu-locations', false ); ?></p>
-			<? wp_nonce_field( 'save-menu-locations' ); ?>
-			<input type="hidden" name="menu" id="nav-menu-meta-object-id" value="<? echo esc_attr( $nav_menu_selected_id ); ?>" />
+			<p class="button-controls"><?php submit_button( __( 'Save Changes' ), 'primary left', 'nav-menu-locations', false ); ?></p>
+			<?php wp_nonce_field( 'save-menu-locations' ); ?>
+			<input type="hidden" name="menu" id="nav-menu-meta-object-id" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" />
 		</form>
 	</div><!-- #menu-locations-wrap -->
-	<?
+	<?php
 	/**
 	 * Fires after the menu locations table is displayed.
 	 *
 	 * @since 3.6.0
 	 */
 	do_action( 'after_menu_locations_table' ); ?>
-	<? else : ?>
+	<?php else : ?>
 	<div class="manage-menus">
- 		<? if ( $menu_count < 2 ) : ?>
+ 		<?php if ( $menu_count < 2 ) : ?>
 		<span class="add-edit-menu-action">
-			<? printf( __( 'Edit your menu below, or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
+			<?php printf( __( 'Edit your menu below, or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
 		</span><!-- /add-edit-menu-action -->
-		<? else : ?>
-			<form method="get" action="<? echo admin_url( 'nav-menus.php' ); ?>">
+		<?php else : ?>
+			<form method="get" action="<?php echo admin_url( 'nav-menus.php' ); ?>">
 			<input type="hidden" name="action" value="edit" />
-			<label for="menu" class="selected-menu"><? _e( 'Select a menu to edit:' ); ?></label>
+			<label for="menu" class="selected-menu"><?php _e( 'Select a menu to edit:' ); ?></label>
 			<select name="menu" id="menu">
-				<? if ( $add_new_screen ) : ?>
-					<option value="0" selected="selected"><? _e( '-- Select --' ); ?></option>
-				<? endif; ?>
-				<? foreach( (array) $nav_menus as $_nav_menu ) : ?>
-					<option value="<? echo esc_attr( $_nav_menu->term_id ); ?>" <? selected( $_nav_menu->term_id, $nav_menu_selected_id ); ?>>
-						<?
+				<?php if ( $add_new_screen ) : ?>
+					<option value="0" selected="selected"><?php _e( '-- Select --' ); ?></option>
+				<?php endif; ?>
+				<?php foreach( (array) $nav_menus as $_nav_menu ) : ?>
+					<option value="<?php echo esc_attr( $_nav_menu->term_id ); ?>" <?php selected( $_nav_menu->term_id, $nav_menu_selected_id ); ?>>
+						<?php
 						echo esc_html( $_nav_menu->truncated_name ) ;
 
 						if ( ! empty( $menu_locations ) && in_array( $_nav_menu->term_id, $menu_locations ) ) {
@@ -654,78 +654,78 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 						}
 						?>
 					</option>
-				<? endforeach; ?>
+				<?php endforeach; ?>
 			</select>
-			<span class="submit-btn"><input type="submit" class="button-secondary" value="<? esc_attr_e( 'Select' ); ?>"></span>
+			<span class="submit-btn"><input type="submit" class="button-secondary" value="<?php esc_attr_e( 'Select' ); ?>"></span>
 			<span class="add-new-menu-action">
-				<? printf( __( 'or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
+				<?php printf( __( 'or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
 			</span><!-- /add-new-menu-action -->
 		</form>
-	<? endif; ?>
+	<?php endif; ?>
 	</div><!-- /manage-menus -->
 	<div id="nav-menus-frame">
-	<div id="menu-settings-column" class="metabox-holder<? if ( isset( $_GET['menu'] ) && '0' == $_GET['menu'] ) { echo ' metabox-holder-disabled'; } ?>">
+	<div id="menu-settings-column" class="metabox-holder<?php if ( isset( $_GET['menu'] ) && '0' == $_GET['menu'] ) { echo ' metabox-holder-disabled'; } ?>">
 
 		<div class="clear"></div>
 
 		<form id="nav-menu-meta" action="" class="nav-menu-meta" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="menu" id="nav-menu-meta-object-id" value="<? echo esc_attr( $nav_menu_selected_id ); ?>" />
+			<input type="hidden" name="menu" id="nav-menu-meta-object-id" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" />
 			<input type="hidden" name="action" value="add-menu-item" />
-			<? wp_nonce_field( 'add-menu_item', 'menu-settings-column-nonce' ); ?>
-			<? do_accordion_sections( 'nav-menus', 'side', null ); ?>
+			<?php wp_nonce_field( 'add-menu_item', 'menu-settings-column-nonce' ); ?>
+			<?php do_accordion_sections( 'nav-menus', 'side', null ); ?>
 		</form>
 
 	</div><!-- /#menu-settings-column -->
 	<div id="menu-management-liquid">
 		<div id="menu-management">
 			<form id="update-nav-menu" action="" method="post" enctype="multipart/form-data">
-				<div class="menu-edit <? if ( $add_new_screen ) echo 'blank-slate'; ?>">
-					<?
+				<div class="menu-edit <?php if ( $add_new_screen ) echo 'blank-slate'; ?>">
+					<?php
 					wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
 					wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
 					wp_nonce_field( 'update-nav_menu', 'update-nav-menu-nonce' );
 
 					if ( $one_theme_location_no_menus ) { ?>
 						<input type="hidden" name="zero-menu-state" value="true" />
-					<? } ?>
+					<?php } ?>
  					<input type="hidden" name="action" value="update" />
-					<input type="hidden" name="menu" id="menu" value="<? echo esc_attr( $nav_menu_selected_id ); ?>" />
+					<input type="hidden" name="menu" id="menu" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" />
 					<div id="nav-menu-header">
 						<div class="major-publishing-actions">
 							<label class="menu-name-label howto open-label" for="menu-name">
-								<span><? _e( 'Menu Name' ); ?></span>
-								<input name="menu-name" id="menu-name" type="text" class="menu-name regular-text menu-item-textbox input-with-default-title" title="<? esc_attr_e( 'Enter menu name here' ); ?>" value="<? if ( $one_theme_location_no_menus ) _e( 'Menu 1' ); else echo esc_attr( $nav_menu_selected_title ); ?>" />
+								<span><?php _e( 'Menu Name' ); ?></span>
+								<input name="menu-name" id="menu-name" type="text" class="menu-name regular-text menu-item-textbox input-with-default-title" title="<?php esc_attr_e( 'Enter menu name here' ); ?>" value="<?php if ( $one_theme_location_no_menus ) _e( 'Menu 1' ); else echo esc_attr( $nav_menu_selected_title ); ?>" />
 							</label>
 							<div class="publishing-action">
-								<? submit_button( empty( $nav_menu_selected_id ) ? __( 'Create Menu' ) : __( 'Save Menu' ), 'button-primary menu-save', 'save_menu', false, array( 'id' => 'save_menu_header' ) ); ?>
+								<?php submit_button( empty( $nav_menu_selected_id ) ? __( 'Create Menu' ) : __( 'Save Menu' ), 'button-primary menu-save', 'save_menu', false, array( 'id' => 'save_menu_header' ) ); ?>
 							</div><!-- END .publishing-action -->
 						</div><!-- END .major-publishing-actions -->
 					</div><!-- END .nav-menu-header -->
 					<div id="post-body">
 						<div id="post-body-content">
-							<? if ( ! $add_new_screen ) : ?>
-							<h3><? _e( 'Menu Structure' ); ?></h3>
-							<? $starter_copy = ( $one_theme_location_no_menus ) ? __( 'Edit your default menu by adding or removing items. Drag each item into the order you prefer. Click Create Menu to save your changes.' ) : __( 'Drag each item into the order you prefer. Click the arrow on the right of the item to reveal additional configuration options.' ); ?>
-							<div class="drag-instructions post-body-plain" <? if ( isset( $menu_items ) && 0 == count( $menu_items ) ) { ?>style="display: none;"<? } ?>>
-								<p><? echo $starter_copy; ?></p>
+							<?php if ( ! $add_new_screen ) : ?>
+							<h3><?php _e( 'Menu Structure' ); ?></h3>
+							<?php $starter_copy = ( $one_theme_location_no_menus ) ? __( 'Edit your default menu by adding or removing items. Drag each item into the order you prefer. Click Create Menu to save your changes.' ) : __( 'Drag each item into the order you prefer. Click the arrow on the right of the item to reveal additional configuration options.' ); ?>
+							<div class="drag-instructions post-body-plain" <?php if ( isset( $menu_items ) && 0 == count( $menu_items ) ) { ?>style="display: none;"<?php } ?>>
+								<p><?php echo $starter_copy; ?></p>
 							</div>
-							<?
+							<?php
 							if ( isset( $edit_markup ) && ! is_wp_error( $edit_markup ) ) {
 								echo $edit_markup;
 							} else {
 							?>
 							<ul class="menu" id="menu-to-edit"></ul>
-							<? } ?>
-							<? endif; ?>
-							<? if ( $add_new_screen ) : ?>
-								<p class="post-body-plain"><? _e( 'Give your menu a name above, then click Create Menu.' ); ?></p>
-								<? if ( isset( $_GET['use-location'] ) ) : ?>
-									<input type="hidden" name="use-location" value="<? echo esc_attr( $_GET['use-location'] ); ?>" />
-								<? endif; ?>
-							<? endif; ?>
-							<div class="menu-settings" <? if ( $one_theme_location_no_menus ) { ?>style="display: none;"<? } ?>>
-								<h3><? _e( 'Menu Settings' ); ?></h3>
-								<?
+							<?php } ?>
+							<?php endif; ?>
+							<?php if ( $add_new_screen ) : ?>
+								<p class="post-body-plain"><?php _e( 'Give your menu a name above, then click Create Menu.' ); ?></p>
+								<?php if ( isset( $_GET['use-location'] ) ) : ?>
+									<input type="hidden" name="use-location" value="<?php echo esc_attr( $_GET['use-location'] ); ?>" />
+								<?php endif; ?>
+							<?php endif; ?>
+							<div class="menu-settings" <?php if ( $one_theme_location_no_menus ) { ?>style="display: none;"<?php } ?>>
+								<h3><?php _e( 'Menu Settings' ); ?></h3>
+								<?php
 								if ( ! isset( $auto_add ) ) {
 									$auto_add = get_option( 'nav_menu_options' );
 									if ( ! isset( $auto_add['auto_add'] ) )
@@ -737,38 +737,38 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 								} ?>
 
 								<dl class="auto-add-pages">
-									<dt class="howto"><? _e( 'Auto add pages' ); ?></dt>
-									<dd class="checkbox-input"><input type="checkbox"<? checked( $auto_add ); ?> name="auto-add-pages" id="auto-add-pages" value="1" /> <label for="auto-add-pages"><? printf( __('Automatically add new top-level pages to this menu' ), esc_url( admin_url( 'edit.php?post_type=page' ) ) ); ?></label></dd>
+									<dt class="howto"><?php _e( 'Auto add pages' ); ?></dt>
+									<dd class="checkbox-input"><input type="checkbox"<?php checked( $auto_add ); ?> name="auto-add-pages" id="auto-add-pages" value="1" /> <label for="auto-add-pages"><?php printf( __('Automatically add new top-level pages to this menu' ), esc_url( admin_url( 'edit.php?post_type=page' ) ) ); ?></label></dd>
 								</dl>
 
-								<? if ( current_theme_supports( 'menus' ) ) : ?>
+								<?php if ( current_theme_supports( 'menus' ) ) : ?>
 
 									<dl class="menu-theme-locations">
-										<dt class="howto"><? _e( 'Theme locations' ); ?></dt>
-										<? foreach ( $locations as $location => $description ) : ?>
+										<dt class="howto"><?php _e( 'Theme locations' ); ?></dt>
+										<?php foreach ( $locations as $location => $description ) : ?>
 										<dd class="checkbox-input">
-											<input type="checkbox"<? checked( isset( $menu_locations[ $location ] ) && $menu_locations[ $location ] == $nav_menu_selected_id ); ?> name="menu-locations[<? echo esc_attr( $location ); ?>]" id="locations-<? echo esc_attr( $location ); ?>" value="<? echo esc_attr( $nav_menu_selected_id ); ?>" /> <label for="locations-<? echo esc_attr( $location ); ?>"><? echo $description; ?></label>
-											<? if ( ! empty( $menu_locations[ $location ] ) && $menu_locations[ $location ] != $nav_menu_selected_id ) : ?>
-											<span class="theme-location-set"> <? printf( __( "(Currently set to: %s)" ), wp_get_nav_menu_object( $menu_locations[ $location ] )->name ); ?> </span>
-											<? endif; ?>
+											<input type="checkbox"<?php checked( isset( $menu_locations[ $location ] ) && $menu_locations[ $location ] == $nav_menu_selected_id ); ?> name="menu-locations[<?php echo esc_attr( $location ); ?>]" id="locations-<?php echo esc_attr( $location ); ?>" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" /> <label for="locations-<?php echo esc_attr( $location ); ?>"><?php echo $description; ?></label>
+											<?php if ( ! empty( $menu_locations[ $location ] ) && $menu_locations[ $location ] != $nav_menu_selected_id ) : ?>
+											<span class="theme-location-set"> <?php printf( __( "(Currently set to: %s)" ), wp_get_nav_menu_object( $menu_locations[ $location ] )->name ); ?> </span>
+											<?php endif; ?>
 										</dd>
-										<? endforeach; ?>
+										<?php endforeach; ?>
 									</dl>
 
-								<? endif; ?>
+								<?php endif; ?>
 
 							</div>
 						</div><!-- /#post-body-content -->
 					</div><!-- /#post-body -->
 					<div id="nav-menu-footer">
 						<div class="major-publishing-actions">
-							<? if ( 0 != $menu_count && ! $add_new_screen ) : ?>
+							<?php if ( 0 != $menu_count && ! $add_new_screen ) : ?>
 							<span class="delete-action">
-								<a class="submitdelete deletion menu-delete" href="<? echo esc_url( wp_nonce_url( add_query_arg( array( 'action' => 'delete', 'menu' => $nav_menu_selected_id, admin_url() ) ), 'delete-nav_menu-' . $nav_menu_selected_id) ); ?>"><? _e('Delete Menu'); ?></a>
+								<a class="submitdelete deletion menu-delete" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'action' => 'delete', 'menu' => $nav_menu_selected_id, admin_url() ) ), 'delete-nav_menu-' . $nav_menu_selected_id) ); ?>"><?php _e('Delete Menu'); ?></a>
 							</span><!-- END .delete-action -->
-							<? endif; ?>
+							<?php endif; ?>
 							<div class="publishing-action">
-								<? submit_button( empty( $nav_menu_selected_id ) ? __( 'Create Menu' ) : __( 'Save Menu' ), 'button-primary menu-save', 'save_menu', false, array( 'id' => 'save_menu_header' ) ); ?>
+								<?php submit_button( empty( $nav_menu_selected_id ) ? __( 'Create Menu' ) : __( 'Save Menu' ), 'button-primary menu-save', 'save_menu', false, array( 'id' => 'save_menu_header' ) ); ?>
 							</div><!-- END .publishing-action -->
 						</div><!-- END .major-publishing-actions -->
 					</div><!-- /#nav-menu-footer -->
@@ -777,6 +777,6 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		</div><!-- /#menu-management -->
 	</div><!-- /#menu-management-liquid -->
 	</div><!-- /#nav-menus-frame -->
-	<? endif; ?>
+	<?php endif; ?>
 </div><!-- /.wrap-->
-<? include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Administration Functions
  *

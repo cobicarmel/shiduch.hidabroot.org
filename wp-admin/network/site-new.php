@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Add Site Administration Screen
  *
@@ -113,41 +113,41 @@ require( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2 id="add-new-site"><? _e('Add New Site') ?></h2>
-<?
+<h2 id="add-new-site"><?php _e('Add New Site') ?></h2>
+<?php
 if ( ! empty( $messages ) ) {
 	foreach ( $messages as $msg )
 		echo '<div id="message" class="updated"><p>' . $msg . '</p></div>';
 } ?>
-<form method="post" action="<? echo network_admin_url('site-new.php?action=add-site'); ?>">
-<? wp_nonce_field( 'add-blog', '_wpnonce_add-blog' ) ?>
+<form method="post" action="<?php echo network_admin_url('site-new.php?action=add-site'); ?>">
+<?php wp_nonce_field( 'add-blog', '_wpnonce_add-blog' ) ?>
 	<table class="form-table">
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Site Address' ) ?></th>
+			<th scope="row"><?php _e( 'Site Address' ) ?></th>
 			<td>
-			<? if ( is_subdomain_install() ) { ?>
-				<input name="blog[domain]" type="text" class="regular-text" title="<? esc_attr_e( 'Domain' ) ?>"/><span class="no-break">.<? echo preg_replace( '|^www\.|', '', $current_site->domain ); ?></span>
-			<? } else {
-				echo $current_site->domain . $current_site->path ?><input name="blog[domain]" class="regular-text" type="text" title="<? esc_attr_e( 'Domain' ) ?>"/>
-			<? }
+			<?php if ( is_subdomain_install() ) { ?>
+				<input name="blog[domain]" type="text" class="regular-text" title="<?php esc_attr_e( 'Domain' ) ?>"/><span class="no-break">.<?php echo preg_replace( '|^www\.|', '', $current_site->domain ); ?></span>
+			<?php } else {
+				echo $current_site->domain . $current_site->path ?><input name="blog[domain]" class="regular-text" type="text" title="<?php esc_attr_e( 'Domain' ) ?>"/>
+			<?php }
 			echo '<p>' . __( 'Only lowercase letters (a-z) and numbers are allowed.' ) . '</p>';
 			?>
 			</td>
 		</tr>
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Site Title' ) ?></th>
-			<td><input name="blog[title]" type="text" class="regular-text" title="<? esc_attr_e( 'Title' ) ?>"/></td>
+			<th scope="row"><?php _e( 'Site Title' ) ?></th>
+			<td><input name="blog[title]" type="text" class="regular-text" title="<?php esc_attr_e( 'Title' ) ?>"/></td>
 		</tr>
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Admin Email' ) ?></th>
-			<td><input name="blog[email]" type="text" class="regular-text wp-suggest-user" data-autocomplete-type="search" data-autocomplete-field="user_email" title="<? esc_attr_e( 'Email' ) ?>"/></td>
+			<th scope="row"><?php _e( 'Admin Email' ) ?></th>
+			<td><input name="blog[email]" type="text" class="regular-text wp-suggest-user" data-autocomplete-type="search" data-autocomplete-field="user_email" title="<?php esc_attr_e( 'Email' ) ?>"/></td>
 		</tr>
 		<tr class="form-field">
-			<td colspan="2"><? _e( 'A new user will be created if the above email address is not in the database.' ) ?><br /><? _e( 'The username and password will be mailed to this email address.' ) ?></td>
+			<td colspan="2"><?php _e( 'A new user will be created if the above email address is not in the database.' ) ?><br /><?php _e( 'The username and password will be mailed to this email address.' ) ?></td>
 		</tr>
 	</table>
-	<? submit_button( __('Add Site'), 'primary', 'add-site' ); ?>
+	<?php submit_button( __('Add Site'), 'primary', 'add-site' ); ?>
 	</form>
 </div>
-<?
+<?php
 require( ABSPATH . 'wp-admin/admin-footer.php' );

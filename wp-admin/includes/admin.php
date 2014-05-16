@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Includes all of the WordPress Administration API files.
  *

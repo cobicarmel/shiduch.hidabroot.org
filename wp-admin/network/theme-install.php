@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Install theme network administration panel.
  *

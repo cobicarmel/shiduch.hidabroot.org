@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Users List Table class.
  *
@@ -207,13 +207,13 @@ class WP_Users_List_Table extends WP_List_Table {
 			return;
 	?>
 	<div class="alignleft actions">
-		<? if ( current_user_can( 'promote_users' ) ) : ?>
-		<label class="screen-reader-text" for="new_role"><? _e( 'Change role to&hellip;' ) ?></label>
+		<?php if ( current_user_can( 'promote_users' ) ) : ?>
+		<label class="screen-reader-text" for="new_role"><?php _e( 'Change role to&hellip;' ) ?></label>
 		<select name="new_role" id="new_role">
-			<option value=''><? _e( 'Change role to&hellip;' ) ?></option>
-			<? wp_dropdown_roles(); ?>
+			<option value=''><?php _e( 'Change role to&hellip;' ) ?></option>
+			<?php wp_dropdown_roles(); ?>
 		</select>
-	<?
+	<?php
 			submit_button( __( 'Change' ), 'button', 'changeit', false );
 		endif;
 

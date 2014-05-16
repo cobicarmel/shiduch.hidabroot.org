@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Filesystem Class for implementing SSH2
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Customize Control Class
  *
@@ -212,9 +212,9 @@ class WP_Customize_Control {
 		$id    = 'customize-control-' . str_replace( '[', '-', str_replace( ']', '', $this->id ) );
 		$class = 'customize-control customize-control-' . $this->type;
 
-		?><li id="<? echo esc_attr( $id ); ?>" class="<? echo esc_attr( $class ); ?>">
-			<? $this->render_content(); ?>
-		</li><?
+		?><li id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class ); ?>">
+			<?php $this->render_content(); ?>
+		</li><?php
 	}
 
 	/**
@@ -258,18 +258,18 @@ class WP_Customize_Control {
 			case 'text':
 				?>
 				<label>
-					<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
-					<input type="text" value="<? echo esc_attr( $this->value() ); ?>" <? $this->link(); ?> />
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+					<input type="text" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); ?> />
 				</label>
-				<?
+				<?php
 				break;
 			case 'checkbox':
 				?>
 				<label>
-					<input type="checkbox" value="<? echo esc_attr( $this->value() ); ?>" <? $this->link(); checked( $this->value() ); ?> />
-					<? echo esc_html( $this->label ); ?>
+					<input type="checkbox" value="<?php echo esc_attr( $this->value() ); ?>" <?php $this->link(); checked( $this->value() ); ?> />
+					<?php echo esc_html( $this->label ); ?>
 				</label>
-				<?
+				<?php
 				break;
 			case 'radio':
 				if ( empty( $this->choices ) )
@@ -278,15 +278,15 @@ class WP_Customize_Control {
 				$name = '_customize-radio-' . $this->id;
 
 				?>
-				<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
-				<?
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+				<?php
 				foreach ( $this->choices as $value => $label ) :
 					?>
 					<label>
-						<input type="radio" value="<? echo esc_attr( $value ); ?>" name="<? echo esc_attr( $name ); ?>" <? $this->link(); checked( $this->value(), $value ); ?> />
-						<? echo esc_html( $label ); ?><br/>
+						<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
+						<?php echo esc_html( $label ); ?><br/>
 					</label>
-					<?
+					<?php
 				endforeach;
 				break;
 			case 'select':
@@ -295,15 +295,15 @@ class WP_Customize_Control {
 
 				?>
 				<label>
-					<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
-					<select <? $this->link(); ?>>
-						<?
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+					<select <?php $this->link(); ?>>
+						<?php
 						foreach ( $this->choices as $value => $label )
 							echo '<option value="' . esc_attr( $value ) . '"' . selected( $this->value(), $value, false ) . '>' . $label . '</option>';
 						?>
 					</select>
 				</label>
-				<?
+				<?php
 				break;
 			case 'dropdown-pages':
 				$dropdown = wp_dropdown_pages(
@@ -401,12 +401,12 @@ class WP_Customize_Color_Control extends WP_Customize_Control {
 		// The input's value gets set by JS. Don't fill it.
 		?>
 		<label>
-			<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<div class="customize-control-content">
-				<input class="color-picker-hex" type="text" maxlength="7" placeholder="<? esc_attr_e( 'Hex Value' ); ?>"<? echo $default_attr; ?> />
+				<input class="color-picker-hex" type="text" maxlength="7" placeholder="<?php esc_attr_e( 'Hex Value' ); ?>"<?php echo $default_attr; ?> />
 			</div>
 		</label>
-		<?
+		<?php
 	}
 }
 
@@ -458,13 +458,13 @@ class WP_Customize_Upload_Control extends WP_Customize_Control {
 	public function render_content() {
 		?>
 		<label>
-			<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<div>
-				<a href="#" class="button-secondary upload"><? _e( 'Upload' ); ?></a>
-				<a href="#" class="remove"><? _e( 'Remove' ); ?></a>
+				<a href="#" class="button-secondary upload"><?php _e( 'Upload' ); ?></a>
+				<a href="#" class="remove"><?php _e( 'Remove' ); ?></a>
 			</div>
 		</label>
-		<?
+		<?php
 	}
 }
 
@@ -540,16 +540,16 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 
 		?>
 		<div class="customize-image-picker">
-			<span class="customize-control-title"><? echo esc_html( $this->label ); ?></span>
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
 			<div class="customize-control-content">
 				<div class="dropdown preview-thumbnail" tabindex="0">
 					<div class="dropdown-content">
-						<? if ( empty( $src ) ): ?>
+						<?php if ( empty( $src ) ): ?>
 							<img style="display:none;" />
-						<? else: ?>
-							<img src="<? echo esc_url( set_url_scheme( $src ) ); ?>" />
-						<? endif; ?>
+						<?php else: ?>
+							<img src="<?php echo esc_url( set_url_scheme( $src ) ); ?>" />
+						<?php endif; ?>
 						<div class="dropdown-status"></div>
 					</div>
 					<div class="dropdown-arrow"></div>
@@ -558,24 +558,24 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 
 			<div class="library">
 				<ul>
-					<? foreach ( $this->tabs as $id => $tab ): ?>
-						<li data-customize-tab='<? echo esc_attr( $id ); ?>' tabindex='0'>
-							<? echo esc_html( $tab['label'] ); ?>
+					<?php foreach ( $this->tabs as $id => $tab ): ?>
+						<li data-customize-tab='<?php echo esc_attr( $id ); ?>' tabindex='0'>
+							<?php echo esc_html( $tab['label'] ); ?>
 						</li>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
-				<? foreach ( $this->tabs as $id => $tab ): ?>
-					<div class="library-content" data-customize-tab='<? echo esc_attr( $id ); ?>'>
-						<? call_user_func( $tab['callback'] ); ?>
+				<?php foreach ( $this->tabs as $id => $tab ): ?>
+					<div class="library-content" data-customize-tab='<?php echo esc_attr( $id ); ?>'>
+						<?php call_user_func( $tab['callback'] ); ?>
 					</div>
-				<? endforeach; ?>
+				<?php endforeach; ?>
 			</div>
 
 			<div class="actions">
-				<a href="#" class="remove"><? _e( 'Remove Image' ); ?></a>
+				<a href="#" class="remove"><?php _e( 'Remove Image' ); ?></a>
 			</div>
 		</div>
-		<?
+		<?php
 	}
 
 	/**
@@ -614,12 +614,12 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 		} else {
 			?>
 			<div class="upload-dropzone">
-				<? _e('Drop a file here or <a href="#" class="upload">select a file</a>.'); ?>
+				<?php _e('Drop a file here or <a href="#" class="upload">select a file</a>.'); ?>
 			</div>
 			<div class="upload-fallback">
-				<span class="button-secondary"><? _e('Select File'); ?></span>
+				<span class="button-secondary"><?php _e('Select File'); ?></span>
 			</div>
-			<?
+			<?php
 		}
 	}
 
@@ -629,7 +629,7 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 	public function tab_uploaded() {
 		?>
 		<div class="uploaded-target"></div>
-		<?
+		<?php
 	}
 
 	/**
@@ -642,10 +642,10 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 		$url = set_url_scheme( $url );
 		$thumbnail_url = ( $thumbnail_url ) ? set_url_scheme( $thumbnail_url ) : $url;
 		?>
-		<a href="#" class="thumbnail" data-customize-image-value="<? echo esc_url( $url ); ?>">
-			<img src="<? echo esc_url( $thumbnail_url ); ?>" />
+		<a href="#" class="thumbnail" data-customize-image-value="<?php echo esc_url( $url ); ?>">
+			<img src="<?php echo esc_url( $thumbnail_url ); ?>" />
 		</a>
-		<?
+		<?php
 	}
 }
 
@@ -690,7 +690,7 @@ class WP_Customize_Background_Image_Control extends WP_Customize_Image_Control {
 			'nopaging'   => true,
 		) );
 
-		?><div class="uploaded-target"></div><?
+		?><div class="uploaded-target"></div><?php
 
 		if ( empty( $backgrounds ) )
 			return;
@@ -774,9 +774,9 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 					<button type="button" class="button display-options random">
 						<span class="dashicons dashicons-randomize dice"></span>
 						<# if ( data.type === 'uploaded' ) { #>
-							<? _e( 'Randomize uploaded headers' ); ?>
+							<?php _e( 'Randomize uploaded headers' ); ?>
 						<# } else if ( data.type === 'default' ) { #>
-							<? _e( 'Randomize suggested headers' ); ?>
+							<?php _e( 'Randomize suggested headers' ); ?>
 						<# } #>
 					</button>
 
@@ -789,7 +789,7 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 			<button type="button" class="choice thumbnail"
 				data-customize-image-value="{{{data.header.url}}}"
 				data-customize-header-image-data="{{JSON.stringify(data.header)}}">
-				<span class="screen-reader-text"><? _e( 'Set image' ); ?></span>
+				<span class="screen-reader-text"><?php _e( 'Set image' ); ?></span>
 				<img src="{{{data.header.thumbnail_url}}}" alt="{{{data.header.alt_text || data.header.description}}}">
 			</button>
 
@@ -804,9 +804,9 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 				<div class="inner">
 					<span><span class="dashicons dashicons-randomize dice"></span>
 					<# if ( data.type === 'uploaded' ) { #>
-						<? _e( 'Randomizing uploaded headers' ); ?>
+						<?php _e( 'Randomizing uploaded headers' ); ?>
 					<# } else if ( data.type === 'default' ) { #>
-						<? _e( 'Randomizing suggested headers' ); ?>
+						<?php _e( 'Randomizing suggested headers' ); ?>
 					<# } #>
 					</span>
 				</div>
@@ -822,14 +822,14 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 			<div class="placeholder">
 				<div class="inner">
 					<span>
-						<? _e( 'No image set' ); ?>
+						<?php _e( 'No image set' ); ?>
 					</span>
 				</div>
 			</div>
 
 			<# } #>
 		</script>
-		<?
+		<?php
 	}
 
 	public function get_current_image_src() {
@@ -851,7 +851,7 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 
 		<div class="customize-control-content">
 			<p class="customizer-section-intro">
-				<?
+				<?php
 				if ( $width && $height ) {
 					printf( __( 'While you can crop images to your liking after clicking <strong>Add new</strong>, your theme recommends a header size of <strong>%s &times; %s</strong> pixels.' ), $width, $height );
 				} elseif ( $width ) {
@@ -863,28 +863,28 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 			</p>
 			<div class="current">
 				<span class="customize-control-title">
-					<? _e( 'Current header' ); ?>
+					<?php _e( 'Current header' ); ?>
 				</span>
 				<div class="container">
 				</div>
 			</div>
 			<div class="actions">
-				<? /* translators: Hide as in hide header image via the Customizer */ ?>
-				<button type="button"<? echo $visibility ?> class="button remove"><? _ex( 'Hide image', 'custom header' ); ?></button>
-				<? /* translators: New as in add new header image via the Customizer */ ?>
-				<button type="button" class="button new"><? _ex( 'Add new image', 'header image' ); ?></button>
+				<?php /* translators: Hide as in hide header image via the Customizer */ ?>
+				<button type="button"<?php echo $visibility ?> class="button remove"><?php _ex( 'Hide image', 'custom header' ); ?></button>
+				<?php /* translators: New as in add new header image via the Customizer */ ?>
+				<button type="button" class="button new"><?php _ex( 'Add new image', 'header image' ); ?></button>
 				<div style="clear:both"></div>
 			</div>
 			<div class="choices">
 				<span class="customize-control-title header-previously-uploaded">
-					<? _ex( 'Previously uploaded', 'custom headers' ); ?>
+					<?php _ex( 'Previously uploaded', 'custom headers' ); ?>
 				</span>
 				<div class="uploaded">
 					<div class="list">
 					</div>
 				</div>
 				<span class="customize-control-title header-default">
-					<? _ex( 'Suggested', 'custom headers' ); ?>
+					<?php _ex( 'Suggested', 'custom headers' ); ?>
 				</span>
 				<div class="default">
 					<div class="list">
@@ -892,7 +892,7 @@ class WP_Customize_Header_Image_Control extends WP_Customize_Image_Control {
 				</div>
 			</div>
 		</div>
-		<?
+		<?php
 	}
 }
 
@@ -915,14 +915,14 @@ class WP_Widget_Area_Customize_Control extends WP_Customize_Control {
 	public function render_content() {
 		?>
 		<span class="button-secondary add-new-widget" tabindex="0">
-			<? _e( 'Add a Widget' ); ?>
+			<?php _e( 'Add a Widget' ); ?>
 		</span>
 
 		<span class="reorder-toggle" tabindex="0">
-			<span class="reorder"><? _ex( 'Reorder', 'Reorder widgets in Customizer' ); ?></span>
-			<span class="reorder-done"><? _ex( 'Done', 'Cancel reordering widgets in Customizer'  ); ?></span>
+			<span class="reorder"><?php _ex( 'Reorder', 'Reorder widgets in Customizer' ); ?></span>
+			<span class="reorder-done"><?php _ex( 'Done', 'Cancel reordering widgets in Customizer'  ); ?></span>
 		</span>
-		<?
+		<?php
 	}
 }
 

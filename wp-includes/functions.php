@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main WordPress API
  *
@@ -2338,10 +2338,10 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 <!DOCTYPE html>
 <!-- Ticket #11289, IE bug fix: always pad the error page with enough characters such that it is greater than 512 bytes, even after gzip compression abcdefghijklmnopqrstuvwxyz1234567890aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz11223344556677889900abacbcbdcdcededfefegfgfhghgihihjijikjkjlklkmlmlnmnmononpopoqpqprqrqsrsrtstsubcbcdcdedefefgfabcadefbghicjkldmnoepqrfstugvwxhyz1i234j567k890laabmbccnddeoeffpgghqhiirjjksklltmmnunoovppqwqrrxsstytuuzvvw0wxx1yyz2z113223434455666777889890091abc2def3ghi4jkl5mno6pqr7stu8vwx9yz11aab2bcc3dd4ee5ff6gg7hh8ii9j0jk1kl2lmm3nnoo4p5pq6qrr7ss8tt9uuvv0wwx1x2yyzz13aba4cbcb5dcdc6dedfef8egf9gfh0ghg1ihi2hji3jik4jkj5lkl6kml7mln8mnm9ono
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" <? if ( function_exists( 'language_attributes' ) && function_exists( 'is_rtl' ) ) language_attributes(); else echo "dir='$text_direction'"; ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" <?php if ( function_exists( 'language_attributes' ) && function_exists( 'is_rtl' ) ) language_attributes(); else echo "dir='$text_direction'"; ?>>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><? echo $title ?></title>
+	<title><?php echo $title ?></title>
 	<style type="text/css">
 		html {
 			background: #f1f1f1;
@@ -2438,17 +2438,17 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 		 	box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
 		}
 
-		<? if ( 'rtl' == $text_direction ) : ?>
+		<?php if ( 'rtl' == $text_direction ) : ?>
 		body { font-family: Tahoma, Arial; }
-		<? endif; ?>
+		<?php endif; ?>
 	</style>
 </head>
 <body id="error-page">
-<? endif; // ! did_action( 'admin_head' ) ?>
-	<? echo $message; ?>
+<?php endif; // ! did_action( 'admin_head' ) ?>
+	<?php echo $message; ?>
 </body>
 </html>
-<?
+<?php
 	die();
 }
 
@@ -2973,17 +2973,17 @@ function dead_db() {
 	header( 'Content-Type: text/html; charset=utf-8' );
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"<? if ( is_rtl() ) echo ' dir="rtl"'; ?>>
+<html xmlns="http://www.w3.org/1999/xhtml"<?php if ( is_rtl() ) echo ' dir="rtl"'; ?>>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><? _e( 'Database Error' ); ?></title>
+	<title><?php _e( 'Database Error' ); ?></title>
 
 </head>
 <body>
-	<h1><? _e( 'Error establishing a database connection' ); ?></h1>
+	<h1><?php _e( 'Error establishing a database connection' ); ?></h1>
 </body>
 </html>
-<?
+<?php
 	die();
 }
 
@@ -4317,27 +4317,27 @@ function wp_auth_check_html() {
 	$wrap_class = $same_domain ? 'hidden' : 'hidden fallback';
 
 	?>
-	<div id="wp-auth-check-wrap" class="<? echo $wrap_class; ?>">
+	<div id="wp-auth-check-wrap" class="<?php echo $wrap_class; ?>">
 	<div id="wp-auth-check-bg"></div>
 	<div id="wp-auth-check">
-	<div class="wp-auth-check-close" tabindex="0" title="<? esc_attr_e('Close'); ?>"></div>
-	<?
+	<div class="wp-auth-check-close" tabindex="0" title="<?php esc_attr_e('Close'); ?>"></div>
+	<?php
 
 	if ( $same_domain ) {
 		?>
-		<div id="wp-auth-check-form" data-src="<? echo esc_url( add_query_arg( array( 'interim-login' => 1 ), $login_url ) ); ?>"></div>
-		<?
+		<div id="wp-auth-check-form" data-src="<?php echo esc_url( add_query_arg( array( 'interim-login' => 1 ), $login_url ) ); ?>"></div>
+		<?php
 	}
 
 	?>
 	<div class="wp-auth-fallback">
-		<p><b class="wp-auth-fallback-expired" tabindex="0"><? _e('Session expired'); ?></b></p>
-		<p><a href="<? echo esc_url( $login_url ); ?>" target="_blank"><? _e('Please log in again.'); ?></a>
-		<? _e('The login page will open in a new window. After logging in you can close it and return to this page.'); ?></p>
+		<p><b class="wp-auth-fallback-expired" tabindex="0"><?php _e('Session expired'); ?></b></p>
+		<p><a href="<?php echo esc_url( $login_url ); ?>" target="_blank"><?php _e('Please log in again.'); ?></a>
+		<?php _e('The login page will open in a new window. After logging in you can close it and return to this page.'); ?></p>
 	</div>
 	</div>
 	</div>
-	<?
+	<?php
 }
 
 /**

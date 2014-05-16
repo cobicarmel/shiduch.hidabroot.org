@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Accepts file uploads from swfupload or other asynchronous upload methods.
  *

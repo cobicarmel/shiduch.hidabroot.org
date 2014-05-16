@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Theme, template, and stylesheet functions.
  *
@@ -1335,9 +1335,9 @@ function _custom_background_cb() {
 	}
 ?>
 <style type="text/css" id="custom-background-css">
-body.custom-background { <? echo trim( $style ); ?> }
+body.custom-background { <?php echo trim( $style ); ?> }
 </style>
-<?
+<?php
 }
 
 /**
@@ -1931,15 +1931,15 @@ function wp_customize_support_script() {
 		(function() {
 			var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
 
-<?		if ( $cross_domain ): ?>
+<?php		if ( $cross_domain ): ?>
 			request = (function(){ var xhr = new XMLHttpRequest(); return ('withCredentials' in xhr); })();
-<?		else: ?>
+<?php		else: ?>
 			request = true;
-<?		endif; ?>
+<?php		endif; ?>
 
 			b[c] = b[c].replace( rcs, ' ' );
 			b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
 		}());
 	</script>
-	<?
+	<?php
 }

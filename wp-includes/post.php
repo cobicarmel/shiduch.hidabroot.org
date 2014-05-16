@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Post functions and post utility function.
  *

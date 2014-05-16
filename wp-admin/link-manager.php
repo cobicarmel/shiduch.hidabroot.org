@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Link Management Administration Screen.
  *
@@ -69,12 +69,12 @@ if ( ! current_user_can('manage_links') )
 ?>
 
 <div class="wrap nosubsub">
-<h2><? echo esc_html( $title ); ?> <a href="link-add.php" class="add-new-h2"><? echo esc_html_x('Add New', 'link'); ?></a> <?
+<h2><?php echo esc_html( $title ); ?> <a href="link-add.php" class="add-new-h2"><?php echo esc_html_x('Add New', 'link'); ?></a> <?php
 if ( !empty($_REQUEST['s']) )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( wp_unslash($_REQUEST['s']) ) ); ?>
 </h2>
 
-<?
+<?php
 if ( isset($_REQUEST['deleted']) ) {
 	echo '<div id="message" class="updated"><p>';
 	$deleted = (int) $_REQUEST['deleted'];
@@ -86,14 +86,14 @@ if ( isset($_REQUEST['deleted']) ) {
 
 <form id="posts-filter" action="" method="get">
 
-<? $wp_list_table->search_box( __( 'Search Links' ), 'link' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Links' ), 'link' ); ?>
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 
 <div id="ajax-response"></div>
 </form>
 
 </div>
 
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

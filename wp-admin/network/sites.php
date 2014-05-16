@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite sites administration panel.
  *
@@ -67,17 +67,17 @@ if ( isset( $_GET['action'] ) ) {
 		require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		?>
 			<div class="wrap">
-				<h2><? _e( 'Confirm your action' ); ?></h2>
-				<form action="sites.php?action=<? echo esc_attr( $_GET['action2'] ) ?>" method="post">
-					<input type="hidden" name="action" value="<? echo esc_attr( $_GET['action2'] ) ?>" />
-					<input type="hidden" name="id" value="<? echo esc_attr( $id ); ?>" />
-					<input type="hidden" name="_wp_http_referer" value="<? echo esc_attr( wp_get_referer() ); ?>" />
-					<? wp_nonce_field( $_GET['action2'], '_wpnonce', false ); ?>
-					<p><? echo esc_html( wp_unslash( $_GET['msg'] ) ); ?></p>
-					<? submit_button( __( 'Confirm' ), 'button' ); ?>
+				<h2><?php _e( 'Confirm your action' ); ?></h2>
+				<form action="sites.php?action=<?php echo esc_attr( $_GET['action2'] ) ?>" method="post">
+					<input type="hidden" name="action" value="<?php echo esc_attr( $_GET['action2'] ) ?>" />
+					<input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>" />
+					<input type="hidden" name="_wp_http_referer" value="<?php echo esc_attr( wp_get_referer() ); ?>" />
+					<?php wp_nonce_field( $_GET['action2'], '_wpnonce', false ); ?>
+					<p><?php echo esc_html( wp_unslash( $_GET['msg'] ) ); ?></p>
+					<?php submit_button( __( 'Confirm' ), 'button' ); ?>
 				</form>
 			</div>
-		<?
+		<?php
 		require_once( ABSPATH . 'wp-admin/admin-footer.php' );
 		exit();
 	}
@@ -248,28 +248,28 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2><? _e( 'Sites' ) ?>
+<h2><?php _e( 'Sites' ) ?>
 
-<? if ( current_user_can( 'create_sites') ) : ?>
-	<a href="<? echo network_admin_url('site-new.php'); ?>" class="add-new-h2"><? echo esc_html_x( 'Add New', 'site' ); ?></a>
-<? endif; ?>
+<?php if ( current_user_can( 'create_sites') ) : ?>
+	<a href="<?php echo network_admin_url('site-new.php'); ?>" class="add-new-h2"><?php echo esc_html_x( 'Add New', 'site' ); ?></a>
+<?php endif; ?>
 
-<? if ( isset( $_REQUEST['s'] ) && $_REQUEST['s'] ) {
+<?php if ( isset( $_REQUEST['s'] ) && $_REQUEST['s'] ) {
 	printf( '<span class="subtitle">' . __( 'Search results for &#8220;%s&#8221;' ) . '</span>', esc_html( $s ) );
 } ?>
 </h2>
 
-<? echo $msg; ?>
+<?php echo $msg; ?>
 
 <form action="" method="get" id="ms-search">
-<? $wp_list_table->search_box( __( 'Search Sites' ), 'site' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Sites' ), 'site' ); ?>
 <input type="hidden" name="action" value="blogs" />
 </form>
 
 <form id="form-site-list" action="sites.php?action=allblogs" method="post">
-	<? $wp_list_table->display(); ?>
+	<?php $wp_list_table->display(); ?>
 </form>
 </div>
-<?
+<?php
 
 require_once( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

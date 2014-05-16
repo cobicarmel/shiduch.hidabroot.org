@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit Site Info Administration Screen
  *
@@ -96,9 +96,9 @@ require( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2 id="edit-site"><? echo $title_site_url_linked ?></h2>
+<h2 id="edit-site"><?php echo $title_site_url_linked ?></h2>
 <h3 class="nav-tab-wrapper">
-<?
+<?php
 $tabs = array(
 	'site-info'     => array( 'label' => __( 'Info' ),     'url' => 'site-info.php'     ),
 	'site-users'    => array( 'label' => __( 'Users' ),    'url' => 'site-users.php'    ),
@@ -111,48 +111,48 @@ foreach ( $tabs as $tab_id => $tab ) {
 }
 ?>
 </h3>
-<?
+<?php
 if ( ! empty( $messages ) ) {
 	foreach ( $messages as $msg )
 		echo '<div id="message" class="updated"><p>' . $msg . '</p></div>';
 } ?>
 <form method="post" action="site-info.php?action=update-site">
-	<? wp_nonce_field( 'edit-site' ); ?>
-	<input type="hidden" name="id" value="<? echo esc_attr( $id ) ?>" />
+	<?php wp_nonce_field( 'edit-site' ); ?>
+	<input type="hidden" name="id" value="<?php echo esc_attr( $id ) ?>" />
 	<table class="form-table">
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Domain' ) ?></th>
-			<?
+			<th scope="row"><?php _e( 'Domain' ) ?></th>
+			<?php
 			$protocol = is_ssl() ? 'https://' : 'http://';
 			if ( $is_main_site ) { ?>
-			<td><code><? echo $protocol; echo esc_attr( $details->domain ) ?></code></td>
-			<? } else { ?>
-			<td><? echo $protocol; ?><input name="blog[domain]" type="text" id="domain" value="<? echo esc_attr( $details->domain ) ?>" size="33" /></td>
-			<? } ?>
+			<td><code><?php echo $protocol; echo esc_attr( $details->domain ) ?></code></td>
+			<?php } else { ?>
+			<td><?php echo $protocol; ?><input name="blog[domain]" type="text" id="domain" value="<?php echo esc_attr( $details->domain ) ?>" size="33" /></td>
+			<?php } ?>
 		</tr>
 		<tr class="form-field form-required">
-			<th scope="row"><? _e( 'Path' ) ?></th>
-			<? if ( $is_main_site ) { ?>
-			<td><code><? echo esc_attr( $details->path ) ?></code></td>
-			<?
+			<th scope="row"><?php _e( 'Path' ) ?></th>
+			<?php if ( $is_main_site ) { ?>
+			<td><code><?php echo esc_attr( $details->path ) ?></code></td>
+			<?php
 			} else {
 				switch_to_blog( $id );
 			?>
-			<td><input name="blog[path]" type="text" id="path" value="<? echo esc_attr( $details->path ) ?>" size="40" style='margin-bottom:5px;' />
-			<br /><input type="checkbox" style="width:20px;" name="update_home_url" value="update" <? if ( get_option( 'siteurl' ) == untrailingslashit( get_blogaddress_by_id ($id ) ) || get_option( 'home' ) == untrailingslashit( get_blogaddress_by_id( $id ) ) ) echo 'checked="checked"'; ?> /> <? _e( 'Update <code>siteurl</code> and <code>home</code> as well.' ); ?></td>
-			<?
+			<td><input name="blog[path]" type="text" id="path" value="<?php echo esc_attr( $details->path ) ?>" size="40" style='margin-bottom:5px;' />
+			<br /><input type="checkbox" style="width:20px;" name="update_home_url" value="update" <?php if ( get_option( 'siteurl' ) == untrailingslashit( get_blogaddress_by_id ($id ) ) || get_option( 'home' ) == untrailingslashit( get_blogaddress_by_id( $id ) ) ) echo 'checked="checked"'; ?> /> <?php _e( 'Update <code>siteurl</code> and <code>home</code> as well.' ); ?></td>
+			<?php
 				restore_current_blog();
 			} ?>
 		</tr>
 		<tr class="form-field">
-			<th scope="row"><? _ex( 'Registered', 'site' ) ?></th>
-			<td><input name="blog[registered]" type="text" id="blog_registered" value="<? echo esc_attr( $details->registered ) ?>" size="40" /></td>
+			<th scope="row"><?php _ex( 'Registered', 'site' ) ?></th>
+			<td><input name="blog[registered]" type="text" id="blog_registered" value="<?php echo esc_attr( $details->registered ) ?>" size="40" /></td>
 		</tr>
 		<tr class="form-field">
-			<th scope="row"><? _e( 'Last Updated' ); ?></th>
-			<td><input name="blog[last_updated]" type="text" id="blog_last_updated" value="<? echo esc_attr( $details->last_updated ) ?>" size="40" /></td>
+			<th scope="row"><?php _e( 'Last Updated' ); ?></th>
+			<td><input name="blog[last_updated]" type="text" id="blog_last_updated" value="<?php echo esc_attr( $details->last_updated ) ?>" size="40" /></td>
 		</tr>
-		<?
+		<?php
 		$attribute_fields = array( 'public' => __( 'Public' ) );
 		if ( ! $is_main_site ) {
 			$attribute_fields['archived'] = __( 'Archived' );
@@ -162,18 +162,18 @@ if ( ! empty( $messages ) ) {
 		$attribute_fields['mature'] = __( 'Mature' );
 		?>
 		<tr>
-			<th scope="row"><? _e( 'Attributes' ); ?></th>
+			<th scope="row"><?php _e( 'Attributes' ); ?></th>
 			<td>
-			<? foreach ( $attribute_fields as $field_key => $field_label ) : ?>
-				<label><input type="checkbox" name="blog[<? echo $field_key; ?>]" value="1" <? checked( (bool) $details->$field_key, true ); disabled( ! in_array( $details->$field_key, array( 0, 1 ) ) ); ?> />
-				<? echo $field_label; ?></label><br/>
-			<? endforeach; ?>
+			<?php foreach ( $attribute_fields as $field_key => $field_label ) : ?>
+				<label><input type="checkbox" name="blog[<?php echo $field_key; ?>]" value="1" <?php checked( (bool) $details->$field_key, true ); disabled( ! in_array( $details->$field_key, array( 0, 1 ) ) ); ?> />
+				<?php echo $field_label; ?></label><br/>
+			<?php endforeach; ?>
 			</td>
 		</tr>
 	</table>
-	<? submit_button(); ?>
+	<?php submit_button(); ?>
 </form>
 
 </div>
-<?
+<?php
 require( ABSPATH . 'wp-admin/admin-footer.php' );

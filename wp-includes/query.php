@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Query API
  *

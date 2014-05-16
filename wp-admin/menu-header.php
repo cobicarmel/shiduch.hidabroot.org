@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Displays Administration Menu.
  *
@@ -203,7 +203,7 @@ function _wp_menu_output( $menu, $submenu, $submenu_as_parent = true ) {
 <div id="adminmenuwrap">
 <ul id="adminmenu" role="navigation">
 
-<?
+<?php
 
 _wp_menu_output( $menu, $submenu );
 /**

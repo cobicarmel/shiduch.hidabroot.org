@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * My Sites dashboard.
  *
@@ -52,12 +52,12 @@ get_current_screen()->set_help_sidebar(
 require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 if ( $updated ) { ?>
-	<div id="message" class="updated"><p><strong><? _e( 'Settings saved.' ); ?></strong></p></div>
-<? } ?>
+	<div id="message" class="updated"><p><strong><?php _e( 'Settings saved.' ); ?></strong></p></div>
+<?php } ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
-<?
+<h2><?php echo esc_html( $title ); ?></h2>
+<?php
 if ( empty( $blogs ) ) :
 	echo '<p>';
 	_e( 'You must be a member of at least one site to use this page.' );
@@ -65,7 +65,7 @@ if ( empty( $blogs ) ) :
 else :
 ?>
 <form id="myblogs" action="" method="post">
-	<?
+	<?php
 	choose_primary_blog();
 	/**
 	 * Fires before the sites table on the My Sites screen.
@@ -76,7 +76,7 @@ else :
 	?>
 	<br clear="all" />
 	<table class="widefat fixed">
-	<?
+	<?php
 	/**
 	 * Enable the Global Settings section on the My Sites screen.
 	 *
@@ -136,10 +136,10 @@ else :
 	}?>
 	</table>
 	<input type="hidden" name="action" value="updateblogsettings" />
-	<? wp_nonce_field( 'update-my-sites' ); ?>
-	<? submit_button(); ?>
+	<?php wp_nonce_field( 'update-my-sites' ); ?>
+	<?php submit_button(); ?>
 	</form>
-<? endif; ?>
+<?php endif; ?>
 	</div>
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

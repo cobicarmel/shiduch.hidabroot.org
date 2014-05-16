@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Comment template functions
  *
@@ -1752,11 +1752,11 @@ class Walker_Comment extends Walker {
 	protected function ping( $comment, $depth, $args ) {
 		$tag = ( 'div' == $args['style'] ) ? 'div' : 'li';
 ?>
-		<<? echo $tag; ?> id="comment-<? comment_ID(); ?>" <? comment_class(); ?>>
+		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
 			<div class="comment-body">
-				<? _e( 'Pingback:' ); ?> <? comment_author_link(); ?> <? edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php _e( 'Pingback:' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
 			</div>
-<?
+<?php
 	}
 
 	/**
@@ -1780,35 +1780,35 @@ class Walker_Comment extends Walker {
 			$add_below = 'div-comment';
 		}
 ?>
-		<<? echo $tag; ?> <? comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<? comment_ID(); ?>">
-		<? if ( 'div' != $args['style'] ) : ?>
-		<div id="div-comment-<? comment_ID(); ?>" class="comment-body">
-		<? endif; ?>
+		<<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
+		<?php if ( 'div' != $args['style'] ) : ?>
+		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+		<?php endif; ?>
 		<div class="comment-author vcard">
-			<? if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-			<? printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+			<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+			<?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
 		</div>
-		<? if ( '0' == $comment->comment_approved ) : ?>
-		<em class="comment-awaiting-moderation"><? _e( 'Your comment is awaiting moderation.' ) ?></em>
+		<?php if ( '0' == $comment->comment_approved ) : ?>
+		<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ) ?></em>
 		<br />
-		<? endif; ?>
+		<?php endif; ?>
 
-		<div class="comment-meta commentmetadata"><a href="<? echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-			<?
+		<div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
+			<?php
 				/* translators: 1: date, 2: time */
-				printf( __( '%1$s at %2$s' ), get_comment_date(),  get_comment_time() ); ?></a><? edit_comment_link( __( '(Edit)' ), '&nbsp;&nbsp;', '' );
+				printf( __( '%1$s at %2$s' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '&nbsp;&nbsp;', '' );
 			?>
 		</div>
 
-		<? comment_text( get_comment_id(), array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+		<?php comment_text( get_comment_id(), array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 
 		<div class="reply">
-			<? comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+			<?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 		</div>
-		<? if ( 'div' != $args['style'] ) : ?>
+		<?php if ( 'div' != $args['style'] ) : ?>
 		</div>
-		<? endif; ?>
-<?
+		<?php endif; ?>
+<?php
 	}
 
 	/**
@@ -1826,37 +1826,37 @@ class Walker_Comment extends Walker {
 	protected function html5_comment( $comment, $depth, $args ) {
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
 ?>
-		<<? echo $tag; ?> id="comment-<? comment_ID(); ?>" <? comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<? comment_ID(); ?>" class="comment-body">
+		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
 					<div class="comment-author vcard">
-						<? if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-						<? printf( __( '%s <span class="says">says:</span>' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
+						<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+						<?php printf( __( '%s <span class="says">says:</span>' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
 					</div><!-- .comment-author -->
 
 					<div class="comment-metadata">
-						<a href="<? echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
-							<time datetime="<? comment_time( 'c' ); ?>">
-								<? printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>
+						<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID, $args ) ); ?>">
+							<time datetime="<?php comment_time( 'c' ); ?>">
+								<?php printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>
 							</time>
 						</a>
-						<? edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+						<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .comment-metadata -->
 
-					<? if ( '0' == $comment->comment_approved ) : ?>
-					<p class="comment-awaiting-moderation"><? _e( 'Your comment is awaiting moderation.' ); ?></p>
-					<? endif; ?>
+					<?php if ( '0' == $comment->comment_approved ) : ?>
+					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></p>
+					<?php endif; ?>
 				</footer><!-- .comment-meta -->
 
 				<div class="comment-content">
-					<? comment_text(); ?>
+					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
 
 				<div class="reply">
-					<? comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					<?php comment_reply_link( array_merge( $args, array( 'add_below' => 'div-comment', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 				</div><!-- .reply -->
 			</article><!-- .comment-body -->
-<?
+<?php
 	}
 }
 
@@ -2099,8 +2099,8 @@ function comment_form( $args = array(), $post_id = null ) {
 	$args = wp_parse_args( $args, apply_filters( 'comment_form_defaults', $defaults ) );
 
 	?>
-		<? if ( comments_open( $post_id ) ) : ?>
-			<?
+		<?php if ( comments_open( $post_id ) ) : ?>
+			<?php
 			/**
 			 * Fires before the comment form.
 			 *
@@ -2109,10 +2109,10 @@ function comment_form( $args = array(), $post_id = null ) {
 			do_action( 'comment_form_before' );
 			?>
 			<div id="respond" class="comment-respond">
-				<h3 id="reply-title" class="comment-reply-title"><? comment_form_title( $args['title_reply'], $args['title_reply_to'] ); ?> <small><? cancel_comment_reply_link( $args['cancel_reply_link'] ); ?></small></h3>
-				<? if ( get_option( 'comment_registration' ) && !is_user_logged_in() ) : ?>
-					<? echo $args['must_log_in']; ?>
-					<?
+				<h3 id="reply-title" class="comment-reply-title"><?php comment_form_title( $args['title_reply'], $args['title_reply_to'] ); ?> <small><?php cancel_comment_reply_link( $args['cancel_reply_link'] ); ?></small></h3>
+				<?php if ( get_option( 'comment_registration' ) && !is_user_logged_in() ) : ?>
+					<?php echo $args['must_log_in']; ?>
+					<?php
 					/**
 					 * Fires after the HTML-formatted 'must log in after' message in the comment form.
 					 *
@@ -2120,9 +2120,9 @@ function comment_form( $args = array(), $post_id = null ) {
 					 */
 					do_action( 'comment_form_must_log_in_after' );
 					?>
-				<? else : ?>
-					<form action="<? echo site_url( '/wp-comments-post.php' ); ?>" method="post" id="<? echo esc_attr( $args['id_form'] ); ?>" class="comment-form"<? echo $html5 ? ' novalidate' : ''; ?>>
-						<?
+				<?php else : ?>
+					<form action="<?php echo site_url( '/wp-comments-post.php' ); ?>" method="post" id="<?php echo esc_attr( $args['id_form'] ); ?>" class="comment-form"<?php echo $html5 ? ' novalidate' : ''; ?>>
+						<?php
 						/**
 						 * Fires at the top of the comment form, inside the <form> tag.
 						 *
@@ -2130,8 +2130,8 @@ function comment_form( $args = array(), $post_id = null ) {
 						 */
 						do_action( 'comment_form_top' );
 						?>
-						<? if ( is_user_logged_in() ) : ?>
-							<?
+						<?php if ( is_user_logged_in() ) : ?>
+							<?php
 							/**
 							 * Filter the 'logged in' message for the comment form for display.
 							 *
@@ -2145,7 +2145,7 @@ function comment_form( $args = array(), $post_id = null ) {
 							 */
 							echo apply_filters( 'comment_form_logged_in', $args['logged_in_as'], $commenter, $user_identity );
 							?>
-							<?
+							<?php
 							/**
 							 * Fires after the is_user_logged_in() check in the comment form.
 							 *
@@ -2158,9 +2158,9 @@ function comment_form( $args = array(), $post_id = null ) {
 							 */
 							do_action( 'comment_form_logged_in_after', $commenter, $user_identity );
 							?>
-						<? else : ?>
-							<? echo $args['comment_notes_before']; ?>
-							<?
+						<?php else : ?>
+							<?php echo $args['comment_notes_before']; ?>
+							<?php
 							/**
 							 * Fires before the comment fields in the comment form.
 							 *
@@ -2187,8 +2187,8 @@ function comment_form( $args = array(), $post_id = null ) {
 							 */
 							do_action( 'comment_form_after_fields' );
 							?>
-						<? endif; ?>
-						<?
+						<?php endif; ?>
+						<?php
 						/**
 						 * Filter the content of the comment textarea field for display.
 						 *
@@ -2198,12 +2198,12 @@ function comment_form( $args = array(), $post_id = null ) {
 						 */
 						echo apply_filters( 'comment_form_field_comment', $args['comment_field'] );
 						?>
-						<? echo $args['comment_notes_after']; ?>
+						<?php echo $args['comment_notes_after']; ?>
 						<p class="form-submit">
-							<input name="submit" type="submit" id="<? echo esc_attr( $args['id_submit'] ); ?>" value="<? echo esc_attr( $args['label_submit'] ); ?>" />
-							<? comment_id_fields( $post_id ); ?>
+							<input name="submit" type="submit" id="<?php echo esc_attr( $args['id_submit'] ); ?>" value="<?php echo esc_attr( $args['label_submit'] ); ?>" />
+							<?php comment_id_fields( $post_id ); ?>
 						</p>
-						<?
+						<?php
 						/**
 						 * Fires at the bottom of the comment form, inside the closing </form> tag.
 						 *
@@ -2214,9 +2214,9 @@ function comment_form( $args = array(), $post_id = null ) {
 						do_action( 'comment_form', $post_id );
 						?>
 					</form>
-				<? endif; ?>
+				<?php endif; ?>
 			</div><!-- #respond -->
-			<?
+			<?php
 			/**
 			 * Fires after the comment form.
 			 *

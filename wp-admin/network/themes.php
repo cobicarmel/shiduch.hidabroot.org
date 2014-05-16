@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite themes administration panel.
  *
@@ -134,42 +134,42 @@ if ( $action ) {
 				require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				?>
 			<div class="wrap">
-				<?
+				<?php
 					$themes_to_delete = count( $themes );
 					echo '<h2>' . _n( 'Delete Theme', 'Delete Themes', $themes_to_delete ) . '</h2>';
 				?>
-				<div class="error"><p><strong><? _e( 'Caution:' ); ?></strong> <? echo _n( 'This theme may be active on other sites in the network.', 'These themes may be active on other sites in the network.', $themes_to_delete ); ?></p></div>
-				<p><? echo _n( 'You are about to remove the following theme:', 'You are about to remove the following themes:', $themes_to_delete ); ?></p>
+				<div class="error"><p><strong><?php _e( 'Caution:' ); ?></strong> <?php echo _n( 'This theme may be active on other sites in the network.', 'These themes may be active on other sites in the network.', $themes_to_delete ); ?></p></div>
+				<p><?php echo _n( 'You are about to remove the following theme:', 'You are about to remove the following themes:', $themes_to_delete ); ?></p>
 					<ul class="ul-disc">
-						<? foreach ( $theme_info as $theme )
+						<?php foreach ( $theme_info as $theme )
 							echo '<li>', sprintf( __('<strong>%1$s</strong> by <em>%2$s</em>' ), $theme->display('Name'), $theme->display('Author') ), '</li>'; /* translators: 1: theme name, 2: theme author */ ?>
 					</ul>
-				<p><? _e('Are you sure you wish to delete these themes?'); ?></p>
-				<form method="post" action="<? echo esc_url($_SERVER['REQUEST_URI']); ?>" style="display:inline;">
+				<p><?php _e('Are you sure you wish to delete these themes?'); ?></p>
+				<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" style="display:inline;">
 					<input type="hidden" name="verify-delete" value="1" />
 					<input type="hidden" name="action" value="delete-selected" />
-					<?
+					<?php
 						foreach ( (array) $themes as $theme )
 							echo '<input type="hidden" name="checked[]" value="' . esc_attr($theme) . '" />';
 					?>
-					<? wp_nonce_field('bulk-themes') ?>
-					<? submit_button( _n( 'Yes, Delete this theme', 'Yes, Delete these themes', $themes_to_delete ), 'button', 'submit', false ); ?>
+					<?php wp_nonce_field('bulk-themes') ?>
+					<?php submit_button( _n( 'Yes, Delete this theme', 'Yes, Delete these themes', $themes_to_delete ), 'button', 'submit', false ); ?>
 				</form>
-				<form method="post" action="<? echo esc_url(wp_get_referer()); ?>" style="display:inline;">
-					<? submit_button( __( 'No, Return me to the theme list' ), 'button', 'submit', false ); ?>
+				<form method="post" action="<?php echo esc_url(wp_get_referer()); ?>" style="display:inline;">
+					<?php submit_button( __( 'No, Return me to the theme list' ), 'button', 'submit', false ); ?>
 				</form>
 
-				<p><a href="#" onclick="jQuery('#files-list').toggle(); return false;"><? _e('Click to view entire list of files which will be deleted'); ?></a></p>
+				<p><a href="#" onclick="jQuery('#files-list').toggle(); return false;"><?php _e('Click to view entire list of files which will be deleted'); ?></a></p>
 				<div id="files-list" style="display:none;">
 					<ul class="code">
-					<?
+					<?php
 						foreach ( (array) $files_to_delete as $file )
 							echo '<li>' . esc_html( str_replace( WP_CONTENT_DIR . "/themes", '', $file) ) . '</li>';
 					?>
 					</ul>
 				</div>
 			</div>
-				<?
+				<?php
 				require_once(ABSPATH . 'wp-admin/admin-footer.php');
 				exit;
 			} // Endif verify-delete
@@ -225,12 +225,12 @@ require_once(ABSPATH . 'wp-admin/admin-header.php');
 ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); if ( current_user_can('install_themes') ) { ?> <a href="theme-install.php" class="add-new-h2"><? echo esc_html_x('Add New', 'theme'); ?></a><? }
+<h2><?php echo esc_html( $title ); if ( current_user_can('install_themes') ) { ?> <a href="theme-install.php" class="add-new-h2"><?php echo esc_html_x('Add New', 'theme'); ?></a><?php }
 if ( $s )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $s ) ); ?>
 </h2>
 
-<?
+<?php
 if ( isset( $_GET['enabled'] ) ) {
 	$_GET['enabled'] = absint( $_GET['enabled'] );
 	echo '<div id="message" class="updated"><p>' . sprintf( _n( 'Theme enabled.', '%s themes enabled.', $_GET['enabled'] ), number_format_i18n( $_GET['enabled'] ) ) . '</p></div>';
@@ -249,10 +249,10 @@ if ( isset( $_GET['enabled'] ) ) {
 ?>
 
 <form method="get" action="">
-<? $wp_list_table->search_box( __( 'Search Installed Themes' ), 'theme' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Installed Themes' ), 'theme' ); ?>
 </form>
 
-<?
+<?php
 $wp_list_table->views();
 
 if ( 'broken' == $status )
@@ -260,13 +260,13 @@ if ( 'broken' == $status )
 ?>
 
 <form method="post" action="">
-<input type="hidden" name="theme_status" value="<? echo esc_attr($status) ?>" />
-<input type="hidden" name="paged" value="<? echo esc_attr($page) ?>" />
+<input type="hidden" name="theme_status" value="<?php echo esc_attr($status) ?>" />
+<input type="hidden" name="paged" value="<?php echo esc_attr($page) ?>" />
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 </form>
 
 </div>
 
-<?
+<?php
 include(ABSPATH . 'wp-admin/admin-footer.php');

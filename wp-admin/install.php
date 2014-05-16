@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Installer
  *
@@ -21,7 +21,7 @@ if ( false ) {
 	<p>WordPress requires that your web server is running PHP. Your server does not have PHP installed, or PHP is turned off.</p>
 </body>
 </html>
-<?
+<?php
 }
 
 /**
@@ -52,19 +52,19 @@ function display_header() {
 	header( 'Content-Type: text/html; charset=utf-8' );
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" <? language_attributes(); ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><? _e( 'WordPress &rsaquo; Installation' ); ?></title>
-	<?
+	<title><?php _e( 'WordPress &rsaquo; Installation' ); ?></title>
+	<?php
 	wp_admin_css( 'install', true );
 	?>
 </head>
-<body class="wp-core-ui<? if ( is_rtl() ) echo ' rtl'; ?>">
-<h1 id="logo"><a href="<? echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><? _e( 'WordPress' ); ?></a></h1>
+<body class="wp-core-ui<?php if ( is_rtl() ) echo ' rtl'; ?>">
+<h1 id="logo"><a href="<?php echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><?php _e( 'WordPress' ); ?></a></h1>
 
-<?
+<?php
 } // end display_header()
 
 /**
@@ -88,55 +88,55 @@ function display_setup_form( $error = null ) {
 
 	if ( ! is_null( $error ) ) {
 ?>
-<p class="message"><? echo $error; ?></p>
-<? } ?>
+<p class="message"><?php echo $error; ?></p>
+<?php } ?>
 <form id="setup" method="post" action="install.php?step=2">
 	<table class="form-table">
 		<tr>
-			<th scope="row"><label for="weblog_title"><? _e( 'Site Title' ); ?></label></th>
-			<td><input name="weblog_title" type="text" id="weblog_title" size="25" value="<? echo esc_attr( $weblog_title ); ?>" /></td>
+			<th scope="row"><label for="weblog_title"><?php _e( 'Site Title' ); ?></label></th>
+			<td><input name="weblog_title" type="text" id="weblog_title" size="25" value="<?php echo esc_attr( $weblog_title ); ?>" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="user_login"><? _e('Username'); ?></label></th>
+			<th scope="row"><label for="user_login"><?php _e('Username'); ?></label></th>
 			<td>
-			<?
+			<?php
 			if ( $user_table ) {
 				_e('User(s) already exists.');
 				echo '<input name="user_name" type="hidden" value="admin" />';
 			} else {
-				?><input name="user_name" type="text" id="user_login" size="25" value="<? echo esc_attr( sanitize_user( $user_name, true ) ); ?>" />
-				<p><? _e( 'Usernames can have only alphanumeric characters, spaces, underscores, hyphens, periods and the @ symbol.' ); ?></p>
-			<?
+				?><input name="user_name" type="text" id="user_login" size="25" value="<?php echo esc_attr( sanitize_user( $user_name, true ) ); ?>" />
+				<p><?php _e( 'Usernames can have only alphanumeric characters, spaces, underscores, hyphens, periods and the @ symbol.' ); ?></p>
+			<?php
 			} ?>
 			</td>
 		</tr>
-		<? if ( ! $user_table ) : ?>
+		<?php if ( ! $user_table ) : ?>
 		<tr>
 			<th scope="row">
-				<label for="admin_password"><? _e('Password, twice'); ?></label>
-				<p><? _e('A password will be automatically generated for you if you leave this blank.'); ?></p>
+				<label for="admin_password"><?php _e('Password, twice'); ?></label>
+				<p><?php _e('A password will be automatically generated for you if you leave this blank.'); ?></p>
 			</th>
 			<td>
 				<input name="admin_password" type="password" id="pass1" size="25" value="" />
 				<p><input name="admin_password2" type="password" id="pass2" size="25" value="" /></p>
-				<div id="pass-strength-result"><? _e('Strength indicator'); ?></div>
-				<p><? _e('Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; ).'); ?></p>
+				<div id="pass-strength-result"><?php _e('Strength indicator'); ?></div>
+				<p><?php _e('Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ &amp; ).'); ?></p>
 			</td>
 		</tr>
-		<? endif; ?>
+		<?php endif; ?>
 		<tr>
-			<th scope="row"><label for="admin_email"><? _e( 'Your E-mail' ); ?></label></th>
-			<td><input name="admin_email" type="text" id="admin_email" size="25" value="<? echo esc_attr( $admin_email ); ?>" />
-			<p><? _e( 'Double-check your email address before continuing.' ); ?></p></td>
+			<th scope="row"><label for="admin_email"><?php _e( 'Your E-mail' ); ?></label></th>
+			<td><input name="admin_email" type="text" id="admin_email" size="25" value="<?php echo esc_attr( $admin_email ); ?>" />
+			<p><?php _e( 'Double-check your email address before continuing.' ); ?></p></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="blog_public"><? _e( 'Privacy' ); ?></label></th>
-			<td colspan="2"><label><input type="checkbox" name="blog_public" value="1" <? checked( $blog_public ); ?> /> <? _e( 'Allow search engines to index this site.' ); ?></label></td>
+			<th scope="row"><label for="blog_public"><?php _e( 'Privacy' ); ?></label></th>
+			<td colspan="2"><label><input type="checkbox" name="blog_public" value="1" <?php checked( $blog_public ); ?> /> <?php _e( 'Allow search engines to index this site.' ); ?></label></td>
 		</tr>
 	</table>
-	<p class="step"><input type="submit" name="Submit" value="<? esc_attr_e( 'Install WordPress' ); ?>" class="button button-large" /></p>
+	<p class="step"><input type="submit" name="Submit" value="<?php esc_attr_e( 'Install WordPress' ); ?>" class="button button-large" /></p>
 </form>
-<?
+<?php
 } // end display_setup_form()
 
 // Let's check to make sure WP isn't already installed.
@@ -172,13 +172,13 @@ switch($step) {
 	case 1: // Step 1, direct link.
 	  display_header();
 ?>
-<h1><? _ex( 'Welcome', 'Howdy' ); ?></h1>
-<p><? printf( __( 'Welcome to the famous five minute WordPress installation process! You may want to browse the <a href="%s">ReadMe documentation</a> at your leisure. Otherwise, just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world.' ), '../readme.html' ); ?></p>
+<h1><?php _ex( 'Welcome', 'Howdy' ); ?></h1>
+<p><?php printf( __( 'Welcome to the famous five minute WordPress installation process! You may want to browse the <a href="%s">ReadMe documentation</a> at your leisure. Otherwise, just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world.' ), '../readme.html' ); ?></p>
 
-<h1><? _e( 'Information needed' ); ?></h1>
-<p><? _e( 'Please provide the following information. Don&#8217;t worry, you can always change these settings later.' ); ?></p>
+<h1><?php _e( 'Information needed' ); ?></h1>
+<p><?php _e( 'Please provide the following information. Don&#8217;t worry, you can always change these settings later.' ); ?></p>
 
-<?
+<?php
 		display_setup_form();
 		break;
 	case 2:
@@ -222,18 +222,18 @@ switch($step) {
 			extract( $result, EXTR_SKIP );
 ?>
 
-<h1><? _e( 'Success!' ); ?></h1>
+<h1><?php _e( 'Success!' ); ?></h1>
 
-<p><? _e( 'WordPress has been installed. Were you expecting more steps? Sorry to disappoint.' ); ?></p>
+<p><?php _e( 'WordPress has been installed. Were you expecting more steps? Sorry to disappoint.' ); ?></p>
 
 <table class="form-table install-success">
 	<tr>
-		<th><? _e( 'Username' ); ?></th>
-		<td><? echo esc_html( sanitize_user( $user_name, true ) ); ?></td>
+		<th><?php _e( 'Username' ); ?></th>
+		<td><?php echo esc_html( sanitize_user( $user_name, true ) ); ?></td>
 	</tr>
 	<tr>
-		<th><? _e( 'Password' ); ?></th>
-		<td><?
+		<th><?php _e( 'Password' ); ?></th>
+		<td><?php
 		if ( ! empty( $password ) && empty($admin_password_check) )
 			echo '<code>'. esc_html($password) .'</code><br />';
 		echo "<p>$password_message</p>"; ?>
@@ -241,16 +241,16 @@ switch($step) {
 	</tr>
 </table>
 
-<p class="step"><a href="../wp-login.php" class="button button-large"><? _e( 'Log In' ); ?></a></p>
+<p class="step"><a href="../wp-login.php" class="button button-large"><?php _e( 'Log In' ); ?></a></p>
 
-<?
+<?php
 		}
 		break;
 }
 if ( !wp_is_mobile() ) {
 ?>
 <script type="text/javascript">var t = document.getElementById('weblog_title'); if (t){ t.focus(); }</script>
-<? } ?>
-<? wp_print_scripts( 'user-profile' ); ?>
+<?php } ?>
+<?php wp_print_scripts( 'user-profile' ); ?>
 </body>
 </html>

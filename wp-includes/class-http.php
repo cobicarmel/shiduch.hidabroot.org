@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Simple and uniform HTTP request API.
  *

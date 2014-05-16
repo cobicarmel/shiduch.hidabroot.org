@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Functions for reading, writing, modifying, and deleting files on the file system.
  * Includes functionality for theme-specific files as well as operations for uploading,
@@ -1109,10 +1109,10 @@ jQuery(function($){
 });
 -->
 </script>
-<form action="<? echo esc_url( $form_post ) ?>" method="post">
+<form action="<?php echo esc_url( $form_post ) ?>" method="post">
 <div>
-<h3><? _e('Connection Information') ?></h3>
-<p><?
+<h3><?php _e('Connection Information') ?></h3>
+<p><?php
 	$label_user = __('Username');
 	$label_pass = __('Password');
 	_e('To perform the requested action, WordPress needs to access your web server.');
@@ -1133,51 +1133,51 @@ jQuery(function($){
 ?></p>
 <table class="form-table">
 <tr>
-<th scope="row"><label for="hostname"><? _e('Hostname') ?></label></th>
-<td><input name="hostname" type="text" id="hostname" value="<? echo esc_attr($hostname); if ( !empty($port) ) echo ":$port"; ?>"<? disabled( defined('FTP_HOST') ); ?> size="40" /></td>
+<th scope="row"><label for="hostname"><?php _e('Hostname') ?></label></th>
+<td><input name="hostname" type="text" id="hostname" value="<?php echo esc_attr($hostname); if ( !empty($port) ) echo ":$port"; ?>"<?php disabled( defined('FTP_HOST') ); ?> size="40" /></td>
 </tr>
 
 <tr>
-<th scope="row"><label for="username"><? echo $label_user; ?></label></th>
-<td><input name="username" type="text" id="username" value="<? echo esc_attr($username) ?>"<? disabled( defined('FTP_USER') ); ?> size="40" /></td>
+<th scope="row"><label for="username"><?php echo $label_user; ?></label></th>
+<td><input name="username" type="text" id="username" value="<?php echo esc_attr($username) ?>"<?php disabled( defined('FTP_USER') ); ?> size="40" /></td>
 </tr>
 
 <tr>
-<th scope="row"><label for="password"><? echo $label_pass; ?></label></th>
-<td><div><input name="password" type="password" id="password" value="<? if ( defined('FTP_PASS') ) echo '*****'; ?>"<? disabled( defined('FTP_PASS') ); ?> size="40" /></div>
-<div><em><? if ( ! defined('FTP_PASS') ) _e( 'This password will not be stored on the server.' ); ?></em></div></td>
+<th scope="row"><label for="password"><?php echo $label_pass; ?></label></th>
+<td><div><input name="password" type="password" id="password" value="<?php if ( defined('FTP_PASS') ) echo '*****'; ?>"<?php disabled( defined('FTP_PASS') ); ?> size="40" /></div>
+<div><em><?php if ( ! defined('FTP_PASS') ) _e( 'This password will not be stored on the server.' ); ?></em></div></td>
 </tr>
 
-<? if ( isset($types['ssh']) ) : ?>
-<tr id="ssh_keys" style="<? if ( 'ssh' != $connection_type ) echo 'display:none' ?>">
-<th scope="row"><? _e('Authentication Keys') ?>
+<?php if ( isset($types['ssh']) ) : ?>
+<tr id="ssh_keys" style="<?php if ( 'ssh' != $connection_type ) echo 'display:none' ?>">
+<th scope="row"><?php _e('Authentication Keys') ?>
 <div class="key-labels textright">
-<label for="public_key"><? _e('Public Key:') ?></label ><br />
-<label for="private_key"><? _e('Private Key:') ?></label>
+<label for="public_key"><?php _e('Public Key:') ?></label ><br />
+<label for="private_key"><?php _e('Private Key:') ?></label>
 </div></th>
-<td><br /><input name="public_key" type="text" id="public_key" value="<? echo esc_attr($public_key) ?>"<? disabled( defined('FTP_PUBKEY') ); ?> size="40" /><br /><input name="private_key" type="text" id="private_key" value="<? echo esc_attr($private_key) ?>"<? disabled( defined('FTP_PRIKEY') ); ?> size="40" />
-<div><? _e('Enter the location on the server where the keys are located. If a passphrase is needed, enter that in the password field above.') ?></div></td>
+<td><br /><input name="public_key" type="text" id="public_key" value="<?php echo esc_attr($public_key) ?>"<?php disabled( defined('FTP_PUBKEY') ); ?> size="40" /><br /><input name="private_key" type="text" id="private_key" value="<?php echo esc_attr($private_key) ?>"<?php disabled( defined('FTP_PRIKEY') ); ?> size="40" />
+<div><?php _e('Enter the location on the server where the keys are located. If a passphrase is needed, enter that in the password field above.') ?></div></td>
 </tr>
-<? endif; ?>
+<?php endif; ?>
 
 <tr>
-<th scope="row"><? _e('Connection Type') ?></th>
+<th scope="row"><?php _e('Connection Type') ?></th>
 <td>
-<fieldset><legend class="screen-reader-text"><span><? _e('Connection Type') ?></span></legend>
-<?
+<fieldset><legend class="screen-reader-text"><span><?php _e('Connection Type') ?></span></legend>
+<?php
 	$disabled = disabled( (defined('FTP_SSL') && FTP_SSL) || (defined('FTP_SSH') && FTP_SSH), true, false );
 	foreach ( $types as $name => $text ) : ?>
-	<label for="<? echo esc_attr($name) ?>">
-		<input type="radio" name="connection_type" id="<? echo esc_attr($name) ?>" value="<? echo esc_attr($name) ?>"<? checked($name, $connection_type); echo $disabled; ?> />
-		<? echo $text ?>
+	<label for="<?php echo esc_attr($name) ?>">
+		<input type="radio" name="connection_type" id="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($name) ?>"<?php checked($name, $connection_type); echo $disabled; ?> />
+		<?php echo $text ?>
 	</label>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 </fieldset>
 </td>
 </tr>
 </table>
 
-<?
+<?php
 foreach ( (array) $extra_fields as $field ) {
 	if ( isset( $_POST[ $field ] ) )
 		echo '<input type="hidden" name="' . esc_attr( $field ) . '" value="' . esc_attr( wp_unslash( $_POST[ $field ] ) ) . '" />';
@@ -1186,6 +1186,6 @@ submit_button( __( 'Proceed' ), 'button', 'upgrade' );
 ?>
 </div>
 </form>
-<?
+<?php
 	return false;
 }

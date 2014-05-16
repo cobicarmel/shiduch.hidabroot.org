@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Widgets Administration API
  *
@@ -76,9 +76,9 @@ function wp_list_widget_controls( $sidebar, $sidebar_name = '' ) {
 		?>
 		<div class="sidebar-name">
 			<div class="sidebar-name-arrow"><br /></div>
-			<h3><? echo esc_html( $sidebar_name ); ?> <span class="spinner"></span></h3>
+			<h3><?php echo esc_html( $sidebar_name ); ?> <span class="spinner"></span></h3>
 		</div>
-		<?
+		<?php
 	}
 
 	echo '<div class="sidebar-description">';
@@ -192,39 +192,39 @@ function wp_widget_control( $sidebar_args ) {
 	<div class="widget-top">
 	<div class="widget-title-action">
 		<a class="widget-action hide-if-no-js" href="#available-widgets"></a>
-		<a class="widget-control-edit hide-if-js" href="<? echo esc_url( add_query_arg( $query_arg ) ); ?>">
-			<span class="edit"><? _ex( 'Edit', 'widget' ); ?></span>
-			<span class="add"><? _ex( 'Add', 'widget' ); ?></span>
-			<span class="screen-reader-text"><? echo $widget_title; ?></span>
+		<a class="widget-control-edit hide-if-js" href="<?php echo esc_url( add_query_arg( $query_arg ) ); ?>">
+			<span class="edit"><?php _ex( 'Edit', 'widget' ); ?></span>
+			<span class="add"><?php _ex( 'Add', 'widget' ); ?></span>
+			<span class="screen-reader-text"><?php echo $widget_title; ?></span>
 		</a>
 	</div>
-	<div class="widget-title"><h4><? echo $widget_title ?><span class="in-widget-title"></span></h4></div>
+	<div class="widget-title"><h4><?php echo $widget_title ?><span class="in-widget-title"></span></h4></div>
 	</div>
 
 	<div class="widget-inside">
 	<form action="" method="post">
 	<div class="widget-content">
-<?
+<?php
 	if ( isset($control['callback']) )
 		$has_form = call_user_func_array( $control['callback'], $control['params'] );
 	else
 		echo "\t\t<p>" . __('There are no options for this widget.') . "</p>\n"; ?>
 	</div>
-	<input type="hidden" name="widget-id" class="widget-id" value="<? echo esc_attr($id_format); ?>" />
-	<input type="hidden" name="id_base" class="id_base" value="<? echo esc_attr($id_base); ?>" />
-	<input type="hidden" name="widget-width" class="widget-width" value="<? if (isset( $control['width'] )) echo esc_attr($control['width']); ?>" />
-	<input type="hidden" name="widget-height" class="widget-height" value="<? if (isset( $control['height'] )) echo esc_attr($control['height']); ?>" />
-	<input type="hidden" name="widget_number" class="widget_number" value="<? echo esc_attr($widget_number); ?>" />
-	<input type="hidden" name="multi_number" class="multi_number" value="<? echo esc_attr($multi_number); ?>" />
-	<input type="hidden" name="add_new" class="add_new" value="<? echo esc_attr($add_new); ?>" />
+	<input type="hidden" name="widget-id" class="widget-id" value="<?php echo esc_attr($id_format); ?>" />
+	<input type="hidden" name="id_base" class="id_base" value="<?php echo esc_attr($id_base); ?>" />
+	<input type="hidden" name="widget-width" class="widget-width" value="<?php if (isset( $control['width'] )) echo esc_attr($control['width']); ?>" />
+	<input type="hidden" name="widget-height" class="widget-height" value="<?php if (isset( $control['height'] )) echo esc_attr($control['height']); ?>" />
+	<input type="hidden" name="widget_number" class="widget_number" value="<?php echo esc_attr($widget_number); ?>" />
+	<input type="hidden" name="multi_number" class="multi_number" value="<?php echo esc_attr($multi_number); ?>" />
+	<input type="hidden" name="add_new" class="add_new" value="<?php echo esc_attr($add_new); ?>" />
 
 	<div class="widget-control-actions">
 		<div class="alignleft">
-		<a class="widget-control-remove" href="#remove"><? _e('Delete'); ?></a> |
-		<a class="widget-control-close" href="#close"><? _e('Close'); ?></a>
+		<a class="widget-control-remove" href="#remove"><?php _e('Delete'); ?></a> |
+		<a class="widget-control-close" href="#close"><?php _e('Close'); ?></a>
 		</div>
-		<div class="alignright<? if ( 'noform' === $has_form ) echo ' widget-control-noform'; ?>">
-			<? submit_button( __( 'Save' ), 'button-primary widget-control-save right', 'savewidget', false, array( 'id' => 'widget-' . esc_attr( $id_format ) . '-savewidget' ) ); ?>
+		<div class="alignright<?php if ( 'noform' === $has_form ) echo ' widget-control-noform'; ?>">
+			<?php submit_button( __( 'Save' ), 'button-primary widget-control-save right', 'savewidget', false, array( 'id' => 'widget-' . esc_attr( $id_format ) . '-savewidget' ) ); ?>
 			<span class="spinner"></span>
 		</div>
 		<br class="clear" />
@@ -233,9 +233,9 @@ function wp_widget_control( $sidebar_args ) {
 	</div>
 
 	<div class="widget-description">
-<? echo ( $widget_description = wp_widget_description($widget_id) ) ? "$widget_description\n" : "$widget_title\n"; ?>
+<?php echo ( $widget_description = wp_widget_description($widget_id) ) ? "$widget_description\n" : "$widget_title\n"; ?>
 	</div>
-<?
+<?php
 	echo $sidebar_args['after_widget'];
 
 	return $sidebar_args;

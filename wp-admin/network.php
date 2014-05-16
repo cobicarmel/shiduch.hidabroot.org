@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Network installation administration panel.
  *
@@ -136,9 +136,9 @@ get_current_screen()->set_help_sidebar(
 include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
-<?
+<?php
 /**
  * Prints step 1 for Network installation process.
  *
@@ -192,9 +192,9 @@ function network_step1( $errors = false ) {
 	$site_name = ( ! empty( $_POST['sitename'] ) && ! in_array( 'empty_sitename', $error_codes ) ) ? $_POST['sitename'] : sprintf( _x('%s Sites', 'Default network name' ), get_option( 'blogname' ) );
 	$admin_email = ( ! empty( $_POST['email'] ) && ! in_array( 'invalid_email', $error_codes ) ) ? $_POST['email'] : get_option( 'admin_email' );
 	?>
-	<p><? _e( 'Welcome to the Network installation process!' ); ?></p>
-	<p><? _e( 'Fill in the information below and you&#8217;ll be on your way to creating a network of WordPress sites. We will create configuration files in the next step.' ); ?></p>
-	<?
+	<p><?php _e( 'Welcome to the Network installation process!' ); ?></p>
+	<p><?php _e( 'Fill in the information below and you&#8217;ll be on your way to creating a network of WordPress sites. We will create configuration files in the next step.' ); ?></p>
+	<?php
 
 	if ( isset( $_POST['subdomain_install'] ) ) {
 		$subdomain_install = (bool) $_POST['subdomain_install'];
@@ -213,22 +213,22 @@ function network_step1( $errors = false ) {
 	}
 
 	if ( allow_subdomain_install() && allow_subdirectory_install() ) : ?>
-		<h3><? esc_html_e( 'Addresses of Sites in your Network' ); ?></h3>
-		<p><? _e( 'Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories. <strong>You cannot change this later.</strong>' ); ?></p>
-		<p><? _e( 'You will need a wildcard DNS record if you are going to use the virtual host (sub-domain) functionality.' ); ?></p>
-		<? // @todo: Link to an MS readme? ?>
+		<h3><?php esc_html_e( 'Addresses of Sites in your Network' ); ?></h3>
+		<p><?php _e( 'Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories. <strong>You cannot change this later.</strong>' ); ?></p>
+		<p><?php _e( 'You will need a wildcard DNS record if you are going to use the virtual host (sub-domain) functionality.' ); ?></p>
+		<?php // @todo: Link to an MS readme? ?>
 		<table class="form-table">
 			<tr>
-				<th><label><input type='radio' name='subdomain_install' value='1'<? checked( $subdomain_install ); ?> /> <? _e( 'Sub-domains' ); ?></label></th>
-				<td><? printf( _x( 'like <code>site1.%1$s</code> and <code>site2.%1$s</code>', 'subdomain examples' ), $hostname ); ?></td>
+				<th><label><input type='radio' name='subdomain_install' value='1'<?php checked( $subdomain_install ); ?> /> <?php _e( 'Sub-domains' ); ?></label></th>
+				<td><?php printf( _x( 'like <code>site1.%1$s</code> and <code>site2.%1$s</code>', 'subdomain examples' ), $hostname ); ?></td>
 			</tr>
 			<tr>
-				<th><label><input type='radio' name='subdomain_install' value='0'<? checked( ! $subdomain_install ); ?> /> <? _e( 'Sub-directories' ); ?></label></th>
-				<td><? printf( _x( 'like <code>%1$s/site1</code> and <code>%1$s/site2</code>', 'subdirectory examples' ), $hostname ); ?></td>
+				<th><label><input type='radio' name='subdomain_install' value='0'<?php checked( ! $subdomain_install ); ?> /> <?php _e( 'Sub-directories' ); ?></label></th>
+				<td><?php printf( _x( 'like <code>%1$s/site1</code> and <code>%1$s/site2</code>', 'subdirectory examples' ), $hostname ); ?></td>
 			</tr>
 		</table>
 
-<?
+<?php
 	endif;
 
 		if ( WP_CONTENT_DIR != ABSPATH . 'wp-content' && ( allow_subdirectory_install() || ! allow_subdomain_install() ) )
@@ -237,78 +237,78 @@ function network_step1( $errors = false ) {
 		$is_www = ( 0 === strpos( $hostname, 'www.' ) );
 		if ( $is_www ) :
 		?>
-		<h3><? esc_html_e( 'Server Address' ); ?></h3>
-		<p><? printf( __( 'We recommend you change your siteurl to <code>%1$s</code> before enabling the network feature. It will still be possible to visit your site using the <code>www</code> prefix with an address like <code>%2$s</code> but any links will not have the <code>www</code> prefix.' ), substr( $hostname, 4 ), $hostname ); ?></p>
+		<h3><?php esc_html_e( 'Server Address' ); ?></h3>
+		<p><?php printf( __( 'We recommend you change your siteurl to <code>%1$s</code> before enabling the network feature. It will still be possible to visit your site using the <code>www</code> prefix with an address like <code>%2$s</code> but any links will not have the <code>www</code> prefix.' ), substr( $hostname, 4 ), $hostname ); ?></p>
 		<table class="form-table">
 			<tr>
-				<th scope='row'><? esc_html_e( 'Server Address' ); ?></th>
+				<th scope='row'><?php esc_html_e( 'Server Address' ); ?></th>
 				<td>
-					<? printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
+					<?php printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
 				</td>
 			</tr>
 		</table>
-		<? endif; ?>
+		<?php endif; ?>
 
-		<h3><? esc_html_e( 'Network Details' ); ?></h3>
+		<h3><?php esc_html_e( 'Network Details' ); ?></h3>
 		<table class="form-table">
-		<? if ( 'localhost' == $hostname ) : ?>
+		<?php if ( 'localhost' == $hostname ) : ?>
 			<tr>
-				<th scope="row"><? esc_html_e( 'Sub-directory Install' ); ?></th>
-				<td><?
+				<th scope="row"><?php esc_html_e( 'Sub-directory Install' ); ?></th>
+				<td><?php
 					_e( 'Because you are using <code>localhost</code>, the sites in your WordPress network must use sub-directories. Consider using <code>localhost.localdomain</code> if you wish to use sub-domains.' );
 					// Uh oh:
 					if ( !allow_subdirectory_install() )
 						echo ' <strong>' . __( 'Warning!' ) . ' ' . __( 'The main site in a sub-directory install will need to use a modified permalink structure, potentially breaking existing links.' ) . '</strong>';
 				?></td>
 			</tr>
-		<? elseif ( !allow_subdomain_install() ) : ?>
+		<?php elseif ( !allow_subdomain_install() ) : ?>
 			<tr>
-				<th scope="row"><? esc_html_e( 'Sub-directory Install' ); ?></th>
-				<td><?
+				<th scope="row"><?php esc_html_e( 'Sub-directory Install' ); ?></th>
+				<td><?php
 					_e( 'Because your install is in a directory, the sites in your WordPress network must use sub-directories.' );
 					// Uh oh:
 					if ( !allow_subdirectory_install() )
 						echo ' <strong>' . __( 'Warning!' ) . ' ' . __( 'The main site in a sub-directory install will need to use a modified permalink structure, potentially breaking existing links.' ) . '</strong>';
 				?></td>
 			</tr>
-		<? elseif ( !allow_subdirectory_install() ) : ?>
+		<?php elseif ( !allow_subdirectory_install() ) : ?>
 			<tr>
-				<th scope="row"><? esc_html_e( 'Sub-domain Install' ); ?></th>
-				<td><? _e( 'Because your install is not new, the sites in your WordPress network must use sub-domains.' );
+				<th scope="row"><?php esc_html_e( 'Sub-domain Install' ); ?></th>
+				<td><?php _e( 'Because your install is not new, the sites in your WordPress network must use sub-domains.' );
 					echo ' <strong>' . __( 'The main site in a sub-directory install will need to use a modified permalink structure, potentially breaking existing links.' ) . '</strong>';
 				?></td>
 			</tr>
-		<? endif; ?>
-		<? if ( ! $is_www ) : ?>
+		<?php endif; ?>
+		<?php if ( ! $is_www ) : ?>
 			<tr>
-				<th scope='row'><? esc_html_e( 'Server Address' ); ?></th>
+				<th scope='row'><?php esc_html_e( 'Server Address' ); ?></th>
 				<td>
-					<? printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
+					<?php printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
 				</td>
 			</tr>
-		<? endif; ?>
+		<?php endif; ?>
 			<tr>
-				<th scope='row'><? esc_html_e( 'Network Title' ); ?></th>
+				<th scope='row'><?php esc_html_e( 'Network Title' ); ?></th>
 				<td>
-					<input name='sitename' type='text' size='45' value='<? echo esc_attr( $site_name ); ?>' />
+					<input name='sitename' type='text' size='45' value='<?php echo esc_attr( $site_name ); ?>' />
 					<p class="description">
-						<? _e( 'What would you like to call your network?' ); ?>
+						<?php _e( 'What would you like to call your network?' ); ?>
 					</p>
 				</td>
 			</tr>
 			<tr>
-				<th scope='row'><? esc_html_e( 'Network Admin Email' ); ?></th>
+				<th scope='row'><?php esc_html_e( 'Network Admin Email' ); ?></th>
 				<td>
-					<input name='email' type='text' size='45' value='<? echo esc_attr( $admin_email ); ?>' />
+					<input name='email' type='text' size='45' value='<?php echo esc_attr( $admin_email ); ?>' />
 					<p class="description">
-						<? _e( 'Your email address.' ); ?>
+						<?php _e( 'Your email address.' ); ?>
 					</p>
 				</td>
 			</tr>
 		</table>
-		<? submit_button( __( 'Install' ), 'primary', 'submit' ); ?>
+		<?php submit_button( __( 'Install' ), 'primary', 'submit' ); ?>
 	</form>
-	<?
+	<?php
 }
 
 /**
@@ -348,14 +348,14 @@ function network_step2( $errors = false ) {
 		if ( is_multisite() ) {
 			$subdomain_install = is_subdomain_install();
 ?>
-	<p><? _e( 'The original configuration steps are shown here for reference.' ); ?></p>
-<?
+	<p><?php _e( 'The original configuration steps are shown here for reference.' ); ?></p>
+<?php
 		} else {
 			$subdomain_install = (bool) $wpdb->get_var( "SELECT meta_value FROM $wpdb->sitemeta WHERE site_id = 1 AND meta_key = 'subdomain_install'" );
 ?>
-	<div class="error"><p><strong><? _e('Warning:'); ?></strong> <? _e( 'An existing WordPress network was detected.' ); ?></p></div>
-	<p><? _e( 'Please complete the configuration steps. To create a new network, you will need to empty or remove the network database tables.' ); ?></p>
-<?
+	<div class="error"><p><strong><?php _e('Warning:'); ?></strong> <?php _e( 'An existing WordPress network was detected.' ); ?></p></div>
+	<p><?php _e( 'Please complete the configuration steps. To create a new network, you will need to empty or remove the network database tables.' ); ?></p>
+<?php
 		}
 	}
 
@@ -365,9 +365,9 @@ function network_step2( $errors = false ) {
 
 	if ( $_POST || ! is_multisite() ) {
 ?>
-		<h3><? esc_html_e( 'Enabling the Network' ); ?></h3>
-		<p><? _e( 'Complete the following steps to enable the features for creating a network of sites.' ); ?></p>
-		<div class="updated inline"><p><?
+		<h3><?php esc_html_e( 'Enabling the Network' ); ?></h3>
+		<p><?php _e( 'Complete the following steps to enable the features for creating a network of sites.' ); ?></p>
+		<div class="updated inline"><p><?php
 			if ( file_exists( $home_path . '.htaccess' ) )
 				printf( __( '<strong>Caution:</strong> We recommend you back up your existing <code>wp-config.php</code> and <code>%s</code> files.' ), '.htaccess' );
 			elseif ( file_exists( $home_path . 'web.config' ) )
@@ -375,19 +375,19 @@ function network_step2( $errors = false ) {
 			else
 				_e( '<strong>Caution:</strong> We recommend you back up your existing <code>wp-config.php</code> file.' );
 		?></p></div>
-<?
+<?php
 	}
 ?>
 		<ol>
-			<li><p><? printf( __( 'Add the following to your <code>wp-config.php</code> file in <code>%s</code> <strong>above</strong> the line reading <code>/* That&#8217;s all, stop editing! Happy blogging. */</code>:' ), $location_of_wp_config ); ?></p>
+			<li><p><?php printf( __( 'Add the following to your <code>wp-config.php</code> file in <code>%s</code> <strong>above</strong> the line reading <code>/* That&#8217;s all, stop editing! Happy blogging. */</code>:' ), $location_of_wp_config ); ?></p>
 				<textarea class="code" readonly="readonly" cols="100" rows="6">
 define('MULTISITE', true);
-define('SUBDOMAIN_INSTALL', <? echo $subdomain_install ? 'true' : 'false'; ?>);
-define('DOMAIN_CURRENT_SITE', '<? echo $hostname; ?>');
-define('PATH_CURRENT_SITE', '<? echo $base; ?>');
+define('SUBDOMAIN_INSTALL', <?php echo $subdomain_install ? 'true' : 'false'; ?>);
+define('DOMAIN_CURRENT_SITE', '<?php echo $hostname; ?>');
+define('PATH_CURRENT_SITE', '<?php echo $base; ?>');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);</textarea>
-<?
+<?php
 	$keys_salts = array( 'AUTH_KEY' => '', 'SECURE_AUTH_KEY' => '', 'LOGGED_IN_KEY' => '', 'NONCE_KEY' => '', 'AUTH_SALT' => '', 'SECURE_AUTH_SALT' => '', 'LOGGED_IN_SALT' => '', 'NONCE_SALT' => '' );
 	foreach ( $keys_salts as $c => $v ) {
 		if ( defined( $c ) )
@@ -409,14 +409,14 @@ define('BLOG_ID_CURRENT_SITE', 1);</textarea>
 		}
 		$num_keys_salts = count( $keys_salts );
 ?>
-	<p><?
-		echo _n( 'This unique authentication key is also missing from your <code>wp-config.php</code> file.', 'These unique authentication keys are also missing from your <code>wp-config.php</code> file.', $num_keys_salts ); ?> <? _e( 'To make your installation more secure, you should also add:' ) ?></p>
-	<textarea class="code" readonly="readonly" cols="100" rows="<? echo $num_keys_salts; ?>"><? echo esc_textarea( $keys_salts_str ); ?></textarea>
-<?
+	<p><?php
+		echo _n( 'This unique authentication key is also missing from your <code>wp-config.php</code> file.', 'These unique authentication keys are also missing from your <code>wp-config.php</code> file.', $num_keys_salts ); ?> <?php _e( 'To make your installation more secure, you should also add:' ) ?></p>
+	<textarea class="code" readonly="readonly" cols="100" rows="<?php echo $num_keys_salts; ?>"><?php echo esc_textarea( $keys_salts_str ); ?></textarea>
+<?php
 	}
 ?>
 </li>
-<?
+<?php
 	if ( iis7_supports_permalinks() ) :
 		// IIS doesn't support RewriteBase, all your RewriteBase are belong to us
 		$iis_subdir_match = ltrim( $base, '/' ) . $subdir_match;
@@ -477,11 +477,11 @@ define('BLOG_ID_CURRENT_SITE', 1);</textarea>
 		if ( ! $subdomain_install && WP_CONTENT_DIR != ABSPATH . 'wp-content' )
 			echo '<p><strong>' . __('Warning:') . ' ' . __( 'Subdirectory networks may not be fully compatible with custom wp-content directories.' ) . '</strong></p>';
 		?>
-		<textarea class="code" readonly="readonly" cols="100" rows="20"><? echo esc_textarea( $web_config_file ); ?>
+		<textarea class="code" readonly="readonly" cols="100" rows="20"><?php echo esc_textarea( $web_config_file ); ?>
 		</textarea></li>
 		</ol>
 
-	<? else : // end iis7_supports_permalinks(). construct an htaccess file instead:
+	<?php else : // end iis7_supports_permalinks(). construct an htaccess file instead:
 
 		$ms_files_rewriting = '';
 		if ( is_multisite() && get_site_option( 'ms_files_rewriting' ) ) {
@@ -513,15 +513,15 @@ EOF;
 		if ( ! $subdomain_install && WP_CONTENT_DIR != ABSPATH . 'wp-content' )
 			echo '<p><strong>' . __('Warning:') . ' ' . __( 'Subdirectory networks may not be fully compatible with custom wp-content directories.' ) . '</strong></p>';
 		?>
-		<textarea class="code" readonly="readonly" cols="100" rows="<? echo substr_count( $htaccess_file, "\n" ) + 1; ?>">
-<? echo esc_textarea( $htaccess_file ); ?></textarea></li>
+		<textarea class="code" readonly="readonly" cols="100" rows="<?php echo substr_count( $htaccess_file, "\n" ) + 1; ?>">
+<?php echo esc_textarea( $htaccess_file ); ?></textarea></li>
 		</ol>
 
-	<? endif; // end IIS/Apache code branches.
+	<?php endif; // end IIS/Apache code branches.
 
 	if ( !is_multisite() ) { ?>
-		<p><? printf( __( 'Once you complete these steps, your network is enabled and configured. You will have to log in again.') ); ?> <a href="<? echo esc_url( site_url( 'wp-login.php' ) ); ?>"><? _e( 'Log In' ); ?></a></p>
-<?
+		<p><?php printf( __( 'Once you complete these steps, your network is enabled and configured. You will have to log in again.') ); ?> <a href="<?php echo esc_url( site_url( 'wp-login.php' ) ); ?>"><?php _e( 'Log In' ); ?></a></p>
+<?php
 	}
 }
 
@@ -555,4 +555,4 @@ if ( $_POST ) {
 ?>
 </div>
 
-<? include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

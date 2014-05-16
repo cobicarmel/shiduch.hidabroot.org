@@ -2,7 +2,7 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package matchrepo
+ * @package Matchrepo
  */
 
 get_header(); ?>
@@ -14,7 +14,7 @@ get_header(); ?>
 
 			<? get_template_part( 'content', 'single' ); ?>
 
-			<? matchrepo_post_nav(); ?>
+			<? Matchrepo_post_nav(); ?>
 
 			<?
 				// If comments are open or we have at least one comment, load up the comment template

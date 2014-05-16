@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Plugins List Table class.
  *

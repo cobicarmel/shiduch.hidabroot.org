@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit links form for inclusion in administration panels.
  *
@@ -70,13 +70,13 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?>  <a href="link-add.php" class="add-new-h2"><? echo esc_html_x('Add New', 'link'); ?></a></h2>
+<h2><?php echo esc_html( $title ); ?>  <a href="link-add.php" class="add-new-h2"><?php echo esc_html_x('Add New', 'link'); ?></a></h2>
 
-<? if ( isset( $_GET['added'] ) ) : ?>
-<div id="message" class="updated"><p><? _e('Link added.'); ?></p></div>
-<? endif; ?>
+<?php if ( isset( $_GET['added'] ) ) : ?>
+<div id="message" class="updated"><p><?php _e('Link added.'); ?></p></div>
+<?php endif; ?>
 
-<?
+<?php
 if ( !empty($form) )
 	echo $form;
 if ( !empty($link_added) )
@@ -88,35 +88,35 @@ wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
 
 <div id="poststuff">
 
-<div id="post-body" class="metabox-holder columns-<? echo 1 == get_current_screen()->get_columns() ? '1' : '2'; ?>">
+<div id="post-body" class="metabox-holder columns-<?php echo 1 == get_current_screen()->get_columns() ? '1' : '2'; ?>">
 <div id="post-body-content">
 <div id="namediv" class="stuffbox">
-<h3><label for="link_name"><? _ex('Name', 'link name') ?></label></h3>
+<h3><label for="link_name"><?php _ex('Name', 'link name') ?></label></h3>
 <div class="inside">
-	<input type="text" name="link_name" size="30" maxlength="255" value="<? echo esc_attr($link->link_name); ?>" id="link_name" />
-	<p><? _e('Example: Nifty blogging software'); ?></p>
+	<input type="text" name="link_name" size="30" maxlength="255" value="<?php echo esc_attr($link->link_name); ?>" id="link_name" />
+	<p><?php _e('Example: Nifty blogging software'); ?></p>
 </div>
 </div>
 
 <div id="addressdiv" class="stuffbox">
-<h3><label for="link_url"><? _e('Web Address') ?></label></h3>
+<h3><label for="link_url"><?php _e('Web Address') ?></label></h3>
 <div class="inside">
-	<input type="text" name="link_url" size="30" maxlength="255" class="code" value="<? echo esc_attr($link->link_url); ?>" id="link_url" />
-	<p><? _e('Example: <code>http://wordpress.org/</code> &#8212; don&#8217;t forget the <code>http://</code>'); ?></p>
+	<input type="text" name="link_url" size="30" maxlength="255" class="code" value="<?php echo esc_attr($link->link_url); ?>" id="link_url" />
+	<p><?php _e('Example: <code>http://wordpress.org/</code> &#8212; don&#8217;t forget the <code>http://</code>'); ?></p>
 </div>
 </div>
 
 <div id="descriptiondiv" class="stuffbox">
-<h3><label for="link_description"><? _e('Description') ?></label></h3>
+<h3><label for="link_description"><?php _e('Description') ?></label></h3>
 <div class="inside">
-	<input type="text" name="link_description" size="30" maxlength="255" value="<? echo isset($link->link_description) ? esc_attr($link->link_description) : ''; ?>" id="link_description" />
-	<p><? _e('This will be shown when someone hovers over the link in the blogroll, or optionally below the link.'); ?></p>
+	<input type="text" name="link_description" size="30" maxlength="255" value="<?php echo isset($link->link_description) ? esc_attr($link->link_description) : ''; ?>" id="link_description" />
+	<p><?php _e('This will be shown when someone hovers over the link in the blogroll, or optionally below the link.'); ?></p>
 </div>
 </div>
 </div><!-- /post-body-content -->
 
 <div id="postbox-container-1" class="postbox-container">
-<?
+<?php
 
 /**
  * Fires before the Save meta box in the sidebar.
@@ -129,7 +129,7 @@ $side_meta_boxes = do_meta_boxes( 'link', 'side', $link );
 ?>
 </div>
 <div id="postbox-container-2" class="postbox-container">
-<?
+<?php
 
 do_meta_boxes(null, 'normal', $link);
 
@@ -137,15 +137,15 @@ do_meta_boxes(null, 'advanced', $link);
 
 ?>
 </div>
-<?
+<?php
 
 if ( $link_id ) : ?>
 <input type="hidden" name="action" value="save" />
-<input type="hidden" name="link_id" value="<? echo (int) $link_id; ?>" />
-<input type="hidden" name="cat_id" value="<? echo (int) $cat_id ?>" />
-<? else: ?>
+<input type="hidden" name="link_id" value="<?php echo (int) $link_id; ?>" />
+<input type="hidden" name="cat_id" value="<?php echo (int) $cat_id ?>" />
+<?php else: ?>
 <input type="hidden" name="action" value="add" />
-<? endif; ?>
+<?php endif; ?>
 
 </div>
 </div>

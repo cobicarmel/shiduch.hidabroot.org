@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Retrieves and creates the wp-config.php file.
  *
@@ -93,18 +93,18 @@ function setup_config_display_header() {
 	header( 'Content-Type: text/html; charset=utf-8' );
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"<? if ( is_rtl() ) echo ' dir="rtl"'; ?>>
+<html xmlns="http://www.w3.org/1999/xhtml"<?php if ( is_rtl() ) echo ' dir="rtl"'; ?>>
 <head>
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? _e( 'WordPress &rsaquo; Setup Configuration File' ); ?></title>
-<link rel="stylesheet" href="css/install.css?ver=<? echo preg_replace( '/[^0-9a-z\.-]/i', '', $wp_version ); ?>" type="text/css" />
-<link rel="stylesheet" href="../wp-includes/css/buttons.css?ver=<? echo preg_replace( '/[^0-9a-z\.-]/i', '', $wp_version ); ?>" type="text/css" />
+<title><?php _e( 'WordPress &rsaquo; Setup Configuration File' ); ?></title>
+<link rel="stylesheet" href="css/install.css?ver=<?php echo preg_replace( '/[^0-9a-z\.-]/i', '', $wp_version ); ?>" type="text/css" />
+<link rel="stylesheet" href="../wp-includes/css/buttons.css?ver=<?php echo preg_replace( '/[^0-9a-z\.-]/i', '', $wp_version ); ?>" type="text/css" />
 
 </head>
-<body class="wp-core-ui<? if ( is_rtl() ) echo ' rtl'; ?>">
-<h1 id="logo"><a href="<? esc_attr_e( 'https://wordpress.org/' ); ?>"><? _e( 'WordPress' ); ?></a></h1>
-<?
+<body class="wp-core-ui<?php if ( is_rtl() ) echo ' rtl'; ?>">
+<h1 id="logo"><a href="<?php esc_attr_e( 'https://wordpress.org/' ); ?>"><?php _e( 'WordPress' ); ?></a></h1>
+<?php
 } // end function setup_config_display_header();
 
 switch($step) {
@@ -112,57 +112,57 @@ switch($step) {
 		setup_config_display_header();
 ?>
 
-<p><? _e( 'Welcome to WordPress. Before getting started, we need some information on the database. You will need to know the following items before proceeding.' ) ?></p>
+<p><?php _e( 'Welcome to WordPress. Before getting started, we need some information on the database. You will need to know the following items before proceeding.' ) ?></p>
 <ol>
-	<li><? _e( 'Database name' ); ?></li>
-	<li><? _e( 'Database username' ); ?></li>
-	<li><? _e( 'Database password' ); ?></li>
-	<li><? _e( 'Database host' ); ?></li>
-	<li><? _e( 'Table prefix (if you want to run more than one WordPress in a single database)' ); ?></li>
+	<li><?php _e( 'Database name' ); ?></li>
+	<li><?php _e( 'Database username' ); ?></li>
+	<li><?php _e( 'Database password' ); ?></li>
+	<li><?php _e( 'Database host' ); ?></li>
+	<li><?php _e( 'Table prefix (if you want to run more than one WordPress in a single database)' ); ?></li>
 </ol>
-<p><strong><? _e( "If for any reason this automatic file creation doesn&#8217;t work, don&#8217;t worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>." ); ?></strong></p>
-<p><? _e( "In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;" ); ?></p>
+<p><strong><?php _e( "If for any reason this automatic file creation doesn&#8217;t work, don&#8217;t worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>." ); ?></strong></p>
+<p><?php _e( "In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;" ); ?></p>
 
-<p class="step"><a href="setup-config.php?step=1<? if ( isset( $_GET['noapi'] ) ) echo '&amp;noapi'; ?>" class="button button-large"><? _e( 'Let&#8217;s go!' ); ?></a></p>
-<?
+<p class="step"><a href="setup-config.php?step=1<?php if ( isset( $_GET['noapi'] ) ) echo '&amp;noapi'; ?>" class="button button-large"><?php _e( 'Let&#8217;s go!' ); ?></a></p>
+<?php
 	break;
 
 	case 1:
 		setup_config_display_header();
 	?>
 <form method="post" action="setup-config.php?step=2">
-	<p><? _e( "Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host." ); ?></p>
+	<p><?php _e( "Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host." ); ?></p>
 	<table class="form-table">
 		<tr>
-			<th scope="row"><label for="dbname"><? _e( 'Database Name' ); ?></label></th>
+			<th scope="row"><label for="dbname"><?php _e( 'Database Name' ); ?></label></th>
 			<td><input name="dbname" id="dbname" type="text" size="25" value="wordpress" /></td>
-			<td><? _e( 'The name of the database you want to run WP in.' ); ?></td>
+			<td><?php _e( 'The name of the database you want to run WP in.' ); ?></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="uname"><? _e( 'User Name' ); ?></label></th>
-			<td><input name="uname" id="uname" type="text" size="25" value="<? echo htmlspecialchars( _x( 'username', 'example username' ), ENT_QUOTES ); ?>" /></td>
-			<td><? _e( 'Your MySQL username' ); ?></td>
+			<th scope="row"><label for="uname"><?php _e( 'User Name' ); ?></label></th>
+			<td><input name="uname" id="uname" type="text" size="25" value="<?php echo htmlspecialchars( _x( 'username', 'example username' ), ENT_QUOTES ); ?>" /></td>
+			<td><?php _e( 'Your MySQL username' ); ?></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="pwd"><? _e( 'Password' ); ?></label></th>
-			<td><input name="pwd" id="pwd" type="text" size="25" value="<? echo htmlspecialchars( _x( 'password', 'example password' ), ENT_QUOTES ); ?>" /></td>
-			<td><? _e( '&hellip;and your MySQL password.' ); ?></td>
+			<th scope="row"><label for="pwd"><?php _e( 'Password' ); ?></label></th>
+			<td><input name="pwd" id="pwd" type="text" size="25" value="<?php echo htmlspecialchars( _x( 'password', 'example password' ), ENT_QUOTES ); ?>" /></td>
+			<td><?php _e( '&hellip;and your MySQL password.' ); ?></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="dbhost"><? _e( 'Database Host' ); ?></label></th>
+			<th scope="row"><label for="dbhost"><?php _e( 'Database Host' ); ?></label></th>
 			<td><input name="dbhost" id="dbhost" type="text" size="25" value="localhost" /></td>
-			<td><? _e( 'You should be able to get this info from your web host, if <code>localhost</code> does not work.' ); ?></td>
+			<td><?php _e( 'You should be able to get this info from your web host, if <code>localhost</code> does not work.' ); ?></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="prefix"><? _e( 'Table Prefix' ); ?></label></th>
+			<th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th>
 			<td><input name="prefix" id="prefix" type="text" value="wp_" size="25" /></td>
-			<td><? _e( 'If you want to run multiple WordPress installations in a single database, change this.' ); ?></td>
+			<td><?php _e( 'If you want to run multiple WordPress installations in a single database, change this.' ); ?></td>
 		</tr>
 	</table>
-	<? if ( isset( $_GET['noapi'] ) ) { ?><input name="noapi" type="hidden" value="1" /><? } ?>
-	<p class="step"><input name="submit" type="submit" value="<? echo htmlspecialchars( __( 'Submit' ), ENT_QUOTES ); ?>" class="button button-large" /></p>
+	<?php if ( isset( $_GET['noapi'] ) ) { ?><input name="noapi" type="hidden" value="1" /><?php } ?>
+	<p class="step"><input name="submit" type="submit" value="<?php echo htmlspecialchars( __( 'Submit' ), ENT_QUOTES ); ?>" class="button button-large" /></p>
 </form>
-<?
+<?php
 	break;
 
 	case 2:
@@ -259,15 +259,15 @@ switch($step) {
 	if ( ! is_writable(ABSPATH) ) :
 		setup_config_display_header();
 ?>
-<p><? _e( "Sorry, but I can&#8217;t write the <code>wp-config.php</code> file." ); ?></p>
-<p><? _e( 'You can create the <code>wp-config.php</code> manually and paste the following text into it.' ); ?></p>
-<textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly"><?
+<p><?php _e( "Sorry, but I can&#8217;t write the <code>wp-config.php</code> file." ); ?></p>
+<p><?php _e( 'You can create the <code>wp-config.php</code> manually and paste the following text into it.' ); ?></p>
+<textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly"><?php
 		foreach( $config_file as $line ) {
 			echo htmlentities($line, ENT_COMPAT, 'UTF-8');
 		}
 ?></textarea>
-<p><? _e( 'After you&#8217;ve done that, click &#8220;Run the install.&#8221;' ); ?></p>
-<p class="step"><a href="install.php" class="button button-large"><? _e( 'Run the install' ); ?></a></p>
+<p><?php _e( 'After you&#8217;ve done that, click &#8220;Run the install.&#8221;' ); ?></p>
+<p class="step"><a href="install.php" class="button button-large"><?php _e( 'Run the install' ); ?></a></p>
 <script>
 (function(){
 var el=document.getElementById('wp-config');
@@ -275,7 +275,7 @@ el.focus();
 el.select();
 })();
 </script>
-<?
+<?php
 	else :
 		// If this file doesn't exist, then we are using the wp-config-sample.php
 		// file one level up, which is for the develop repo.
@@ -292,10 +292,10 @@ el.select();
 		chmod( $path_to_wp_config, 0666 );
 		setup_config_display_header();
 ?>
-<p><? _e( "All right, sparky! You&#8217;ve made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;" ); ?></p>
+<p><?php _e( "All right, sparky! You&#8217;ve made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;" ); ?></p>
 
-<p class="step"><a href="install.php" class="button button-large"><? _e( 'Run the install' ); ?></a></p>
-<?
+<p class="step"><a href="install.php" class="button button-large"><?php _e( 'Run the install' ); ?></a></p>
+<?php
 	endif;
 	break;
 }

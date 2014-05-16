@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Network Freedoms administration panel.
  *

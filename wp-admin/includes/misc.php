@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Misc WordPress Administration API.
  *
@@ -610,38 +610,38 @@ function admin_color_scheme_picker( $user_id ) {
 
 	?>
 	<fieldset id="color-picker" class="scheme-list">
-		<legend class="screen-reader-text"><span><? _e( 'Admin Color Scheme' ); ?></span></legend>
-		<?
+		<legend class="screen-reader-text"><span><?php _e( 'Admin Color Scheme' ); ?></span></legend>
+		<?php
 		wp_nonce_field( 'save-color-scheme', 'color-nonce', false );
 		foreach ( $_wp_admin_css_colors as $color => $color_info ) :
 
 			?>
-			<div class="color-option <? echo ( $color == $current_color ) ? 'selected' : ''; ?>">
-				<input name="admin_color" id="admin_color_<? echo esc_attr( $color ); ?>" type="radio" value="<? echo esc_attr( $color ); ?>" class="tog" <? checked( $color, $current_color ); ?> />
-				<input type="hidden" class="css_url" value="<? echo esc_url( $color_info->url ); ?>" />
-				<input type="hidden" class="icon_colors" value="<? echo esc_attr( json_encode( array( 'icons' => $color_info->icon_colors ) ) ); ?>" />
-				<label for="admin_color_<? echo esc_attr( $color ); ?>"><? echo esc_html( $color_info->name ); ?></label>
+			<div class="color-option <?php echo ( $color == $current_color ) ? 'selected' : ''; ?>">
+				<input name="admin_color" id="admin_color_<?php echo esc_attr( $color ); ?>" type="radio" value="<?php echo esc_attr( $color ); ?>" class="tog" <?php checked( $color, $current_color ); ?> />
+				<input type="hidden" class="css_url" value="<?php echo esc_url( $color_info->url ); ?>" />
+				<input type="hidden" class="icon_colors" value="<?php echo esc_attr( json_encode( array( 'icons' => $color_info->icon_colors ) ) ); ?>" />
+				<label for="admin_color_<?php echo esc_attr( $color ); ?>"><?php echo esc_html( $color_info->name ); ?></label>
 				<table class="color-palette">
 					<tr>
-					<?
+					<?php
 
 					foreach ( $color_info->colors as $html_color ) {
 						?>
-						<td style="background-color: <? echo esc_attr( $html_color ); ?>">&nbsp;</td>
-						<?
+						<td style="background-color: <?php echo esc_attr( $html_color ); ?>">&nbsp;</td>
+						<?php
 					}
 
 					?>
 					</tr>
 				</table>
 			</div>
-			<?
+			<?php
 
 		endforeach;
 
 	?>
 	</fieldset>
-	<?
+	<?php
 }
 
 function wp_color_scheme_settings() {
@@ -671,7 +671,7 @@ function _ipad_meta() {
 	if ( wp_is_mobile() ) {
 		?>
 		<meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1">
-		<?
+		<?php
 	}
 }
 add_action('admin_head', '_ipad_meta');

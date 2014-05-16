@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress core upgrade functionality.
  *
@@ -860,7 +860,7 @@ function update_core($from, $to) {
 	/** This filter is documented in wp-admin/includes/update-core.php */
 	apply_filters( 'update_feedback', __( 'Enabling Maintenance mode&#8230;' ) );
 	// Create maintenance file to signal that we are upgrading
-	$maintenance_string = '<? $upgrading = ' . time() . '; ?>';
+	$maintenance_string = '<?php $upgrading = ' . time() . '; ?>';
 	$maintenance_file = $to . '.maintenance';
 	$wp_filesystem->delete($maintenance_file);
 	$wp_filesystem->put_contents($maintenance_file, $maintenance_string, FS_CHMOD_FILE);
@@ -1139,7 +1139,7 @@ function _redirect_to_about_wordpress( $new_version ) {
 <script type="text/javascript">
 window.location = 'about.php?updated';
 </script>
-	<?
+	<?php
 
 	// Include admin-footer.php and exit
 	include(ABSPATH . 'wp-admin/admin-footer.php');

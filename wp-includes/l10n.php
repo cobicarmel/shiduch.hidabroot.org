@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Translation API
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Canonical API to handle WordPress Redirecting
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Import WordPress Administration Screen
  *
@@ -52,13 +52,13 @@ $parent_file = 'tools.php';
 ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
-<? if ( ! empty( $_GET['invalid'] ) ) : ?>
-	<div class="error"><p><strong><? _e('ERROR:')?></strong> <? printf( __('The <strong>%s</strong> importer is invalid or is not installed.'), esc_html( $_GET['invalid'] ) ); ?></p></div>
-<? endif; ?>
-<p><? _e('If you have posts or comments in another system, WordPress can import those into this site. To get started, choose a system to import from below:'); ?></p>
+<h2><?php echo esc_html( $title ); ?></h2>
+<?php if ( ! empty( $_GET['invalid'] ) ) : ?>
+	<div class="error"><p><strong><?php _e('ERROR:')?></strong> <?php printf( __('The <strong>%s</strong> importer is invalid or is not installed.'), esc_html( $_GET['invalid'] ) ); ?></p></div>
+<?php endif; ?>
+<p><?php _e('If you have posts or comments in another system, WordPress can import those into this site. To get started, choose a system to import from below:'); ?></p>
 
-<?
+<?php
 
 $importers = get_importers();
 
@@ -78,7 +78,7 @@ if ( empty( $importers ) ) {
 ?>
 <table class="widefat importers">
 
-<?
+<?php
 	$alt = '';
 	foreach ($importers as $importer_id => $data) {
 		$action = '';
@@ -118,7 +118,7 @@ if ( empty( $importers ) ) {
 ?>
 
 </table>
-<?
+<?php
 }
 
 if ( current_user_can('install_plugins') )
@@ -127,6 +127,6 @@ if ( current_user_can('install_plugins') )
 
 </div>
 
-<?
+<?php
 
 include( ABSPATH . 'wp-admin/admin-footer.php' );

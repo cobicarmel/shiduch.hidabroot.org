@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* Continent and city translations for timezone selection.
  * This file is not included anywhere. It exists solely for use by xgettext.

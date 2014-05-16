@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite upgrade administration panel.
  *
@@ -85,27 +85,27 @@ switch ( $action ) {
 			do_action( 'wpmu_upgrade_site', $details[ 'blog_id' ] );
 		}
 		echo "</ul>";
-		?><p><? _e( 'If your browser doesn&#8217;t start loading the next page automatically, click this link:' ); ?> <a class="button" href="upgrade.php?action=upgrade&amp;n=<? echo ($n + 5) ?>"><? _e("Next Sites"); ?></a></p>
+		?><p><?php _e( 'If your browser doesn&#8217;t start loading the next page automatically, click this link:' ); ?> <a class="button" href="upgrade.php?action=upgrade&amp;n=<?php echo ($n + 5) ?>"><?php _e("Next Sites"); ?></a></p>
 		<script type='text/javascript'>
 		<!--
 		function nextpage() {
-			location.href = "upgrade.php?action=upgrade&n=<? echo ($n + 5) ?>";
+			location.href = "upgrade.php?action=upgrade&n=<?php echo ($n + 5) ?>";
 		}
 		setTimeout( "nextpage()", 250 );
 		//-->
-		</script><?
+		</script><?php
 	break;
 	case 'show':
 	default:
 		if ( get_site_option( 'wpmu_upgrade_site' ) != $GLOBALS['wp_db_version'] ) :
 		?>
-		<h3><? _e( 'Database Upgrade Required' ); ?></h3>
-		<p><? _e( 'WordPress has been updated! Before we send you on your way, we need to individually upgrade the sites in your network.' ); ?></p>
-		<? endif; ?>
+		<h3><?php _e( 'Database Upgrade Required' ); ?></h3>
+		<p><?php _e( 'WordPress has been updated! Before we send you on your way, we need to individually upgrade the sites in your network.' ); ?></p>
+		<?php endif; ?>
 
-		<p><? _e( 'The database upgrade process may take a little while, so please be patient.' ); ?></p>
-		<p><a class="button" href="upgrade.php?action=upgrade"><? _e( 'Upgrade Network' ); ?></a></p>
-		<?
+		<p><?php _e( 'The database upgrade process may take a little while, so please be patient.' ); ?></p>
+		<p><a class="button" href="upgrade.php?action=upgrade"><?php _e( 'Upgrade Network' ); ?></a></p>
+		<?php
 		/**
 		 * Fires before the footer on the network upgrade screen.
 		 *
@@ -117,4 +117,4 @@ switch ( $action ) {
 ?>
 </div>
 
-<? include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

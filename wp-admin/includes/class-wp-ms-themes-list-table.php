@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * MS Themes List Table class.
  *

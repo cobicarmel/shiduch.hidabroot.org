@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Manages WordPress comments
  *

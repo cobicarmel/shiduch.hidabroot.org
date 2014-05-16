@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for working with MO files
  *

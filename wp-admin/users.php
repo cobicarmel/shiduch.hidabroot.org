@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Users administration panel.
  *
@@ -91,7 +91,7 @@ jQuery(document).ready( function($) {
 	});
 });
 </script>
-<?
+<?php
 }
 
 switch ( $wp_list_table->current_action() ) {
@@ -214,19 +214,19 @@ case 'delete':
 	include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <form action="" method="post" name="updateusers" id="updateusers">
-<? wp_nonce_field('delete-users') ?>
-<? echo $referer; ?>
+<?php wp_nonce_field('delete-users') ?>
+<?php echo $referer; ?>
 
 <div class="wrap">
-<h2><? _e('Delete Users'); ?></h2>
-<? if ( isset( $_REQUEST['error'] ) ) : ?>
+<h2><?php _e('Delete Users'); ?></h2>
+<?php if ( isset( $_REQUEST['error'] ) ) : ?>
 <div class="error">
-	<p><strong><? _e( 'ERROR:' ); ?></strong> <? _e( 'Please select an option.' ); ?></p>
+	<p><strong><?php _e( 'ERROR:' ); ?></strong> <?php _e( 'Please select an option.' ); ?></p>
 </div>
-<? endif; ?>
-<p><? echo _n( 'You have specified this user for deletion:', 'You have specified these users for deletion:', count( $userids ) ); ?></p>
+<?php endif; ?>
+<p><?php echo _n( 'You have specified this user for deletion:', 'You have specified these users for deletion:', count( $userids ) ); ?></p>
 <ul>
-<?
+<?php
 	$go_delete = 0;
 	foreach ( $userids as $id ) {
 		$user = get_userdata( $id );
@@ -239,23 +239,23 @@ case 'delete':
 	}
 	?>
 	</ul>
-<? if ( $go_delete ) : ?>
-	<fieldset><p><legend><? echo _n( 'What should be done with content owned by this user?', 'What should be done with content owned by these users?', $go_delete ); ?></legend></p>
+<?php if ( $go_delete ) : ?>
+	<fieldset><p><legend><?php echo _n( 'What should be done with content owned by this user?', 'What should be done with content owned by these users?', $go_delete ); ?></legend></p>
 	<ul style="list-style:none;">
 		<li><label><input type="radio" id="delete_option0" name="delete_option" value="delete" />
-		<? _e('Delete all content.'); ?></label></li>
+		<?php _e('Delete all content.'); ?></label></li>
 		<li><input type="radio" id="delete_option1" name="delete_option" value="reassign" />
-		<? echo '<label for="delete_option1">' . __( 'Attribute all content to:' ) . '</label> ';
+		<?php echo '<label for="delete_option1">' . __( 'Attribute all content to:' ) . '</label> ';
 		wp_dropdown_users( array( 'name' => 'reassign_user', 'exclude' => array_diff( $userids, array($current_user->ID) ) ) ); ?></li>
 	</ul></fieldset>
 	<input type="hidden" name="action" value="dodelete" />
-	<? submit_button( __('Confirm Deletion'), 'secondary' ); ?>
-<? else : ?>
-	<p><? _e('There are no valid users selected for deletion.'); ?></p>
-<? endif; ?>
+	<?php submit_button( __('Confirm Deletion'), 'secondary' ); ?>
+<?php else : ?>
+	<p><?php _e('There are no valid users selected for deletion.'); ?></p>
+<?php endif; ?>
 </div>
 </form>
-<?
+<?php
 
 break;
 
@@ -318,14 +318,14 @@ case 'remove':
 	include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <form action="" method="post" name="updateusers" id="updateusers">
-<? wp_nonce_field('remove-users') ?>
-<? echo $referer; ?>
+<?php wp_nonce_field('remove-users') ?>
+<?php echo $referer; ?>
 
 <div class="wrap">
-<h2><? _e('Remove Users from Site'); ?></h2>
-<p><? _e('You have specified these users for removal:'); ?></p>
+<h2><?php _e('Remove Users from Site'); ?></h2>
+<p><?php _e('You have specified these users for removal:'); ?></p>
 <ul>
-<?
+<?php
 	$go_remove = false;
  	foreach ( $userids as $id ) {
 		$id = (int) $id;
@@ -340,15 +340,15 @@ case 'remove':
 		}
  	}
  	?>
-<? if ( $go_remove ) : ?>
+<?php if ( $go_remove ) : ?>
 		<input type="hidden" name="action" value="doremove" />
-		<? submit_button( __('Confirm Removal'), 'secondary' ); ?>
-<? else : ?>
-	<p><? _e('There are no valid users selected for removal.'); ?></p>
-<? endif; ?>
+		<?php submit_button( __('Confirm Removal'), 'secondary' ); ?>
+<?php else : ?>
+	<p><?php _e('There are no valid users selected for removal.'); ?></p>
+<?php endif; ?>
 </div>
 </form>
-<?
+<?php
 
 break;
 
@@ -406,16 +406,16 @@ default:
 		}
 	endif; ?>
 
-<? if ( isset($errors) && is_wp_error( $errors ) ) : ?>
+<?php if ( isset($errors) && is_wp_error( $errors ) ) : ?>
 	<div class="error">
 		<ul>
-		<?
+		<?php
 			foreach ( $errors->get_error_messages() as $err )
 				echo "<li>$err</li>\n";
 		?>
 		</ul>
 	</div>
-<? endif;
+<?php endif;
 
 if ( ! empty($messages) ) {
 	foreach ( $messages as $msg )
@@ -424,30 +424,30 @@ if ( ! empty($messages) ) {
 
 <div class="wrap">
 <h2>
-<?
+<?php
 echo esc_html( $title );
 if ( current_user_can( 'create_users' ) ) { ?>
-	<a href="user-new.php" class="add-new-h2"><? echo esc_html_x( 'Add New', 'user' ); ?></a>
-<? } elseif ( is_multisite() && current_user_can( 'promote_users' ) ) { ?>
-	<a href="user-new.php" class="add-new-h2"><? echo esc_html_x( 'Add Existing', 'user' ); ?></a>
-<? }
+	<a href="user-new.php" class="add-new-h2"><?php echo esc_html_x( 'Add New', 'user' ); ?></a>
+<?php } elseif ( is_multisite() && current_user_can( 'promote_users' ) ) { ?>
+	<a href="user-new.php" class="add-new-h2"><?php echo esc_html_x( 'Add Existing', 'user' ); ?></a>
+<?php }
 
 if ( $usersearch )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $usersearch ) ); ?>
 </h2>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <form action="" method="get">
 
-<? $wp_list_table->search_box( __( 'Search Users' ), 'user' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Users' ), 'user' ); ?>
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 </form>
 
 <br class="clear" />
 </div>
-<?
+<?php
 break;
 
 } // end of the $doaction switch

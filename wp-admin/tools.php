@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Tools Administration Screen.
  *
@@ -33,22 +33,22 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 ?>
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
-<? if ( current_user_can('edit_posts') ) : ?>
+<?php if ( current_user_can('edit_posts') ) : ?>
 <div class="tool-box">
-	<h3 class="title"><? _e('Press This') ?></h3>
-	<p><? _e('Press This is a bookmarklet: a little app that runs in your browser and lets you grab bits of the web.');?></p>
+	<h3 class="title"><?php _e('Press This') ?></h3>
+	<p><?php _e('Press This is a bookmarklet: a little app that runs in your browser and lets you grab bits of the web.');?></p>
 
-	<p><? _e('Use Press This to clip text, images and videos from any web page. Then edit and add more straight from Press This before you save or publish it in a post on your site.'); ?></p>
-	<p class="description"><? _e('Drag-and-drop the following link to your bookmarks bar or right click it and add it to your favorites for a posting shortcut.') ?></p>
-	<p class="pressthis"><a onclick="return false;" oncontextmenu="if(window.navigator.userAgent.indexOf('WebKit')!=-1||window.navigator.userAgent.indexOf('MSIE')!=-1){jQuery('.pressthis-code').show().find('textarea').focus().select();return false;}" href="<? echo htmlspecialchars( get_shortcut_link() ); ?>"><span><? _e('Press This') ?></span></a></p>
+	<p><?php _e('Use Press This to clip text, images and videos from any web page. Then edit and add more straight from Press This before you save or publish it in a post on your site.'); ?></p>
+	<p class="description"><?php _e('Drag-and-drop the following link to your bookmarks bar or right click it and add it to your favorites for a posting shortcut.') ?></p>
+	<p class="pressthis"><a onclick="return false;" oncontextmenu="if(window.navigator.userAgent.indexOf('WebKit')!=-1||window.navigator.userAgent.indexOf('MSIE')!=-1){jQuery('.pressthis-code').show().find('textarea').focus().select();return false;}" href="<?php echo htmlspecialchars( get_shortcut_link() ); ?>"><span><?php _e('Press This') ?></span></a></p>
 	<div class="pressthis-code" style="display:none;">
-	<p class="description"><? _e('If your bookmarks toolbar is hidden: copy the code below, open your Bookmarks manager, create new bookmark, type Press This into the name field and paste the code into the URL field.') ?></p>
-	<p><textarea rows="5" cols="120" readonly="readonly"><? echo htmlspecialchars( get_shortcut_link() ); ?></textarea></p>
+	<p class="description"><?php _e('If your bookmarks toolbar is hidden: copy the code below, open your Bookmarks manager, create new bookmark, type Press This into the name field and paste the code into the URL field.') ?></p>
+	<p><textarea rows="5" cols="120" readonly="readonly"><?php echo htmlspecialchars( get_shortcut_link() ); ?></textarea></p>
 	</div>
 </div>
-<?
+<?php
 endif;
 
 if ( current_user_can( 'import' ) ) :
@@ -56,10 +56,10 @@ $cats = get_taxonomy('category');
 $tags = get_taxonomy('post_tag');
 if ( current_user_can($cats->cap->manage_terms) || current_user_can($tags->cap->manage_terms) ) : ?>
 <div class="tool-box">
-    <h3 class="title"><? _e( 'Categories and Tags Converter' ) ?></h3>
-    <p><? printf( __('If you want to convert your categories to tags (or vice versa), use the <a href="%s">Categories and Tags Converter</a> available from the Import screen.'), 'import.php' ); ?></p>
+    <h3 class="title"><?php _e( 'Categories and Tags Converter' ) ?></h3>
+    <p><?php printf( __('If you want to convert your categories to tags (or vice versa), use the <a href="%s">Categories and Tags Converter</a> available from the Import screen.'), 'import.php' ); ?></p>
 </div>
-<?
+<?php
 endif;
 endif;
 
@@ -71,5 +71,5 @@ endif;
 do_action( 'tool_box' );
 ?>
 </div>
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

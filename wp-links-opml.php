@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Outputs the OPML XML format for getting the links defined in the link
  * administration. This can be used to export links from one blog over to
@@ -26,9 +26,9 @@ echo '<?xml version="1.0"?'.">\n";
 ?>
 <opml version="1.0">
 	<head>
-		<title><? printf( __('Links for %s'), esc_attr(get_bloginfo('name', 'display')) ); ?></title>
-		<dateCreated><? echo gmdate("D, d M Y H:i:s"); ?> GMT</dateCreated>
-		<?
+		<title><?php printf( __('Links for %s'), esc_attr(get_bloginfo('name', 'display')) ); ?></title>
+		<dateCreated><?php echo gmdate("D, d M Y H:i:s"); ?> GMT</dateCreated>
+		<?php
 		/**
 		 * Fires in the OPML header.
 		 *
@@ -38,7 +38,7 @@ echo '<?xml version="1.0"?'.">\n";
 		?>
 	</head>
 	<body>
-<?
+<?php
 if ( empty($link_cat) )
 	$cats = get_categories(array('taxonomy' => 'link_category', 'hierarchical' => 0));
 else
@@ -55,8 +55,8 @@ foreach ( (array)$cats as $cat ) :
 	$catname = apply_filters( 'link_category', $cat->name );
 
 ?>
-<outline type="category" title="<? echo esc_attr($catname); ?>">
-<?
+<outline type="category" title="<?php echo esc_attr($catname); ?>">
+<?php
 	$bookmarks = get_bookmarks(array("category" => $cat->term_id));
 	foreach ( (array)$bookmarks as $bookmark ) :
 		/**
@@ -68,12 +68,12 @@ foreach ( (array)$cats as $cat ) :
 		 */
 		$title = apply_filters( 'link_title', $bookmark->link_name );
 ?>
-	<outline text="<? echo esc_attr($title); ?>" type="link" xmlUrl="<? echo esc_attr($bookmark->link_rss); ?>" htmlUrl="<? echo esc_attr($bookmark->link_url); ?>" updated="<? if ('0000-00-00 00:00:00' != $bookmark->link_updated) echo $bookmark->link_updated; ?>" />
-<?
+	<outline text="<?php echo esc_attr($title); ?>" type="link" xmlUrl="<?php echo esc_attr($bookmark->link_rss); ?>" htmlUrl="<?php echo esc_attr($bookmark->link_url); ?>" updated="<?php if ('0000-00-00 00:00:00' != $bookmark->link_updated) echo $bookmark->link_updated; ?>" />
+<?php
 	endforeach; // $bookmarks
 ?>
 </outline>
-<?
+<?php
 endforeach; // $cats
 ?>
 </body>

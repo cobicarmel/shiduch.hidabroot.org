@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Themes administration panel.
  *
@@ -116,24 +116,24 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-	<h2><? esc_html_e( 'Themes' ); ?>
-		<span class="theme-count"><? echo count( $themes ); ?></span>
-	<? if ( ! is_multisite() && current_user_can( 'install_themes' ) ) : ?>
-		<a href="<? echo admin_url( 'theme-install.php' ); ?>" class="hide-if-no-js add-new-h2"><? echo esc_html( _x( 'Add New', 'Add new theme' ) ); ?></a>
-	<? endif; ?>
+	<h2><?php esc_html_e( 'Themes' ); ?>
+		<span class="theme-count"><?php echo count( $themes ); ?></span>
+	<?php if ( ! is_multisite() && current_user_can( 'install_themes' ) ) : ?>
+		<a href="<?php echo admin_url( 'theme-install.php' ); ?>" class="hide-if-no-js add-new-h2"><?php echo esc_html( _x( 'Add New', 'Add new theme' ) ); ?></a>
+	<?php endif; ?>
 	</h2>
-<?
+<?php
 if ( ! validate_current_theme() || isset( $_GET['broken'] ) ) : ?>
-<div id="message1" class="updated"><p><? _e('The active theme is broken. Reverting to the default theme.'); ?></p></div>
-<? elseif ( isset($_GET['activated']) ) :
+<div id="message1" class="updated"><p><?php _e('The active theme is broken. Reverting to the default theme.'); ?></p></div>
+<?php elseif ( isset($_GET['activated']) ) :
 		if ( isset( $_GET['previewed'] ) ) { ?>
-		<div id="message2" class="updated"><p><? printf( __( 'Settings saved and theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div>
-		<? } else { ?>
-<div id="message2" class="updated"><p><? printf( __( 'New theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div><?
+		<div id="message2" class="updated"><p><?php printf( __( 'Settings saved and theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div>
+		<?php } else { ?>
+<div id="message2" class="updated"><p><?php printf( __( 'New theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div><?php
 		}
 	elseif ( isset($_GET['deleted']) ) : ?>
-<div id="message3" class="updated"><p><? _e('Theme deleted.') ?></p></div>
-<?
+<div id="message3" class="updated"><p><?php _e('Theme deleted.') ?></p></div>
+<?php
 endif;
 
 $ct = wp_get_theme();
@@ -183,7 +183,7 @@ if ( ! $ct->errors() || ( 1 == count( $ct->errors()->get_error_codes() )
 <div class="theme-browser">
 	<div class="themes">
 
-<?
+<?php
 /*
  * This PHP is synchronized with the tmpl-theme template below!
  */
@@ -192,62 +192,62 @@ foreach ( $themes as $theme ) :
 	$aria_action = esc_attr( $theme['id'] . '-action' );
 	$aria_name   = esc_attr( $theme['id'] . '-name' );
 	?>
-<div class="theme<? if ( $theme['active'] ) echo ' active'; ?>" tabindex="0" aria-describedby="<? echo $aria_action . ' ' . $aria_name; ?>">
-	<? if ( ! empty( $theme['screenshot'][0] ) ) { ?>
+<div class="theme<?php if ( $theme['active'] ) echo ' active'; ?>" tabindex="0" aria-describedby="<?php echo $aria_action . ' ' . $aria_name; ?>">
+	<?php if ( ! empty( $theme['screenshot'][0] ) ) { ?>
 		<div class="theme-screenshot">
-			<img src="<? echo $theme['screenshot'][0]; ?>" alt="" />
+			<img src="<?php echo $theme['screenshot'][0]; ?>" alt="" />
 		</div>
-	<? } else { ?>
+	<?php } else { ?>
 		<div class="theme-screenshot blank"></div>
-	<? } ?>
-	<span class="more-details" id="<? echo $aria_action; ?>"><? _e( 'Theme Details' ); ?></span>
-	<div class="theme-author"><? printf( __( 'By %s' ), $theme['author'] ); ?></div>
+	<?php } ?>
+	<span class="more-details" id="<?php echo $aria_action; ?>"><?php _e( 'Theme Details' ); ?></span>
+	<div class="theme-author"><?php printf( __( 'By %s' ), $theme['author'] ); ?></div>
 
-	<? if ( $theme['active'] ) { ?>
-		<h3 class="theme-name" id="<? echo $aria_name; ?>"><span><? _ex( 'Active:', 'theme' ); ?></span> <? echo $theme['name']; ?></h3>
-	<? } else { ?>
-		<h3 class="theme-name" id="<? echo $aria_name; ?>"><? echo $theme['name']; ?></h3>
-	<? } ?>
+	<?php if ( $theme['active'] ) { ?>
+		<h3 class="theme-name" id="<?php echo $aria_name; ?>"><span><?php _ex( 'Active:', 'theme' ); ?></span> <?php echo $theme['name']; ?></h3>
+	<?php } else { ?>
+		<h3 class="theme-name" id="<?php echo $aria_name; ?>"><?php echo $theme['name']; ?></h3>
+	<?php } ?>
 
 	<div class="theme-actions">
 
-	<? if ( $theme['active'] ) { ?>
-		<? if ( $theme['actions']['customize'] ) { ?>
-			<a class="button button-primary customize load-customize hide-if-no-customize" href="<? echo $theme['actions']['customize']; ?>"><? _e( 'Customize' ); ?></a>
-		<? } ?>
-	<? } else { ?>
-		<a class="button button-primary activate" href="<? echo $theme['actions']['activate']; ?>"><? _e( 'Activate' ); ?></a>
-		<a class="button button-secondary load-customize hide-if-no-customize" href="<? echo $theme['actions']['customize']; ?>"><? _e( 'Live Preview' ); ?></a>
-		<a class="button button-secondary hide-if-customize" href="<? echo $theme['actions']['preview']; ?>"><? _e( 'Preview' ); ?></a>
-	<? } ?>
+	<?php if ( $theme['active'] ) { ?>
+		<?php if ( $theme['actions']['customize'] ) { ?>
+			<a class="button button-primary customize load-customize hide-if-no-customize" href="<?php echo $theme['actions']['customize']; ?>"><?php _e( 'Customize' ); ?></a>
+		<?php } ?>
+	<?php } else { ?>
+		<a class="button button-primary activate" href="<?php echo $theme['actions']['activate']; ?>"><?php _e( 'Activate' ); ?></a>
+		<a class="button button-secondary load-customize hide-if-no-customize" href="<?php echo $theme['actions']['customize']; ?>"><?php _e( 'Live Preview' ); ?></a>
+		<a class="button button-secondary hide-if-customize" href="<?php echo $theme['actions']['preview']; ?>"><?php _e( 'Preview' ); ?></a>
+	<?php } ?>
 
 	</div>
 
-	<? if ( $theme['hasUpdate'] ) { ?>
-		<div class="theme-update"><? _e( 'Update Available' ); ?></div>
-	<? } ?>
+	<?php if ( $theme['hasUpdate'] ) { ?>
+		<div class="theme-update"><?php _e( 'Update Available' ); ?></div>
+	<?php } ?>
 </div>
-<? endforeach; ?>
+<?php endforeach; ?>
 	<br class="clear" />
 	</div>
 </div>
 <div class="theme-overlay"></div>
 
-<?
+<?php
 // List broken themes, if any.
 if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_get_themes( array( 'errors' => true ) ) ) {
 ?>
 
 <div class="broken-themes">
-<h3><? _e('Broken Themes'); ?></h3>
-<p><? _e('The following themes are installed but incomplete. Themes must have a stylesheet and a template.'); ?></p>
+<h3><?php _e('Broken Themes'); ?></h3>
+<p><?php _e('The following themes are installed but incomplete. Themes must have a stylesheet and a template.'); ?></p>
 
 <table>
 	<tr>
-		<th><? _ex('Name', 'theme name'); ?></th>
-		<th><? _e('Description'); ?></th>
+		<th><?php _ex('Name', 'theme name'); ?></th>
+		<th><?php _e('Description'); ?></th>
 	</tr>
-<?
+<?php
 	foreach ( $broken_themes as $broken_theme ) {
 		echo "
 		<tr>
@@ -259,12 +259,12 @@ if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_
 </table>
 </div>
 
-<?
+<?php
 }
 ?>
 </div><!-- .wrap -->
 
-<?
+<?php
 /*
  * The tmpl-theme template is synchronized with PHP above!
  */
@@ -277,11 +277,11 @@ if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_
 	<# } else { #>
 		<div class="theme-screenshot blank"></div>
 	<# } #>
-	<span class="more-details" id="{{ data.id }}-action"><? _e( 'Theme Details' ); ?></span>
-	<div class="theme-author"><? printf( __( 'By %s' ), '{{{ data.author }}}' ); ?></div>
+	<span class="more-details" id="{{ data.id }}-action"><?php _e( 'Theme Details' ); ?></span>
+	<div class="theme-author"><?php printf( __( 'By %s' ), '{{{ data.author }}}' ); ?></div>
 
 	<# if ( data.active ) { #>
-		<h3 class="theme-name" id="{{ data.id }}-name"><span><? _ex( 'Active:', 'theme' ); ?></span> {{{ data.name }}}</h3>
+		<h3 class="theme-name" id="{{ data.id }}-name"><span><?php _ex( 'Active:', 'theme' ); ?></span> {{{ data.name }}}</h3>
 	<# } else { #>
 		<h3 class="theme-name" id="{{ data.id }}-name">{{{ data.name }}}</h3>
 	<# } #>
@@ -290,18 +290,18 @@ if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_
 
 	<# if ( data.active ) { #>
 		<# if ( data.actions.customize ) { #>
-			<a class="button button-primary customize load-customize hide-if-no-customize" href="{{ data.actions.customize }}"><? _e( 'Customize' ); ?></a>
+			<a class="button button-primary customize load-customize hide-if-no-customize" href="{{ data.actions.customize }}"><?php _e( 'Customize' ); ?></a>
 		<# } #>
 	<# } else { #>
-		<a class="button button-primary activate" href="{{{ data.actions.activate }}}"><? _e( 'Activate' ); ?></a>
-		<a class="button button-secondary load-customize hide-if-no-customize" href="{{{ data.actions.customize }}}"><? _e( 'Live Preview' ); ?></a>
-		<a class="button button-secondary hide-if-customize" href="{{{ data.actions.preview }}}"><? _e( 'Preview' ); ?></a>
+		<a class="button button-primary activate" href="{{{ data.actions.activate }}}"><?php _e( 'Activate' ); ?></a>
+		<a class="button button-secondary load-customize hide-if-no-customize" href="{{{ data.actions.customize }}}"><?php _e( 'Live Preview' ); ?></a>
+		<a class="button button-secondary hide-if-customize" href="{{{ data.actions.preview }}}"><?php _e( 'Preview' ); ?></a>
 	<# } #>
 
 	</div>
 
 	<# if ( data.hasUpdate ) { #>
-		<div class="theme-update"><? _e( 'Update Available' ); ?></div>
+		<div class="theme-update"><?php _e( 'Update Available' ); ?></div>
 	<# } #>
 </script>
 
@@ -309,9 +309,9 @@ if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_
 	<div class="theme-backdrop"></div>
 	<div class="theme-wrap">
 		<div class="theme-header">
-			<button class="left dashicons dashicons-no"><span class="screen-reader-text"><? _e( 'Show previous theme' ); ?></span></button>
-			<button class="right dashicons dashicons-no"><span class="screen-reader-text"><? _e( 'Show next theme' ); ?></span></button>
-			<button class="close dashicons dashicons-no"><span class="screen-reader-text"><? _e( 'Close overlay' ); ?></span></button>
+			<button class="left dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Show previous theme' ); ?></span></button>
+			<button class="right dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Show next theme' ); ?></span></button>
+			<button class="close dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Close overlay' ); ?></span></button>
 		</div>
 		<div class="theme-about">
 			<div class="theme-screenshots">
@@ -324,47 +324,47 @@ if ( ! is_multisite() && current_user_can('edit_themes') && $broken_themes = wp_
 
 			<div class="theme-info">
 				<# if ( data.active ) { #>
-					<span class="current-label"><? _e( 'Current Theme' ); ?></span>
+					<span class="current-label"><?php _e( 'Current Theme' ); ?></span>
 				<# } #>
-				<h3 class="theme-name">{{{ data.name }}}<span class="theme-version"><? printf( __( 'Version: %s' ), '{{{ data.version }}}' ); ?></span></h3>
-				<h4 class="theme-author"><? printf( __( 'By %s' ), '{{{ data.authorAndUri }}}' ); ?></h4>
+				<h3 class="theme-name">{{{ data.name }}}<span class="theme-version"><?php printf( __( 'Version: %s' ), '{{{ data.version }}}' ); ?></span></h3>
+				<h4 class="theme-author"><?php printf( __( 'By %s' ), '{{{ data.authorAndUri }}}' ); ?></h4>
 
 				<# if ( data.hasUpdate ) { #>
 				<div class="theme-update-message">
-					<h4 class="theme-update"><? _e( 'Update Available' ); ?></h4>
+					<h4 class="theme-update"><?php _e( 'Update Available' ); ?></h4>
 					{{{ data.update }}}
 				</div>
 				<# } #>
 				<p class="theme-description">{{{ data.description }}}</p>
 
 				<# if ( data.parent ) { #>
-					<p class="parent-theme"><? printf( __( 'This is a child theme of %s.' ), '<strong>{{{ data.parent }}}</strong>' ); ?></p>
+					<p class="parent-theme"><?php printf( __( 'This is a child theme of %s.' ), '<strong>{{{ data.parent }}}</strong>' ); ?></p>
 				<# } #>
 
 				<# if ( data.tags ) { #>
-					<p class="theme-tags"><span><? _e( 'Tags:' ); ?></span> {{{ data.tags }}}</p>
+					<p class="theme-tags"><span><?php _e( 'Tags:' ); ?></span> {{{ data.tags }}}</p>
 				<# } #>
 			</div>
 		</div>
 
 		<div class="theme-actions">
 			<div class="active-theme">
-				<a href="{{{ data.actions.customize }}}" class="button button-primary customize load-customize hide-if-no-customize"><? _e( 'Customize' ); ?></a>
-				<? echo implode( ' ', $current_theme_actions ); ?>
+				<a href="{{{ data.actions.customize }}}" class="button button-primary customize load-customize hide-if-no-customize"><?php _e( 'Customize' ); ?></a>
+				<?php echo implode( ' ', $current_theme_actions ); ?>
 			</div>
 			<div class="inactive-theme">
 				<# if ( data.actions.activate ) { #>
-					<a href="{{{ data.actions.activate }}}" class="button button-primary activate"><? _e( 'Activate' ); ?></a>
+					<a href="{{{ data.actions.activate }}}" class="button button-primary activate"><?php _e( 'Activate' ); ?></a>
 				<# } #>
-				<a href="{{{ data.actions.customize }}}" class="button button-secondary load-customize hide-if-no-customize"><? _e( 'Live Preview' ); ?></a>
-				<a href="{{{ data.actions.preview }}}" class="button button-secondary hide-if-customize"><? _e( 'Preview' ); ?></a>
+				<a href="{{{ data.actions.customize }}}" class="button button-secondary load-customize hide-if-no-customize"><?php _e( 'Live Preview' ); ?></a>
+				<a href="{{{ data.actions.preview }}}" class="button button-secondary hide-if-customize"><?php _e( 'Preview' ); ?></a>
 			</div>
 
 			<# if ( ! data.active && data.actions['delete'] ) { #>
-				<a href="{{{ data.actions['delete'] }}}" class="button button-secondary delete-theme"><? _e( 'Delete' ); ?></a>
+				<a href="{{{ data.actions['delete'] }}}" class="button button-secondary delete-theme"><?php _e( 'Delete' ); ?></a>
 			<# } #>
 		</div>
 	</div>
 </script>
 
-<? require( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php require( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

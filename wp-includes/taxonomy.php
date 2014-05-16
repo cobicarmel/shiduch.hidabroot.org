@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Taxonomy API
  *
@@ -155,7 +155,7 @@ function get_taxonomies( $args = array(), $output = 'names', $operator = 'and' )
  * It appears that this function can be used to find all of the names inside of
  * $wp_taxonomies global variable.
  *
- * <code><? $taxonomies = get_object_taxonomies('post'); ?></code> Should
+ * <code><?php $taxonomies = get_object_taxonomies('post'); ?></code> Should
  * result in <code>Array('category', 'post_tag')</code>
  *
  * @since 2.3.0

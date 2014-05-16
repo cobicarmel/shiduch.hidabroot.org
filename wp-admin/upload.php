@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Media Library administration panel.
  *
@@ -176,16 +176,16 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 <div class="wrap">
 <h2>
-<?
+<?php
 echo esc_html( $title );
 if ( current_user_can( 'upload_files' ) ) { ?>
-	<a href="media-new.php" class="add-new-h2"><? echo esc_html_x('Add New', 'file'); ?></a><?
+	<a href="media-new.php" class="add-new-h2"><?php echo esc_html_x('Add New', 'file'); ?></a><?php
 }
 if ( ! empty( $_REQUEST['s'] ) )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() ); ?>
 </h2>
 
-<?
+<?php
 $message = '';
 if ( ! empty( $_GET['posted'] ) ) {
 	$message = __('Media attachment updated.');
@@ -225,21 +225,21 @@ if ( ! empty( $_GET['message'] ) && isset( $messages[ $_GET['message'] ] ) ) {
 }
 
 if ( !empty($message) ) { ?>
-<div id="message" class="updated"><p><? echo $message; ?></p></div>
-<? } ?>
+<div id="message" class="updated"><p><?php echo $message; ?></p></div>
+<?php } ?>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <form id="posts-filter" action="" method="get">
 
-<? $wp_list_table->search_box( __( 'Search Media' ), 'media' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Media' ), 'media' ); ?>
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 
 <div id="ajax-response"></div>
-<? find_posts_div(); ?>
+<?php find_posts_div(); ?> 
 </form>
 </div>
 
-<?
+<?php
 include( ABSPATH . 'wp-admin/admin-footer.php' );

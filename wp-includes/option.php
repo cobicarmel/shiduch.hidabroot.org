@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Option API
  *

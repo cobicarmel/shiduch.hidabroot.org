@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Plugin Installer List Table class.
  *
@@ -154,7 +154,7 @@ class WP_Plugin_Install_List_Table extends WP_List_Table {
 		if ( 'top' ==  $which ) { ?>
 			<div class="tablenav top">
 				<div class="alignleft actions">
-					<?
+					<?php
 					/**
 					 * Fires before the Plugin Install table header pagination is displayed.
 					 *
@@ -162,15 +162,15 @@ class WP_Plugin_Install_List_Table extends WP_List_Table {
 					 */
 					do_action( 'install_plugins_table_header' ); ?>
 				</div>
-				<? $this->pagination( $which ); ?>
+				<?php $this->pagination( $which ); ?>
 				<br class="clear" />
 			</div>
-		<? } else { ?>
+		<?php } else { ?>
 			<div class="tablenav bottom">
-				<? $this->pagination( $which ); ?>
+				<?php $this->pagination( $which ); ?>
 				<br class="clear" />
 			</div>
-		<?
+		<?php
 		}
 	}
 
@@ -265,16 +265,16 @@ class WP_Plugin_Install_List_Table extends WP_List_Table {
 			$action_links = apply_filters( 'plugin_install_action_links', $action_links, $plugin );
 		?>
 		<tr>
-			<td class="name column-name"<? echo $style['name']; ?>><strong><? echo $title; ?></strong>
-				<div class="action-links"><? if ( !empty( $action_links ) ) echo implode( ' | ', $action_links ); ?></div>
+			<td class="name column-name"<?php echo $style['name']; ?>><strong><?php echo $title; ?></strong>
+				<div class="action-links"><?php if ( !empty( $action_links ) ) echo implode( ' | ', $action_links ); ?></div>
 			</td>
-			<td class="vers column-version"<? echo $style['version']; ?>><? echo $version; ?></td>
-			<td class="vers column-rating"<? echo $style['rating']; ?>>
-				<? wp_star_rating( array( 'rating' => $plugin['rating'], 'type' => 'percent', 'number' => $plugin['num_ratings'] ) ); ?>
+			<td class="vers column-version"<?php echo $style['version']; ?>><?php echo $version; ?></td>
+			<td class="vers column-rating"<?php echo $style['rating']; ?>>
+				<?php wp_star_rating( array( 'rating' => $plugin['rating'], 'type' => 'percent', 'number' => $plugin['num_ratings'] ) ); ?>
 			</td>
-			<td class="desc column-description"<? echo $style['description']; ?>><? echo $description, $author; ?></td>
+			<td class="desc column-description"<?php echo $style['description']; ?>><?php echo $description, $author; ?></td>
 		</tr>
-		<?
+		<?php
 		}
 	}
 }

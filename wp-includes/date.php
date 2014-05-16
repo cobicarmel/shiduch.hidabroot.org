@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WP_Date_Query will generate a MySQL WHERE clause for the specified date-based parameters.
  *

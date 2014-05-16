@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Edit Tags Administration Screen.
  *
@@ -301,22 +301,22 @@ if ( isset( $_REQUEST['message'] ) && ( $msg = (int) $_REQUEST['message'] ) ) {
 ?>
 
 <div class="wrap nosubsub">
-<h2><? echo esc_html( $title );
+<h2><?php echo esc_html( $title );
 if ( !empty($_REQUEST['s']) )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( wp_unslash($_REQUEST['s']) ) ); ?>
 </h2>
 
-<? if ( $message ) : ?>
-<div id="message" class="updated"><p><? echo $message; ?></p></div>
-<? $_SERVER['REQUEST_URI'] = remove_query_arg(array('message'), $_SERVER['REQUEST_URI']);
+<?php if ( $message ) : ?>
+<div id="message" class="updated"><p><?php echo $message; ?></p></div>
+<?php $_SERVER['REQUEST_URI'] = remove_query_arg(array('message'), $_SERVER['REQUEST_URI']);
 endif; ?>
 <div id="ajax-response"></div>
 
 <form class="search-form" action="" method="get">
-<input type="hidden" name="taxonomy" value="<? echo esc_attr($taxonomy); ?>" />
-<input type="hidden" name="post_type" value="<? echo esc_attr($post_type); ?>" />
+<input type="hidden" name="taxonomy" value="<?php echo esc_attr($taxonomy); ?>" />
+<input type="hidden" name="post_type" value="<?php echo esc_attr($post_type); ?>" />
 
-<? $wp_list_table->search_box( $tax->labels->search_items, 'tag' ); ?>
+<?php $wp_list_table->search_box( $tax->labels->search_items, 'tag' ); ?>
 
 </form>
 <br class="clear" />
@@ -326,27 +326,27 @@ endif; ?>
 <div id="col-right">
 <div class="col-wrap">
 <form id="posts-filter" action="" method="post">
-<input type="hidden" name="taxonomy" value="<? echo esc_attr($taxonomy); ?>" />
-<input type="hidden" name="post_type" value="<? echo esc_attr($post_type); ?>" />
+<input type="hidden" name="taxonomy" value="<?php echo esc_attr($taxonomy); ?>" />
+<input type="hidden" name="post_type" value="<?php echo esc_attr($post_type); ?>" />
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 
 <br class="clear" />
 </form>
 
-<? if ( 'category' == $taxonomy ) : ?>
+<?php if ( 'category' == $taxonomy ) : ?>
 <div class="form-wrap">
-<? /** This filter is documented in wp-includes/category-template.php */ ?>
-<p><? printf(__('<strong>Note:</strong><br />Deleting a category does not delete the posts in that category. Instead, posts that were only assigned to the deleted category are set to the category <strong>%s</strong>.'), apply_filters('the_category', get_cat_name(get_option('default_category')))) ?></p>
-<? if ( current_user_can( 'import' ) ) : ?>
-<p><? printf(__('Categories can be selectively converted to tags using the <a href="%s">category to tag converter</a>.'), 'import.php') ?></p>
-<? endif; ?>
+<?php /** This filter is documented in wp-includes/category-template.php */ ?>
+<p><?php printf(__('<strong>Note:</strong><br />Deleting a category does not delete the posts in that category. Instead, posts that were only assigned to the deleted category are set to the category <strong>%s</strong>.'), apply_filters('the_category', get_cat_name(get_option('default_category')))) ?></p>
+<?php if ( current_user_can( 'import' ) ) : ?>
+<p><?php printf(__('Categories can be selectively converted to tags using the <a href="%s">category to tag converter</a>.'), 'import.php') ?></p>
+<?php endif; ?>
 </div>
-<? elseif ( 'post_tag' == $taxonomy && current_user_can( 'import' ) ) : ?>
+<?php elseif ( 'post_tag' == $taxonomy && current_user_can( 'import' ) ) : ?>
 <div class="form-wrap">
-<p><? printf(__('Tags can be selectively converted to categories using the <a href="%s">tag to category converter</a>.'), 'import.php') ;?></p>
+<p><?php printf(__('Tags can be selectively converted to categories using the <a href="%s">tag to category converter</a>.'), 'import.php') ;?></p>
 </div>
-<? endif;
+<?php endif;
 
 /**
  * Fires after the taxonomy list table.
@@ -366,7 +366,7 @@ do_action( "after-{$taxonomy}-table", $taxonomy );
 <div id="col-left">
 <div class="col-wrap">
 
-<?
+<?php
 
 if ( !is_null( $tax->labels->popular_items ) ) {
 	if ( current_user_can( $tax->cap->edit_terms ) )
@@ -377,10 +377,10 @@ if ( !is_null( $tax->labels->popular_items ) ) {
 	if ( $tag_cloud ) :
 	?>
 <div class="tagcloud">
-<h3><? echo $tax->labels->popular_items; ?></h3>
-<? echo $tag_cloud; unset( $tag_cloud ); ?>
+<h3><?php echo $tax->labels->popular_items; ?></h3>
+<?php echo $tag_cloud; unset( $tag_cloud ); ?>
 </div>
-<?
+<?php
 endif;
 }
 
@@ -430,8 +430,8 @@ if ( current_user_can($tax->cap->edit_terms) ) {
 ?>
 
 <div class="form-wrap">
-<h3><? echo $tax->labels->add_new_item; ?></h3>
-<?
+<h3><?php echo $tax->labels->add_new_item; ?></h3>
+<?php
 /**
  * Fires at the beginning of the Add Tag form.
  *
@@ -440,29 +440,29 @@ if ( current_user_can($tax->cap->edit_terms) ) {
  * @since 3.7.0
  */
 ?>
-<form id="addtag" method="post" action="edit-tags.php" class="validate"<? do_action( "{$taxonomy}_term_new_form_tag" ); ?>>
+<form id="addtag" method="post" action="edit-tags.php" class="validate"<?php do_action( "{$taxonomy}_term_new_form_tag" ); ?>>
 <input type="hidden" name="action" value="add-tag" />
-<input type="hidden" name="screen" value="<? echo esc_attr($current_screen->id); ?>" />
-<input type="hidden" name="taxonomy" value="<? echo esc_attr($taxonomy); ?>" />
-<input type="hidden" name="post_type" value="<? echo esc_attr($post_type); ?>" />
-<? wp_nonce_field('add-tag', '_wpnonce_add-tag'); ?>
+<input type="hidden" name="screen" value="<?php echo esc_attr($current_screen->id); ?>" />
+<input type="hidden" name="taxonomy" value="<?php echo esc_attr($taxonomy); ?>" />
+<input type="hidden" name="post_type" value="<?php echo esc_attr($post_type); ?>" />
+<?php wp_nonce_field('add-tag', '_wpnonce_add-tag'); ?>
 
 <div class="form-field form-required">
-	<label for="tag-name"><? _ex('Name', 'Taxonomy Name'); ?></label>
+	<label for="tag-name"><?php _ex('Name', 'Taxonomy Name'); ?></label>
 	<input name="tag-name" id="tag-name" type="text" value="" size="40" aria-required="true" />
-	<p><? _e('The name is how it appears on your site.'); ?></p>
+	<p><?php _e('The name is how it appears on your site.'); ?></p>
 </div>
-<? if ( ! global_terms_enabled() ) : ?>
+<?php if ( ! global_terms_enabled() ) : ?>
 <div class="form-field">
-	<label for="tag-slug"><? _ex('Slug', 'Taxonomy Slug'); ?></label>
+	<label for="tag-slug"><?php _ex('Slug', 'Taxonomy Slug'); ?></label>
 	<input name="slug" id="tag-slug" type="text" value="" size="40" />
-	<p><? _e('The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.'); ?></p>
+	<p><?php _e('The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.'); ?></p>
 </div>
-<? endif; // global_terms_enabled() ?>
-<? if ( is_taxonomy_hierarchical($taxonomy) ) : ?>
+<?php endif; // global_terms_enabled() ?>
+<?php if ( is_taxonomy_hierarchical($taxonomy) ) : ?>
 <div class="form-field">
-	<label for="parent"><? _ex('Parent', 'Taxonomy Parent'); ?></label>
-	<?
+	<label for="parent"><?php _ex('Parent', 'Taxonomy Parent'); ?></label>
+	<?php
 	$dropdown_args = array(
 		'hide_empty'       => 0,
 		'hide_if_empty'    => false,
@@ -495,18 +495,18 @@ if ( current_user_can($tax->cap->edit_terms) ) {
 	$dropdown_args = apply_filters( 'taxonomy_parent_dropdown_args', $dropdown_args, $taxonomy );
 	wp_dropdown_categories( $dropdown_args );
 	?>
-	<? if ( 'category' == $taxonomy ) : // @todo: Generic text for hierarchical taxonomies ?>
-		<p><? _e('Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.'); ?></p>
-	<? endif; ?>
+	<?php if ( 'category' == $taxonomy ) : // @todo: Generic text for hierarchical taxonomies ?>
+		<p><?php _e('Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.'); ?></p>
+	<?php endif; ?>
 </div>
-<? endif; // is_taxonomy_hierarchical() ?>
+<?php endif; // is_taxonomy_hierarchical() ?>
 <div class="form-field">
-	<label for="tag-description"><? _ex('Description', 'Taxonomy Description'); ?></label>
+	<label for="tag-description"><?php _ex('Description', 'Taxonomy Description'); ?></label>
 	<textarea name="description" id="tag-description" rows="5" cols="40"></textarea>
-	<p><? _e('The description is not prominent by default; however, some themes may show it.'); ?></p>
+	<p><?php _e('The description is not prominent by default; however, some themes may show it.'); ?></p>
 </div>
 
-<?
+<?php
 if ( ! is_taxonomy_hierarchical( $taxonomy ) ) {
 	/**
 	 * Fires after the Add Tag form fields for non-hierarchical taxonomies.
@@ -575,7 +575,7 @@ if ( 'category' == $taxonomy ) {
 do_action( "{$taxonomy}_add_form", $taxonomy );
 ?>
 </form></div>
-<? } ?>
+<?php } ?>
 
 </div>
 </div><!-- /col-left -->
@@ -585,9 +585,9 @@ do_action( "{$taxonomy}_add_form", $taxonomy );
 <script type="text/javascript">
 try{document.forms.addtag['tag-name'].focus();}catch(e){}
 </script>
-<? $wp_list_table->inline_edit(); ?>
+<?php $wp_list_table->inline_edit(); ?>
 
-<?
+<?php
 break;
 }
 

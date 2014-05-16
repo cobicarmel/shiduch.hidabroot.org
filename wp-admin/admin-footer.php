@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Administration Template Footer
  *
@@ -16,7 +16,7 @@ if ( !defined('ABSPATH') )
 <div class="clear"></div></div><!-- wpcontent -->
 
 <div id="wpfooter">
-	<?
+	<?php
 	/**
 	 * Fires after the opening tag for the admin footer.
 	 *
@@ -25,7 +25,7 @@ if ( !defined('ABSPATH') )
 	do_action( 'in_admin_footer' );
 	?>
 	<p id="footer-left" class="alignleft">
-		<?
+		<?php
 		$text = sprintf( __( 'Thank you for creating with <a href="%s">WordPress</a>.' ), __( 'https://wordpress.org/' ) );
 		/**
 		 * Filter the "Thank you" text displayed in the admin footer.
@@ -38,7 +38,7 @@ if ( !defined('ABSPATH') )
 		?>
 	</p>
 	<p id="footer-upgrade" class="alignright">
-		<?
+		<?php
 		/**
 		 * Filter the version/update text displayed in the admin footer.
 		 *
@@ -56,7 +56,7 @@ if ( !defined('ABSPATH') )
 	</p>
 	<div class="clear"></div>
 </div>
-<?
+<?php
 /**
  * Print scripts or data before the default footer scripts.
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * RSS2 Feed Template for displaying RSS2 Posts feed.
  *
@@ -17,7 +17,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
-	<?
+	<?php
 	/**
 	 * Fires at the end of the RSS root to add namespaces.
 	 *
@@ -28,13 +28,13 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 >
 
 <channel>
-	<title><? bloginfo_rss('name'); wp_title_rss(); ?></title>
-	<atom:link href="<? self_link(); ?>" rel="self" type="application/rss+xml" />
-	<link><? bloginfo_rss('url') ?></link>
-	<description><? bloginfo_rss("description") ?></description>
-	<lastBuildDate><? echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
-	<language><? bloginfo_rss( 'language' ); ?></language>
-	<?
+	<title><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
+	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
+	<link><?php bloginfo_rss('url') ?></link>
+	<description><?php bloginfo_rss("description") ?></description>
+	<lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
+	<language><?php bloginfo_rss( 'language' ); ?></language>
+	<?php
 	$duration = 'hourly';
 	/**
 	 * Filter how often to update the RSS feed.
@@ -45,8 +45,8 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	 *                         Default 'hourly'. Accepts 'hourly', 'daily', 'weekly', 'monthly', 'yearly'.
 	 */
 	?>
-	<sy:updatePeriod><? echo apply_filters( 'rss_update_period', $duration ); ?></sy:updatePeriod>
-	<?
+	<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', $duration ); ?></sy:updatePeriod>
+	<?php
 	$frequency = '1';
 	/**
 	 * Filter the RSS update frequency.
@@ -57,8 +57,8 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	 *                          of RSS updates within the update period. Default '1'.
 	 */
 	?>
-	<sy:updateFrequency><? echo apply_filters( 'rss_update_frequency', $frequency ); ?></sy:updateFrequency>
-	<?
+	<sy:updateFrequency><?php echo apply_filters( 'rss_update_frequency', $frequency ); ?></sy:updateFrequency>
+	<?php
 	/**
 	 * Fires at the end of the RSS2 Feed Header.
 	 *
@@ -69,29 +69,29 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	while( have_posts()) : the_post();
 	?>
 	<item>
-		<title><? the_title_rss() ?></title>
-		<link><? the_permalink_rss() ?></link>
-		<comments><? comments_link_feed(); ?></comments>
-		<pubDate><? echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
-		<dc:creator><![CDATA[<? the_author() ?>]]></dc:creator>
-		<? the_category_rss('rss2') ?>
+		<title><?php the_title_rss() ?></title>
+		<link><?php the_permalink_rss() ?></link>
+		<comments><?php comments_link_feed(); ?></comments>
+		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
+		<dc:creator><![CDATA[<?php the_author() ?>]]></dc:creator>
+		<?php the_category_rss('rss2') ?>
 
-		<guid isPermaLink="false"><? the_guid(); ?></guid>
-<? if (get_option('rss_use_excerpt')) : ?>
-		<description><![CDATA[<? the_excerpt_rss(); ?>]]></description>
-<? else : ?>
-		<description><![CDATA[<? the_excerpt_rss(); ?>]]></description>
-	<? $content = get_the_content_feed('rss2'); ?>
-	<? if ( strlen( $content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<? echo $content; ?>]]></content:encoded>
-	<? else : ?>
-		<content:encoded><![CDATA[<? the_excerpt_rss(); ?>]]></content:encoded>
-	<? endif; ?>
-<? endif; ?>
-		<wfw:commentRss><? echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
-		<slash:comments><? echo get_comments_number(); ?></slash:comments>
-<? rss_enclosure(); ?>
-	<?
+		<guid isPermaLink="false"><?php the_guid(); ?></guid>
+<?php if (get_option('rss_use_excerpt')) : ?>
+		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
+<?php else : ?>
+		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
+	<?php $content = get_the_content_feed('rss2'); ?>
+	<?php if ( strlen( $content ) > 0 ) : ?>
+		<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
+	<?php else : ?>
+		<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
+	<?php endif; ?>
+<?php endif; ?>
+		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
+		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
+<?php rss_enclosure(); ?>
+	<?php
 	/**
 	 * Fires at the end of each RSS2 feed item.
 	 *
@@ -100,6 +100,6 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	do_action( 'rss2_item' );
 	?>
 	</item>
-	<? endwhile; ?>
+	<?php endwhile; ?>
 </channel>
 </rss>

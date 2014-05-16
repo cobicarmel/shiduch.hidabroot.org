@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WP_Theme Class
  *

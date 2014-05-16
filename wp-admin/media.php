@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Media management action handler.
  *
@@ -104,36 +104,36 @@ case 'edit' :
 
 <div class="wrap">
 <h2>
-<?
+<?php
 echo esc_html( $title );
 if ( current_user_can( 'upload_files' ) ) { ?>
-	<a href="media-new.php" class="add-new-h2"><? echo esc_html_x('Add New', 'file'); ?></a>
-<? } ?>
+	<a href="media-new.php" class="add-new-h2"><?php echo esc_html_x('Add New', 'file'); ?></a>
+<?php } ?>
 </h2>
 
 <form method="post" action="" class="media-upload-form" id="media-single-form">
 <p class="submit" style="padding-bottom: 0;">
-<? submit_button( __( 'Update Media' ), 'primary', 'save', false ); ?>
+<?php submit_button( __( 'Update Media' ), 'primary', 'save', false ); ?>
 </p>
 
 <div class="media-single">
-<div id='media-item-<? echo $att_id; ?>' class='media-item'>
-<? echo get_media_item( $att_id, array( 'toggle' => false, 'send' => false, 'delete' => false, 'show_title' => false, 'errors' => !empty($errors[$att_id]) ? $errors[$att_id] : null ) ); ?>
+<div id='media-item-<?php echo $att_id; ?>' class='media-item'>
+<?php echo get_media_item( $att_id, array( 'toggle' => false, 'send' => false, 'delete' => false, 'show_title' => false, 'errors' => !empty($errors[$att_id]) ? $errors[$att_id] : null ) ); ?>
 </div>
 </div>
 
-<? submit_button( __( 'Update Media' ), 'primary', 'save' ); ?>
-<input type="hidden" name="post_id" id="post_id" value="<? echo isset($post_id) ? esc_attr($post_id) : ''; ?>" />
-<input type="hidden" name="attachment_id" id="attachment_id" value="<? echo esc_attr($att_id); ?>" />
+<?php submit_button( __( 'Update Media' ), 'primary', 'save' ); ?>
+<input type="hidden" name="post_id" id="post_id" value="<?php echo isset($post_id) ? esc_attr($post_id) : ''; ?>" />
+<input type="hidden" name="attachment_id" id="attachment_id" value="<?php echo esc_attr($att_id); ?>" />
 <input type="hidden" name="action" value="editattachment" />
-<? wp_original_referer_field(true, 'previous'); ?>
-<? wp_nonce_field('media-form'); ?>
+<?php wp_original_referer_field(true, 'previous'); ?>
+<?php wp_nonce_field('media-form'); ?>
 
 </form>
 
 </div>
 
-<?
+<?php
 
 	require( ABSPATH . 'wp-admin/admin-footer.php' );
 

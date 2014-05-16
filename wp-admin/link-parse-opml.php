@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Parse OPML XML files and store in globals.
  *

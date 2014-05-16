@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Post Thumbnail Template Functions.
  *

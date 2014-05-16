@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite users administration panel.
  *
@@ -21,11 +21,11 @@ function confirm_delete_users( $users ) {
 	if ( !is_array( $users ) )
 		return false;
 	?>
-	<h2><? esc_html_e( 'Users' ); ?></h2>
-	<p><? _e( 'Transfer or delete content before deleting users.' ); ?></p>
+	<h2><?php esc_html_e( 'Users' ); ?></h2>
+	<p><?php _e( 'Transfer or delete content before deleting users.' ); ?></p>
 	<form action="users.php?action=dodelete" method="post">
 	<input type="hidden" name="dodelete" />
-	<?
+	<?php
 	wp_nonce_field( 'ms-users-delete' );
 	$site_admins = get_super_admins();
 	$admin_out = "<option value='$current_user->ID'>$current_user->user_login</option>";
@@ -45,8 +45,8 @@ function confirm_delete_users( $users ) {
 
 			if ( !empty( $blogs ) ) {
 				?>
-				<br /><fieldset><p><legend><? printf( __( "What should be done with content owned by %s?" ), '<em>' . $delete_user->user_login . '</em>' ); ?></legend></p>
-				<?
+				<br /><fieldset><p><legend><?php printf( __( "What should be done with content owned by %s?" ), '<em>' . $delete_user->user_login . '</em>' ); ?></legend></p>
+				<?php
 				foreach ( (array) $blogs as $key => $details ) {
 					$blog_users = get_users( array( 'blog_id' => $details->userblog_id, 'fields' => array( 'ID', 'user_login' ) ) );
 					if ( is_array( $blog_users ) && !empty( $blog_users ) ) {
@@ -63,13 +63,13 @@ function confirm_delete_users( $users ) {
 						$user_dropdown .= "</select>\n";
 						?>
 						<ul style="list-style:none;">
-							<li><? printf( __( 'Site: %s' ), $user_site ); ?></li>
-							<li><label><input type="radio" id="delete_option0" name="delete[<? echo $details->userblog_id . '][' . $delete_user->ID ?>]" value="delete" checked="checked" />
-							<? _e( 'Delete all content.' ); ?></label></li>
-							<li><label><input type="radio" id="delete_option1" name="delete[<? echo $details->userblog_id . '][' . $delete_user->ID ?>]" value="reassign" />
-							<? echo __( 'Attribute all content to:' ) . '</label>' . $user_dropdown; ?></li>
+							<li><?php printf( __( 'Site: %s' ), $user_site ); ?></li>
+							<li><label><input type="radio" id="delete_option0" name="delete[<?php echo $details->userblog_id . '][' . $delete_user->ID ?>]" value="delete" checked="checked" />
+							<?php _e( 'Delete all content.' ); ?></label></li>
+							<li><label><input type="radio" id="delete_option1" name="delete[<?php echo $details->userblog_id . '][' . $delete_user->ID ?>]" value="reassign" />
+							<?php echo __( 'Attribute all content to:' ) . '</label>' . $user_dropdown; ?></li>
 						</ul>
-						<?
+						<?php
 					}
 				}
 				echo "</fieldset>";
@@ -80,7 +80,7 @@ function confirm_delete_users( $users ) {
 	submit_button( __('Confirm Deletion'), 'delete' );
 	?>
 	</form>
-    <?
+    <?php
 	return true;
 }
 
@@ -249,7 +249,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 if ( isset( $_REQUEST['updated'] ) && $_REQUEST['updated'] == 'true' && ! empty( $_REQUEST['action'] ) ) {
 	?>
 	<div id="message" class="updated"><p>
-		<?
+		<?php
 		switch ( $_REQUEST['action'] ) {
 			case 'delete':
 				_e( 'User deleted.' );
@@ -269,13 +269,13 @@ if ( isset( $_REQUEST['updated'] ) && $_REQUEST['updated'] == 'true' && ! empty(
 		}
 		?>
 	</p></div>
-	<?
+	<?php
 }
 	?>
 <div class="wrap">
-	<h2><? esc_html_e( 'Users' );
+	<h2><?php esc_html_e( 'Users' );
 	if ( current_user_can( 'create_users') ) : ?>
-		<a href="<? echo network_admin_url('user-new.php'); ?>" class="add-new-h2"><? echo esc_html_x( 'Add New', 'user' ); ?></a><?
+		<a href="<?php echo network_admin_url('user-new.php'); ?>" class="add-new-h2"><?php echo esc_html_x( 'Add New', 'user' ); ?></a><?php
 	endif;
 
 	if ( !empty( $usersearch ) )
@@ -283,15 +283,15 @@ if ( isset( $_REQUEST['updated'] ) && $_REQUEST['updated'] == 'true' && ! empty(
 	?>
 	</h2>
 
-	<? $wp_list_table->views(); ?>
+	<?php $wp_list_table->views(); ?>
 
 	<form action="" method="get" class="search-form">
-		<? $wp_list_table->search_box( __( 'Search Users' ), 'all-user' ); ?>
+		<?php $wp_list_table->search_box( __( 'Search Users' ), 'all-user' ); ?>
 	</form>
 
 	<form id="form-user-list" action='users.php?action=allusers' method='post'>
-		<? $wp_list_table->display(); ?>
+		<?php $wp_list_table->display(); ?>
 	</form>
 </div>
 
-<? require_once( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php require_once( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

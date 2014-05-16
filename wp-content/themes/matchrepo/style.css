@@ -1,54 +1,41 @@
 /*
-Theme Name: matchrepo
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
-Description: Description
+Theme Name: Matchrepo
+Theme URI:
+Author: Cobi Carmel
+Author URI:
+Description: Custom theme for Matchrepo site
 Version: 1.0-wpcom
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: matchrepo
+Text Domain: Matchrepo
 Domain Path: /languages/
 Tags:
 
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
+ */
 
- matchrepo is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+@font-face {
+	font-family: 'fbspoiler';
+	src: url('fonts/fbspoiler-bold.eot');
+	src: url('fonts/fbspoiler-bold.eot?#iefix') format('embedded-opentype'),
+	url('fonts/fbspoiler-bold.woff') format('woff'),
+	url('fonts/fbspoiler-bold.ttf') format('truetype'),
+	url('fonts/fbspoiler-bold.svg#fbspoiler_boldbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
 
-Resetting and rebuilding styles have been helped along thanks to the fine work of
-Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
-along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
-and Blueprint http://www.blueprintcss.org/
-*/
+}
 
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-1.0 - Reset
-2.0 - Typography
-3.0 - Elements
-4.0 - Forms
-5.0 - Navigation
-	5.1 - Links
-	5.2 - Menus
-6.0 - Accessibility
-7.0 - Alignments
-8.0 - Clearings
-9.0 - Widgets
-10.0 - Content
-	10.1 - Posts and pages
-	10.2 - Asides
-	10.3 - Comments
-11.0 - Infinite scroll
-12.0 - Media
-	12.1 - Captions
-	12.2 - Galleries
---------------------------------------------------------------*/
+@font-face {
+	font-family: 'fbspoiler-black';
+	src: url('fonts/FbSpoiler-Black.eot');
+	src: url('fonts/FbSpoiler-Black.eot?#iefix') format('embedded-opentype'),
+	url('fonts/FbSpoiler-Black.woff') format('woff'),
+	url('fonts/FbSpoiler-Black.ttf') format('truetype'),
+	url('fonts/FbSpoiler-Black.svg#fbspoilerblack') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
-/*--------------------------------------------------------------
-1.0 - Reset
---------------------------------------------------------------*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -71,21 +58,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 html {
 	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
 	overflow-y: scroll; /* Keeps page centered in all browsers regardless of content height */
-	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
-	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
 
 *,
 *:before,
 *:after {
-	/* apply a natural box layout model to all elements; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-	-webkit-box-sizing: border-box; /* Not needed for modern webkit but still used by Blackberry Browser 7.0; see http://caniuse.com/#search=box-sizing */
-	-moz-box-sizing: border-box; /* Still needed for Firefox 28; see http://caniuse.com/#search=box-sizing */
 	box-sizing: border-box;
 }
 
 body {
 	background: #FFF;
+	font-family: fbspoiler-bold;
+	direction: rtl;
 }
 
 article,
@@ -106,14 +90,8 @@ ol, ul {
 }
 
 table {
-	/* tables still need 'cellspacing="0"' in the markup */
 	border-collapse: separate;
 	border-spacing: 0;
-}
-
-caption, th, td {
-	font-weight: normal;
-	text-align: left;
 }
 
 blockquote:before, blockquote:after,
@@ -138,16 +116,12 @@ a img {
 	border: 0;
 }
 
-/*--------------------------------------------------------------
-2.0 Typography
---------------------------------------------------------------*/
 body,
 button,
 input,
 select,
 textarea {
 	color: #404040;
-	font-family: sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
 }
@@ -158,10 +132,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
 	margin-bottom: 1.5em;
-}
-
-b, strong {
-	font-weight: bold;
 }
 
 dfn, cite, em, i {
@@ -180,26 +150,11 @@ pre {
 	background: #EEE;
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	font-size: 15px;
-	font-size: 1.5rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	max-width: 100%;
 	overflow: auto;
 	padding: 1.6em;
-}
-
-code, kbd, tt, var {
-	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-}
-
-abbr, acronym {
-	border-bottom: 1px dotted #666;
-	cursor: help;
-}
-
-mark, ins {
-	background: #FFF9C0;
-	text-decoration: none;
 }
 
 sup,
@@ -219,30 +174,11 @@ sub {
 	top: .5ex;
 }
 
-small {
-	font-size: 75%;
-}
-
-big {
-	font-size: 125%;
-}
-
-/*--------------------------------------------------------------
-3.0 Elements
---------------------------------------------------------------*/
 hr {
 	background-color: #CCC;
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
-}
-
-ul {
-	list-style: disc;
-}
-
-ol {
-	list-style: decimal;
 }
 
 li > ul,
@@ -260,12 +196,8 @@ dd {
 }
 
 img {
-	height: auto; /* Make sure images are scaled correctly. */
-	max-width: 100%; /* Adhere to container width. */
-}
-
-figure {
-	margin: 0;
+	height: auto;
+	max-width: 100%;
 }
 
 table {
@@ -277,33 +209,28 @@ th {
 	font-weight: bold;
 }
 
-/*--------------------------------------------------------------
-4.0 Forms
---------------------------------------------------------------*/
 button,
 input,
 select,
 textarea {
-	font-size: 100%; /* Corrects font size not being inherited in all browsers */
-	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
-	vertical-align: baseline; /* Improves appearance and consistency in all browsers */
-	*vertical-align: middle; /* Improves appearance and consistency in IE6/IE7 */
+	font-size: 100%;
+	margin: 0;
+	vertical-align: baseline;
 }
 
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"] {
-	border: 1px solid #CCC;
+input[type="submit"],
+#cards-count {
+	border: 1px solid;
 	border-color: #CCC #CCC #BBB #CCC;
 	border-radius: 3px;
 	background: #E6E6E6;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
 	color: rgba(0, 0, 0, .8);
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
-	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
 	font-size: 12px;
-	font-size: 1.2rem;
 	line-height: 1;
 	padding: .6em 1em .4em;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -335,14 +262,10 @@ input[type="radio"] {
 }
 
 input[type="search"] {
-	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-	-webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
 
 input[type="search"]::-webkit-search-decoration {
-	/* Corrects inner padding displayed oddly in S5, Chrome on OSX */
 	-webkit-appearance: none;
 }
 
@@ -388,18 +311,8 @@ textarea {
 	width: 98%;
 }
 
-/*--------------------------------------------------------------
-5.0 Navigation
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-5.1 Links
---------------------------------------------------------------*/
 a {
 	color: royalblue;
-}
-
-a:visited {
-	color: purple;
 }
 
 a:hover,
@@ -408,16 +321,13 @@ a:active {
 	color: midnightblue;
 }
 
-/*--------------------------------------------------------------
-5.2 Menus
---------------------------------------------------------------*/
 .main-navigation {
 	clear: both;
 	display: block;
 	width: 100%;
 	position: absolute;
-	top: 200px;
-	height: 50px;
+	top: 160px;
+	height: 45px;
 	background-color: #161C1A;
 	z-index: 1;
 }
@@ -426,28 +336,48 @@ a:active {
 	content: ' ';
 	position: absolute;
 	width: 100%;
-	height: 8px;
+	height: 6px;
 	bottom: 0;
-	background-image: linear-gradient(to left, #400000, #831C1A, #400000);
+	background-color: #831C1A;
 }
 
 #menu-main {
 	list-style: none;
-	height: 40px;
-	width: 1035px;
+	height: 42px;
+	width: 1080px;
+}
+
+#menu-main:before,
+#menu-main:after {
+	width: 101px;
+	content: ' ';
+	position: absolute;
+	top: 7px;
+	height: 100%;
+	background-repeat: no-repeat;
+}
+
+#menu-main:before {
+	right: -100px;
+	background-image: url(media/nav_right_dcoration.png);
+}
+
+#menu-main:after {
+	left: -100px;
+	background-image: url(media/nav_left_dcoration.png);
 }
 
 .main-navigation li {
 	float: right;
 	position: relative;
-	padding: 5px 10px;
+	padding: 0 32px;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
 	color: #FFF;
-	font-size: 20px;
+	font-size: 27px;
 }
 
 .main-navigation ul ul {
@@ -803,18 +733,32 @@ Custom
 	bottom: 0;
 }
 
-#page {
-	width: 1035px;
+#side-sticky-icons {
+	position: fixed;
+	top: 50%;
+	width: 80px;
+	left: 0;
+	z-index: 2;
+}
+
+#page > div > * {
+	width: 1080px;
+	position: relative;
+	margin: 0 auto;
 }
 
 header {
-	height: 150px;
+	height: 142px;
+}
+
+header img {
+	width: 100%;
 }
 
 #content {
 	padding-top: 75px;
 	background-color: #FFF;
-	box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+	box-shadow: -11px 0 10px -6px rgba(0, 0, 0, 0.2), 11px 0px 10px -6px rgba(0, 0, 0, 0.2);
 }
 
 #content > div {
@@ -823,13 +767,35 @@ header {
 }
 
 #primary {
-	width: 70%;
-}
-
-#secondary {
-	width: 30%;
+	width: 66.7%;
 }
 
 main {
-	padding: 5px;
+	padding: 0 20px;
+}
+
+#main-image {
+	height: 400px;
+	overflow: hidden;
+}
+
+#content-wrapper {
+	background-image: url('media/background.png');
+}
+
+#footer-wrapper {
+	background-image: linear-gradient(to bottom, #B9AAA9, #DDDAD1 40%);
+}
+
+#footer-top-line {
+	height: 6px;
+}
+
+.ftl-part {
+	height: 100%;
+	float: right;
+}
+
+footer {
+	height: 260px;
 }

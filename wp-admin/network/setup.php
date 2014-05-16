@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Network Setup administration panel.
  *

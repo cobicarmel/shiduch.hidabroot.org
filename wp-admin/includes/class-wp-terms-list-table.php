@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Terms List Table class.
  *
@@ -405,23 +405,23 @@ class WP_Terms_List_Table extends WP_List_Table {
 ?>
 
 	<form method="get" action=""><table style="display: none"><tbody id="inlineedit">
-		<tr id="inline-edit" class="inline-edit-row" style="display: none"><td colspan="<? echo $this->get_column_count(); ?>" class="colspanchange">
+		<tr id="inline-edit" class="inline-edit-row" style="display: none"><td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
 
 			<fieldset><div class="inline-edit-col">
-				<h4><? _e( 'Quick Edit' ); ?></h4>
+				<h4><?php _e( 'Quick Edit' ); ?></h4>
 
 				<label>
-					<span class="title"><? _ex( 'Name', 'term name' ); ?></span>
+					<span class="title"><?php _ex( 'Name', 'term name' ); ?></span>
 					<span class="input-text-wrap"><input type="text" name="name" class="ptitle" value="" /></span>
 				</label>
-	<? if ( !global_terms_enabled() ) { ?>
+	<?php if ( !global_terms_enabled() ) { ?>
 				<label>
-					<span class="title"><? _e( 'Slug' ); ?></span>
+					<span class="title"><?php _e( 'Slug' ); ?></span>
 					<span class="input-text-wrap"><input type="text" name="slug" class="ptitle" value="" /></span>
 				</label>
-	<? } ?>
+	<?php } ?>
 			</div></fieldset>
-	<?
+	<?php
 
 		$core_columns = array( 'cb' => true, 'description' => true, 'name' => true, 'slug' => true, 'posts' => true );
 
@@ -438,17 +438,17 @@ class WP_Terms_List_Table extends WP_List_Table {
 	?>
 
 		<p class="inline-edit-save submit">
-			<a accesskey="c" href="#inline-edit" class="cancel button-secondary alignleft"><? _e( 'Cancel' ); ?></a>
-			<a accesskey="s" href="#inline-edit" class="save button-primary alignright"><? echo $tax->labels->update_item; ?></a>
+			<a accesskey="c" href="#inline-edit" class="cancel button-secondary alignleft"><?php _e( 'Cancel' ); ?></a>
+			<a accesskey="s" href="#inline-edit" class="save button-primary alignright"><?php echo $tax->labels->update_item; ?></a>
 			<span class="spinner"></span>
 			<span class="error" style="display:none;"></span>
-			<? wp_nonce_field( 'taxinlineeditnonce', '_inline_edit', false ); ?>
-			<input type="hidden" name="taxonomy" value="<? echo esc_attr( $this->screen->taxonomy ); ?>" />
-			<input type="hidden" name="post_type" value="<? echo esc_attr( $this->screen->post_type ); ?>" />
+			<?php wp_nonce_field( 'taxinlineeditnonce', '_inline_edit', false ); ?>
+			<input type="hidden" name="taxonomy" value="<?php echo esc_attr( $this->screen->taxonomy ); ?>" />
+			<input type="hidden" name="post_type" value="<?php echo esc_attr( $this->screen->post_type ); ?>" />
 			<br class="clear" />
 		</p>
 		</td></tr>
 		</tbody></table></form>
-	<?
+	<?php
 	}
 }

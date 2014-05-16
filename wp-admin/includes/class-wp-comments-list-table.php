@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Comments and Post Comments List Table classes.
  *
@@ -229,12 +229,12 @@ class WP_Comments_List_Table extends WP_List_Table {
 		global $comment_status, $comment_type;
 ?>
 		<div class="alignleft actions">
-<?
+<?php
 		if ( 'top' == $which ) {
 ?>
 			<select name="comment_type">
-				<option value=""><? _e( 'All comment types' ); ?></option>
-<?
+				<option value=""><?php _e( 'All comment types' ); ?></option>
+<?php
 				/**
 				 * Filter the comment types dropdown menu.
 				 *
@@ -251,7 +251,7 @@ class WP_Comments_List_Table extends WP_List_Table {
 					echo "\t<option value='" . esc_attr( $type ) . "'" . selected( $comment_type, $type, false ) . ">$label</option>\n";
 			?>
 			</select>
-<?
+<?php
 			/**
 			 * Fires just before the Filter submit button for comment types.
 			 *
@@ -316,28 +316,28 @@ class WP_Comments_List_Table extends WP_List_Table {
 		$this->display_tablenav( 'top' );
 
 ?>
-<table class="<? echo implode( ' ', $this->get_table_classes() ); ?>">
+<table class="<?php echo implode( ' ', $this->get_table_classes() ); ?>">
 	<thead>
 	<tr>
-		<? $this->print_column_headers(); ?>
+		<?php $this->print_column_headers(); ?>
 	</tr>
 	</thead>
 
 	<tfoot>
 	<tr>
-		<? $this->print_column_headers( false ); ?>
+		<?php $this->print_column_headers( false ); ?>
 	</tr>
 	</tfoot>
 
 	<tbody id="the-comment-list" data-wp-lists="list:comment">
-		<? $this->display_rows_or_placeholder(); ?>
+		<?php $this->display_rows_or_placeholder(); ?>
 	</tbody>
 
 	<tbody id="the-extra-comment-list" data-wp-lists="list:comment" style="display: none;">
-		<? $this->items = $this->extra_items; $this->display_rows(); ?>
+		<?php $this->items = $this->extra_items; $this->display_rows(); ?>
 	</tbody>
 </table>
-<?
+<?php
 
 		$this->display_tablenav( 'bottom' );
 	}
@@ -360,9 +360,9 @@ class WP_Comments_List_Table extends WP_List_Table {
 
 	function column_cb( $comment ) {
 		if ( $this->user_can ) { ?>
-		<label class="screen-reader-text" for="cb-select-<? echo $comment->comment_ID; ?>"><? _e( 'Select comment' ); ?></label>
-		<input id="cb-select-<? echo $comment->comment_ID; ?>" type="checkbox" name="delete_comments[]" value="<? echo $comment->comment_ID; ?>" />
-		<?
+		<label class="screen-reader-text" for="cb-select-<?php echo $comment->comment_ID; ?>"><?php _e( 'Select comment' ); ?></label>
+		<input id="cb-select-<?php echo $comment->comment_ID; ?>" type="checkbox" name="delete_comments[]" value="<?php echo $comment->comment_ID; ?>" />
+		<?php
 		}
 	}
 
@@ -412,17 +412,17 @@ class WP_Comments_List_Table extends WP_List_Table {
 		echo '</div>';
 		comment_text();
 		if ( $user_can ) { ?>
-		<div id="inline-<? echo $comment->comment_ID; ?>" class="hidden">
-		<textarea class="comment" rows="1" cols="1"><?
+		<div id="inline-<?php echo $comment->comment_ID; ?>" class="hidden">
+		<textarea class="comment" rows="1" cols="1"><?php
 			/** This filter is documented in wp-admin/includes/comment.php */
 			echo esc_textarea( apply_filters( 'comment_edit_pre', $comment->comment_content ) );
 		?></textarea>
-		<div class="author-email"><? echo esc_attr( $comment->comment_author_email ); ?></div>
-		<div class="author"><? echo esc_attr( $comment->comment_author ); ?></div>
-		<div class="author-url"><? echo esc_attr( $comment->comment_author_url ); ?></div>
-		<div class="comment_status"><? echo $comment->comment_approved; ?></div>
+		<div class="author-email"><?php echo esc_attr( $comment->comment_author_email ); ?></div>
+		<div class="author"><?php echo esc_attr( $comment->comment_author ); ?></div>
+		<div class="author-url"><?php echo esc_attr( $comment->comment_author_url ); ?></div>
+		<div class="comment_status"><?php echo $comment->comment_approved; ?></div>
 		</div>
-		<?
+		<?php
 		}
 
 		if ( $user_can ) {
@@ -602,12 +602,12 @@ class WP_Post_Comments_List_Table extends WP_Comments_List_Table {
 
 		wp_nonce_field( "fetch-list-" . get_class( $this ), '_ajax_fetch_list_nonce' );
 ?>
-<table class="<? echo implode( ' ', $this->get_table_classes() ); ?>" style="display:none;">
-	<tbody id="the-comment-list"<? if ( $singular ) echo " data-wp-lists='list:$singular'"; ?>>
-		<? if ( ! $output_empty ) $this->display_rows_or_placeholder(); ?>
+<table class="<?php echo implode( ' ', $this->get_table_classes() ); ?>" style="display:none;">
+	<tbody id="the-comment-list"<?php if ( $singular ) echo " data-wp-lists='list:$singular'"; ?>>
+		<?php if ( ! $output_empty ) $this->display_rows_or_placeholder(); ?>
 	</tbody>
 </table>
-<?
+<?php
 	}
 
 	function get_per_page( $comment_status = false ) {

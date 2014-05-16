@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * The WordPress Toolbar
  *
@@ -364,30 +364,30 @@ class WP_Admin_Bar {
 		}
 
 		?>
-		<div id="wpadminbar" class="<? echo $class; ?>" role="navigation">
-			<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1"><? _e('Skip to toolbar'); ?></a>
-			<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="<? esc_attr_e('Top navigation toolbar.'); ?>" tabindex="0">
-				<? foreach ( $root->children as $group ) {
+		<div id="wpadminbar" class="<?php echo $class; ?>" role="navigation">
+			<a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1"><?php _e('Skip to toolbar'); ?></a>
+			<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="<?php esc_attr_e('Top navigation toolbar.'); ?>" tabindex="0">
+				<?php foreach ( $root->children as $group ) {
 					$this->_render_group( $group );
 				} ?>
 			</div>
-			<? if ( is_user_logged_in() ) : ?>
-			<a class="screen-reader-shortcut" href="<? echo esc_url( wp_logout_url() ); ?>"><? _e('Log Out'); ?></a>
-			<? endif; ?>
+			<?php if ( is_user_logged_in() ) : ?>
+			<a class="screen-reader-shortcut" href="<?php echo esc_url( wp_logout_url() ); ?>"><?php _e('Log Out'); ?></a>
+			<?php endif; ?>
 		</div>
 
-		<?
+		<?php
 	}
 
 	final protected function _render_container( $node ) {
 		if ( $node->type != 'container' || empty( $node->children ) )
 			return;
 
-		?><div id="<? echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>" class="ab-group-container"><?
+		?><div id="<?php echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>" class="ab-group-container"><?php
 			foreach ( $node->children as $group ) {
 				$this->_render_group( $group );
 			}
-		?></div><?
+		?></div><?php
 	}
 
 	final protected function _render_group( $node ) {
@@ -402,11 +402,11 @@ class WP_Admin_Bar {
 		else
 			$class = '';
 
-		?><ul id="<? echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>"<? echo $class; ?>><?
+		?><ul id="<?php echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>"<?php echo $class; ?>><?php
 			foreach ( $node->children as $item ) {
 				$this->_render_item( $item );
 			}
-		?></ul><?
+		?></ul><?php
 	}
 
 	final protected function _render_item( $node ) {
@@ -434,51 +434,51 @@ class WP_Admin_Bar {
 
 		?>
 
-		<li id="<? echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>"<? echo $menuclass; ?>><?
+		<li id="<?php echo esc_attr( 'wp-admin-bar-' . $node->id ); ?>"<?php echo $menuclass; ?>><?php
 			if ( $has_link ):
-				?><a class="ab-item" <? echo $aria_attributes; ?> href="<? echo esc_url( $node->href ) ?>"<?
+				?><a class="ab-item" <?php echo $aria_attributes; ?> href="<?php echo esc_url( $node->href ) ?>"<?php
 					if ( ! empty( $node->meta['onclick'] ) ) :
-						?> onclick="<? echo esc_js( $node->meta['onclick'] ); ?>"<?
+						?> onclick="<?php echo esc_js( $node->meta['onclick'] ); ?>"<?php
 					endif;
 				if ( ! empty( $node->meta['target'] ) ) :
-					?> target="<? echo esc_attr( $node->meta['target'] ); ?>"<?
+					?> target="<?php echo esc_attr( $node->meta['target'] ); ?>"<?php
 				endif;
 				if ( ! empty( $node->meta['title'] ) ) :
-					?> title="<? echo esc_attr( $node->meta['title'] ); ?>"<?
+					?> title="<?php echo esc_attr( $node->meta['title'] ); ?>"<?php
 				endif;
 				if ( ! empty( $node->meta['rel'] ) ) :
-					?> rel="<? echo esc_attr( $node->meta['rel'] ); ?>"<?
+					?> rel="<?php echo esc_attr( $node->meta['rel'] ); ?>"<?php
 				endif;
-				?>><?
+				?>><?php
 			else:
-				?><div class="ab-item ab-empty-item" <? echo $aria_attributes;
+				?><div class="ab-item ab-empty-item" <?php echo $aria_attributes;
 				if ( ! empty( $node->meta['title'] ) ) :
-					?> title="<? echo esc_attr( $node->meta['title'] ); ?>"<?
+					?> title="<?php echo esc_attr( $node->meta['title'] ); ?>"<?php
 				endif;
-				?>><?
+				?>><?php
 			endif;
 
 			echo $node->title;
 
 			if ( $has_link ) :
-				?></a><?
+				?></a><?php
 			else:
-				?></div><?
+				?></div><?php
 			endif;
 
 			if ( $is_parent ) :
-				?><div class="ab-sub-wrapper"><?
+				?><div class="ab-sub-wrapper"><?php
 					foreach ( $node->children as $group ) {
 						$this->_render_group( $group );
 					}
-				?></div><?
+				?></div><?php
 			endif;
 
 			if ( ! empty( $node->meta['html'] ) )
 				echo $node->meta['html'];
 
 			?>
-		</li><?
+		</li><?php
 	}
 
 	public function recursive_render( $id, $node ) {

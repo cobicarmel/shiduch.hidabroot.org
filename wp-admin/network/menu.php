@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Build Network Administration Menu.
  *

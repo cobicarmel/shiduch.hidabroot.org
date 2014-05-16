@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Sites List Table class.
  *
@@ -224,25 +224,25 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 				switch ( $column_name ) {
 					case 'cb': ?>
 						<th scope="row" class="check-column">
-							<? if ( ! is_main_site( $blog['blog_id'] ) ) : ?>
-							<label class="screen-reader-text" for="blog_<? echo $blog['blog_id']; ?>"><? printf( __( 'Select %s' ), $blogname ); ?></label>
-							<input type="checkbox" id="blog_<? echo $blog['blog_id'] ?>" name="allblogs[]" value="<? echo esc_attr( $blog['blog_id'] ) ?>" />
-							<? endif; ?>
+							<?php if ( ! is_main_site( $blog['blog_id'] ) ) : ?>
+							<label class="screen-reader-text" for="blog_<?php echo $blog['blog_id']; ?>"><?php printf( __( 'Select %s' ), $blogname ); ?></label>
+							<input type="checkbox" id="blog_<?php echo $blog['blog_id'] ?>" name="allblogs[]" value="<?php echo esc_attr( $blog['blog_id'] ) ?>" />
+							<?php endif; ?>
 						</th>
-					<?
+					<?php
 					break;
 
 					case 'id':?>
 						<th scope="row">
-							<? echo $blog['blog_id'] ?>
+							<?php echo $blog['blog_id'] ?>
 						</th>
-					<?
+					<?php
 					break;
 
 					case 'blogname':
 						echo "<td class='column-$column_name $column_name'$style>"; ?>
-							<a href="<? echo esc_url( network_admin_url( 'site-info.php?id=' . $blog['blog_id'] ) ); ?>" class="edit"><? echo $blogname . $blog_state; ?></a>
-							<?
+							<a href="<?php echo esc_url( network_admin_url( 'site-info.php?id=' . $blog['blog_id'] ) ); ?>" class="edit"><?php echo $blogname . $blog_state; ?></a>
+							<?php
 							if ( 'list' != $mode ) {
 								switch_to_blog( $blog['blog_id'] );
 								echo '<p>' . sprintf( _x( '%1$s &#8211; <em>%2$s</em>', '%1$s: site name. %2$s: site tagline.' ), get_option( 'blogname' ), get_option( 'blogdescription ' ) ) . '</p>';
@@ -302,7 +302,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 							echo $this->row_actions( $actions );
 					?>
 						</td>
-					<?
+					<?php
 					break;
 
 					case 'lastupdated':
@@ -313,7 +313,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 								$date = 'Y/m/d \<\b\r \/\> g:i:s a';
 							echo ( $blog['last_updated'] == '0000-00-00 00:00:00' ) ? __( 'Never' ) : mysql2date( $date, $blog['last_updated'] ); ?>
 						</td>
-					<?
+					<?php
 					break;
 				case 'registered':
 						echo "<td class='$column_name column-$column_name'$style>";
@@ -323,7 +323,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 							echo mysql2date( $date, $blog['registered'] );
 						?>
 						</td>
-					<?
+					<?php
 					break;
 				case 'users':
 						echo "<td class='$column_name column-$column_name'$style>";
@@ -345,11 +345,11 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 							}
 							?>
 						</td>
-					<?
+					<?php
 					break;
 
 				case 'plugins': ?>
-					<? if ( has_filter( 'wpmublogsaction' ) ) {
+					<?php if ( has_filter( 'wpmublogsaction' ) ) {
 					echo "<td class='$column_name column-$column_name'$style>";
 						/**
 						 * Fires inside the auxiliary 'Actions' column of the Sites list table.
@@ -362,7 +362,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 						 */
 						do_action( 'wpmublogsaction', $blog['blog_id'] ); ?>
 					</td>
-					<? }
+					<?php }
 					break;
 
 				default:
@@ -382,7 +382,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 			}
 			?>
 			</tr>
-			<?
+			<?php
 		}
 	}
 }

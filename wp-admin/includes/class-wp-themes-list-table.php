@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Themes List Table class.
  *
@@ -89,25 +89,25 @@ class WP_Themes_List_Table extends WP_List_Table {
 		if ( $this->get_pagination_arg( 'total_pages' ) <= 1 )
 			return;
 		?>
-		<div class="tablenav themes <? echo $which; ?>">
-			<? $this->pagination( $which ); ?>
+		<div class="tablenav themes <?php echo $which; ?>">
+			<?php $this->pagination( $which ); ?>
 			<span class="spinner"></span>
 			<br class="clear" />
 		</div>
-		<?
+		<?php
 	}
 
 	function display() {
 		wp_nonce_field( "fetch-list-" . get_class( $this ), '_ajax_fetch_list_nonce' );
 ?>
-		<? $this->tablenav( 'top' ); ?>
+		<?php $this->tablenav( 'top' ); ?>
 
 		<div id="availablethemes">
-			<? $this->display_rows_or_placeholder(); ?>
+			<?php $this->display_rows_or_placeholder(); ?>
 		</div>
 
-		<? $this->tablenav( 'bottom' ); ?>
-<?
+		<?php $this->tablenav( 'bottom' ); ?>
+<?php
 	}
 
 	function get_columns() {
@@ -128,7 +128,7 @@ class WP_Themes_List_Table extends WP_List_Table {
 		$themes = $this->items;
 
 		foreach ( $themes as $theme ):
-			?><div class="available-theme"><?
+			?><div class="available-theme"><?php
 
 			$template   = $theme->get_template();
 			$stylesheet = $theme->get_stylesheet();
@@ -168,35 +168,35 @@ class WP_Themes_List_Table extends WP_List_Table {
 
 			?>
 
-			<a href="<? echo $preview_link; ?>" class="screenshot hide-if-customize">
-				<? if ( $screenshot = $theme->get_screenshot() ) : ?>
-					<img src="<? echo esc_url( $screenshot ); ?>" alt="" />
-				<? endif; ?>
+			<a href="<?php echo $preview_link; ?>" class="screenshot hide-if-customize">
+				<?php if ( $screenshot = $theme->get_screenshot() ) : ?>
+					<img src="<?php echo esc_url( $screenshot ); ?>" alt="" />
+				<?php endif; ?>
 			</a>
-			<a href="<? echo wp_customize_url( $stylesheet ); ?>" class="screenshot load-customize hide-if-no-customize">
-				<? if ( $screenshot = $theme->get_screenshot() ) : ?>
-					<img src="<? echo esc_url( $screenshot ); ?>" alt="" />
-				<? endif; ?>
+			<a href="<?php echo wp_customize_url( $stylesheet ); ?>" class="screenshot load-customize hide-if-no-customize">
+				<?php if ( $screenshot = $theme->get_screenshot() ) : ?>
+					<img src="<?php echo esc_url( $screenshot ); ?>" alt="" />
+				<?php endif; ?>
 			</a>
 
-			<h3><? echo $title; ?></h3>
-			<div class="theme-author"><? printf( __( 'By %s' ), $author ); ?></div>
+			<h3><?php echo $title; ?></h3>
+			<div class="theme-author"><?php printf( __( 'By %s' ), $author ); ?></div>
 			<div class="action-links">
 				<ul>
-					<? foreach ( $actions as $action ): ?>
-						<li><? echo $action; ?></li>
-					<? endforeach; ?>
-					<li class="hide-if-no-js"><a href="#" class="theme-detail"><? _e('Details') ?></a></li>
+					<?php foreach ( $actions as $action ): ?>
+						<li><?php echo $action; ?></li>
+					<?php endforeach; ?>
+					<li class="hide-if-no-js"><a href="#" class="theme-detail"><?php _e('Details') ?></a></li>
 				</ul>
-				<? echo $delete_action; ?>
+				<?php echo $delete_action; ?>
 
-				<? theme_update_available( $theme ); ?>
+				<?php theme_update_available( $theme ); ?>
 			</div>
 
 			<div class="themedetaildiv hide-if-js">
-				<p><strong><? _e('Version: '); ?></strong><? echo $version; ?></p>
-				<p><? echo $theme->display('Description'); ?></p>
-				<? if ( $theme->parent() ) {
+				<p><strong><?php _e('Version: '); ?></strong><?php echo $version; ?></p>
+				<p><?php echo $theme->display('Description'); ?></p>
+				<?php if ( $theme->parent() ) {
 					printf( ' <p class="howto">' . __( 'This <a href="%1$s">child theme</a> requires its parent theme, %2$s.' ) . '</p>',
 						__( 'http://codex.wordpress.org/Child_Themes' ),
 						$theme->parent()->display( 'Name' ) );
@@ -204,7 +204,7 @@ class WP_Themes_List_Table extends WP_List_Table {
 			</div>
 
 			</div>
-		<?
+		<?php
 		endforeach;
 	}
 

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Writing settings administration panel.
  *
@@ -56,111 +56,111 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
 <form method="post" action="options.php">
-<? settings_fields('writing'); ?>
+<?php settings_fields('writing'); ?>
 
 <table class="form-table">
 <tr>
-<th scope="row"><? _e('Formatting') ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Formatting') ?></span></legend>
+<th scope="row"><?php _e('Formatting') ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Formatting') ?></span></legend>
 <label for="use_smilies">
-<input name="use_smilies" type="checkbox" id="use_smilies" value="1" <? checked('1', get_option('use_smilies')); ?> />
-<? _e('Convert emoticons like <code>:-)</code> and <code>:-P</code> to graphics on display') ?></label><br />
-<label for="use_balanceTags"><input name="use_balanceTags" type="checkbox" id="use_balanceTags" value="1" <? checked('1', get_option('use_balanceTags')); ?> /> <? _e('WordPress should correct invalidly nested XHTML automatically') ?></label>
+<input name="use_smilies" type="checkbox" id="use_smilies" value="1" <?php checked('1', get_option('use_smilies')); ?> />
+<?php _e('Convert emoticons like <code>:-)</code> and <code>:-P</code> to graphics on display') ?></label><br />
+<label for="use_balanceTags"><input name="use_balanceTags" type="checkbox" id="use_balanceTags" value="1" <?php checked('1', get_option('use_balanceTags')); ?> /> <?php _e('WordPress should correct invalidly nested XHTML automatically') ?></label>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><label for="default_category"><? _e('Default Post Category') ?></label></th>
+<th scope="row"><label for="default_category"><?php _e('Default Post Category') ?></label></th>
 <td>
-<?
+<?php
 wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_category', 'orderby' => 'name', 'selected' => get_option('default_category'), 'hierarchical' => true));
 ?>
 </td>
 </tr>
-<?
+<?php
 $post_formats = get_post_format_strings();
 unset( $post_formats['standard'] );
 ?>
 <tr>
-<th scope="row"><label for="default_post_format"><? _e('Default Post Format') ?></label></th>
+<th scope="row"><label for="default_post_format"><?php _e('Default Post Format') ?></label></th>
 <td>
 	<select name="default_post_format" id="default_post_format">
-		<option value="0"><? echo get_post_format_string( 'standard' ); ?></option>
-<? foreach ( $post_formats as $format_slug => $format_name ): ?>
-		<option<? selected( get_option( 'default_post_format' ), $format_slug ); ?> value="<? echo esc_attr( $format_slug ); ?>"><? echo esc_html( $format_name ); ?></option>
-<? endforeach; ?>
+		<option value="0"><?php echo get_post_format_string( 'standard' ); ?></option>
+<?php foreach ( $post_formats as $format_slug => $format_name ): ?>
+		<option<?php selected( get_option( 'default_post_format' ), $format_slug ); ?> value="<?php echo esc_attr( $format_slug ); ?>"><?php echo esc_html( $format_name ); ?></option>
+<?php endforeach; ?>
 	</select>
 </td>
 </tr>
-<?
+<?php
 if ( get_option( 'link_manager_enabled' ) ) :
 ?>
 <tr>
-<th scope="row"><label for="default_link_category"><? _e('Default Link Category') ?></label></th>
+<th scope="row"><label for="default_link_category"><?php _e('Default Link Category') ?></label></th>
 <td>
-<?
+<?php
 wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_link_category', 'orderby' => 'name', 'selected' => get_option('default_link_category'), 'hierarchical' => true, 'taxonomy' => 'link_category'));
 ?>
 </td>
 </tr>
-<? endif; ?>
+<?php endif; ?>
 
-<?
+<?php
 do_settings_fields('writing', 'default');
 do_settings_fields('writing', 'remote_publishing'); // A deprecated section.
 ?>
 </table>
 
-<h3 class="title"><? _e('Press This') ?></h3>
-<p><? _e('Press This is a bookmarklet: a little app that runs in your browser and lets you grab bits of the web.');?></p>
-<p><? _e('Use Press This to clip text, images and videos from any web page. Then edit and add more straight from Press This before you save or publish it in a post on your site.'); ?></p>
-<p><? _e('Drag-and-drop the following link to your bookmarks bar or right click it and add it to your favorites for a posting shortcut.') ?></p>
-<p class="pressthis"><a onclick="return false;" oncontextmenu="if(window.navigator.userAgent.indexOf('WebKit')!=-1||window.navigator.userAgent.indexOf('MSIE')!=-1){jQuery('.pressthis-code').show().find('textarea').focus().select();return false;}" href="<? echo htmlspecialchars( get_shortcut_link() ); ?>"><span><? _e('Press This') ?></span></a></p>
+<h3 class="title"><?php _e('Press This') ?></h3>
+<p><?php _e('Press This is a bookmarklet: a little app that runs in your browser and lets you grab bits of the web.');?></p>
+<p><?php _e('Use Press This to clip text, images and videos from any web page. Then edit and add more straight from Press This before you save or publish it in a post on your site.'); ?></p>
+<p><?php _e('Drag-and-drop the following link to your bookmarks bar or right click it and add it to your favorites for a posting shortcut.') ?></p>
+<p class="pressthis"><a onclick="return false;" oncontextmenu="if(window.navigator.userAgent.indexOf('WebKit')!=-1||window.navigator.userAgent.indexOf('MSIE')!=-1){jQuery('.pressthis-code').show().find('textarea').focus().select();return false;}" href="<?php echo htmlspecialchars( get_shortcut_link() ); ?>"><span><?php _e('Press This') ?></span></a></p>
 <div class="pressthis-code" style="display:none;">
-	<p class="description"><? _e('If your bookmarks toolbar is hidden: copy the code below, open your Bookmarks manager, create new bookmark, type Press This into the name field and paste the code into the URL field.') ?></p>
-	<p><textarea rows="5" cols="120" readonly="readonly"><? echo htmlspecialchars( get_shortcut_link() ); ?></textarea></p>
+	<p class="description"><?php _e('If your bookmarks toolbar is hidden: copy the code below, open your Bookmarks manager, create new bookmark, type Press This into the name field and paste the code into the URL field.') ?></p>
+	<p><textarea rows="5" cols="120" readonly="readonly"><?php echo htmlspecialchars( get_shortcut_link() ); ?></textarea></p>
 </div>
 
-<?
+<?php
 /** This filter is documented in wp-admin/options.php */
 if ( apply_filters( 'enable_post_by_email_configuration', true ) ) {
 ?>
-<h3 class="title"><? _e('Post via e-mail') ?></h3>
-<p><? printf(__('To post to WordPress by e-mail you must set up a secret e-mail account with POP3 access. Any mail received at this address will be posted, so it&#8217;s a good idea to keep this address very secret. Here are three random strings you could use: <kbd>%s</kbd>, <kbd>%s</kbd>, <kbd>%s</kbd>.'), wp_generate_password(8, false), wp_generate_password(8, false), wp_generate_password(8, false)) ?></p>
+<h3 class="title"><?php _e('Post via e-mail') ?></h3>
+<p><?php printf(__('To post to WordPress by e-mail you must set up a secret e-mail account with POP3 access. Any mail received at this address will be posted, so it&#8217;s a good idea to keep this address very secret. Here are three random strings you could use: <kbd>%s</kbd>, <kbd>%s</kbd>, <kbd>%s</kbd>.'), wp_generate_password(8, false), wp_generate_password(8, false), wp_generate_password(8, false)) ?></p>
 
 <table class="form-table">
 <tr>
-<th scope="row"><label for="mailserver_url"><? _e('Mail Server') ?></label></th>
-<td><input name="mailserver_url" type="text" id="mailserver_url" value="<? form_option('mailserver_url'); ?>" class="regular-text code" />
-<label for="mailserver_port"><? _e('Port') ?></label>
-<input name="mailserver_port" type="text" id="mailserver_port" value="<? form_option('mailserver_port'); ?>" class="small-text" />
+<th scope="row"><label for="mailserver_url"><?php _e('Mail Server') ?></label></th>
+<td><input name="mailserver_url" type="text" id="mailserver_url" value="<?php form_option('mailserver_url'); ?>" class="regular-text code" />
+<label for="mailserver_port"><?php _e('Port') ?></label>
+<input name="mailserver_port" type="text" id="mailserver_port" value="<?php form_option('mailserver_port'); ?>" class="small-text" />
 </td>
 </tr>
 <tr>
-<th scope="row"><label for="mailserver_login"><? _e('Login Name') ?></label></th>
-<td><input name="mailserver_login" type="text" id="mailserver_login" value="<? form_option('mailserver_login'); ?>" class="regular-text ltr" /></td>
+<th scope="row"><label for="mailserver_login"><?php _e('Login Name') ?></label></th>
+<td><input name="mailserver_login" type="text" id="mailserver_login" value="<?php form_option('mailserver_login'); ?>" class="regular-text ltr" /></td>
 </tr>
 <tr>
-<th scope="row"><label for="mailserver_pass"><? _e('Password') ?></label></th>
+<th scope="row"><label for="mailserver_pass"><?php _e('Password') ?></label></th>
 <td>
-<input name="mailserver_pass" type="text" id="mailserver_pass" value="<? form_option('mailserver_pass'); ?>" class="regular-text ltr" />
+<input name="mailserver_pass" type="text" id="mailserver_pass" value="<?php form_option('mailserver_pass'); ?>" class="regular-text ltr" />
 </td>
 </tr>
 <tr>
-<th scope="row"><label for="default_email_category"><? _e('Default Mail Category') ?></label></th>
+<th scope="row"><label for="default_email_category"><?php _e('Default Mail Category') ?></label></th>
 <td>
-<?
+<?php
 wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_email_category', 'orderby' => 'name', 'selected' => get_option('default_email_category'), 'hierarchical' => true));
 ?>
 </td>
 </tr>
-<? do_settings_fields('writing', 'post_via_email'); ?>
+<?php do_settings_fields('writing', 'post_via_email'); ?>
 </table>
-<? } ?>
+<?php } ?>
 
-<?
+<?php
 /**
  * Filter whether to enable the Update Services section in the Writing settings screen.
  *
@@ -170,25 +170,25 @@ wp_dropdown_categories(array('hide_empty' => 0, 'name' => 'default_email_categor
  */
 if ( apply_filters( 'enable_update_services_configuration', true ) ) {
 ?>
-<h3 class="title"><? _e('Update Services') ?></h3>
+<h3 class="title"><?php _e('Update Services') ?></h3>
 
-<? if ( 1 == get_option('blog_public') ) : ?>
+<?php if ( 1 == get_option('blog_public') ) : ?>
 
-<p><label for="ping_sites"><? _e('When you publish a new post, WordPress automatically notifies the following site update services. For more about this, see <a href="http://codex.wordpress.org/Update_Services">Update Services</a> on the Codex. Separate multiple service <abbr title="Universal Resource Locator">URL</abbr>s with line breaks.') ?></label></p>
+<p><label for="ping_sites"><?php _e('When you publish a new post, WordPress automatically notifies the following site update services. For more about this, see <a href="http://codex.wordpress.org/Update_Services">Update Services</a> on the Codex. Separate multiple service <abbr title="Universal Resource Locator">URL</abbr>s with line breaks.') ?></label></p>
 
-<textarea name="ping_sites" id="ping_sites" class="large-text code" rows="3"><? echo esc_textarea( get_option('ping_sites') ); ?></textarea>
+<textarea name="ping_sites" id="ping_sites" class="large-text code" rows="3"><?php echo esc_textarea( get_option('ping_sites') ); ?></textarea>
 
-<? else : ?>
+<?php else : ?>
 
-	<p><? printf(__('WordPress is not notifying any <a href="http://codex.wordpress.org/Update_Services">Update Services</a> because of your site&#8217;s <a href="%s">visibility settings</a>.'), 'options-reading.php'); ?></p>
+	<p><?php printf(__('WordPress is not notifying any <a href="http://codex.wordpress.org/Update_Services">Update Services</a> because of your site&#8217;s <a href="%s">visibility settings</a>.'), 'options-reading.php'); ?></p>
 
-<? endif; ?>
-<? } // multisite ?>
+<?php endif; ?>
+<?php } // multisite ?>
 
-<? do_settings_sections('writing'); ?>
+<?php do_settings_sections('writing'); ?>
 
-<? submit_button(); ?>
+<?php submit_button(); ?>
 </form>
 </div>
 
-<? include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

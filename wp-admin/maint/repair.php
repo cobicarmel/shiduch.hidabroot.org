@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Database Repair and Optimization Script.
  *
@@ -12,19 +12,19 @@ require_once( dirname( dirname( dirname( __FILE__ ) ) ) . '/wp-load.php' );
 header( 'Content-Type: text/html; charset=utf-8' );
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" <? language_attributes(); ?>>
+<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><? _e( 'WordPress &rsaquo; Database Repair' ); ?></title>
-	<?
+	<title><?php _e( 'WordPress &rsaquo; Database Repair' ); ?></title>
+	<?php
 	wp_admin_css( 'install', true );
 	?>
 </head>
 <body class="wp-core-ui">
-<h1 id="logo"><a href="<? echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><? _e( 'WordPress' ); ?></a></h1>
+<h1 id="logo"><a href="<?php echo esc_url( __( 'https://wordpress.org/' ) ); ?>"><?php _e( 'WordPress' ); ?></a></h1>
 
-<?
+<?php
 
 if ( ! defined( 'WP_ALLOW_REPAIR' ) ) {
 	echo '<p>' . __( 'To allow use of this page to automatically repair database problems, please add the following line to your <code>wp-config.php</code> file. Once this line is added to your config, reload this page.' ) . "</p><p><code>define('WP_ALLOW_REPAIR', true);</code></p>";
@@ -112,10 +112,10 @@ if ( ! defined( 'WP_ALLOW_REPAIR' ) ) {
 	else
 		echo '<p>' . __( 'WordPress can automatically look for some common database problems and repair them. Repairing can take a while, so please be patient.' ) . '</p>';
 ?>
-	<p class="step"><a class="button button-large" href="repair.php?repair=1"><? _e( 'Repair Database' ); ?></a></p>
-	<p><? _e( 'WordPress can also attempt to optimize the database. This improves performance in some situations. Repairing and optimizing the database can take a long time and the database will be locked while optimizing.' ); ?></p>
-	<p class="step"><a class="button button-large" href="repair.php?repair=2"><? _e( 'Repair and Optimize Database' ); ?></a></p>
-<?
+	<p class="step"><a class="button button-large" href="repair.php?repair=1"><?php _e( 'Repair Database' ); ?></a></p>
+	<p><?php _e( 'WordPress can also attempt to optimize the database. This improves performance in some situations. Repairing and optimizing the database can take a long time and the database will be locked while optimizing.' ); ?></p>
+	<p class="step"><a class="button button-large" href="repair.php?repair=2"><?php _e( 'Repair and Optimize Database' ); ?></a></p>
+<?php
 }
 ?>
 </body>

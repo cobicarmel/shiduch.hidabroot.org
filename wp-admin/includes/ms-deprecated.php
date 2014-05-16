@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Deprecated multisite admin functions from past WordPress versions and WordPress MU.
  * You shouldn't use these functions and look for the alternatives instead. The functions

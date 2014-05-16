@@ -1,4 +1,4 @@
-<? // Modified for Hebrew translation
+<?php // Modified for Hebrew translation
 /**
  * The base configurations of the WordPress.
  *
@@ -42,14 +42,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         '+,C:EKgFz@|!VY {eE)Y6@A1%<mK*(*L~&=0A^4Sed7u1p|_8uhB^~4.|.#p8rkT');
-define('SECURE_AUTH_KEY',  'A7~12N{Ma5+4ps/7XQ~`Kz-IEq-H(|qO2dFQ+b=R[8yVrk;[Hg2P)L:gn3EjZ3W7');
-define('LOGGED_IN_KEY',    '~b2pIZg)DeG,Xl=Q4x,?&^B[L: ^x~#aE-d(?=!T}G,-vW,H1ap+xZLJl`yA6;SX');
-define('NONCE_KEY',        '$k!Wa-^oZNENq9_!ji:8j|Ez.mB+to~U-~(/+S4UHI[?wfZn7N}8jM%pwnsB;i-l');
-define('AUTH_SALT',        'EdSy26*&1|-D&u@T$2]!X?Q@a}T7Ib{ANkm!A5$G|LaA08h_]tq-[F5SZ@qWdlm<');
-define('SECURE_AUTH_SALT', 'k]oPaAg*DQa,>nPBJ]7pQ;:`@<}$1FFibk1+x0|nK!UT;aDG^<QSqMe~sqL1|Du)');
-define('LOGGED_IN_SALT',   '|#0Rrf`jXq1r8FA{j{|&yl4/BEdn--3M_9>P}GB4k|=S )+S4Zu:?x>Lu61kpvo-');
-define('NONCE_SALT',       'Y*-E+tZt_={}B?a6l:]DtVtXf}-toV7$*~TC4ja/K0BtIs;j S>>1:H+Z.I(406u');
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
 
 /**#@-*/
 

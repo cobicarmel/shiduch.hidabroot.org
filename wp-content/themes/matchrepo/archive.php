@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package matchrepo
+ * @package Matchrepo
  */
 
 get_header(); ?>
@@ -24,46 +24,46 @@ get_header(); ?>
 							single_tag_title();
 
 						elseif ( is_author() ) :
-							printf( __( 'Author: %s', 'matchrepo' ), '<span class="vcard">' . get_the_author() . '</span>' );
+							printf( __( 'Author: %s', 'Matchrepo' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'matchrepo' ), '<span>' . get_the_date() . '</span>' );
+							printf( __( 'Day: %s', 'Matchrepo' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'matchrepo' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'matchrepo' ) ) . '</span>' );
+							printf( __( 'Month: %s', 'Matchrepo' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'Matchrepo' ) ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'matchrepo' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'matchrepo' ) ) . '</span>' );
+							printf( __( 'Year: %s', 'Matchrepo' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'Matchrepo' ) ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'matchrepo' );
+							_e( 'Asides', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'matchrepo');
+							_e( 'Galleries', 'Matchrepo');
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'matchrepo');
+							_e( 'Images', 'Matchrepo');
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'matchrepo' );
+							_e( 'Videos', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'matchrepo' );
+							_e( 'Quotes', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'matchrepo' );
+							_e( 'Links', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-							_e( 'Statuses', 'matchrepo' );
+							_e( 'Statuses', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audios', 'matchrepo' );
+							_e( 'Audios', 'Matchrepo' );
 
 						elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-							_e( 'Chats', 'matchrepo' );
+							_e( 'Chats', 'Matchrepo' );
 
 						else :
-							_e( 'Archives', 'matchrepo' );
+							_e( 'Archives', 'Matchrepo' );
 
 						endif;
 					?>
@@ -90,7 +90,7 @@ get_header(); ?>
 
 			<? endwhile; ?>
 
-			<? matchrepo_paging_nav(); ?>
+			<? Matchrepo_paging_nav(); ?>
 
 		<? else : ?>
 

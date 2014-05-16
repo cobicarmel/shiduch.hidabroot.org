@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * RSS2 Feed Template for displaying RSS2 Comments feed.
  *
@@ -14,12 +14,12 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	<?
+	<?php
 	/** This action is documented in wp-includes/feed-rss2.php */
 	do_action( 'rss2_ns' );
 	?>
 
-	<?
+	<?php
 	/**
 	 * Fires at the end of the RSS root to add namespaces.
 	 *
@@ -29,7 +29,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 	?>
 >
 <channel>
-	<title><?
+	<title><?php
 		if ( is_singular() )
 			printf( ent2ncr( __( 'Comments on: %s' ) ), get_the_title_rss() );
 		elseif ( is_search() )
@@ -37,15 +37,15 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 		else
 			printf( ent2ncr( __( 'Comments for %s' ) ), get_bloginfo_rss( 'name' ) . get_wp_title_rss() );
 	?></title>
-	<atom:link href="<? self_link(); ?>" rel="self" type="application/rss+xml" />
-	<link><? (is_single()) ? the_permalink_rss() : bloginfo_rss("url") ?></link>
-	<description><? bloginfo_rss("description") ?></description>
-	<lastBuildDate><? echo mysql2date('r', get_lastcommentmodified('GMT')); ?></lastBuildDate>
-	<? /** This filter is documented in wp-includes/feed-rss2.php */ ?>
-	<sy:updatePeriod><? echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>
-	<? /** This filter is documented in wp-includes/feed-rss2.php */ ?>
-	<sy:updateFrequency><? echo apply_filters( 'rss_update_frequency', '1' ); ?></sy:updateFrequency>
-	<?
+	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
+	<link><?php (is_single()) ? the_permalink_rss() : bloginfo_rss("url") ?></link>
+	<description><?php bloginfo_rss("description") ?></description>
+	<lastBuildDate><?php echo mysql2date('r', get_lastcommentmodified('GMT')); ?></lastBuildDate>
+	<?php /** This filter is documented in wp-includes/feed-rss2.php */ ?>
+	<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>
+	<?php /** This filter is documented in wp-includes/feed-rss2.php */ ?>
+	<sy:updateFrequency><?php echo apply_filters( 'rss_update_frequency', '1' ); ?></sy:updateFrequency>
+	<?php
 	/**
 	 * Fires at the end of the RSS2 comment feed header.
 	 *
@@ -57,7 +57,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 		$comment_post = $GLOBALS['post'] = get_post( $comment->comment_post_ID );
 	?>
 	<item>
-		<title><?
+		<title><?php
 			if ( !is_singular() ) {
 				$title = get_the_title($comment_post->ID);
 				/** This filter is documented in wp-includes/feed.php */
@@ -67,17 +67,17 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 				printf(ent2ncr(__('By: %s')), get_comment_author_rss());
 			}
 		?></title>
-		<link><? comment_link() ?></link>
-		<dc:creator><![CDATA[<? echo get_comment_author_rss() ?>]]></dc:creator>
-		<pubDate><? echo mysql2date('D, d M Y H:i:s +0000', get_comment_time('Y-m-d H:i:s', true, false), false); ?></pubDate>
-		<guid isPermaLink="false"><? comment_guid() ?></guid>
-<? if ( post_password_required($comment_post) ) : ?>
-		<description><? echo ent2ncr(__('Protected Comments: Please enter your password to view comments.')); ?></description>
-		<content:encoded><![CDATA[<? echo get_the_password_form() ?>]]></content:encoded>
-<? else : // post pass ?>
-		<description><![CDATA[<? comment_text_rss() ?>]]></description>
-		<content:encoded><![CDATA[<? comment_text() ?>]]></content:encoded>
-<? endif; // post pass
+		<link><?php comment_link() ?></link>
+		<dc:creator><![CDATA[<?php echo get_comment_author_rss() ?>]]></dc:creator>
+		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_comment_time('Y-m-d H:i:s', true, false), false); ?></pubDate>
+		<guid isPermaLink="false"><?php comment_guid() ?></guid>
+<?php if ( post_password_required($comment_post) ) : ?>
+		<description><?php echo ent2ncr(__('Protected Comments: Please enter your password to view comments.')); ?></description>
+		<content:encoded><![CDATA[<?php echo get_the_password_form() ?>]]></content:encoded>
+<?php else : // post pass ?>
+		<description><![CDATA[<?php comment_text_rss() ?>]]></description>
+		<content:encoded><![CDATA[<?php comment_text() ?>]]></content:encoded>
+<?php endif; // post pass
 	/**
 	 * Fires at the end of each RSS2 comment feed item.
 	 *
@@ -89,6 +89,6 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
 	do_action( 'commentrss2_item', $comment->comment_ID, $comment_post->ID );
 ?>
 	</item>
-<? endwhile; endif; ?>
+<?php endwhile; endif; ?>
 </channel>
 </rss>

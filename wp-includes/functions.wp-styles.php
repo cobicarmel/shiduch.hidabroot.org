@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * BackPress Styles Procedural API
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Theme editor network administration panel.
  *

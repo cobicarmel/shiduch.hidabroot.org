@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multisite administration panel.
  *

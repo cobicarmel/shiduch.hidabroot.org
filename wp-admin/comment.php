@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Comment Management Screen
  *
@@ -115,9 +115,9 @@ case 'spam'    :
 
 <div class="narrow">
 
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
-<?
+<?php
 switch ( $action ) {
 	case 'spam' :
 		$caution_msg = __('You are about to mark the following comment as spam:');
@@ -154,51 +154,51 @@ if ( $comment->comment_approved != '0' ) { // if not unapproved
 		echo '<div class="updated"><p>' . $message . '</p></div>';
 }
 ?>
-<p><strong><? _e('Caution:'); ?></strong> <? echo $caution_msg; ?></p>
+<p><strong><?php _e('Caution:'); ?></strong> <?php echo $caution_msg; ?></p>
 
 <table class="form-table comment-ays">
 <tr class="alt">
-<th scope="row"><? _e('Author'); ?></th>
-<td><? echo $comment->comment_author; ?></td>
+<th scope="row"><?php _e('Author'); ?></th>
+<td><?php echo $comment->comment_author; ?></td>
 </tr>
-<? if ( $comment->comment_author_email ) { ?>
+<?php if ( $comment->comment_author_email ) { ?>
 <tr>
-<th scope="row"><? _e('E-mail'); ?></th>
-<td><? echo $comment->comment_author_email; ?></td>
+<th scope="row"><?php _e('E-mail'); ?></th>
+<td><?php echo $comment->comment_author_email; ?></td>
 </tr>
-<? } ?>
-<? if ( $comment->comment_author_url ) { ?>
+<?php } ?>
+<?php if ( $comment->comment_author_url ) { ?>
 <tr>
-<th scope="row"><? _e('URL'); ?></th>
-<td><a href="<? echo $comment->comment_author_url; ?>"><? echo $comment->comment_author_url; ?></a></td>
+<th scope="row"><?php _e('URL'); ?></th>
+<td><a href="<?php echo $comment->comment_author_url; ?>"><?php echo $comment->comment_author_url; ?></a></td>
 </tr>
-<? } ?>
+<?php } ?>
 <tr>
-<th scope="row"><? /* translators: field name in comment form */ _ex('Comment', 'noun'); ?></th>
-<td><? echo $comment->comment_content; ?></td>
+<th scope="row"><?php /* translators: field name in comment form */ _ex('Comment', 'noun'); ?></th>
+<td><?php echo $comment->comment_content; ?></td>
 </tr>
 </table>
 
-<p><? _e('Are you sure you want to do this?'); ?></p>
+<p><?php _e('Are you sure you want to do this?'); ?></p>
 
 <form action='comment.php' method='get'>
 
 <table width="100%">
 <tr>
-<td><a class="button" href="<? echo admin_url('edit-comments.php'); ?>"><? esc_attr_e('No'); ?></a></td>
-<td class="textright"><? submit_button( $button, 'button' ); ?></td>
+<td><a class="button" href="<?php echo admin_url('edit-comments.php'); ?>"><?php esc_attr_e('No'); ?></a></td>
+<td class="textright"><?php submit_button( $button, 'button' ); ?></td>
 </tr>
 </table>
 
-<? wp_nonce_field( $nonce_action ); ?>
-<input type='hidden' name='action' value='<? echo esc_attr($formaction); ?>' />
-<input type='hidden' name='c' value='<? echo esc_attr($comment->comment_ID); ?>' />
+<?php wp_nonce_field( $nonce_action ); ?>
+<input type='hidden' name='action' value='<?php echo esc_attr($formaction); ?>' />
+<input type='hidden' name='c' value='<?php echo esc_attr($comment->comment_ID); ?>' />
 <input type='hidden' name='noredir' value='1' />
 </form>
 
 </div>
 </div>
-<?
+<?php
 	break;
 
 case 'deletecomment'    :

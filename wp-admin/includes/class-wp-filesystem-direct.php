@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Direct Filesystem.
  *

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Administration Screen API.
  *
@@ -851,45 +851,45 @@ final class WP_Screen {
 		?>
 		<div id="screen-meta" class="metabox-prefs">
 
-			<div id="contextual-help-wrap" class="<? echo esc_attr( $help_class ); ?>" tabindex="-1" aria-label="<? esc_attr_e('Contextual Help Tab'); ?>">
+			<div id="contextual-help-wrap" class="<?php echo esc_attr( $help_class ); ?>" tabindex="-1" aria-label="<?php esc_attr_e('Contextual Help Tab'); ?>">
 				<div id="contextual-help-back"></div>
 				<div id="contextual-help-columns">
 					<div class="contextual-help-tabs">
 						<ul>
-						<?
+						<?php
 						$class = ' class="active"';
 						foreach ( $this->get_help_tabs() as $tab ) :
 							$link_id  = "tab-link-{$tab['id']}";
 							$panel_id = "tab-panel-{$tab['id']}";
 							?>
 
-							<li id="<? echo esc_attr( $link_id ); ?>"<? echo $class; ?>>
-								<a href="<? echo esc_url( "#$panel_id" ); ?>" aria-controls="<? echo esc_attr( $panel_id ); ?>">
-									<? echo esc_html( $tab['title'] ); ?>
+							<li id="<?php echo esc_attr( $link_id ); ?>"<?php echo $class; ?>>
+								<a href="<?php echo esc_url( "#$panel_id" ); ?>" aria-controls="<?php echo esc_attr( $panel_id ); ?>">
+									<?php echo esc_html( $tab['title'] ); ?>
 								</a>
 							</li>
-						<?
+						<?php
 							$class = '';
 						endforeach;
 						?>
 						</ul>
 					</div>
 
-					<? if ( $help_sidebar ) : ?>
+					<?php if ( $help_sidebar ) : ?>
 					<div class="contextual-help-sidebar">
-						<? echo $help_sidebar; ?>
+						<?php echo $help_sidebar; ?>
 					</div>
-					<? endif; ?>
+					<?php endif; ?>
 
 					<div class="contextual-help-tabs-wrap">
-						<?
+						<?php
 						$classes = 'help-tab-content active';
 						foreach ( $this->get_help_tabs() as $tab ):
 							$panel_id = "tab-panel-{$tab['id']}";
 							?>
 
-							<div id="<? echo esc_attr( $panel_id ); ?>" class="<? echo $classes; ?>">
-								<?
+							<div id="<?php echo esc_attr( $panel_id ); ?>" class="<?php echo $classes; ?>">
+								<?php
 								// Print tab content.
 								echo $tab['content'];
 
@@ -898,14 +898,14 @@ final class WP_Screen {
 									call_user_func_array( $tab['callback'], array( $this, $tab ) );
 								?>
 							</div>
-						<?
+						<?php
 							$classes = 'help-tab-content';
 						endforeach;
 						?>
 					</div>
 				</div>
 			</div>
-		<?
+		<?php
 		// Setup layout columns
 
 		/**
@@ -938,23 +938,23 @@ final class WP_Screen {
 			$this->render_screen_options();
 		?>
 		</div>
-		<?
+		<?php
 		if ( ! $this->get_help_tabs() && ! $this->show_screen_options() )
 			return;
 		?>
 		<div id="screen-meta-links">
-		<? if ( $this->get_help_tabs() ) : ?>
+		<?php if ( $this->get_help_tabs() ) : ?>
 			<div id="contextual-help-link-wrap" class="hide-if-no-js screen-meta-toggle">
-			<a href="#contextual-help-wrap" id="contextual-help-link" class="show-settings" aria-controls="contextual-help-wrap" aria-expanded="false"><? _e( 'Help' ); ?></a>
+			<a href="#contextual-help-wrap" id="contextual-help-link" class="show-settings" aria-controls="contextual-help-wrap" aria-expanded="false"><?php _e( 'Help' ); ?></a>
 			</div>
-		<? endif;
+		<?php endif;
 		if ( $this->show_screen_options() ) : ?>
 			<div id="screen-options-link-wrap" class="hide-if-no-js screen-meta-toggle">
-			<a href="#screen-options-wrap" id="show-settings-link" class="show-settings" aria-controls="screen-options-wrap" aria-expanded="false"><? _e( 'Screen Options' ); ?></a>
+			<a href="#screen-options-wrap" id="show-settings-link" class="show-settings" aria-controls="screen-options-wrap" aria-expanded="false"><?php _e( 'Screen Options' ); ?></a>
 			</div>
-		<? endif; ?>
+		<?php endif; ?>
 		</div>
-		<?
+		<?php
 	}
 
 	public function show_screen_options() {
@@ -1018,16 +1018,16 @@ final class WP_Screen {
 		$post    = get_post();
 
 		?>
-		<div id="screen-options-wrap" class="hidden" tabindex="-1" aria-label="<? esc_attr_e('Screen Options Tab'); ?>">
+		<div id="screen-options-wrap" class="hidden" tabindex="-1" aria-label="<?php esc_attr_e('Screen Options Tab'); ?>">
 		<form id="adv-settings" action="" method="post">
-		<? if ( isset( $wp_meta_boxes[ $this->id ] ) || $this->get_option( 'per_page' ) || ( $columns && empty( $columns['_title'] ) ) ) : ?>
-			<h5><? _e( 'Show on screen' ); ?></h5>
-		<?
+		<?php if ( isset( $wp_meta_boxes[ $this->id ] ) || $this->get_option( 'per_page' ) || ( $columns && empty( $columns['_title'] ) ) ) : ?>
+			<h5><?php _e( 'Show on screen' ); ?></h5>
+		<?php
 		endif;
 
 		if ( isset( $wp_meta_boxes[ $this->id ] ) ) : ?>
 			<div class="metabox-prefs">
-				<?
+				<?php
 					meta_box_prefs( $this );
 
 					if ( 'dashboard' === $this->id && has_action( 'welcome_panel' ) && current_user_can( 'edit_theme_options' ) ) {
@@ -1046,13 +1046,13 @@ final class WP_Screen {
 				?>
 				<br class="clear" />
 			</div>
-			<? endif;
+			<?php endif;
 			if ( $columns ) :
 				if ( ! empty( $columns['_title'] ) ) : ?>
-			<h5><? echo $columns['_title']; ?></h5>
-			<? endif; ?>
+			<h5><?php echo $columns['_title']; ?></h5>
+			<?php endif; ?>
 			<div class="metabox-prefs">
-				<?
+				<?php
 				$special = array('_title', 'cb', 'comment', 'media', 'name', 'title', 'username', 'blogname');
 
 				foreach ( $columns as $column => $title ) {
@@ -1072,17 +1072,17 @@ final class WP_Screen {
 				?>
 				<br class="clear" />
 			</div>
-		<? endif;
+		<?php endif;
 
 		$this->render_screen_layout();
 		$this->render_per_page_options();
 		echo $this->_screen_settings;
 
 		?>
-		<div><? wp_nonce_field( 'screen-options-nonce', 'screenoptionnonce', false ); ?></div>
+		<div><?php wp_nonce_field( 'screen-options-nonce', 'screenoptionnonce', false ); ?></div>
 		</form>
 		</div>
-		<?
+		<?php
 	}
 
 	/**
@@ -1098,20 +1098,20 @@ final class WP_Screen {
 		$num = $this->get_option( 'layout_columns', 'max' );
 
 		?>
-		<h5 class="screen-layout"><? _e('Screen Layout'); ?></h5>
-		<div class='columns-prefs'><?
+		<h5 class="screen-layout"><?php _e('Screen Layout'); ?></h5>
+		<div class='columns-prefs'><?php
 			_e('Number of Columns:');
 			for ( $i = 1; $i <= $num; ++$i ):
 				?>
-				<label class="columns-prefs-<? echo $i; ?>">
-					<input type='radio' name='screen_columns' value='<? echo esc_attr( $i ); ?>'
-						<? checked( $screen_layout_columns, $i ); ?> />
-					<? echo esc_html( $i ); ?>
+				<label class="columns-prefs-<?php echo $i; ?>">
+					<input type='radio' name='screen_columns' value='<?php echo esc_attr( $i ); ?>'
+						<?php checked( $screen_layout_columns, $i ); ?> />
+					<?php echo esc_html( $i ); ?>
 				</label>
-				<?
+				<?php
 			endfor; ?>
 		</div>
-		<?
+		<?php
 	}
 
 	/**
@@ -1157,18 +1157,18 @@ final class WP_Screen {
 
 		?>
 		<div class="screen-options">
-			<? if ( $per_page_label ) : ?>
+			<?php if ( $per_page_label ) : ?>
 				<input type="number" step="1" min="1" max="999" class="screen-per-page" name="wp_screen_options[value]"
-					id="<? echo esc_attr( $option ); ?>" maxlength="3"
-					value="<? echo esc_attr( $per_page ); ?>" />
-				<label for="<? echo esc_attr( $option ); ?>">
-					<? echo esc_html( $per_page_label ); ?>
+					id="<?php echo esc_attr( $option ); ?>" maxlength="3"
+					value="<?php echo esc_attr( $per_page ); ?>" />
+				<label for="<?php echo esc_attr( $option ); ?>">
+					<?php echo esc_html( $per_page_label ); ?>
 				</label>
-			<? endif;
+			<?php endif;
 
 			echo get_submit_button( __( 'Apply' ), 'button', 'screen-options-apply', false ); ?>
-			<input type='hidden' name='wp_screen_options[option]' value='<? echo esc_attr($option); ?>' />
+			<input type='hidden' name='wp_screen_options[option]' value='<?php echo esc_attr($option); ?>' />
 		</div>
-		<?
+		<?php
 	}
 }

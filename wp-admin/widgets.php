@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Widgets administration panel.
  *
@@ -230,23 +230,23 @@ if ( isset($_GET['editwidget']) && $_GET['editwidget'] ) {
 
 	require_once( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 	<div class="wrap">
-	<h2><? echo esc_html( $title ); ?></h2>
-	<div class="editwidget"<? echo $width; ?>>
-	<h3><? printf( __( 'Widget %s' ), $name ); ?></h3>
+	<h2><?php echo esc_html( $title ); ?></h2>
+	<div class="editwidget"<?php echo $width; ?>>
+	<h3><?php printf( __( 'Widget %s' ), $name ); ?></h3>
 
 	<form action="widgets.php" method="post">
 	<div class="widget-inside">
-<?
+<?php
 	if ( is_callable( $control_callback ) )
 		call_user_func_array( $control_callback, $control['params'] );
 	else
 		echo '<p>' . __('There are no options for this widget.') . "</p>\n"; ?>
 	</div>
 
-	<p class="describe"><? _e('Select both the sidebar for this widget and the position of the widget in that sidebar.'); ?></p>
+	<p class="describe"><?php _e('Select both the sidebar for this widget and the position of the widget in that sidebar.'); ?></p>
 	<div class="widget-position">
-	<table class="widefat"><thead><tr><th><? _e('Sidebar'); ?></th><th><? _e('Position'); ?></th></tr></thead><tbody>
-<?
+	<table class="widefat"><thead><tr><th><?php _e('Sidebar'); ?></th><th><?php _e('Position'); ?></th></tr></thead><tbody>
+<?php
 	foreach ( $wp_registered_sidebars as $sbname => $sbvalue ) {
 		echo "\t\t<tr><td><label><input type='radio' name='sidebar' value='" . esc_attr($sbname) . "'" . checked( $sbname, $sidebar, false ) . " /> $sbvalue[name]</label></td><td>";
 		if ( 'wp_inactive_widgets' == $sbname || 'orphaned_widgets' == substr( $sbname, 0, 16 ) ) {
@@ -276,24 +276,24 @@ if ( isset($_GET['editwidget']) && $_GET['editwidget'] ) {
 	</div>
 
 	<div class="widget-control-actions">
-<?
+<?php
 	if ( isset($_GET['addnew']) ) { ?>
-	<a href="widgets.php" class="button alignleft"><? _e('Cancel'); ?></a>
-<?
+	<a href="widgets.php" class="button alignleft"><?php _e('Cancel'); ?></a>
+<?php
 	} else {
 		submit_button( __( 'Delete' ), 'button alignleft', 'removewidget', false );
 	}
 	submit_button( __( 'Save Widget' ), 'button-primary alignright', 'savewidget', false ); ?>
-	<input type="hidden" name="widget-id" class="widget-id" value="<? echo esc_attr($widget_id); ?>" />
-	<input type="hidden" name="id_base" class="id_base" value="<? echo esc_attr($id_base); ?>" />
-	<input type="hidden" name="multi_number" class="multi_number" value="<? echo esc_attr($multi_number); ?>" />
-<?	wp_nonce_field("save-delete-widget-$widget_id"); ?>
+	<input type="hidden" name="widget-id" class="widget-id" value="<?php echo esc_attr($widget_id); ?>" />
+	<input type="hidden" name="id_base" class="id_base" value="<?php echo esc_attr($id_base); ?>" />
+	<input type="hidden" name="multi_number" class="multi_number" value="<?php echo esc_attr($multi_number); ?>" />
+<?php	wp_nonce_field("save-delete-widget-$widget_id"); ?>
 	<br class="clear" />
 	</div>
 	</form>
 	</div>
 	</div>
-<?
+<?php
 	require_once( ABSPATH . 'wp-admin/admin-footer.php' );
 	exit;
 }
@@ -310,16 +310,16 @@ $errors = array(
 require_once( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
-<? if ( isset($_GET['message']) && isset($messages[$_GET['message']]) ) { ?>
-<div id="message" class="updated"><p><? echo $messages[$_GET['message']]; ?></p></div>
-<? } ?>
-<? if ( isset($_GET['error']) && isset($errors[$_GET['error']]) ) { ?>
-<div id="message" class="error"><p><? echo $errors[$_GET['error']]; ?></p></div>
-<? } ?>
+<?php if ( isset($_GET['message']) && isset($messages[$_GET['message']]) ) { ?>
+<div id="message" class="updated"><p><?php echo $messages[$_GET['message']]; ?></p></div>
+<?php } ?>
+<?php if ( isset($_GET['error']) && isset($errors[$_GET['error']]) ) { ?>
+<div id="message" class="error"><p><?php echo $errors[$_GET['error']]; ?></p></div>
+<?php } ?>
 
-<?
+<?php
 /**
  * Fires before the Widgets administration page content loads.
  *
@@ -332,21 +332,21 @@ do_action( 'widgets_admin_page' ); ?>
 	<div id="available-widgets" class="widgets-holder-wrap">
 		<div class="sidebar-name">
 			<div class="sidebar-name-arrow"><br /></div>
-			<h3><? _e('Available Widgets'); ?> <span id="removing-widget"><? _ex('Deactivate', 'removing-widget'); ?> <span></span></span></h3>
+			<h3><?php _e('Available Widgets'); ?> <span id="removing-widget"><?php _ex('Deactivate', 'removing-widget'); ?> <span></span></span></h3>
 		</div>
 		<div class="widget-holder">
 			<div class="sidebar-description">
-				<p class="description"><? _e('To activate a widget drag it to a sidebar or click on it. To deactivate a widget and delete its settings, drag it back.'); ?></p>
+				<p class="description"><?php _e('To activate a widget drag it to a sidebar or click on it. To deactivate a widget and delete its settings, drag it back.'); ?></p>
 			</div>
 			<div id="widget-list">
-				<? wp_list_widgets(); ?>
+				<?php wp_list_widgets(); ?>
 			</div>
 			<br class='clear' />
 		</div>
 		<br class="clear" />
 	</div>
 
-<?
+<?php
 
 $theme_sidebars = array();
 foreach ( $wp_registered_sidebars as $sidebar => $registered_sidebar ) {
@@ -356,13 +356,13 @@ foreach ( $wp_registered_sidebars as $sidebar => $registered_sidebar ) {
 			$wrap_class .= ' ' . $registered_sidebar['class'];
 
 		?>
-		<div class="<? echo esc_attr( $wrap_class ); ?>">
+		<div class="<?php echo esc_attr( $wrap_class ); ?>">
 			<div class="widget-holder inactive">
-				<? wp_list_widget_controls( $registered_sidebar['id'], $registered_sidebar['name'] ); ?>
+				<?php wp_list_widget_controls( $registered_sidebar['id'], $registered_sidebar['name'] ); ?>
 				<div class="clear"></div>
 			</div>
 		</div>
-		<?
+		<?php
 
 	} else {
 		$theme_sidebars[$sidebar] = $registered_sidebar;
@@ -372,7 +372,7 @@ foreach ( $wp_registered_sidebars as $sidebar => $registered_sidebar ) {
 ?>
 </div>
 </div>
-<?
+<?php
 
 $i = $split = 0;
 $single_sidebar_class = '';
@@ -386,9 +386,9 @@ if ( $sidebars_count > 1 ) {
 
 ?>
 <div class="widget-liquid-right">
-<div id="widgets-right"<? echo $single_sidebar_class; ?>>
+<div id="widgets-right"<?php echo $single_sidebar_class; ?>>
 <div class="sidebars-column-1">
-<?
+<?php
 
 foreach ( $theme_sidebars as $sidebar => $registered_sidebar ) {
 	$wrap_class = 'widgets-holder-wrap';
@@ -401,14 +401,14 @@ foreach ( $theme_sidebars as $sidebar => $registered_sidebar ) {
 	if ( $split && $i == $split ) {
 		?>
 		</div><div class="sidebars-column-2">
-		<?
+		<?php
 	}
 
 	?>
-	<div class="<? echo esc_attr( $wrap_class ); ?>">
-		<? wp_list_widget_controls( $sidebar, $registered_sidebar['name'] ); // Show the control forms for each of the widgets in this sidebar ?>
+	<div class="<?php echo esc_attr( $wrap_class ); ?>">
+		<?php wp_list_widget_controls( $sidebar, $registered_sidebar['name'] ); // Show the control forms for each of the widgets in this sidebar ?>
 	</div>
-	<?
+	<?php
 
 	$i++;
 }
@@ -418,7 +418,7 @@ foreach ( $theme_sidebars as $sidebar => $registered_sidebar ) {
 </div>
 </div>
 <form action="" method="post">
-<? wp_nonce_field( 'save-sidebar-widgets', '_wpnonce_widgets', false ); ?>
+<?php wp_nonce_field( 'save-sidebar-widgets', '_wpnonce_widgets', false ); ?>
 </form>
 <br class="clear" />
 </div>
@@ -426,12 +426,12 @@ foreach ( $theme_sidebars as $sidebar => $registered_sidebar ) {
 <div class="widgets-chooser">
 	<ul class="widgets-chooser-sidebars"></ul>
 	<div class="widgets-chooser-actions">
-		<button class="button-secondary"><? _e( 'Cancel' ); ?></button>
-		<button class="button-primary"><? _e( 'Add Widget' ); ?></button>
+		<button class="button-secondary"><?php _e( 'Cancel' ); ?></button>
+		<button class="button-primary"><?php _e( 'Add Widget' ); ?></button>
 	</div>
 </div>
 
-<?
+<?php
 
 /**
  * Fires after the available widgets and sidebars have loaded, before the admin footer.

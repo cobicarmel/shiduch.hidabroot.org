@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * API for fetching the HTML to embed remote content based on a provided URL.
  * Used internally by the {@link WP_Embed} class, but is designed to be generic.

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Theme Installer List Table class.
  *
@@ -162,7 +162,7 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 ?>
 		<div class="tablenav top themes">
 			<div class="alignleft actions">
-				<?
+				<?php
 				/**
 				 * Fires in the Install Themes list table header.
 				 *
@@ -171,15 +171,15 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 				do_action( 'install_themes_table_header' );
 				?>
 			</div>
-			<? $this->pagination( 'top' ); ?>
+			<?php $this->pagination( 'top' ); ?>
 			<br class="clear" />
 		</div>
 
 		<div id="availablethemes">
-			<? $this->display_rows_or_placeholder(); ?>
+			<?php $this->display_rows_or_placeholder(); ?>
 		</div>
 
-		<?
+		<?php
 		parent::tablenav( 'bottom' );
 	}
 
@@ -187,10 +187,10 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		$themes = $this->items;
 		foreach ( $themes as $theme ) {
 				?>
-				<div class="available-theme installable-theme"><?
+				<div class="available-theme installable-theme"><?php
 					$this->single_row( $theme );
 				?></div>
-		<? } // end foreach $theme_names
+		<?php } // end foreach $theme_names
 
 		$this->theme_installer();
 	}
@@ -271,23 +271,23 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		$actions = apply_filters( 'theme_install_actions', $actions, $theme );
 
 		?>
-		<a class="screenshot install-theme-preview" href="<? echo esc_url( $preview_url ); ?>" title="<? echo esc_attr( $preview_title ); ?>">
-			<img src='<? echo esc_url( $theme->screenshot_url ); ?>' width='150' />
+		<a class="screenshot install-theme-preview" href="<?php echo esc_url( $preview_url ); ?>" title="<?php echo esc_attr( $preview_title ); ?>">
+			<img src='<?php echo esc_url( $theme->screenshot_url ); ?>' width='150' />
 		</a>
 
-		<h3><? echo $name; ?></h3>
-		<div class="theme-author"><? printf( __( 'By %s' ), $author ); ?></div>
+		<h3><?php echo $name; ?></h3>
+		<div class="theme-author"><?php printf( __( 'By %s' ), $author ); ?></div>
 
 		<div class="action-links">
 			<ul>
-				<? foreach ( $actions as $action ): ?>
-					<li><? echo $action; ?></li>
-				<? endforeach; ?>
-				<li class="hide-if-no-js"><a href="#" class="theme-detail"><? _e('Details') ?></a></li>
+				<?php foreach ( $actions as $action ): ?>
+					<li><?php echo $action; ?></li>
+				<?php endforeach; ?>
+				<li class="hide-if-no-js"><a href="#" class="theme-detail"><?php _e('Details') ?></a></li>
 			</ul>
 		</div>
 
-		<?
+		<?php
 		$this->install_theme_info( $theme );
 	}
 
@@ -299,22 +299,22 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		<div id="theme-installer" class="wp-full-overlay expanded">
 			<div class="wp-full-overlay-sidebar">
 				<div class="wp-full-overlay-header">
-					<a href="#" class="close-full-overlay button-secondary"><? _e( 'Close' ); ?></a>
+					<a href="#" class="close-full-overlay button-secondary"><?php _e( 'Close' ); ?></a>
 					<span class="theme-install"></span>
 				</div>
 				<div class="wp-full-overlay-sidebar-content">
 					<div class="install-theme-info"></div>
 				</div>
 				<div class="wp-full-overlay-footer">
-					<a href="#" class="collapse-sidebar" title="<? esc_attr_e('Collapse Sidebar'); ?>">
-						<span class="collapse-sidebar-label"><? _e('Collapse'); ?></span>
+					<a href="#" class="collapse-sidebar" title="<?php esc_attr_e('Collapse Sidebar'); ?>">
+						<span class="collapse-sidebar-label"><?php _e('Collapse'); ?></span>
 						<span class="collapse-sidebar-arrow"></span>
 					</a>
 				</div>
 			</div>
 			<div class="wp-full-overlay-main"></div>
 		</div>
-		<?
+		<?php
 	}
 
 	/**
@@ -327,13 +327,13 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		?>
 		<div id="theme-installer" class="wp-full-overlay single-theme">
 			<div class="wp-full-overlay-sidebar">
-				<? $this->install_theme_info( $theme ); ?>
+				<?php $this->install_theme_info( $theme ); ?>
 			</div>
 			<div class="wp-full-overlay-main">
-				<iframe src="<? echo esc_url( $theme->preview_url ); ?>"></iframe>
+				<iframe src="<?php echo esc_url( $theme->preview_url ); ?>"></iframe>
 			</div>
 		</div>
-		<?
+		<?php
 	}
 
 	/**
@@ -365,7 +365,7 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		$status = $this->_get_theme_status( $theme );
 
 		?>
-		<div class="install-theme-info"><?
+		<div class="install-theme-info"><?php
 			switch ( $status ) {
 				default:
 				case 'install':
@@ -379,24 +379,24 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 					echo '<span class="theme-install" title="' . esc_attr__( 'This theme is already installed and is up to date' ) . '">' . _x( 'Installed', 'theme' ) . '</span>';
 					break;
 			} ?>
-			<h3 class="theme-name"><? echo $name; ?></h3>
-			<span class="theme-by"><? printf( __( 'By %s' ), $author ); ?></span>
-			<? if ( isset( $theme->screenshot_url ) ): ?>
-				<img class="theme-screenshot" src="<? echo esc_url( $theme->screenshot_url ); ?>" />
-			<? endif; ?>
+			<h3 class="theme-name"><?php echo $name; ?></h3>
+			<span class="theme-by"><?php printf( __( 'By %s' ), $author ); ?></span>
+			<?php if ( isset( $theme->screenshot_url ) ): ?>
+				<img class="theme-screenshot" src="<?php echo esc_url( $theme->screenshot_url ); ?>" />
+			<?php endif; ?>
 			<div class="theme-details">
-				<? wp_star_rating( array( 'rating' => $theme->rating, 'type' => 'percent', 'number' => $theme->num_ratings ) ); ?>
+				<?php wp_star_rating( array( 'rating' => $theme->rating, 'type' => 'percent', 'number' => $theme->num_ratings ) ); ?>
 				<div class="theme-version">
-					<strong><? _e('Version:') ?> </strong>
-					<? echo wp_kses( $theme->version, $themes_allowedtags ); ?>
+					<strong><?php _e('Version:') ?> </strong>
+					<?php echo wp_kses( $theme->version, $themes_allowedtags ); ?>
 				</div>
 				<div class="theme-description">
-					<? echo wp_kses( $theme->description, $themes_allowedtags ); ?>
+					<?php echo wp_kses( $theme->description, $themes_allowedtags ); ?>
 				</div>
 			</div>
-			<input class="theme-preview-url" type="hidden" value="<? echo esc_url( $theme->preview_url ); ?>" />
+			<input class="theme-preview-url" type="hidden" value="<?php echo esc_url( $theme->preview_url ); ?>" />
 		</div>
-		<?
+		<?php
 	}
 
 	/**

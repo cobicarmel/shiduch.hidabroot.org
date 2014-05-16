@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Plugins administration panel.
  *
@@ -234,7 +234,7 @@ if ( $action ) {
 				require_once(ABSPATH . 'wp-admin/admin-header.php');
 				?>
 			<div class="wrap">
-				<?
+				<?php
 					$files_to_delete = $plugin_info = array();
 					$have_non_network_plugins = false;
 					foreach ( (array) $plugins as $plugin ) {
@@ -266,12 +266,12 @@ if ( $action ) {
 					$plugins_to_delete = count( $plugin_info );
 					echo '<h2>' . _n( 'Delete Plugin', 'Delete Plugins', $plugins_to_delete ) . '</h2>';
 				?>
-				<? if ( $have_non_network_plugins && is_network_admin() ) : ?>
-				<div class="error"><p><strong><? _e( 'Caution:' ); ?></strong> <? echo _n( 'This plugin may be active on other sites in the network.', 'These plugins may be active on other sites in the network.', $plugins_to_delete ); ?></p></div>
-				<? endif; ?>
-				<p><? echo _n( 'You are about to remove the following plugin:', 'You are about to remove the following plugins:', $plugins_to_delete ); ?></p>
+				<?php if ( $have_non_network_plugins && is_network_admin() ) : ?>
+				<div class="error"><p><strong><?php _e( 'Caution:' ); ?></strong> <?php echo _n( 'This plugin may be active on other sites in the network.', 'These plugins may be active on other sites in the network.', $plugins_to_delete ); ?></p></div>
+				<?php endif; ?>
+				<p><?php echo _n( 'You are about to remove the following plugin:', 'You are about to remove the following plugins:', $plugins_to_delete ); ?></p>
 					<ul class="ul-disc">
-						<?
+						<?php
 						$data_to_delete = false;
 						foreach ( $plugin_info as $plugin ) {
 							if ( $plugin['is_uninstallable'] ) {
@@ -285,37 +285,37 @@ if ( $action ) {
 						}
 						?>
 					</ul>
-				<p><?
+				<p><?php
 				if ( $data_to_delete )
 					_e('Are you sure you wish to delete these files and data?');
 				else
 					_e('Are you sure you wish to delete these files?');
 				?></p>
-				<form method="post" action="<? echo esc_url($_SERVER['REQUEST_URI']); ?>" style="display:inline;">
+				<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" style="display:inline;">
 					<input type="hidden" name="verify-delete" value="1" />
 					<input type="hidden" name="action" value="delete-selected" />
-					<?
+					<?php
 						foreach ( (array) $plugins as $plugin )
 							echo '<input type="hidden" name="checked[]" value="' . esc_attr($plugin) . '" />';
 					?>
-					<? wp_nonce_field('bulk-plugins') ?>
-					<? submit_button( $data_to_delete ? __( 'Yes, Delete these files and data' ) : __( 'Yes, Delete these files' ), 'button', 'submit', false ); ?>
+					<?php wp_nonce_field('bulk-plugins') ?>
+					<?php submit_button( $data_to_delete ? __( 'Yes, Delete these files and data' ) : __( 'Yes, Delete these files' ), 'button', 'submit', false ); ?>
 				</form>
-				<form method="post" action="<? echo esc_url(wp_get_referer()); ?>" style="display:inline;">
-					<? submit_button( __( 'No, Return me to the plugin list' ), 'button', 'submit', false ); ?>
+				<form method="post" action="<?php echo esc_url(wp_get_referer()); ?>" style="display:inline;">
+					<?php submit_button( __( 'No, Return me to the plugin list' ), 'button', 'submit', false ); ?>
 				</form>
 
-				<p><a href="#" onclick="jQuery('#files-list').toggle(); return false;"><? _e('Click to view entire list of files which will be deleted'); ?></a></p>
+				<p><a href="#" onclick="jQuery('#files-list').toggle(); return false;"><?php _e('Click to view entire list of files which will be deleted'); ?></a></p>
 				<div id="files-list" style="display:none;">
 					<ul class="code">
-					<?
+					<?php
 						foreach ( (array)$files_to_delete as $file )
 							echo '<li>' . esc_html(str_replace(WP_PLUGIN_DIR, '', $file)) . '</li>';
 					?>
 					</ul>
 				</div>
 			</div>
-				<?
+				<?php
 				require_once(ABSPATH . 'wp-admin/admin-footer.php');
 				exit;
 			} //Endif verify-delete
@@ -371,7 +371,7 @@ if ( !empty($invalid) )
 		echo '<div id="message" class="error"><p>' . sprintf(__('The plugin <code>%s</code> has been <strong>deactivated</strong> due to an error: %s'), esc_html($plugin_file), $error->get_error_message()) . '</p></div>';
 ?>
 
-<? if ( isset($_GET['error']) ) :
+<?php if ( isset($_GET['error']) ) :
 
 	if ( isset( $_GET['main'] ) )
 		$errmsg = __( 'You cannot delete a plugin while it is active on the main site.' );
@@ -380,46 +380,46 @@ if ( !empty($invalid) )
 	else
 		$errmsg = __('Plugin could not be activated because it triggered a <strong>fatal error</strong>.');
 	?>
-	<div id="message" class="updated"><p><? echo $errmsg; ?></p>
-	<?
+	<div id="message" class="updated"><p><?php echo $errmsg; ?></p>
+	<?php
 		if ( !isset( $_GET['main'] ) && !isset($_GET['charsout']) && wp_verify_nonce($_GET['_error_nonce'], 'plugin-activation-error_' . $plugin) ) { ?>
-	<iframe style="border:0" width="100%" height="70px" src="<? echo 'plugins.php?action=error_scrape&amp;plugin=' . esc_attr($plugin) . '&amp;_wpnonce=' . esc_attr($_GET['_error_nonce']); ?>"></iframe>
-	<?
+	<iframe style="border:0" width="100%" height="70px" src="<?php echo 'plugins.php?action=error_scrape&amp;plugin=' . esc_attr($plugin) . '&amp;_wpnonce=' . esc_attr($_GET['_error_nonce']); ?>"></iframe>
+	<?php
 		}
 	?>
 	</div>
-<? elseif ( isset($_GET['deleted']) ) :
+<?php elseif ( isset($_GET['deleted']) ) :
 		$delete_result = get_transient( 'plugins_delete_result_' . $user_ID );
 		// Delete it once we're done.
 		delete_transient( 'plugins_delete_result_' . $user_ID );
 
 		if ( is_wp_error($delete_result) ) : ?>
-		<div id="message" class="updated"><p><? printf( __('Plugin could not be deleted due to an error: %s'), $delete_result->get_error_message() ); ?></p></div>
-		<? else : ?>
-		<div id="message" class="updated"><p><? _e('The selected plugins have been <strong>deleted</strong>.'); ?></p></div>
-		<? endif; ?>
-<? elseif ( isset($_GET['activate']) ) : ?>
-	<div id="message" class="updated"><p><? _e('Plugin <strong>activated</strong>.') ?></p></div>
-<? elseif (isset($_GET['activate-multi'])) : ?>
-	<div id="message" class="updated"><p><? _e('Selected plugins <strong>activated</strong>.'); ?></p></div>
-<? elseif ( isset($_GET['deactivate']) ) : ?>
-	<div id="message" class="updated"><p><? _e('Plugin <strong>deactivated</strong>.') ?></p></div>
-<? elseif (isset($_GET['deactivate-multi'])) : ?>
-	<div id="message" class="updated"><p><? _e('Selected plugins <strong>deactivated</strong>.'); ?></p></div>
-<? elseif ( 'update-selected' == $action ) : ?>
-	<div id="message" class="updated"><p><? _e('No out of date plugins were selected.'); ?></p></div>
-<? endif; ?>
+		<div id="message" class="updated"><p><?php printf( __('Plugin could not be deleted due to an error: %s'), $delete_result->get_error_message() ); ?></p></div>
+		<?php else : ?>
+		<div id="message" class="updated"><p><?php _e('The selected plugins have been <strong>deleted</strong>.'); ?></p></div>
+		<?php endif; ?>
+<?php elseif ( isset($_GET['activate']) ) : ?>
+	<div id="message" class="updated"><p><?php _e('Plugin <strong>activated</strong>.') ?></p></div>
+<?php elseif (isset($_GET['activate-multi'])) : ?>
+	<div id="message" class="updated"><p><?php _e('Selected plugins <strong>activated</strong>.'); ?></p></div>
+<?php elseif ( isset($_GET['deactivate']) ) : ?>
+	<div id="message" class="updated"><p><?php _e('Plugin <strong>deactivated</strong>.') ?></p></div>
+<?php elseif (isset($_GET['deactivate-multi'])) : ?>
+	<div id="message" class="updated"><p><?php _e('Selected plugins <strong>deactivated</strong>.'); ?></p></div>
+<?php elseif ( 'update-selected' == $action ) : ?>
+	<div id="message" class="updated"><p><?php _e('No out of date plugins were selected.'); ?></p></div>
+<?php endif; ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title );
+<h2><?php echo esc_html( $title );
 if ( ( ! is_multisite() || is_network_admin() ) && current_user_can('install_plugins') ) { ?>
- <a href="<? echo self_admin_url( 'plugin-install.php' ); ?>" class="add-new-h2"><? echo esc_html_x('Add New', 'plugin'); ?></a>
-<? }
+ <a href="<?php echo self_admin_url( 'plugin-install.php' ); ?>" class="add-new-h2"><?php echo esc_html_x('Add New', 'plugin'); ?></a>
+<?php }
 if ( $s )
 	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $s ) ); ?>
 </h2>
 
-<?
+<?php
 /**
  * Fires before the plugins list table is rendered.
  *
@@ -435,21 +435,21 @@ if ( $s )
 do_action( 'pre_current_active_plugins', $plugins['all'] );
 ?>
 
-<? $wp_list_table->views(); ?>
+<?php $wp_list_table->views(); ?>
 
 <form method="get" action="">
-<? $wp_list_table->search_box( __( 'Search Installed Plugins' ), 'plugin' ); ?>
+<?php $wp_list_table->search_box( __( 'Search Installed Plugins' ), 'plugin' ); ?>
 </form>
 
 <form method="post" action="">
 
-<input type="hidden" name="plugin_status" value="<? echo esc_attr($status) ?>" />
-<input type="hidden" name="paged" value="<? echo esc_attr($page) ?>" />
+<input type="hidden" name="plugin_status" value="<?php echo esc_attr($status) ?>" />
+<input type="hidden" name="paged" value="<?php echo esc_attr($page) ?>" />
 
-<? $wp_list_table->display(); ?>
+<?php $wp_list_table->display(); ?>
 </form>
 
 </div>
 
-<?
+<?php
 include(ABSPATH . 'wp-admin/admin-footer.php');

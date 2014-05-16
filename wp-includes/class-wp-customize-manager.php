@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Customize Manager.
  *
@@ -421,7 +421,7 @@ final class WP_Customize_Manager {
 	 * @since 3.4.0
 	 */
 	public function customize_preview_base() {
-		?><base href="<? echo home_url( '/' ); ?>" /><?
+		?><base href="<?php echo home_url( '/' ); ?>" /><?php
 	}
 
 	/**
@@ -439,7 +439,7 @@ final class WP_Customize_Manager {
 				document.createElement( e[i] );
 			}
 		</script>
-		<![endif]--><?
+		<![endif]--><?php
 	}
 
 	/**
@@ -466,9 +466,9 @@ final class WP_Customize_Manager {
 
 		?>
 		<script type="text/javascript">
-			var _wpCustomizeSettings = <? echo json_encode( $settings ); ?>;
+			var _wpCustomizeSettings = <?php echo json_encode( $settings ); ?>;
 		</script>
-		<?
+		<?php
 	}
 
 	/**

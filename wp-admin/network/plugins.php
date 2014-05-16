@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Network Plugins administration panel.
  *

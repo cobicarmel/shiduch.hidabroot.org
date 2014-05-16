@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * User profile network administration panel.
  *

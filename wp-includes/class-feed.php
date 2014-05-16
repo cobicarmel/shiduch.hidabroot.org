@@ -1,4 +1,4 @@
-<?
+<?php
 
 if ( !class_exists('SimplePie') )
 	require_once( ABSPATH . WPINC . '/class-simplepie.php' );

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Atom Feed Template for displaying Atom Posts feed.
  *
@@ -12,9 +12,9 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 <feed
   xmlns="http://www.w3.org/2005/Atom"
   xmlns:thr="http://purl.org/syndication/thread/1.0"
-  xml:lang="<? bloginfo_rss( 'language' ); ?>"
-  xml:base="<? bloginfo_rss('url') ?>/wp-atom.php"
-  <?
+  xml:lang="<?php bloginfo_rss( 'language' ); ?>"
+  xml:base="<?php bloginfo_rss('url') ?>/wp-atom.php"
+  <?php
   /**
    * Fires at end of the Atom feed root to add namespaces.
    *
@@ -23,16 +23,16 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
   do_action( 'atom_ns' );
   ?>
  >
-	<title type="text"><? bloginfo_rss('name'); wp_title_rss(); ?></title>
-	<subtitle type="text"><? bloginfo_rss("description") ?></subtitle>
+	<title type="text"><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
+	<subtitle type="text"><?php bloginfo_rss("description") ?></subtitle>
 
-	<updated><? echo mysql2date('Y-m-d\TH:i:s\Z', get_lastpostmodified('GMT'), false); ?></updated>
+	<updated><?php echo mysql2date('Y-m-d\TH:i:s\Z', get_lastpostmodified('GMT'), false); ?></updated>
 
-	<link rel="alternate" type="<? bloginfo_rss('html_type'); ?>" href="<? bloginfo_rss('url') ?>" />
-	<id><? bloginfo('atom_url'); ?></id>
-	<link rel="self" type="application/atom+xml" href="<? self_link(); ?>" />
+	<link rel="alternate" type="<?php bloginfo_rss('html_type'); ?>" href="<?php bloginfo_rss('url') ?>" />
+	<id><?php bloginfo('atom_url'); ?></id>
+	<link rel="self" type="application/atom+xml" href="<?php self_link(); ?>" />
 
-	<?
+	<?php
 	/**
 	 * Fires just before the first Atom feed entry.
 	 *
@@ -44,10 +44,10 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	?>
 	<entry>
 		<author>
-			<name><? the_author() ?></name>
-			<? $author_url = get_the_author_meta('url'); if ( !empty($author_url) ) : ?>
-			<uri><? the_author_meta('url')?></uri>
-			<? endif;
+			<name><?php the_author() ?></name>
+			<?php $author_url = get_the_author_meta('url'); if ( !empty($author_url) ) : ?>
+			<uri><?php the_author_meta('url')?></uri>
+			<?php endif;
 
 			/**
 			 * Fires at the end of each Atom feed author entry.
@@ -57,17 +57,17 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 			do_action( 'atom_author' );
 		?>
 		</author>
-		<title type="<? html_type_rss(); ?>"><![CDATA[<? the_title_rss() ?>]]></title>
-		<link rel="alternate" type="<? bloginfo_rss('html_type'); ?>" href="<? the_permalink_rss() ?>" />
-		<id><? the_guid() ; ?></id>
-		<updated><? echo get_post_modified_time('Y-m-d\TH:i:s\Z', true); ?></updated>
-		<published><? echo get_post_time('Y-m-d\TH:i:s\Z', true); ?></published>
-		<? the_category_rss('atom') ?>
-		<summary type="<? html_type_rss(); ?>"><![CDATA[<? the_excerpt_rss(); ?>]]></summary>
-<? if ( !get_option('rss_use_excerpt') ) : ?>
-		<content type="<? html_type_rss(); ?>" xml:base="<? the_permalink_rss() ?>"><![CDATA[<? the_content_feed('atom') ?>]]></content>
-<? endif; ?>
-	<? atom_enclosure();
+		<title type="<?php html_type_rss(); ?>"><![CDATA[<?php the_title_rss() ?>]]></title>
+		<link rel="alternate" type="<?php bloginfo_rss('html_type'); ?>" href="<?php the_permalink_rss() ?>" />
+		<id><?php the_guid() ; ?></id>
+		<updated><?php echo get_post_modified_time('Y-m-d\TH:i:s\Z', true); ?></updated>
+		<published><?php echo get_post_time('Y-m-d\TH:i:s\Z', true); ?></published>
+		<?php the_category_rss('atom') ?>
+		<summary type="<?php html_type_rss(); ?>"><![CDATA[<?php the_excerpt_rss(); ?>]]></summary>
+<?php if ( !get_option('rss_use_excerpt') ) : ?>
+		<content type="<?php html_type_rss(); ?>" xml:base="<?php the_permalink_rss() ?>"><![CDATA[<?php the_content_feed('atom') ?>]]></content>
+<?php endif; ?>
+	<?php atom_enclosure();
 	/**
 	 * Fires at the end of each Atom feed item.
 	 *
@@ -75,9 +75,9 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 	 */
 	do_action( 'atom_entry' );
 		?>
-		<link rel="replies" type="<? bloginfo_rss('html_type'); ?>" href="<? the_permalink_rss() ?>#comments" thr:count="<? echo get_comments_number()?>"/>
-		<link rel="replies" type="application/atom+xml" href="<? echo esc_url( get_post_comments_feed_link(0, 'atom') ); ?>" thr:count="<? echo get_comments_number()?>"/>
-		<thr:total><? echo get_comments_number()?></thr:total>
+		<link rel="replies" type="<?php bloginfo_rss('html_type'); ?>" href="<?php the_permalink_rss() ?>#comments" thr:count="<?php echo get_comments_number()?>"/>
+		<link rel="replies" type="application/atom+xml" href="<?php echo esc_url( get_post_comments_feed_link(0, 'atom') ); ?>" thr:count="<?php echo get_comments_number()?>"/>
+		<thr:total><?php echo get_comments_number()?></thr:total>
 	</entry>
-	<? endwhile ; ?>
+	<?php endwhile ; ?>
 </feed>

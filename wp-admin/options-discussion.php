@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Discussion settings administration panel.
  *
@@ -31,50 +31,50 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 
 <div class="wrap">
-<h2><? echo esc_html( $title ); ?></h2>
+<h2><?php echo esc_html( $title ); ?></h2>
 
 <form method="post" action="options.php">
-<? settings_fields('discussion'); ?>
+<?php settings_fields('discussion'); ?>
 
 <table class="form-table">
 <tr>
-<th scope="row"><? _e('Default article settings'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Default article settings'); ?></span></legend>
+<th scope="row"><?php _e('Default article settings'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Default article settings'); ?></span></legend>
 <label for="default_pingback_flag">
-<input name="default_pingback_flag" type="checkbox" id="default_pingback_flag" value="1" <? checked('1', get_option('default_pingback_flag')); ?> />
-<? _e('Attempt to notify any blogs linked to from the article'); ?></label>
+<input name="default_pingback_flag" type="checkbox" id="default_pingback_flag" value="1" <?php checked('1', get_option('default_pingback_flag')); ?> />
+<?php _e('Attempt to notify any blogs linked to from the article'); ?></label>
 <br />
 <label for="default_ping_status">
-<input name="default_ping_status" type="checkbox" id="default_ping_status" value="open" <? checked('open', get_option('default_ping_status')); ?> />
-<? _e('Allow link notifications from other blogs (pingbacks and trackbacks)'); ?></label>
+<input name="default_ping_status" type="checkbox" id="default_ping_status" value="open" <?php checked('open', get_option('default_ping_status')); ?> />
+<?php _e('Allow link notifications from other blogs (pingbacks and trackbacks)'); ?></label>
 <br />
 <label for="default_comment_status">
-<input name="default_comment_status" type="checkbox" id="default_comment_status" value="open" <? checked('open', get_option('default_comment_status')); ?> />
-<? _e('Allow people to post comments on new articles'); ?></label>
+<input name="default_comment_status" type="checkbox" id="default_comment_status" value="open" <?php checked('open', get_option('default_comment_status')); ?> />
+<?php _e('Allow people to post comments on new articles'); ?></label>
 <br />
-<p class="description"><? echo '(' . __( 'These settings may be overridden for individual articles.' ) . ')'; ?></p>
+<p class="description"><?php echo '(' . __( 'These settings may be overridden for individual articles.' ) . ')'; ?></p>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Other comment settings'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Other comment settings'); ?></span></legend>
-<label for="require_name_email"><input type="checkbox" name="require_name_email" id="require_name_email" value="1" <? checked('1', get_option('require_name_email')); ?> /> <? _e('Comment author must fill out name and e-mail'); ?></label>
+<th scope="row"><?php _e('Other comment settings'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Other comment settings'); ?></span></legend>
+<label for="require_name_email"><input type="checkbox" name="require_name_email" id="require_name_email" value="1" <?php checked('1', get_option('require_name_email')); ?> /> <?php _e('Comment author must fill out name and e-mail'); ?></label>
 <br />
 <label for="comment_registration">
-<input name="comment_registration" type="checkbox" id="comment_registration" value="1" <? checked('1', get_option('comment_registration')); ?> />
-<? _e('Users must be registered and logged in to comment'); ?>
-<? if ( !get_option( 'users_can_register' ) && is_multisite() ) echo ' ' . __( '(Signup has been disabled. Only members of this site can comment.)' ); ?>
+<input name="comment_registration" type="checkbox" id="comment_registration" value="1" <?php checked('1', get_option('comment_registration')); ?> />
+<?php _e('Users must be registered and logged in to comment'); ?>
+<?php if ( !get_option( 'users_can_register' ) && is_multisite() ) echo ' ' . __( '(Signup has been disabled. Only members of this site can comment.)' ); ?>
 </label>
 <br />
 
 <label for="close_comments_for_old_posts">
-<input name="close_comments_for_old_posts" type="checkbox" id="close_comments_for_old_posts" value="1" <? checked('1', get_option('close_comments_for_old_posts')); ?> />
-<? printf( __('Automatically close comments on articles older than %s days'), '</label><label for="close_comments_days_old"><input name="close_comments_days_old" type="number" min="0" step="1" id="close_comments_days_old" value="' . esc_attr(get_option('close_comments_days_old')) . '" class="small-text" />'); ?>
+<input name="close_comments_for_old_posts" type="checkbox" id="close_comments_for_old_posts" value="1" <?php checked('1', get_option('close_comments_for_old_posts')); ?> />
+<?php printf( __('Automatically close comments on articles older than %s days'), '</label><label for="close_comments_days_old"><input name="close_comments_days_old" type="number" min="0" step="1" id="close_comments_days_old" value="' . esc_attr(get_option('close_comments_days_old')) . '" class="small-text" />'); ?>
 </label>
 <br />
 <label for="thread_comments">
-<input name="thread_comments" type="checkbox" id="thread_comments" value="1" <? checked('1', get_option('thread_comments')); ?> />
-<?
+<input name="thread_comments" type="checkbox" id="thread_comments" value="1" <?php checked('1', get_option('thread_comments')); ?> />
+<?php
 /**
  * Filter the maximum depth of threaded/nested comments.
  *
@@ -97,8 +97,8 @@ printf( __('Enable threaded (nested) comments %s levels deep'), $thread_comments
 ?></label>
 <br />
 <label for="page_comments">
-<input name="page_comments" type="checkbox" id="page_comments" value="1" <? checked('1', get_option('page_comments')); ?> />
-<?
+<input name="page_comments" type="checkbox" id="page_comments" value="1" <?php checked('1', get_option('page_comments')); ?> />
+<?php
 
 $default_comments_page = '</label><label for="default_comments_page"><select name="default_comments_page" id="default_comments_page"><option value="newest"';
 if ( 'newest' == get_option('default_comments_page') ) $default_comments_page .= ' selected="selected"';
@@ -110,7 +110,7 @@ printf( __('Break comments into pages with %1$s top level comments per page and 
 
 ?></label>
 <br />
-<label for="comment_order"><?
+<label for="comment_order"><?php
 
 $comment_order = '<select name="comment_order" id="comment_order"><option value="asc"';
 if ( 'asc' == get_option('comment_order') ) $comment_order .= ' selected="selected"';
@@ -124,71 +124,71 @@ printf( __('Comments should be displayed with the %s comments at the top of each
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('E-mail me whenever'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('E-mail me whenever'); ?></span></legend>
+<th scope="row"><?php _e('E-mail me whenever'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('E-mail me whenever'); ?></span></legend>
 <label for="comments_notify">
-<input name="comments_notify" type="checkbox" id="comments_notify" value="1" <? checked('1', get_option('comments_notify')); ?> />
-<? _e('Anyone posts a comment'); ?> </label>
+<input name="comments_notify" type="checkbox" id="comments_notify" value="1" <?php checked('1', get_option('comments_notify')); ?> />
+<?php _e('Anyone posts a comment'); ?> </label>
 <br />
 <label for="moderation_notify">
-<input name="moderation_notify" type="checkbox" id="moderation_notify" value="1" <? checked('1', get_option('moderation_notify')); ?> />
-<? _e('A comment is held for moderation'); ?> </label>
+<input name="moderation_notify" type="checkbox" id="moderation_notify" value="1" <?php checked('1', get_option('moderation_notify')); ?> />
+<?php _e('A comment is held for moderation'); ?> </label>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Before a comment appears'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Before a comment appears'); ?></span></legend>
+<th scope="row"><?php _e('Before a comment appears'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Before a comment appears'); ?></span></legend>
 <label for="comment_moderation">
-<input name="comment_moderation" type="checkbox" id="comment_moderation" value="1" <? checked('1', get_option('comment_moderation')); ?> />
-<? _e('Comment must be manually approved'); ?> </label>
+<input name="comment_moderation" type="checkbox" id="comment_moderation" value="1" <?php checked('1', get_option('comment_moderation')); ?> />
+<?php _e('Comment must be manually approved'); ?> </label>
 <br />
-<label for="comment_whitelist"><input type="checkbox" name="comment_whitelist" id="comment_whitelist" value="1" <? checked('1', get_option('comment_whitelist')); ?> /> <? _e('Comment author must have a previously approved comment'); ?></label>
+<label for="comment_whitelist"><input type="checkbox" name="comment_whitelist" id="comment_whitelist" value="1" <?php checked('1', get_option('comment_whitelist')); ?> /> <?php _e('Comment author must have a previously approved comment'); ?></label>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Comment Moderation'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Comment Moderation'); ?></span></legend>
-<p><label for="comment_max_links"><? printf(__('Hold a comment in the queue if it contains %s or more links. (A common characteristic of comment spam is a large number of hyperlinks.)'), '<input name="comment_max_links" type="number" step="1" min="0" id="comment_max_links" value="' . esc_attr(get_option('comment_max_links')) . '" class="small-text" />' ); ?></label></p>
+<th scope="row"><?php _e('Comment Moderation'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Comment Moderation'); ?></span></legend>
+<p><label for="comment_max_links"><?php printf(__('Hold a comment in the queue if it contains %s or more links. (A common characteristic of comment spam is a large number of hyperlinks.)'), '<input name="comment_max_links" type="number" step="1" min="0" id="comment_max_links" value="' . esc_attr(get_option('comment_max_links')) . '" class="small-text" />' ); ?></label></p>
 
-<p><label for="moderation_keys"><? _e('When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be held in the <a href="edit-comments.php?comment_status=moderated">moderation queue</a>. One word or IP per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;.'); ?></label></p>
+<p><label for="moderation_keys"><?php _e('When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be held in the <a href="edit-comments.php?comment_status=moderated">moderation queue</a>. One word or IP per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;.'); ?></label></p>
 <p>
-<textarea name="moderation_keys" rows="10" cols="50" id="moderation_keys" class="large-text code"><? echo esc_textarea( get_option( 'moderation_keys' ) ); ?></textarea>
+<textarea name="moderation_keys" rows="10" cols="50" id="moderation_keys" class="large-text code"><?php echo esc_textarea( get_option( 'moderation_keys' ) ); ?></textarea>
 </p>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Comment Blacklist'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Comment Blacklist'); ?></span></legend>
-<p><label for="blacklist_keys"><? _e('When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be marked as spam. One word or IP per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;.'); ?></label></p>
+<th scope="row"><?php _e('Comment Blacklist'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Comment Blacklist'); ?></span></legend>
+<p><label for="blacklist_keys"><?php _e('When a comment contains any of these words in its content, name, URL, e-mail, or IP, it will be marked as spam. One word or IP per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;.'); ?></label></p>
 <p>
-<textarea name="blacklist_keys" rows="10" cols="50" id="blacklist_keys" class="large-text code"><? echo esc_textarea( get_option( 'blacklist_keys' ) ); ?></textarea>
+<textarea name="blacklist_keys" rows="10" cols="50" id="blacklist_keys" class="large-text code"><?php echo esc_textarea( get_option( 'blacklist_keys' ) ); ?></textarea>
 </p>
 </fieldset></td>
 </tr>
-<? do_settings_fields('discussion', 'default'); ?>
+<?php do_settings_fields('discussion', 'default'); ?>
 </table>
 
-<h3 class="title"><? _e('Avatars'); ?></h3>
+<h3 class="title"><?php _e('Avatars'); ?></h3>
 
-<p><? _e('An avatar is an image that follows you from weblog to weblog appearing beside your name when you comment on avatar enabled sites. Here you can enable the display of avatars for people who comment on your site.'); ?></p>
+<p><?php _e('An avatar is an image that follows you from weblog to weblog appearing beside your name when you comment on avatar enabled sites. Here you can enable the display of avatars for people who comment on your site.'); ?></p>
 
-<? // the above would be a good place to link to codex documentation on the gravatar functions, for putting it in themes. anything like that? ?>
+<?php // the above would be a good place to link to codex documentation on the gravatar functions, for putting it in themes. anything like that? ?>
 
 <table class="form-table">
 <tr>
-<th scope="row"><? _e('Avatar Display'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Avatar Display'); ?></span></legend>
+<th scope="row"><?php _e('Avatar Display'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Avatar Display'); ?></span></legend>
 	<label for="show_avatars">
-		<input type="checkbox" id="show_avatars" name="show_avatars" value="1" <? checked( get_option('show_avatars'), 1 ); ?> />
-		<? _e( 'Show Avatars' ); ?>
+		<input type="checkbox" id="show_avatars" name="show_avatars" value="1" <?php checked( get_option('show_avatars'), 1 ); ?> />
+		<?php _e( 'Show Avatars' ); ?>
 	</label>
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Maximum Rating'); ?></th>
-<td><fieldset><legend class="screen-reader-text"><span><? _e('Maximum Rating'); ?></span></legend>
+<th scope="row"><?php _e('Maximum Rating'); ?></th>
+<td><fieldset><legend class="screen-reader-text"><span><?php _e('Maximum Rating'); ?></span></legend>
 
-<?
+<?php
 $ratings = array(
 	/* translators: Content suitability rating: http://bit.ly/89QxZA */
 	'G' => __('G &#8212; Suitable for all audiences'),
@@ -208,12 +208,12 @@ endforeach;
 </fieldset></td>
 </tr>
 <tr>
-<th scope="row"><? _e('Default Avatar'); ?></th>
-<td class="defaultavatarpicker"><fieldset><legend class="screen-reader-text"><span><? _e('Default Avatar'); ?></span></legend>
+<th scope="row"><?php _e('Default Avatar'); ?></th>
+<td class="defaultavatarpicker"><fieldset><legend class="screen-reader-text"><span><?php _e('Default Avatar'); ?></span></legend>
 
-<? _e('For users without a custom avatar of their own, you can either display a generic logo or a generated one based on their e-mail address.'); ?><br />
+<?php _e('For users without a custom avatar of their own, you can either display a generic logo or a generated one based on their e-mail address.'); ?><br />
 
-<?
+<?php
 $avatar_defaults = array(
 	'mystery' => __('Mystery Man'),
 	'blank' => __('Blank'),
@@ -261,13 +261,13 @@ echo apply_filters( 'default_avatar_select', $avatar_list );
 
 </fieldset></td>
 </tr>
-<? do_settings_fields('discussion', 'avatars'); ?>
+<?php do_settings_fields('discussion', 'avatars'); ?>
 </table>
 
-<? do_settings_sections('discussion'); ?>
+<?php do_settings_sections('discussion'); ?>
 
-<? submit_button(); ?>
+<?php submit_button(); ?>
 </form>
 </div>
 
-<? include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>

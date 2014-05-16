@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Update/Install Plugin/Theme administration panel.
  *

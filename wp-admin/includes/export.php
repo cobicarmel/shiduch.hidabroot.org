@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WordPress Export Administration API
  *
@@ -325,44 +325,44 @@ function export_wp( $args = array() ) {
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<? the_generator( 'export' ); ?>
+<?php the_generator( 'export' ); ?>
 <rss version="2.0"
-	xmlns:excerpt="http://wordpress.org/export/<? echo WXR_VERSION; ?>/excerpt/"
+	xmlns:excerpt="http://wordpress.org/export/<?php echo WXR_VERSION; ?>/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:wp="http://wordpress.org/export/<? echo WXR_VERSION; ?>/"
+	xmlns:wp="http://wordpress.org/export/<?php echo WXR_VERSION; ?>/"
 >
 
 <channel>
-	<title><? bloginfo_rss( 'name' ); ?></title>
-	<link><? bloginfo_rss( 'url' ); ?></link>
-	<description><? bloginfo_rss( 'description' ); ?></description>
-	<pubDate><? echo date( 'D, d M Y H:i:s +0000' ); ?></pubDate>
-	<language><? bloginfo_rss( 'language' ); ?></language>
-	<wp:wxr_version><? echo WXR_VERSION; ?></wp:wxr_version>
-	<wp:base_site_url><? echo wxr_site_url(); ?></wp:base_site_url>
-	<wp:base_blog_url><? bloginfo_rss( 'url' ); ?></wp:base_blog_url>
+	<title><?php bloginfo_rss( 'name' ); ?></title>
+	<link><?php bloginfo_rss( 'url' ); ?></link>
+	<description><?php bloginfo_rss( 'description' ); ?></description>
+	<pubDate><?php echo date( 'D, d M Y H:i:s +0000' ); ?></pubDate>
+	<language><?php bloginfo_rss( 'language' ); ?></language>
+	<wp:wxr_version><?php echo WXR_VERSION; ?></wp:wxr_version>
+	<wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
+	<wp:base_blog_url><?php bloginfo_rss( 'url' ); ?></wp:base_blog_url>
 
-<? wxr_authors_list(); ?>
+<?php wxr_authors_list(); ?>
 
-<? foreach ( $cats as $c ) : ?>
-	<wp:category><wp:term_id><? echo $c->term_id ?></wp:term_id><wp:category_nicename><? echo $c->slug; ?></wp:category_nicename><wp:category_parent><? echo $c->parent ? $cats[$c->parent]->slug : ''; ?></wp:category_parent><? wxr_cat_name( $c ); ?><? wxr_category_description( $c ); ?></wp:category>
-<? endforeach; ?>
-<? foreach ( $tags as $t ) : ?>
-	<wp:tag><wp:term_id><? echo $t->term_id ?></wp:term_id><wp:tag_slug><? echo $t->slug; ?></wp:tag_slug><? wxr_tag_name( $t ); ?><? wxr_tag_description( $t ); ?></wp:tag>
-<? endforeach; ?>
-<? foreach ( $terms as $t ) : ?>
-	<wp:term><wp:term_id><? echo $t->term_id ?></wp:term_id><wp:term_taxonomy><? echo $t->taxonomy; ?></wp:term_taxonomy><wp:term_slug><? echo $t->slug; ?></wp:term_slug><wp:term_parent><? echo $t->parent ? $terms[$t->parent]->slug : ''; ?></wp:term_parent><? wxr_term_name( $t ); ?><? wxr_term_description( $t ); ?></wp:term>
-<? endforeach; ?>
-<? if ( 'all' == $args['content'] ) wxr_nav_menu_terms(); ?>
+<?php foreach ( $cats as $c ) : ?>
+	<wp:category><wp:term_id><?php echo $c->term_id ?></wp:term_id><wp:category_nicename><?php echo $c->slug; ?></wp:category_nicename><wp:category_parent><?php echo $c->parent ? $cats[$c->parent]->slug : ''; ?></wp:category_parent><?php wxr_cat_name( $c ); ?><?php wxr_category_description( $c ); ?></wp:category>
+<?php endforeach; ?>
+<?php foreach ( $tags as $t ) : ?>
+	<wp:tag><wp:term_id><?php echo $t->term_id ?></wp:term_id><wp:tag_slug><?php echo $t->slug; ?></wp:tag_slug><?php wxr_tag_name( $t ); ?><?php wxr_tag_description( $t ); ?></wp:tag>
+<?php endforeach; ?>
+<?php foreach ( $terms as $t ) : ?>
+	<wp:term><wp:term_id><?php echo $t->term_id ?></wp:term_id><wp:term_taxonomy><?php echo $t->taxonomy; ?></wp:term_taxonomy><wp:term_slug><?php echo $t->slug; ?></wp:term_slug><wp:term_parent><?php echo $t->parent ? $terms[$t->parent]->slug : ''; ?></wp:term_parent><?php wxr_term_name( $t ); ?><?php wxr_term_description( $t ); ?></wp:term>
+<?php endforeach; ?>
+<?php if ( 'all' == $args['content'] ) wxr_nav_menu_terms(); ?>
 
-	<?
+	<?php
 	/** This action is documented in wp-includes/feed-rss2.php */
 	do_action( 'rss2_head' );
 	?>
 
-<? if ( $post_ids ) {
+<?php if ( $post_ids ) {
 	global $wp_query;
 	$wp_query->in_the_loop = true; // Fake being in the loop.
 
@@ -377,14 +377,14 @@ function export_wp( $args = array() ) {
 		$is_sticky = is_sticky( $post->ID ) ? 1 : 0;
 ?>
 	<item>
-		<? /** This filter is documented in wp-includes/feed.php */ ?>
-		<title><? echo apply_filters( 'the_title_rss', $post->post_title ); ?></title>
-		<link><? the_permalink_rss() ?></link>
-		<pubDate><? echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
-		<dc:creator><? echo wxr_cdata( get_the_author_meta( 'login' ) ); ?></dc:creator>
-		<guid isPermaLink="false"><? the_guid(); ?></guid>
+		<?php /** This filter is documented in wp-includes/feed.php */ ?>
+		<title><?php echo apply_filters( 'the_title_rss', $post->post_title ); ?></title>
+		<link><?php the_permalink_rss() ?></link>
+		<pubDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
+		<dc:creator><?php echo wxr_cdata( get_the_author_meta( 'login' ) ); ?></dc:creator>
+		<guid isPermaLink="false"><?php the_guid(); ?></guid>
 		<description></description>
-		<content:encoded><?
+		<content:encoded><?php
 			/**
 			 * Filter the post content used for WXR exports.
 			 *
@@ -394,7 +394,7 @@ function export_wp( $args = array() ) {
 			 */
 			echo wxr_cdata( apply_filters( 'the_content_export', $post->post_content ) );
 		?></content:encoded>
-		<excerpt:encoded><?
+		<excerpt:encoded><?php
 			/**
 			 * Filter the post excerpt used for WXR exports.
 			 *
@@ -404,23 +404,23 @@ function export_wp( $args = array() ) {
 			 */
 			echo wxr_cdata( apply_filters( 'the_excerpt_export', $post->post_excerpt ) );
 		?></excerpt:encoded>
-		<wp:post_id><? echo $post->ID; ?></wp:post_id>
-		<wp:post_date><? echo $post->post_date; ?></wp:post_date>
-		<wp:post_date_gmt><? echo $post->post_date_gmt; ?></wp:post_date_gmt>
-		<wp:comment_status><? echo $post->comment_status; ?></wp:comment_status>
-		<wp:ping_status><? echo $post->ping_status; ?></wp:ping_status>
-		<wp:post_name><? echo $post->post_name; ?></wp:post_name>
-		<wp:status><? echo $post->post_status; ?></wp:status>
-		<wp:post_parent><? echo $post->post_parent; ?></wp:post_parent>
-		<wp:menu_order><? echo $post->menu_order; ?></wp:menu_order>
-		<wp:post_type><? echo $post->post_type; ?></wp:post_type>
-		<wp:post_password><? echo $post->post_password; ?></wp:post_password>
-		<wp:is_sticky><? echo $is_sticky; ?></wp:is_sticky>
-<?	if ( $post->post_type == 'attachment' ) : ?>
-		<wp:attachment_url><? echo wp_get_attachment_url( $post->ID ); ?></wp:attachment_url>
-<? 	endif; ?>
-<? 	wxr_post_taxonomy(); ?>
-<?	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
+		<wp:post_id><?php echo $post->ID; ?></wp:post_id>
+		<wp:post_date><?php echo $post->post_date; ?></wp:post_date>
+		<wp:post_date_gmt><?php echo $post->post_date_gmt; ?></wp:post_date_gmt>
+		<wp:comment_status><?php echo $post->comment_status; ?></wp:comment_status>
+		<wp:ping_status><?php echo $post->ping_status; ?></wp:ping_status>
+		<wp:post_name><?php echo $post->post_name; ?></wp:post_name>
+		<wp:status><?php echo $post->post_status; ?></wp:status>
+		<wp:post_parent><?php echo $post->post_parent; ?></wp:post_parent>
+		<wp:menu_order><?php echo $post->menu_order; ?></wp:menu_order>
+		<wp:post_type><?php echo $post->post_type; ?></wp:post_type>
+		<wp:post_password><?php echo $post->post_password; ?></wp:post_password>
+		<wp:is_sticky><?php echo $is_sticky; ?></wp:is_sticky>
+<?php	if ( $post->post_type == 'attachment' ) : ?>
+		<wp:attachment_url><?php echo wp_get_attachment_url( $post->ID ); ?></wp:attachment_url>
+<?php 	endif; ?>
+<?php 	wxr_post_taxonomy(); ?>
+<?php	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
 		foreach ( $postmeta as $meta ) :
 			/**
 			 * Filter whether to selectively skip post meta used for WXR exports.
@@ -438,40 +438,40 @@ function export_wp( $args = array() ) {
 				continue;
 		?>
 		<wp:postmeta>
-			<wp:meta_key><? echo $meta->meta_key; ?></wp:meta_key>
-			<wp:meta_value><? echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
+			<wp:meta_key><?php echo $meta->meta_key; ?></wp:meta_key>
+			<wp:meta_value><?php echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
 		</wp:postmeta>
-<?	endforeach; ?>
-<?	$comments = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved <> 'spam'", $post->ID ) );
+<?php	endforeach; ?>
+<?php	$comments = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved <> 'spam'", $post->ID ) );
 		foreach ( $comments as $c ) : ?>
 		<wp:comment>
-			<wp:comment_id><? echo $c->comment_ID; ?></wp:comment_id>
-			<wp:comment_author><? echo wxr_cdata( $c->comment_author ); ?></wp:comment_author>
-			<wp:comment_author_email><? echo $c->comment_author_email; ?></wp:comment_author_email>
-			<wp:comment_author_url><? echo esc_url_raw( $c->comment_author_url ); ?></wp:comment_author_url>
-			<wp:comment_author_IP><? echo $c->comment_author_IP; ?></wp:comment_author_IP>
-			<wp:comment_date><? echo $c->comment_date; ?></wp:comment_date>
-			<wp:comment_date_gmt><? echo $c->comment_date_gmt; ?></wp:comment_date_gmt>
-			<wp:comment_content><? echo wxr_cdata( $c->comment_content ) ?></wp:comment_content>
-			<wp:comment_approved><? echo $c->comment_approved; ?></wp:comment_approved>
-			<wp:comment_type><? echo $c->comment_type; ?></wp:comment_type>
-			<wp:comment_parent><? echo $c->comment_parent; ?></wp:comment_parent>
-			<wp:comment_user_id><? echo $c->user_id; ?></wp:comment_user_id>
-<?		$c_meta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->commentmeta WHERE comment_id = %d", $c->comment_ID ) );
+			<wp:comment_id><?php echo $c->comment_ID; ?></wp:comment_id>
+			<wp:comment_author><?php echo wxr_cdata( $c->comment_author ); ?></wp:comment_author>
+			<wp:comment_author_email><?php echo $c->comment_author_email; ?></wp:comment_author_email>
+			<wp:comment_author_url><?php echo esc_url_raw( $c->comment_author_url ); ?></wp:comment_author_url>
+			<wp:comment_author_IP><?php echo $c->comment_author_IP; ?></wp:comment_author_IP>
+			<wp:comment_date><?php echo $c->comment_date; ?></wp:comment_date>
+			<wp:comment_date_gmt><?php echo $c->comment_date_gmt; ?></wp:comment_date_gmt>
+			<wp:comment_content><?php echo wxr_cdata( $c->comment_content ) ?></wp:comment_content>
+			<wp:comment_approved><?php echo $c->comment_approved; ?></wp:comment_approved>
+			<wp:comment_type><?php echo $c->comment_type; ?></wp:comment_type>
+			<wp:comment_parent><?php echo $c->comment_parent; ?></wp:comment_parent>
+			<wp:comment_user_id><?php echo $c->user_id; ?></wp:comment_user_id>
+<?php		$c_meta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->commentmeta WHERE comment_id = %d", $c->comment_ID ) );
 			foreach ( $c_meta as $meta ) : ?>
 			<wp:commentmeta>
-				<wp:meta_key><? echo $meta->meta_key; ?></wp:meta_key>
-				<wp:meta_value><? echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
+				<wp:meta_key><?php echo $meta->meta_key; ?></wp:meta_key>
+				<wp:meta_value><?php echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
 			</wp:commentmeta>
-<?		endforeach; ?>
+<?php		endforeach; ?>
 		</wp:comment>
-<?	endforeach; ?>
+<?php	endforeach; ?>
 	</item>
-<?
+<?php
 	}
 	}
 } ?>
 </channel>
 </rss>
-<?
+<?php
 }
