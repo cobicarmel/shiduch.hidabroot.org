@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Matchrepo v1.0-wpcom\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-05-18 08:25:52+0000\n"
+"PO-Revision-Date: 2014-05-19 22:50:38+0000\n"
 "Last-Translator: cobicarmel <jzaltzberg@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -373,12 +373,12 @@ msgstr "חיפוש מהיר"
 msgid "Right Sidebar"
 msgstr "סרגל צד ימין"
 
-#: init/sidebars.php:16
+#: init/sidebars.php:14
 #@ Matchrepo
 msgid "Top Sidebar"
 msgstr "סרגל עליון"
 
-#: home.php:43
+#: home.php:22
 #@ Matchrepo
 msgid "New Cards In Repository"
 msgstr "כרטיסים חדשים במאגר"
@@ -388,79 +388,79 @@ msgstr "כרטיסים חדשים במאגר"
 msgid "Banner"
 msgstr "באנר"
 
-#: init/cards.php:6
+#: cards/register.php:6
 #@ Matchrepo
 msgctxt "Post Type General Name"
 msgid "Cards"
 msgstr "כרטיסים"
 
-#: init/cards.php:7
+#: cards/register.php:7
 #@ Matchrepo
 msgctxt "Post Type Singular Name"
 msgid "Card"
 msgstr "כרטיס"
 
-#: init/cards.php:8
+#: cards/register.php:8
 #@ Matchrepo
 msgid "Cards"
 msgstr "כרטיסים"
 
-#: init/cards.php:9
+#: cards/register.php:9
 #@ Matchrepo
 msgid "Parent Item:"
 msgstr ""
 
-#: init/cards.php:10
+#: cards/register.php:10
 #@ Matchrepo
 msgid "All Cards"
 msgstr "כל הכרטיסים"
 
-#: init/cards.php:11
+#: cards/register.php:11
 #@ Matchrepo
 msgid "View Card"
 msgstr "הצגת כרטיס"
 
-#: init/cards.php:12
+#: cards/register.php:12
 #@ Matchrepo
 msgid "Add New Card"
 msgstr "הוספת כרטיס חדש"
 
-#: init/cards.php:13
+#: cards/register.php:13
 #@ Matchrepo
 msgid "Add New"
 msgstr "הוספת חדש"
 
-#: init/cards.php:14
+#: cards/register.php:14
 #@ Matchrepo
 msgid "Edit Card"
 msgstr "עריכת כרטיס"
 
-#: init/cards.php:15
+#: cards/register.php:15
 #@ Matchrepo
 msgid "Update Card"
 msgstr "עדכון כרטיס"
 
-#: init/cards.php:16
+#: cards/register.php:16
 #@ Matchrepo
 msgid "Search Card"
 msgstr "חיפוש כרטיס"
 
-#: init/cards.php:17
-#@ Matchrepo
+#: cards/register.php:17
+#@ default
 msgid "Not found"
 msgstr "לא נמצא"
 
-#: init/cards.php:18
-#@ Matchrepo
+#: cards/register.php:18
+#@ default
 msgid "Not found in Trash"
 msgstr "לא נמצא באשפה"
 
-#: init/cards.php:21
+#: cards/register.php:21
 #@ Matchrepo
 msgid "card"
 msgstr "כרטיס"
 
-#: init/cards.php:22
+#: cards/register.php:22
 #@ Matchrepo
 msgid "Post Type Description"
 msgstr ""
@@ -469,4 +469,79 @@ msgstr ""
 #@ Matchrepo
 msgid "Date Of Birth"
 msgstr "תאריך לידה"
+
+#: cards/properties.php:19
+#@ Matchrepo
+msgid "Work/Learning Place Today"
+msgstr "מקום לימודים/עיסוק כיום"
+
+#: cards/properties.php:24
+#@ Matchrepo
+msgid "City"
+msgstr "עיר מגורים"
+
+#: cards/properties.php:42
+#@ Matchrepo
+msgid "Community"
+msgstr "עדה"
+
+#: cards/properties.php:52
+#@ Matchrepo
+msgid "Height"
+msgstr "גובה"
+
+#: cards/properties.php:57
+#@ Matchrepo
+msgid "Father Work"
+msgstr "עיסוק האב"
+
+#: cards/properties.php:62
+#@ Matchrepo
+msgid "Mother Work"
+msgstr "עיסוק האם"
+
+#: cards/properties.php:67
+#@ Matchrepo
+msgid "Healthy"
+msgstr "מצב בריאותי"
+
+#: cards/properties.php:96
+#@ Matchrepo
+msgid "Smoking"
+msgstr "עישון"
+
+#: cards/properties.php:112
+#@ Matchrepo
+msgid "Cover"
+msgstr "כיסוי ראש"
+
+#: init/sidebars.php:21
+#@ Matchrepo
+msgid "Home Content"
+msgstr "תוכן דף ראשי"
+
+#: cards/properties.php:12
+#@ Matchrepo
+msgid "Marital Status"
+msgstr "מצב משפחתי"
+
+#: cards/properties.php:73
+#@ Matchrepo
+msgid "Min Age"
+msgstr "מגיל"
+
+#: cards/properties.php:79
+#@ Matchrepo
+msgid "Max Age"
+msgstr "עד גיל"
+
+#: cards/properties.php:30
+#@ Matchrepo
+msgid "Zone"
+msgstr "איזור"
+
+#: cards/properties.php:36
+#@ Matchrepo
+msgid "View"
+msgstr "מראה כללי"
 

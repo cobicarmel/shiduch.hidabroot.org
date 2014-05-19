@@ -27,6 +27,7 @@
 #home-content {
   float: right;
   width: 67%;
+  font-size: 18px;
 }
 #home-content h1 {
   font-size: 36px;
@@ -41,16 +42,19 @@
 #home-content ol li {
   position: relative;
   padding-right: 30px;
+  margin-bottom: 10px;
 }
 #home-content ol li:before {
   content: counter(li);
   counter-increment: li;
   position: absolute;
   right: 0;
+  top: 5px;
   background-color: #414340;
   color: #FFF;
-  font-size: 18px;
+  font-size: 23px;
   padding: 0 8px;
+  line-height: 1;
+  height: 19px;
   border-radius: 5px;
-  margin-left: 10px;
 }

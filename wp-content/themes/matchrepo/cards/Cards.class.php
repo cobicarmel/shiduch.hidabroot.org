@@ -20,6 +20,41 @@ abstract class Cards{
 		$this ->set_age();
 	}
 
+	protected static function build_form($params){
+
+		echo '<form>';
+
+		foreach($params as $param){
+
+			echo '<p>';
+
+			$props = self::$props[$param];
+
+			echo "<label>$props[label]</label>";
+
+			switch($props['type']){
+
+				case 'text':
+					echo "<input type='text' name='$param'>";
+					break;
+
+				case 'select':
+					echo "<select name='$param'>";
+
+					foreach($props['options'] as $value => $text)
+						echo "<option value='$value'>$text</option>";
+
+					echo '</select>';
+
+					break;
+			}
+
+			echo '</p>';
+		}
+
+		echo '</form>';
+	}
+
 	protected function get_meta(){
 		$meta = get_post_meta($this ->id);
 
@@ -57,6 +92,12 @@ abstract class Cards{
 		$items['community'] = 'מוצא ' . $items['community'];
 
 		return $this ->name . ', ' . implode(', ', $items);
+	}
+
+	static function quick_search(){
+		$params = ['min_age', 'max_age', 'zone', 'status', 'community'];
+
+		self::build_form($params);
 	}
 
 }

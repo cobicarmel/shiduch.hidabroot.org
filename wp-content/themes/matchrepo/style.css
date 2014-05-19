@@ -362,6 +362,31 @@ a {
 	padding: 0 32px;
 }
 
+.main-navigation li:hover {
+	background: linear-gradient(101deg,
+		transparent 8%,
+		#CCA552 9%,
+		#E0C06B 24%,
+		#F5DD84 38%,
+		#FAED9E 51%,
+		#D7AF57 61%,
+		#A97E38 68%,
+		#D7AF57 78%,
+		#D7AF57 91%,
+		transparent 92%
+	);
+}
+
+.main-navigation li:not(:last-of-type):after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	left: -7px;
+	width: 9px;
+	height: 38px;
+	background-image: url(media/nav-separator.png);
+}
+
 .main-navigation a {
 	display: block;
 	text-decoration: none;

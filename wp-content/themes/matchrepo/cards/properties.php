@@ -9,7 +9,7 @@ $globalProps = [
 	],
 
 	'status' => [
-		'label' => 'Marital Status',
+		'label' => __('Marital Status', THEME_NAME),
 		'type' => 'select',
 		'options' => [],
 		'attr' => []
@@ -21,13 +21,19 @@ $globalProps = [
 	],
 
 	'city' => [
-		'label' => __('City'),
+		'label' => __('City', THEME_NAME),
+		'type' => 'select',
+		'options' => []
+	],
+
+	'zone' => [
+		'label' => __('Zone', THEME_NAME),
 		'type' => 'select',
 		'options' => []
 	],
 
 	'look' => [
-		'label' => __('General Look'),
+		'label' => __('View', THEME_NAME),
 		'type' => 'select',
 		'options' => []
 	],
@@ -61,6 +67,18 @@ $globalProps = [
 		'label' => __('Healthy', THEME_NAME),
 		'type' => 'select',
 		'options' => []
+	],
+
+	'min_age' => [
+		'label' => __('Min Age', THEME_NAME),
+		'type' => 'select',
+		'options' => range(18, 70)
+	],
+
+	'max_age' => [
+		'label' => __('Max Age', THEME_NAME),
+		'type' => 'select',
+		'options' => range(18, 70)
 	]
 ];
 
@@ -96,6 +114,6 @@ $femaleProps = [
 	]
 ];
 
-Male::$props = array_merge($globalProps, $maleProps);
+Male::$props = array_merge($maleProps, $globalProps);
 
-Female::$props = array_merge($globalProps, $femaleProps);
+Female::$props = array_merge($femaleProps, $globalProps);

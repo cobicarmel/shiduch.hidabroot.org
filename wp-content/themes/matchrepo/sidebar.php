@@ -42,6 +42,9 @@ wp_enqueue_style('sidebar');
 					<span class="title-deco"></span>
 					<? _e('Quick Search', THEME_NAME) ?>
 				</h3>
+				<?
+				Cards::quick_search();
+				?>
 			</div>
 		</aside>
 
