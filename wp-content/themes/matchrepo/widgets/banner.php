@@ -1,9 +1,9 @@
 <?
 
-class Widget_TopBanner extends WP_Widget{
+class Banner extends WP_Widget{
 
 	function __construct(){
-		parent::__construct(get_class($this), __('top_banner', 'Matchrepo'));
+		parent::__construct(get_class($this), __('Banner', THEME_NAME));
 	}
 
 	function widget($args, $instance){
@@ -25,7 +25,7 @@ class Widget_TopBanner extends WP_Widget{
 		$instance_url = isset($instance['url']) ? $instance['url'] : '';
 	?>
 		<p>
-			<label for="<?= $url_id ?>"><? _e('Banner URL', 'Matchrepo') ?></label>
+			<label for="<?= $url_id ?>"><? _e('Banner URL', THEME_NAME) ?></label>
 			<input type="text" id="<?= $url_id ?>" class="widefat" name="<?= $url_name ?>" value="<?= $instance_url?>">
 		</p>
 	<?
@@ -34,7 +34,7 @@ class Widget_TopBanner extends WP_Widget{
 		$instance_target = isset($instance['target']) ? $instance['target'] : '';
 	?>
 		<p>
-			<label for="<?= $target_id ?>"><? _e('Banner target', 'Matchrepo') ?></label>
+			<label for="<?= $target_id ?>"><? _e('Banner target', THEME_NAME) ?></label>
 			<input type="text" id="<?= $target_id ?>" class="widefat" name="<?= $target_name ?>" value="<?= $instance_target?>">
 		</p>
 	<?
@@ -43,5 +43,5 @@ class Widget_TopBanner extends WP_Widget{
 }
 
 add_action('widgets_init', function(){
-	register_widget('Widget_TopBanner');
+	register_widget('Banner');
 });

@@ -221,27 +221,22 @@ textarea {
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"],
-#cards-count {
-	border: 1px solid;
-	border-color: #CCC #CCC #BBB #CCC;
-	border-radius: 3px;
-	background: #E6E6E6;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
-	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
-	font-size: 12px;
+input[type="submit"] {
+	border: none;
+	background: #86767B;
+	color: #FFF;
+	cursor: pointer;
+	font-size: 15px;
 	line-height: 1;
-	padding: .6em 1em .4em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	outline: none;
+	padding: 3px 10px;
 }
 
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #CCC #BBB #AAA #BBB;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+	box-shadow: inset 0 0px 3px rgba(0, 0, 0, 0.7);
 }
 
 button:focus,
@@ -252,8 +247,7 @@ button:active,
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-	border-color: #AAA #BBB #BBB #BBB;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+	box-shadow: inset 0 0px 8px rgba(0, 0, 0, 0.8);
 }
 
 input[type="checkbox"],
@@ -312,13 +306,8 @@ textarea {
 }
 
 a {
-	color: royalblue;
-}
-
-a:hover,
-a:focus,
-a:active {
-	color: midnightblue;
+	color: inherit;
+	text-decoration: none;
 }
 
 .main-navigation {
@@ -774,13 +763,55 @@ main {
 	padding: 0 20px;
 }
 
-#main-image {
-	height: 400px;
-	overflow: hidden;
-}
-
 #content-wrapper {
 	background-image: url('media/background.png');
+}
+
+.side-box-title {
+	margin-top: -32px;
+	line-height: 32px;
+	background-image: linear-gradient(to left, #720D02, #BE0F02);
+	font-size: 18px;
+	color: #FFF;
+	padding: 0 10px;
+	position: absolute;
+}
+
+.side-box-title:after {
+	content: ' ';
+	left: -11px;
+	position: absolute;
+	top: 0;
+	border-width: 32px 11px 0px 0px;
+	border-style: solid;
+	border-color: transparent #BE0F02;
+}
+
+.title-deco {
+	position: absolute;
+	height: 100%;
+	width: 4px;
+	right: -4px;
+	background-color: #720D02;
+}
+
+.title-deco:before,
+.title-deco:after {
+	border-style: solid;
+	content: ' ';
+	position: absolute;
+	right: 0;
+	border-color: transparent #541607;
+}
+
+.title-deco:before {
+	top: -4px;
+	border-width: 4px 0px 0px 4px;
+}
+
+.title-deco:after {
+	bottom: -4px;
+	border-width: 0px 0px 4px 4px;
 }
 
 #footer-wrapper {

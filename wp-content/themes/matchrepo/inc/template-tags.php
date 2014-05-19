@@ -18,15 +18,15 @@ function Matchrepo_paging_nav() {
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><? _e( 'Posts navigation', 'Matchrepo' ); ?></h1>
+		<h1 class="screen-reader-text"><? _e( 'Posts navigation', THEME_NAME ); ?></h1>
 		<div class="nav-links">
 
 			<? if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><? next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'Matchrepo' ) ); ?></div>
+			<div class="nav-previous"><? next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', THEME_NAME ) ); ?></div>
 			<? endif; ?>
 
 			<? if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><? previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'Matchrepo' ) ); ?></div>
+			<div class="nav-next"><? previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', THEME_NAME ) ); ?></div>
 			<? endif; ?>
 
 		</div><!-- .nav-links -->
@@ -49,11 +49,11 @@ function Matchrepo_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><? _e( 'Post navigation', 'Matchrepo' ); ?></h1>
+		<h1 class="screen-reader-text"><? _e( 'Post navigation', THEME_NAME ); ?></h1>
 		<div class="nav-links">
 			<?
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'Matchrepo' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link',     'Matchrepo' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', THEME_NAME ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link',     THEME_NAME ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -78,7 +78,7 @@ function Matchrepo_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'Matchrepo' ),
+	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', THEME_NAME ),
 		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
 			esc_url( get_permalink() ),
 			$time_string

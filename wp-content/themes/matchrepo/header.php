@@ -6,6 +6,7 @@
 	<title><? wp_title('|', true, 'right'); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<? bloginfo('pingback_url'); ?>">
+	<link rel="shortcut icon" href="<?= WP_CONTENT_URL ?>/uploads/images/icon.ico">
 
 	<? wp_head(); ?>
 </head>
@@ -43,7 +44,7 @@
 <div id="page" class="hfeed site">
 	<div id="header-wrapper">
 		<header id="masthead" class="site-header" role="banner">
-			<? dynamic_sidebar('top_banner') ?>
+			<? dynamic_sidebar('Top Sidebar') ?>
 		</header>
 	</div>
 	<div id="content-wrapper">

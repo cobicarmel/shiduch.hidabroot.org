@@ -17,7 +17,7 @@
 		<? the_content(); ?>
 		<?
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'Matchrepo' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', THEME_NAME ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -26,25 +26,25 @@
 	<footer class="entry-footer">
 		<?
 			/* translators: used between list items, there is a space after the comma */
-			$category_list = get_the_category_list( __( ', ', 'Matchrepo' ) );
+			$category_list = get_the_category_list( __( ', ', THEME_NAME ) );
 
 			/* translators: used between list items, there is a space after the comma */
-			$tag_list = get_the_tag_list( '', __( ', ', 'Matchrepo' ) );
+			$tag_list = get_the_tag_list( '', __( ', ', THEME_NAME ) );
 
 			if ( ! Matchrepo_categorized_blog() ) {
 				// This blog only has 1 category so we just need to worry about tags in the meta text
 				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'Matchrepo' );
+					$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', THEME_NAME );
 				} else {
-					$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'Matchrepo' );
+					$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', THEME_NAME );
 				}
 
 			} else {
 				// But this blog has loads of categories so we should probably display them here
 				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'Matchrepo' );
+					$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', THEME_NAME );
 				} else {
-					$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'Matchrepo' );
+					$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', THEME_NAME );
 				}
 
 			} // end check for categories on this blog
@@ -57,6 +57,6 @@
 			);
 		?>
 
-		<? edit_post_link( __( 'Edit', 'Matchrepo' ), '<span class="edit-link">', '</span>' ); ?>
+		<? edit_post_link( __( 'Edit', THEME_NAME ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

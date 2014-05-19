@@ -24,46 +24,46 @@ get_header(); ?>
 							single_tag_title();
 
 						elseif ( is_author() ) :
-							printf( __( 'Author: %s', 'Matchrepo' ), '<span class="vcard">' . get_the_author() . '</span>' );
+							printf( __( 'Author: %s', THEME_NAME ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'Matchrepo' ), '<span>' . get_the_date() . '</span>' );
+							printf( __( 'Day: %s', THEME_NAME ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'Matchrepo' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'Matchrepo' ) ) . '</span>' );
+							printf( __( 'Month: %s', THEME_NAME ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', THEME_NAME ) ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'Matchrepo' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'Matchrepo' ) ) . '</span>' );
+							printf( __( 'Year: %s', THEME_NAME ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', THEME_NAME ) ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'Matchrepo' );
+							_e( 'Asides', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'Matchrepo');
+							_e( 'Galleries', THEME_NAME);
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'Matchrepo');
+							_e( 'Images', THEME_NAME);
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'Matchrepo' );
+							_e( 'Videos', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'Matchrepo' );
+							_e( 'Quotes', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'Matchrepo' );
+							_e( 'Links', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-							_e( 'Statuses', 'Matchrepo' );
+							_e( 'Statuses', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audios', 'Matchrepo' );
+							_e( 'Audios', THEME_NAME );
 
 						elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-							_e( 'Chats', 'Matchrepo' );
+							_e( 'Chats', THEME_NAME );
 
 						else :
-							_e( 'Archives', 'Matchrepo' );
+							_e( 'Archives', THEME_NAME );
 
 						endif;
 					?>
