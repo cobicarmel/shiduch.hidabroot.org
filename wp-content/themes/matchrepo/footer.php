@@ -12,10 +12,21 @@
 		</div>
 		<div id="footer-wrapper">
 
-			<footer id="colophon" class="site-footer" role="contentinfo">
-				<div class="site-info">
+			<footer role="contentinfo">
+				<div id="site-info">
+					<div id="footer-logo">
+						<img src="<?= WP_CONTENT_URL ?>/uploads/images/logo-footer.png">
+					</div>
+					<?
+					$navParams = array(
+						'theme_location' => 'footer',
+						'container_id' => 'footer-menu'
+					);
+
+					wp_nav_menu($navParams);
+					?>
 				</div><!-- .site-info -->
-			</footer><!-- #colophon -->
+			</footer>
 		</div>
 	</div><!-- #page -->
 <? wp_footer(); ?>

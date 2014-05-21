@@ -6,7 +6,6 @@ wp_enqueue_style('sidebar');
 
 ?>
 <div id="secondary" class="widget-area" role="complementary">
-	<? if(!dynamic_sidebar('sidebar-1')) : ?>
 
 		<aside id="logo">
 			<img src="<?= WP_CONTENT_URL ?>/uploads/images/logo.png">
@@ -50,5 +49,4 @@ wp_enqueue_style('sidebar');
 
 		<? dynamic_sidebar('Right Sidebar') ?>
 
-	<? endif; // end sidebar widget area ?>
 </div><!-- #secondary -->

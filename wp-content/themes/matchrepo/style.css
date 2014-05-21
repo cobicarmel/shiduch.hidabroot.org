@@ -417,6 +417,7 @@ a {
 }
 
 .main-navigation li:hover > a {
+    color: #161C1A;
 }
 
 .main-navigation ul ul :hover > a {
@@ -796,7 +797,7 @@ main {
 	margin-top: -32px;
 	line-height: 32px;
 	background-image: linear-gradient(to left, #720D02, #BE0F02);
-	font-size: 18px;
+	font-size: 21px;
 	color: #FFF;
 	padding: 0 10px;
 	position: absolute;
@@ -854,4 +855,32 @@ main {
 
 footer {
 	height: 260px;
+}
+
+#site-info {
+    padding-top: 45px;
+}
+
+#footer-logo {
+	float: right;
+}
+
+#footer-menu {
+	float: right;
+	margin: 20px 7px;
+}
+
+#footer-menu * {
+	float: right;
+}
+
+#footer-menu li {	
+    font-size: 19px;
+	
+	
+}
+
+#footer-menu li:not(:last-of-type):after {
+	content: '|';
+	margin: 0px 8px;
 }
