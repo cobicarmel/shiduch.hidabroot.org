@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Matchrepo v1.0-wpcom\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-05-23 01:59:03+0000\n"
+"PO-Revision-Date: 2014-05-23 14:10:16+0000\n"
 "Last-Translator: cobicarmel <jzaltzberg@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -188,40 +188,41 @@ msgid "Pages:"
 msgstr ""
 
 #: content-page.php:23
-#: content-single.php:68
+#: content-single.php:35
 #: content.php:61
 #@ Matchrepo
+#@ default
 msgid "Edit"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: content-single.php:34
-#: content-single.php:37
+#: content-single.php:45
+#: content-single.php:48
 #: content.php:38
 #: content.php:48
 #@ Matchrepo
 msgid ", "
 msgstr ""
 
-#: content-single.php:42
+#: content-single.php:53
 #, php-format
 #@ Matchrepo
 msgid "This entry was tagged %2$s. Bookmark the <a href=\"%3$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
 
-#: content-single.php:45
+#: content-single.php:56
 #, php-format
 #@ Matchrepo
 msgid "Bookmark the <a href=\"%3$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
 
-#: content-single.php:52
+#: content-single.php:63
 #, php-format
 #@ Matchrepo
 msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
 
-#: content-single.php:55
+#: content-single.php:66
 #, php-format
 #@ Matchrepo
 msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" rel=\"bookmark\">permalink</a>."
@@ -544,12 +545,12 @@ msgstr "איזור"
 msgid "View"
 msgstr "מראה כללי"
 
-#: content-single.php:22
+#: content-single.php:24
 #@ Matchrepo
 msgid "This Card Managed By"
 msgstr "הכרטיס מנוהל ע\\\"י:"
 
-#: content-single.php:26
+#: content-single.php:28
 #@ Matchrepo
 msgid "Contact Details"
 msgstr "לפרטים נוספים ויצירת קשר:"
@@ -575,4 +576,9 @@ msgstr "קצת על המועמד"
 msgctxt "female"
 msgid "Little_About_The_Candidate"
 msgstr "קצת על המועמדת"
+
+#: content-single.php:38
+#@ Matchrepo
+msgid "Delete"
+msgstr "מחיקה"
 

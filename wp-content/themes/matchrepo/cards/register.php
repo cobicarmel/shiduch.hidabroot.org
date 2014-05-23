@@ -21,7 +21,7 @@ function register_card_type(){
 		'label' => __('card', THEME_NAME),
 		'description' => __('Post Type Description', THEME_NAME),
 		'labels' => $labels,
-		'supports' => array('title'),
+		'supports' => array('title', 'author'),
 		'taxonomies' => array('category'),
 		'hierarchical' => false,
 		'public' => true,
@@ -35,7 +35,8 @@ function register_card_type(){
 		'has_archive' => true,
 		'exclude_from_search' => false,
 		'publicly_queryable' => true,
-		'capability_type' => 'page',
+		'capability_type' => 'card',
+		'map_meta_cap' => true
 	);
 	register_post_type('card', $args);
 

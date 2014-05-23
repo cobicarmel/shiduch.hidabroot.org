@@ -1,16 +1,20 @@
 article {
   background-image: url(../media/singel-card-background.png);
   height: 947px;
-  padding: 10px;
 }
-article > div {
+#card-details {
+  overflow: hidden;
+  padding: 10px;
+  border-bottom: 4px solid #A19491;
+}
+#card-details > div {
   float: left;
 }
 #card-meta {
   width: 68%;
   margin-right: 10px;
   padding: 10px;
-  height: 400px;
+  min-height: 400px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 #card-meta ul {
@@ -61,4 +65,18 @@ article > div {
 #card-content h2 {
   font-size: 27px;
   line-height: 1;
+}
+#treat-card {
+  padding-left: 50px;
+}
+#treat-card > div {
+  background-color: #FFF;
+  float: left;
+  font-size: 19px;
+  padding: 0 15px;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid #AFA4A2;
+  border-top: none;
+  box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.2);
+  margin: 0 5px;
 }
