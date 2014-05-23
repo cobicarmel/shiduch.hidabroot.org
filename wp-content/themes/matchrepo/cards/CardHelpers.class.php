@@ -2,8 +2,7 @@
 
 abstract class CardHelpers {
 
-	static function list_age_options(){
-		for($age = 18; $age < 100; $age++)
-			echo "<option>$age</option>";
+	static function get_gender($card){
+		return get_post_meta($card['ID'], 'gender', true);
 	}
 }

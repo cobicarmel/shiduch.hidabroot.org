@@ -32,10 +32,9 @@ get_header(); ?>
 					$cards = wp_get_recent_posts($args);
 
 					foreach($cards as $card) :
-						$id = $card['ID'];
-						$gender = get_post_meta($id, 'gender', true);
+						$gender = CardHelpers::get_gender($card);
 						$currCard = new $gender($card);
-						$link = get_permalink($id);
+						$link = get_permalink($card['ID']);
 
 					?>
 						<div class="card-box">

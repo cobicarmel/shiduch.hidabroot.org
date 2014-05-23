@@ -4,6 +4,8 @@ abstract class Cards{
 
 	static $props;
 
+	static $labels;
+
 	protected $card;
 
 	protected $id;
@@ -12,12 +14,14 @@ abstract class Cards{
 
 	protected $meta = [];
 
-	function __construct($card){
-		$this ->card = $card;
-		$this ->id = $card['ID'];
-		$this ->name = $card['post_title'];
-		$this ->get_meta();
-		$this ->set_age();
+	protected $indexItems = ['status', 'community'];
+
+	function __construct(array $card){
+		$this -> card = $card;
+		$this -> id = $card['ID'];
+		$this -> name = $card['post_title'];
+		$this -> get_meta();
+		$this -> set_age();
 	}
 
 	protected static function build_form($params){
@@ -62,6 +66,23 @@ abstract class Cards{
 			$this ->meta[$name] = $meta[$name][0];
 	}
 
+	protected function get_parsed_meta($items){
+
+		$itemsStack = [];
+
+		foreach($items as $item){
+
+			if(in_array($item, $this -> indexItems)){
+				$index = $this -> meta[$item];
+				$itemsStack[$item] = self::$props[$item]['options'][$index];
+			}
+			else
+				$itemsStack[$item] = $this -> meta[$item];
+		}
+
+		return $itemsStack;
+	}
+
 	protected function set_age(){
 
 		$oldTime = DateTime::createFromFormat('d/m/Y', $this -> meta['birthday']) -> getTimestamp();
@@ -76,22 +97,47 @@ abstract class Cards{
 	function get_excerpt(){
 
 		$excerpt_items = ['age', 'city', 'status', 'community'];
-		$index_items = ['status', 'community'];
-		$items = [];
 
-		foreach($excerpt_items as $item){
-
-			if(in_array($item, $index_items)){
-				$index = $this ->meta[$item];
-				$items[$item] = Cards::$props[$item]['options'][$index];
-			}
-			else
-				$items[$item] = $this -> meta[$item];
-		}
+		$items = $this -> get_parsed_meta($excerpt_items);
 
 		$items['community'] = 'מוצא ' . $items['community'];
 
 		return $this ->name . ', ' . implode(', ', $items);
+	}
+
+	function list_meta(){
+
+		$params = [
+			'age',
+			'zone',
+			'city',
+			'martial_status',
+			'community',
+			'children',
+			'college',
+			'work',
+			'work_place',
+			'height',
+			'view',
+			'stream',
+			'father_work',
+			'mother_work'
+		];
+
+		echo '<ul>';
+
+		$meta = $this -> get_parsed_meta($params);
+
+		foreach($params as $param){
+			if(isset($meta[$param])){ ?>
+				<li>
+					<label><?= self::$props[$param]['label']?>:</label>
+					<?= $meta[$param] ?>
+				</li>
+			<? }
+		}
+
+		echo '</ul>';
 	}
 
 	static function quick_search(){

@@ -2,6 +2,10 @@
 
 $globalProps = [
 
+	'age' => [
+		'label' => __('Age', THEME_NAME)
+	],
+
 	'birthday' => [
 		'label' => __('Date Of Birth', THEME_NAME),
 		'type' => 'text',
@@ -98,6 +102,10 @@ $maleProps = [
 	]
 ];
 
+$maleLabels = [
+	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'male', THEME_NAME)
+];
+
 $femaleProps = [
 
 	'status' => [
@@ -108,12 +116,26 @@ $femaleProps = [
 		]
 	],
 
+	'community' => [
+		'options' => [
+			'אשכנזיה',
+			'ספרדיה',
+			'תמניה'
+		]
+	],
+
 	'cover' => [
 		'label' => __('Cover', THEME_NAME),
 		'type' => 'bool'
 	]
 ];
 
-Male::$props = array_merge($maleProps, $globalProps);
+$femaleLabels = [
+	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'female', THEME_NAME)
+];
 
-Female::$props = array_merge($femaleProps, $globalProps);
+Male::$props = array_merge_recursive($maleProps, $globalProps);
+Male::$labels = $maleLabels;
+
+Female::$props = array_merge_recursive($femaleProps, $globalProps);
+Female::$labels = $femaleLabels;

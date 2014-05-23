@@ -1,9 +1,6 @@
 <?
-/**
- * The Template for displaying all single posts.
- *
- * @package Matchrepo
- */
+wp_register_style('single', get_stylesheet_directory_uri() . '/css/single.css');
+wp_enqueue_style('single');
 
 get_header(); ?>
 

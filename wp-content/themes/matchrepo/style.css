@@ -14,25 +14,24 @@ Tags:
  */
 
 @font-face {
-	font-family: 'fbspoiler';
-	src: url('fonts/fbspoiler-bold.eot');
-	src: url('fonts/fbspoiler-bold.eot?#iefix') format('embedded-opentype'),
-	url('fonts/fbspoiler-bold.woff') format('woff'),
-	url('fonts/fbspoiler-bold.ttf') format('truetype'),
-	url('fonts/fbspoiler-bold.svg#fbspoiler_boldbold') format('svg');
-	font-weight: normal;
+	font-family: fbspoiler;
+	src: url(fonts/fbspoiler-bold.eot);
+	src: url(fonts/fbspoiler-bold.eot?#iefix) format(embedded-opentype),
+		 url(fonts/fbspoiler-bold.woff) format(woff),
+	 	 url(fonts/fbspoiler-bold.ttf) format(truetype),
+		 url(fonts/fbspoiler-bold.svg#fbspoiler_boldbold) format(svg);
+	font-weight: bold;
 	font-style: normal;
-
 }
 
 @font-face {
-	font-family: 'fbspoiler-black';
-	src: url('fonts/FbSpoiler-Black.eot');
-	src: url('fonts/FbSpoiler-Black.eot?#iefix') format('embedded-opentype'),
-	url('fonts/FbSpoiler-Black.woff') format('woff'),
-	url('fonts/FbSpoiler-Black.ttf') format('truetype'),
-	url('fonts/FbSpoiler-Black.svg#fbspoilerblack') format('svg');
-	font-weight: normal;
+	font-family: fbspoiler;
+	src: url(fonts/FbSpoiler-Black.eot);
+	src: url(fonts/FbSpoiler-Black.eot?#iefix) format(embedded-opentype),
+		 url(fonts/FbSpoiler-Black.woff) format(woff),
+		 url(fonts/FbSpoiler-Black.ttf) format(truetype),
+		 url(fonts/FbSpoiler-Black.svg#fbspoiler_boldbold) format(svg);
+	font-weight: bold;
 	font-style: normal;
 }
 
@@ -68,7 +67,7 @@ html {
 
 body {
 	background: #FFF;
-	font-family: fbspoiler-bold;
+	font-family: fbspoiler, arial, sans-serif;
 	direction: rtl;
 }
 
@@ -588,12 +587,6 @@ a {
 	display: inline;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
-}
-
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
@@ -883,4 +876,12 @@ footer {
 #footer-menu li:not(:last-of-type):after {
 	content: '|';
 	margin: 0px 8px;
+}
+
+.title {
+	background-color: #6C9299;
+	border-radius: 0 0 8px 8px;
+	text-align: center;
+	color: #FFF;
+	box-shadow: inset 0 -4px 7px 1px rgba(0, 0, 0, 0.15);
 }
