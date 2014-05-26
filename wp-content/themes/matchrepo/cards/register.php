@@ -1,6 +1,6 @@
 <?
 
-function register_card_type(){
+function register_card(){
 
 	$labels = array(
 		'name' => _x('Cards', 'Post Type General Name', THEME_NAME),
@@ -17,12 +17,13 @@ function register_card_type(){
 		'not_found' => __('Not found'),
 		'not_found_in_trash' => __('Not found in Trash'),
 	);
+
 	$args = array(
 		'label' => __('card', THEME_NAME),
 		'description' => __('Post Type Description', THEME_NAME),
 		'labels' => $labels,
-		'supports' => array('title', 'author'),
-		'taxonomies' => array('category'),
+		'supports' => array('title', 'editor', 'author'),
+		'taxonomies' => array(),
 		'hierarchical' => false,
 		'public' => true,
 		'show_ui' => true,
@@ -38,8 +39,8 @@ function register_card_type(){
 		'capability_type' => 'card',
 		'map_meta_cap' => true
 	);
-	register_post_type('card', $args);
 
+	register_post_type('card', $args);
 }
 
-add_action('init', 'register_card_type', 0);
+add_action('init', 'register_card', 0);

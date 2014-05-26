@@ -2,6 +2,12 @@
   padding: 0 14px;
   text-align: center;
 }
+#secondary form {
+  padding: 15px 15px 0;
+}
+#secondary .widget_banner {
+  margin-top: 15px;
+}
 #cards-count {
   border: 1px solid;
   border-color: #CCC #CCC #BBB #CCC;
@@ -12,7 +18,7 @@
   line-height: 1;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
   padding: 2px 40px;
-  font-size: 18px;
+  font-size: 17px;
 }
 .side-box {
   border: 1px solid #A29491;
@@ -21,9 +27,6 @@
   display: inline-block;
   margin: 45px 0 5px;
   position: relative;
-}
-#loginform {
-  padding: 15px 15px 0;
 }
 #loginform p {
   overflow: hidden;
@@ -46,4 +49,52 @@
 }
 .login-lost-password {
   float: left;
+}
+#form-1 .form-field {
+  overflow: hidden;
+  margin: 5px 0;
+  width: 100%;
+  padding-left: 1px;
+}
+#form-1 .form-label {
+  float: right;
+  font-size: 17px;
+}
+#form-1 .form-input {
+  float: left;
+}
+#form-1 .form-field-gender .form-input label {
+  margin: 0 15px;
+}
+#form-1 .form-field-zone .form-input {
+  width: 75%;
+}
+#form-1 .form-field-min_age,
+#form-1 .form-field-max_age {
+  float: right;
+  width: 50%;
+}
+#form-1 .form-field-min_age .form-input,
+#form-1 .form-field-max_age .form-input {
+  width: 50%;
+}
+#form-1 .form-field-conception .form-input {
+  width: 70%;
+}
+#form-1 .form-field-status .form-input {
+  width: 60%;
+}
+#form-1 .form-field-max_age label {
+  margin-right: 10px;
+}
+#form-1 [type='radio'] {
+  margin-left: 5px;
+}
+#form-1 [type='submit'] {
+  float: left;
+  margin-bottom: 5px;
+}
+#form-1 select {
+  width: 100%;
+  outline: none;
 }

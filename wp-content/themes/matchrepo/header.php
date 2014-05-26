@@ -7,8 +7,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<? bloginfo('pingback_url'); ?>">
 	<link rel="shortcut icon" href="<?= WP_CONTENT_URL ?>/uploads/images/icon.ico">
-
-	<? wp_head(); ?>
+	<? wp_head() ?>
 </head>
 
 <body <? body_class(); ?>>

@@ -2,19 +2,32 @@
 
 abstract class Cards{
 
-	static $props;
-
-	static $labels;
-
 	protected $card;
 
 	protected $id;
 
 	protected $name;
 
-	protected $meta = [];
+	protected $meta;
+
+	protected static $formsCount = 0;
+
+	static $props;
+
+	public $myAccountItems = [
+		'age',
+		'status',
+		'college',
+		'height',
+		'zone',
+		'conception',
+		'work',
+		'look'
+	];
 
 	protected $indexItems = ['status', 'community'];
+
+	protected $labeledItems = ['age' => 'גיל'];
 
 	function __construct(array $card){
 		$this -> card = $card;
@@ -26,16 +39,21 @@ abstract class Cards{
 
 	protected static function build_form($params){
 
-		echo '<form>';
+		$id = 'form-' . ++self::$formsCount;
+
+		echo "<form id='$id'>";
 
 		foreach($params as $param){
 
-			echo '<p>';
+			$props = self::$props[$param]; ?>
 
-			$props = self::$props[$param];
+			<div class="form-field form-field-<?= $param ?>">
+				<div class="form-label">
+					<label><?= $props['label'] ?>:</label>
+				</div>
+				<div class="form-input">
 
-			echo "<label>$props[label]</label>";
-
+			<?
 			switch($props['type']){
 
 				case 'text':
@@ -43,7 +61,10 @@ abstract class Cards{
 					break;
 
 				case 'select':
+
 					echo "<select name='$param'>";
+
+					echo "<option></option>";
 
 					foreach($props['options'] as $value => $text)
 						echo "<option value='$value'>$text</option>";
@@ -51,34 +72,37 @@ abstract class Cards{
 					echo '</select>';
 
 					break;
+
+				case 'radio':
+					foreach($props['options'] as $key => $value){
+
+						$checked = '';
+
+						if(! $key)
+							$checked = 'checked="checked"';
+
+						echo "<label><input type='radio' name='$param' value='$key' $checked>$value</label>";
+					}
 			}
 
-			echo '</p>';
+			echo '</div></div>';
 		}
+
+		echo '<input type="submit" value="' . __('Submit') . '">';
 
 		echo '</form>';
 	}
 
 	protected function get_meta(){
-		$meta = get_post_meta($this ->id);
-
-		foreach(self::$props as $name => $data)
-			$this ->meta[$name] = $meta[$name][0];
+		$this -> meta = get_fields($this -> id);
 	}
 
 	protected function get_parsed_meta($items){
 
 		$itemsStack = [];
 
-		foreach($items as $item){
-
-			if(in_array($item, $this -> indexItems)){
-				$index = $this -> meta[$item];
-				$itemsStack[$item] = self::$props[$item]['options'][$index];
-			}
-			else
-				$itemsStack[$item] = $this -> meta[$item];
-		}
+		foreach($items as $item)
+			$itemsStack[$item] = $this -> meta[$item];
 
 		return $itemsStack;
 	}
@@ -105,50 +129,71 @@ abstract class Cards{
 		return $this ->name . ', ' . implode(', ', $items);
 	}
 
-	function list_meta(){
+	function list_meta($items = null){
 
-		$params = [
-			'age',
-			'zone',
-			'city',
-			'martial_status',
-			'community',
-			'children',
-			'college',
-			'work',
-			'work_place',
-			'height',
-			'view',
-			'stream',
-			'father_work',
-			'mother_work'
-		];
+		$meta = $this -> prepare_display($items);
 
 		echo '<ul>';
 
-		$meta = $this -> get_parsed_meta($params);
+		foreach($meta as $label => $param){
 
-		foreach($params as $param){
-			if(isset($meta[$param])){ ?>
-				<li>
-					<label><?= self::$props[$param]['label']?>:</label>
-					<?= $meta[$param] ?>
-				</li>
-			<? }
+			echo '<li>';
+
+			echo "<div class='meta-label'>$label:</div>";
+
+			echo "<div class='meta-value'>$param</div>";
+
+			echo '</li>';
 		}
 
 		echo '</ul>';
 	}
 
 	static function quick_search(){
-		$params = ['min_age', 'max_age', 'zone', 'status', 'community'];
 
-		self::build_form($params);
+		self::build_form(['gender', 'min_age', 'max_age', 'zone', 'conception', 'status']);
+//		acf_form([
+//			'post_id' => 'new',
+//			'field_groups' => [75],
+//			'submit_value' => __('Search')
+//		]);
+	}
+
+	private function prepare_display($items = null){
+
+		$meta = $this -> meta;
+
+		unset($meta['birthday'], $meta['gender']);
+
+		$keys = $items ? $items : array_keys($meta);
+
+		$itemsStack = [];
+
+		foreach($keys as $key){
+
+			if(isset($this -> labeledItems[$key]))
+				$label = $this -> labeledItems[$key];
+			else
+				$label = get_field_object($key)['label'];
+
+			$param = $meta[$key];
+
+			if(gettype($param) == 'array')
+				$param = implode('<br>', $param);
+
+			$itemsStack[$label] = $param;
+		}
+
+		return $itemsStack;
 	}
 
 }
 
 class Male extends Cards{
+
+	static $labels;
+
+	static $props;
 
 	public $images = [
 		'recent_cards' => 'male.png'
@@ -156,6 +201,10 @@ class Male extends Cards{
 }
 
 class Female extends Cards{
+
+	static $labels;
+
+	static $props;
 
 	public $images = [
 		'recent_cards' => 'female.png'

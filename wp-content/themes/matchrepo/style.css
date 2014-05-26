@@ -14,26 +14,35 @@ Tags:
  */
 
 @font-face {
-	font-family: fbspoiler;
-	src: url(fonts/fbspoiler-bold.eot);
-	src: url(fonts/fbspoiler-bold.eot?#iefix) format(embedded-opentype),
-		 url(fonts/fbspoiler-bold.woff) format(woff),
-	 	 url(fonts/fbspoiler-bold.ttf) format(truetype),
-		 url(fonts/fbspoiler-bold.svg#fbspoiler_boldbold) format(svg);
-	font-weight: bold;
+	font-family: Spoiler;
+	src: url(fonts/Spoiler.eot);
+	src: url(fonts/Spoiler.eot?#iefix) format(embedded-opentype),
+	url(fonts/Spoiler.woff) format(woff),
+	url(fonts/Spoiler.svg) format(svg);
+	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: fbspoiler;
-	src: url(fonts/FbSpoiler-Black.eot);
-	src: url(fonts/FbSpoiler-Black.eot?#iefix) format(embedded-opentype),
-		 url(fonts/FbSpoiler-Black.woff) format(woff),
-		 url(fonts/FbSpoiler-Black.ttf) format(truetype),
-		 url(fonts/FbSpoiler-Black.svg#fbspoiler_boldbold) format(svg);
+	font-family: Spoiler;
+	src: url(fonts/Spoiler-Bold.eot);
+	src: url(fonts/Spoiler-Bold.eot?#iefix) format(embedded-opentype),
+	url(fonts/Spoiler-Bold.woff) format(woff),
+	url(fonts/Spoiler-Bold.svg) format(svg);
 	font-weight: bold;
 	font-style: normal;
 }
+
+/*@font-face {
+	font-family: Spoiler-Black;
+	src: url(fonts/Spoiler-Black.eot);
+	src: url(fonts/Spoiler-Black.eot?#iefix) format(embedded-opentype),
+		 url(fonts/Spoiler-Black.woff) format(woff),
+		 url(fonts/Spoiler-Black.ttf) format(truetype),
+		 url(fonts/Spoiler-Black.svg) format(svg);
+	font-weight: normal;
+	font-style: normal;
+}*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -67,7 +76,6 @@ html {
 
 body {
 	background: #FFF;
-	font-family: fbspoiler-bold, arial, sans-serif;
 	direction: rtl;
 }
 
@@ -109,6 +117,7 @@ a:focus {
 a:hover,
 a:active {
 	outline: 0;
+	text-decoration: underline;
 }
 
 a img {
@@ -121,8 +130,9 @@ input,
 select,
 textarea {
 	color: #404040;
-	font-size: 16px;
+	font-size: 17px;
 	line-height: 1.5;
+	font-family: Spoiler, arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -225,10 +235,9 @@ input[type="submit"] {
 	background: #86767B;
 	color: #FFF;
 	cursor: pointer;
-	font-size: 15px;
 	line-height: 1;
 	outline: none;
-	padding: 3px 10px;
+	padding: .2em .9em .1em;
 }
 
 button:hover,
@@ -363,16 +372,16 @@ a {
 
 .main-navigation li:hover {
 	background: linear-gradient(101deg,
-		transparent 8%,
-		#CCA552 9%,
-		#E0C06B 24%,
-		#F5DD84 38%,
-		#FAED9E 51%,
-		#D7AF57 61%,
-		#A97E38 68%,
-		#D7AF57 78%,
-		#D7AF57 91%,
-		transparent 92%
+	transparent 8%,
+	#CCA552 9%,
+	#E0C06B 24%,
+	#F5DD84 38%,
+	#FAED9E 51%,
+	#D7AF57 61%,
+	#A97E38 68%,
+	#D7AF57 78%,
+	#D7AF57 91%,
+	transparent 92%
 	);
 }
 
@@ -391,10 +400,11 @@ a {
 	text-decoration: none;
 	color: #FFF;
 	font-size: 27px;
+	font-weight: bold;
 }
 
 .main-navigation li:hover > a {
-    color: #161C1A;
+	color: #161C1A;
 }
 
 .main-navigation .current_page_item a,
@@ -680,7 +690,7 @@ Custom
 
 #side-sticky-icons {
 	position: fixed;
-	top: 50%;
+	bottom: 160px;
 	width: 80px;
 	left: 0;
 	z-index: 2;
@@ -704,6 +714,7 @@ header img {
 	padding-top: 75px;
 	background-color: #FFF;
 	box-shadow: -11px 0 10px -6px rgba(0, 0, 0, 0.2), 11px 0px 10px -6px rgba(0, 0, 0, 0.2);
+	min-height: 1200px;
 }
 
 #content > div {
@@ -717,6 +728,7 @@ header img {
 
 main {
 	padding: 0 20px;
+	margin-bottom: 20px;
 }
 
 #content-wrapper {
@@ -731,6 +743,7 @@ main {
 	color: #FFF;
 	padding: 0 10px;
 	position: absolute;
+	font-weight: bold;
 }
 
 .side-box-title:after {
@@ -784,11 +797,11 @@ main {
 }
 
 footer {
-	height: 260px;
+	height: 160px;
 }
 
 #site-info {
-    padding-top: 45px;
+	padding-top: 45px;
 }
 
 #footer-logo {
@@ -804,13 +817,19 @@ footer {
 	float: right;
 }
 
-#footer-menu li {	
-    font-size: 19px;
+#footer-menu li {
+	font-size: 19px;
 }
 
 #footer-menu li:not(:last-of-type):after {
 	content: '|';
-	margin: 0px 8px;
+	margin: 0 8px;
+}
+
+#copyright {
+	float: left;
+	margin-top: 25px;
+	font-size: 17px;
 }
 
 .title {
@@ -819,4 +838,97 @@ footer {
 	text-align: center;
 	color: #FFF;
 	box-shadow: inset 0 -4px 7px 1px rgba(0, 0, 0, 0.15);
+}
+
+.background-area {
+	background-image: url(media/singel-card-background.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.card-details {
+	overflow: hidden;
+	padding: 10px 10px 0;
+}
+
+.card-details > div {
+	float: left;
+}
+
+.card-meta {
+	width: 68%;
+	margin-right: 10px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-meta th {
+	font-size: 19px;
+	text-align: right;
+}
+
+.card-side {
+	width: 30%;
+}
+
+.card-avatar {
+	background-color: #323227;
+	overflow: hidden;
+}
+
+.card-title {
+	height: 34px;
+	line-height: 34px;
+	font-size: 27px;
+	text-align: center;
+	color: #FFF;
+}
+
+.card-image {
+	background-color: #FFF;
+	height: 160px;
+	padding: 10px;
+	margin: 20px;
+}
+
+.card-image img {
+	height: 100%;
+	width: 100%;
+}
+
+.card-meta ul {
+	overflow: hidden;
+}
+
+.card-meta li {
+	line-height: 1.1;
+	float: right;
+}
+
+.card-meta li > div {
+	float: right;
+}
+
+.meta-label {
+	font-weight: bold;
+}
+
+.meta-value {
+	margin-right: 5px;
+}
+
+.card-content {
+	padding: 10px;
+	overflow: hidden;
+	border: 1px solid #D1D1D1;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, .4);
+	box-shadow: inset 0 -3px 7px 0 rgba(0, 0, 0, .06);
+	margin-top: 10px;
+	line-height: 1.1;
+}
+
+.card-content h2 {
+	font-weight: bold;
 }

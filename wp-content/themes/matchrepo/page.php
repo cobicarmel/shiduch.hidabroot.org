@@ -1,4 +1,6 @@
-<? get_header() ?>
+<?
+
+get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -19,5 +21,5 @@
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<? get_sidebar() ?>
-<? get_footer() ?>
+<? get_sidebar(); ?>
+<? get_footer(); ?>

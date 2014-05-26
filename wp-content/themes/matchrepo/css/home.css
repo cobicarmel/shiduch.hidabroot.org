@@ -11,6 +11,10 @@
   width: 33%;
   margin-top: 50px;
 }
+#home-new-cards h3 img {
+  margin: 5px 0 0 10px;
+  float: right;
+}
 .card-box {
   padding: 5px;
   overflow: hidden;
@@ -30,19 +34,27 @@
   font-size: 18px;
 }
 #home-content h1 {
-  font-size: 36px;
+  font-size: 40px;
   color: #80021A;
+  font-weight: bold;
 }
 #home-content h2 {
   font-size: 27px;
+  font-weight: bold;
+}
+#home-content p {
+  font-size: 17px;
 }
 #home-content ol {
   counter-reset: li;
+  padding-left: 10px;
 }
 #home-content ol li {
   position: relative;
   padding-right: 30px;
   margin-bottom: 10px;
+  font-size: 19px;
+  line-height: 1.3;
 }
 #home-content ol li:before {
   content: counter(li);

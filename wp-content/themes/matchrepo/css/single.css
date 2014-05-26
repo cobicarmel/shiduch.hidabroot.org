@@ -1,50 +1,5 @@
 article {
-  background-image: url(../media/singel-card-background.png);
   height: 947px;
-}
-#card-details {
-  overflow: hidden;
-  padding: 10px;
-  border-bottom: 4px solid #A19491;
-}
-#card-details > div {
-  float: left;
-}
-#card-meta {
-  width: 68%;
-  margin-right: 10px;
-  padding: 10px;
-  min-height: 400px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-#card-meta ul {
-  margin-right: 20px;
-  font-size: 23px;
-}
-#card-meta li {
-  line-height: 1.2;
-}
-#card-side {
-  width: 30%;
-}
-#card-avatar {
-  background-color: #323227;
-  overflow: hidden;
-}
-#card-title {
-  height: 34px;
-  line-height: 34px;
-  font-size: 27px;
-}
-#card-image {
-  background-color: #FFF;
-  height: 160px;
-  padding: 10px;
-  margin: 20px;
-}
-#card-image img {
-  height: 100%;
-  width: 100%;
 }
 .card-side-box {
   margin-top: 20px;
@@ -53,18 +8,6 @@ article {
   font-size: 19px;
   height: 28px;
   line-height: 28px;
-}
-#card-content {
-  padding: 10px;
-  border: 1px solid #D1D1D1;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 -3px 7px 0 rgba(0, 0, 0, 0.06);
-  margin-top: 10px;
-}
-#card-content h2 {
-  font-size: 27px;
-  line-height: 1;
 }
 #treat-card {
   padding-left: 50px;
@@ -79,4 +22,20 @@ article {
   border-top: none;
   box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.2);
   margin: 0 5px;
+}
+.card-meta li {
+  width: 100%;
+}
+.card-content h2 {
+  font-size: 27px;
+}
+.card-details {
+  border-bottom: 4px solid #A19491;
+}
+.meta-label {
+  font-size: 23px;
+}
+.meta-value {
+  font-size: 21px;
+  line-height: 1.5;
 }

@@ -15,7 +15,11 @@ $globalProps = [
 	'status' => [
 		'label' => __('Marital Status', THEME_NAME),
 		'type' => 'select',
-		'options' => [],
+		'options' => [
+			__('Single', THEME_NAME),
+			__('Divorcee', THEME_NAME),
+			__('Widow', THEME_NAME),
+		],
 		'attr' => []
 	],
 
@@ -33,7 +37,10 @@ $globalProps = [
 	'zone' => [
 		'label' => __('Zone', THEME_NAME),
 		'type' => 'select',
-		'options' => []
+		'options' => [
+			'המרכז',
+			'ירושלים'
+		]
 	],
 
 	'look' => [
@@ -76,13 +83,32 @@ $globalProps = [
 	'min_age' => [
 		'label' => __('Min Age', THEME_NAME),
 		'type' => 'select',
-		'options' => range(18, 70)
+		'options' => range(18, 99)
 	],
 
 	'max_age' => [
 		'label' => __('Max Age', THEME_NAME),
 		'type' => 'select',
-		'options' => range(18, 70)
+		'options' => range(18, 99)
+	],
+
+	'gender' => [
+		'label' => __('Looking For', THEME_NAME),
+		'type' => 'radio',
+		'options' => [
+			__('Man', THEME_NAME),
+			__('Woman', THEME_NAME)
+		]
+	],
+
+	'conception' => [
+		'label' => __('Conception', THEME_NAME),
+		'type' => 'select',
+		'options' => [
+			'ליטאית',
+			'ספרדית',
+			'חסידית'
+		]
 	]
 ];
 
@@ -134,8 +160,12 @@ $femaleLabels = [
 	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'female', THEME_NAME)
 ];
 
+Cards::$props = $globalProps;
+
 Male::$props = array_merge_recursive($maleProps, $globalProps);
+
 Male::$labels = $maleLabels;
 
 Female::$props = array_merge_recursive($femaleProps, $globalProps);
+
 Female::$labels = $femaleLabels;

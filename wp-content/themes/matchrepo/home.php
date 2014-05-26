@@ -19,6 +19,7 @@ get_header(); ?>
 				<div id="home-new-cards">
 					<h3 class="side-box-title">
 						<span class="title-deco"></span>
+						<img src="<?= get_stylesheet_directory_uri() ?>/media/new-cards-deco.png">
 						<? _e('New Cards In Repository', THEME_NAME) ?>
 					</h3>
 					<?

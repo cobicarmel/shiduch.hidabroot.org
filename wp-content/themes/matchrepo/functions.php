@@ -46,9 +46,7 @@ if(!function_exists('Matchrepo_setup')) :
 
 		// Enable support for HTML5 markup.
 		add_theme_support('html5', array(
-			'comment-list',
 			'search-form',
-			'comment-form',
 			'gallery',
 			'caption',
 		));
@@ -105,3 +103,53 @@ require get_template_directory() . '/cards/manager.php';
 require get_template_directory() . '/init/register.php';
 
 require get_template_directory() . '/init/sidebars.php';
+
+/*add_action( 'wp_print_styles', function(){
+	wp_deregister_style([
+		'acf',
+		'acf-datepicker',
+		'acf-global',
+		'acf-field-group',
+		'acf-input',
+		'admin-bar',
+		'buttons',
+		'colors',
+		'colors-fresh',
+		'customize-controls',
+		'customize-widgets',
+		'dashicons',
+		'editor-buttons',
+		'farbtastic',
+		'jcrop',
+		'ie',
+		'imgareaselect',
+		'install',
+		'login',
+		'media',
+		'mediaelement',
+		'media-views',
+		'open-sans',
+		'thickbox',
+		'wp-admin',
+		'wp-auth-check',
+		'wp-color-picker',
+		'wp-jquery-ui-dialog',
+		'wp-mediaelement',
+		'wp-pointer'
+	]);
+});
+
+add_action( 'wp_print_scripts', function(){
+
+	global $wp_scripts;
+
+	$registered = $wp_scripts -> registered;
+
+	$needed_scripts = ['jquery', 'jquery-core', 'jquery-migrate', 'acf-input'];
+
+	foreach($needed_scripts as $script){
+		unset($registered[$script]);
+	}
+
+	wp_deregister_script(array_keys($registered));
+});*/

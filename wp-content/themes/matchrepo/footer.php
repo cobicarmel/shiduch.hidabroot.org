@@ -25,6 +25,7 @@
 
 					wp_nav_menu($navParams);
 					?>
+					<div id="copyright">© כל הזכויות שמורות למאגר השידוכים החרדי</div>
 				</div><!-- .site-info -->
 			</footer>
 		</div>
