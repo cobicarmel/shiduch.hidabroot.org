@@ -20,7 +20,8 @@ $globalProps = [
 			__('Divorcee', THEME_NAME),
 			__('Widow', THEME_NAME),
 		],
-		'attr' => []
+		'attr' => [],
+		'compare' => 'IN'
 	],
 
 	'work' => [
@@ -38,15 +39,20 @@ $globalProps = [
 		'label' => __('Zone', THEME_NAME),
 		'type' => 'select',
 		'options' => [
-			'המרכז',
-			'ירושלים'
+			'המרכז' => 'המרכז',
+			'ירושלים' => 'ירושלים'
 		]
 	],
 
 	'look' => [
 		'label' => __('View', THEME_NAME),
 		'type' => 'select',
-		'options' => []
+		'options' => [
+			'מבנה רזה',
+			'מבנה בינוני',
+			'מבנה מלא'
+		],
+		'compare' => 'IN'
 	],
 
 	'community' => [
@@ -55,7 +61,7 @@ $globalProps = [
 		'options' => [
 			'אשכנזי',
 			'ספרדי',
-			'תמני'
+			'תימני'
 		]
 	],
 
@@ -98,17 +104,22 @@ $globalProps = [
 		'options' => [
 			__('Man', THEME_NAME),
 			__('Woman', THEME_NAME)
-		]
+		],
+		'compare' => '='
 	],
 
 	'conception' => [
 		'label' => __('Conception', THEME_NAME),
 		'type' => 'select',
 		'options' => [
-			'ליטאית',
-			'ספרדית',
-			'חסידית'
+			'ליטאי/ת',
+			'ספרדי/ת',
+			'חסידי/ת'
 		]
+	],
+
+	'children' => [
+		'compare' => '<='
 	]
 ];
 
@@ -122,9 +133,21 @@ $maleProps = [
 		]
 	],
 
-	'smoking' => [
+	'conception' => [
+		'options' => [
+			'ליטאי',
+			'ספרדי',
+			'חסידי'
+		]
+	],
+
+	'smoke' => [
 		'label' => __('Smoking', THEME_NAME),
-		'type' => 'bool'
+		'type' => 'bool',
+		'options' => [
+			'לא מעשן',
+			'מעשן'
+		]
 	]
 ];
 
@@ -147,6 +170,14 @@ $femaleProps = [
 			'אשכנזיה',
 			'ספרדיה',
 			'תמניה'
+		]
+	],
+
+	'conception' => [
+		'options' => [
+			'ליטאית',
+			'ספרדית',
+			'חסידית'
 		]
 	],
 

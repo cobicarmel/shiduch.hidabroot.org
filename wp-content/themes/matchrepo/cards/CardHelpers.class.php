@@ -3,6 +3,8 @@
 abstract class CardHelpers {
 
 	static function get_gender($card){
-		return get_post_meta($card['ID'], 'gender', true);
+		$gender = get_post_meta($card['ID'], 'gender', true);
+
+		return $gender ? 'female' : 'male';
 	}
 }

@@ -52,49 +52,24 @@ if(!function_exists('Matchrepo_setup')) :
 		));
 	}
 endif; // Matchrepo_setup
+
 add_action('after_setup_theme', 'Matchrepo_setup');
 
 /**
  * Enqueue scripts and styles.
  */
+
 function Matchrepo_scripts(){
 	wp_enqueue_style('Matchrepo-style', get_stylesheet_uri());
 
-	wp_enqueue_script('Matchrepo-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true);
+	wp_enqueue_script('jquery');
 
-	wp_enqueue_script('Matchrepo-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true);
+	wp_register_script('main-script', get_template_directory_uri() . '/js/script.js', array(), '', true);
 
-	if(is_singular() && comments_open() && get_option('thread_comments')){
-		wp_enqueue_script('comment-reply');
-	}
+	wp_enqueue_script('main-script');
 }
 
 add_action('wp_enqueue_scripts', 'Matchrepo_scripts');
-
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
 
 require get_template_directory() . '/widgets/banner.php';
 
@@ -104,52 +79,4 @@ require get_template_directory() . '/init/register.php';
 
 require get_template_directory() . '/init/sidebars.php';
 
-/*add_action( 'wp_print_styles', function(){
-	wp_deregister_style([
-		'acf',
-		'acf-datepicker',
-		'acf-global',
-		'acf-field-group',
-		'acf-input',
-		'admin-bar',
-		'buttons',
-		'colors',
-		'colors-fresh',
-		'customize-controls',
-		'customize-widgets',
-		'dashicons',
-		'editor-buttons',
-		'farbtastic',
-		'jcrop',
-		'ie',
-		'imgareaselect',
-		'install',
-		'login',
-		'media',
-		'mediaelement',
-		'media-views',
-		'open-sans',
-		'thickbox',
-		'wp-admin',
-		'wp-auth-check',
-		'wp-color-picker',
-		'wp-jquery-ui-dialog',
-		'wp-mediaelement',
-		'wp-pointer'
-	]);
-});
-
-add_action( 'wp_print_scripts', function(){
-
-	global $wp_scripts;
-
-	$registered = $wp_scripts -> registered;
-
-	$needed_scripts = ['jquery', 'jquery-core', 'jquery-migrate', 'acf-input'];
-
-	foreach($needed_scripts as $script){
-		unset($registered[$script]);
-	}
-
-	wp_deregister_script(array_keys($registered));
-});*/
+require get_template_directory() . '/inc/Matchrepo.class.php';

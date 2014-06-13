@@ -4,9 +4,7 @@
 Template Name: החשבון שלי
 */
 
-wp_register_style('my_account', get_stylesheet_directory_uri() . '/css/my_account.css');
-
-wp_enqueue_style('my_account');
+Matchrepo::multiCardsHeader();
 
 get_header();
 
@@ -50,23 +48,7 @@ query_posts($args);
 
 			<? endwhile ?>
 
-			<div id="page-navigation">
-				<?
-
-				$big = 9999999;
-
-				$args = array(
-					'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-					'format' => '?paged=%#%',
-					'current' => $paged,
-					'total' => $wp_query->max_num_pages,
-					'prev_text'    => '<',
-					'next_text'    => '>',
-				);
-
-				echo paginate_links($args);
-				?>
-			</div>
+			<? Matchrepo::multiCardsNavigation() ?>
 		</div>
 	</main>
 	<!-- #main -->

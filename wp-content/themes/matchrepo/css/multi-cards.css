@@ -6,12 +6,18 @@
 }
 #user-crumbs {
   font-size: 21px;
+  font-weight: bold;
 }
 #user-crumbs:before {
   content: '>';
 }
+.background-area {
+  height: 1150px;
+}
 .card-meta li {
   width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .card-content {
   height: 108px;
@@ -25,6 +31,7 @@
 .meta-value {
   font-size: 19px;
   line-height: 1.3;
+  white-space: nowrap;
 }
 .to-full-card {
   background-color: #DDDAD1;

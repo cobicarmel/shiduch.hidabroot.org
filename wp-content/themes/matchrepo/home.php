@@ -34,6 +34,10 @@ get_header(); ?>
 
 					foreach($cards as $card) :
 						$gender = CardHelpers::get_gender($card);
+
+						if(! $gender)
+							continue;
+
 						$currCard = new $gender($card);
 						$link = get_permalink($card['ID']);
 

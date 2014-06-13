@@ -25,7 +25,7 @@ abstract class Cards{
 		'look'
 	];
 
-	protected $indexItems = ['status', 'community'];
+	protected $indexItems = ['status', 'community', 'conception', 'look', 'smoke'];
 
 	protected $labeledItems = ['age' => 'גיל'];
 
@@ -37,15 +37,31 @@ abstract class Cards{
 		$this -> set_age();
 	}
 
-	protected static function build_form($params){
+	protected static function build_form($params, $options = null){
 
-		$id = 'form-' . ++self::$formsCount;
+		$defaults = [
+			'id' => 'form-' . ++self::$formsCount,
+			'class' => '',
+			'action' => '',
+			'method' => 'get',
+			'get_search_params' => false
+		];
 
-		echo "<form id='$id'>";
+		$options = $options ? array_merge($defaults, $options) : $defaults;
+
+		echo "<form method='$options[method]' action='$options[action]' id='$options[id]' class='$options[class]'>";
 
 		foreach($params as $param){
 
-			$props = self::$props[$param]; ?>
+			$props = self::$props[$param];
+
+			$searchValue = null;
+
+			if(isset($_GET[$param]))
+				$searchValue = $_GET[$param];
+
+			$hasSearch = $searchValue || $searchValue == '0';
+			?>
 
 			<div class="form-field form-field-<?= $param ?>">
 				<div class="form-label">
@@ -57,7 +73,8 @@ abstract class Cards{
 			switch($props['type']){
 
 				case 'text':
-					echo "<input type='text' name='$param'>";
+					$value = $hasSearch ? " value='$searchValue'" : '';
+					echo "<input type='text' name='$param'$value>";
 					break;
 
 				case 'select':
@@ -66,19 +83,25 @@ abstract class Cards{
 
 					echo "<option></option>";
 
-					foreach($props['options'] as $value => $text)
-						echo "<option value='$value'>$text</option>";
+					foreach($props['options'] as $value => $text){
+
+						$selected = $hasSearch && $searchValue == $value ? " selected='true'" : '';
+
+						echo "<option value='$value'$selected>$text</option>";
+					}
 
 					echo '</select>';
 
 					break;
 
 				case 'radio':
+					$i = 0;
+
 					foreach($props['options'] as $key => $value){
 
 						$checked = '';
 
-						if(! $key)
+						if(! $i++ || ($hasSearch && $searchValue == $key))
 							$checked = 'checked="checked"';
 
 						echo "<label><input type='radio' name='$param' value='$key' $checked>$value</label>";
@@ -97,19 +120,9 @@ abstract class Cards{
 		$this -> meta = get_fields($this -> id);
 	}
 
-	protected function get_parsed_meta($items){
-
-		$itemsStack = [];
-
-		foreach($items as $item)
-			$itemsStack[$item] = $this -> meta[$item];
-
-		return $itemsStack;
-	}
-
 	protected function set_age(){
 
-		$oldTime = DateTime::createFromFormat('d/m/Y', $this -> meta['birthday']) -> getTimestamp();
+		$oldTime = DateTime::createFromFormat('Y-m-d', $this -> meta['birthday']) -> getTimestamp();
 
 		$rangeMS = time() - $oldTime;
 
@@ -120,13 +133,13 @@ abstract class Cards{
 
 	function get_excerpt(){
 
-		$excerpt_items = ['age', 'city', 'status', 'community'];
+		$excerpt_items = ['age', 'city', 'status'];
 
-		$items = $this -> get_parsed_meta($excerpt_items);
+		$items = $this -> prepare_display($excerpt_items, false);
 
-		$items['community'] = 'מוצא ' . $items['community'];
+		$items['community'] = 'מוצא ' . Cards::$props['community']['options'][$this -> meta['community']];
 
-		return $this ->name . ', ' . implode(', ', $items);
+		return $this -> name . ', ' . implode(', ', $items);
 	}
 
 	function list_meta($items = null){
@@ -139,9 +152,9 @@ abstract class Cards{
 
 			echo '<li>';
 
-			echo "<div class='meta-label'>$label:</div>";
+			echo "<span class='meta-label'>$label:</span>";
 
-			echo "<div class='meta-value'>$param</div>";
+			echo "<span class='meta-value'>$param</span>";
 
 			echo '</li>';
 		}
@@ -151,15 +164,27 @@ abstract class Cards{
 
 	static function quick_search(){
 
-		self::build_form(['gender', 'min_age', 'max_age', 'zone', 'conception', 'status']);
-//		acf_form([
-//			'post_id' => 'new',
-//			'field_groups' => [75],
-//			'submit_value' => __('Search')
-//		]);
+		$args = [
+			'gender',
+			'min_age',
+			'max_age',
+			'zone',
+			'conception',
+			'status'
+		];
+
+		$actionPage = get_page_by_title('תוצאות חיפוש');
+
+		$options = [
+			'action' => get_page_link($actionPage -> ID),
+			'class' => 'search-form',
+			'get_search_params' => true
+		];
+
+		self::build_form($args, $options);
 	}
 
-	private function prepare_display($items = null){
+	private function prepare_display($items = null, $withLabels = true){
 
 		$meta = $this -> meta;
 
@@ -176,17 +201,36 @@ abstract class Cards{
 			else
 				$label = get_field_object($key)['label'];
 
-			$param = $meta[$key];
+			$param = in_array($key, $this -> indexItems) ? $this::$props[$key]['options'][$meta[$key]] : $meta[$key];
 
 			if(gettype($param) == 'array')
 				$param = implode('<br>', $param);
 
-			$itemsStack[$label] = $param;
+			if($withLabels)
+				$itemsStack[$label] = $param;
+			else
+				$itemsStack[$key] = $param;
 		}
 
 		return $itemsStack;
 	}
 
+	function advancedSearch(){
+
+		$args = [
+			'min_age',
+			'max_age',
+			'status',
+			'children',
+			'zone',
+			'community',
+			'cover',
+			'look',
+			'healthy'
+		];
+
+		self::build_form($args);
+	}
 }
 
 class Male extends Cards{

@@ -261,6 +261,7 @@ input[type="submit"]:active {
 input[type="checkbox"],
 input[type="radio"] {
 	padding: 0; /* Addresses excess padding in IE8/9 */
+	vertical-align: middle;
 }
 
 input[type="search"] {
@@ -906,8 +907,8 @@ footer {
 	float: right;
 }
 
-.card-meta li > div {
-	float: right;
+.card-meta li > span {
+	white-space: nowrap;
 }
 
 .meta-label {

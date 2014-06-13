@@ -4,18 +4,55 @@ wp_register_style('sidebar', get_stylesheet_directory_uri() . '/css/sidebar.css'
 
 wp_enqueue_style('sidebar');
 
+$site_url = get_site_url();
+
+$site_name = get_option('blogname');
 ?>
 <div id="secondary" class="widget-area" role="complementary">
 
-		<aside id="logo">
-			<img src="<?= WP_CONTENT_URL ?>/uploads/images/logo.png">
-		</aside>
+	<aside id="logo">
+		<a href="<?= $site_url ?>">
+			<img alt="<?= $site_name ?>" title="<?= $site_name ?>" src="<?= WP_CONTENT_URL ?>/uploads/images/logo.png">
+		</a>
+	</aside>
 
 		<span id="cards-count">
 				<? printf(__('%d cards in repository', THEME_NAME), wp_count_posts('card')->publish) ?>
 			</span>
 
-		<aside id="side-login">
+	<aside id="side-login">
+		<? if (is_user_logged_in()) :
+
+			global $current_user, $wpdb;
+
+			$posts_count = $wpdb -> get_var("SELECT COUNT(ID) FROM " . $wpdb -> prefix . "posts WHERE post_author = '" . $current_user -> ID . "' AND post_type = 'card' AND post_status = 'publish'");
+			?>
+			<div id="user-logged-in">
+				<h3>
+					<?
+					printf(
+						__('Hello %s', THEME_NAME) . ',',
+						$current_user -> data -> display_name
+					);
+					?>
+				</h3>
+				<div id="user-published-count">
+					<?
+					printf(
+						__('%d cards was published in your account', THEME_NAME),
+						$posts_count
+					);
+					?>
+				</div>
+				<?
+					$page = get_page_by_title('החשבון שלי');
+					$link = get_page_link($page -> ID);
+				?>
+				<a href="<?= $link ?>">
+					<button>לעריכת הכרטיסים בחשבונך</button>
+				</a>
+			</div>
+		<? else : ?>
 			<div class="side-box">
 				<h3 class="side-box-title">
 					<span class="title-deco"></span>
@@ -30,23 +67,23 @@ wp_enqueue_style('sidebar');
 					'value_remember' => true
 				];
 
-				wp_login_form($args);
-				?>
+				wp_login_form($args); ?>
 			</div>
-		</aside>
+		<? endif ?>
+	</aside>
 
-		<aside id="quick-search">
-			<div class="side-box">
-				<h3 class="side-box-title">
-					<span class="title-deco"></span>
-					<? _e('Quick Search', THEME_NAME) ?>
-				</h3>
-				<?
-				Cards::quick_search();
-				?>
-			</div>
-		</aside>
+	<aside id="quick-search">
+		<div class="side-box">
+			<h3 class="side-box-title">
+				<span class="title-deco"></span>
+				<? _e('Quick Search', THEME_NAME) ?>
+			</h3>
+			<?
+			Cards::quick_search();
+			?>
+		</div>
+	</aside>
 
-		<? dynamic_sidebar('Right Sidebar') ?>
+	<? dynamic_sidebar('Right Sidebar') ?>
 
 </div><!-- #secondary -->
