@@ -14,18 +14,20 @@ foreach($_GET as $key => $value){
 	if(! isset($props[$key]) || (is_string($value) && trim($value) == ''))
 		continue;
 
-	/*if(is_array($value))
-		$value = implode(',', $value);*/
+	$tempArgs = [];
 
 	if(isset($props[$key])){
 
-		$compare = isset($props[$key]['compare']) ? $props[$key]['compare'] : '=';
-
-		$metaArgs[] = [
-			'key' => $key,
+		$tempArgs = [
+			'key' => isset($props[$key]['queryKey']) ? $props[$key]['queryKey'] : $key,
 			'value' => $value,
-			'compare' => $compare
+			'compare' => isset($props[$key]['compare']) ? $props[$key]['compare'] : '='
 		];
+
+		if(isset($props[$key]['queryType']))
+			$tempArgs['type'] = $props[$key]['queryType'];
+
+		$metaArgs[] = $tempArgs;
 	}
 }
 

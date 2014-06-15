@@ -4,8 +4,6 @@
 Template Name: החשבון שלי
 */
 
-Matchrepo::redirect_not_logged();
-
 Matchrepo::multiCardsHeader();
 
 get_header();
@@ -29,7 +27,6 @@ query_posts($args);
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 		<div id="user-managing">
-			<button><? _e('Add New Card', THEME_NAME) ?></button>
 			<button><? _e('Account Managing', THEME_NAME) ?></button>
 			<button><? _e('Email Notifications Settings', THEME_NAME) ?></button>
 		</div>
