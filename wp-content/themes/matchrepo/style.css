@@ -244,7 +244,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	box-shadow: inset 0 0px 3px rgba(0, 0, 0, 0.7);
+	box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
 }
 
 button:focus,
@@ -255,7 +255,7 @@ button:active,
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
-	box-shadow: inset 0 0px 8px rgba(0, 0, 0, 0.8);
+	box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 input[type="checkbox"],
@@ -285,7 +285,7 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-	color: #666;
+	/* color: #666; */
 	border: 1px solid #CCC;
 	border-radius: 3px;
 }
@@ -372,18 +372,7 @@ a {
 }
 
 .main-navigation li:hover {
-	background: linear-gradient(101deg,
-	transparent 8%,
-	#CCA552 9%,
-	#E0C06B 24%,
-	#F5DD84 38%,
-	#FAED9E 51%,
-	#D7AF57 61%,
-	#A97E38 68%,
-	#D7AF57 78%,
-	#D7AF57 91%,
-	transparent 92%
-	);
+	background: linear-gradient(101deg, transparent 8%, #CCA552 9%, #E0C06B 24%, #F5DD84 38%, #FAED9E 51%, #D7AF57 61%, #A97E38 68%, #D7AF57 78%, #D7AF57 91%, transparent 92%);
 }
 
 .main-navigation li:not(:last-of-type):after {
@@ -714,7 +703,7 @@ header img {
 #content {
 	padding-top: 75px;
 	background-color: #FFF;
-	box-shadow: -11px 0 10px -6px rgba(0, 0, 0, 0.2), 11px 0px 10px -6px rgba(0, 0, 0, 0.2);
+	box-shadow: -11px 0 10px -6px rgba(0, 0, 0, 0.2), 11px 0 10px -6px rgba(0, 0, 0, 0.2);
 	min-height: 1200px;
 }
 
@@ -752,7 +741,7 @@ main {
 	left: -11px;
 	position: absolute;
 	top: 0;
-	border-width: 32px 11px 0px 0px;
+	border-width: 32px 11px 0 0;
 	border-style: solid;
 	border-color: transparent #BE0F02;
 }
@@ -776,12 +765,12 @@ main {
 
 .title-deco:before {
 	top: -4px;
-	border-width: 4px 0px 0px 4px;
+	border-width: 4px 0 0 4px;
 }
 
 .title-deco:after {
 	bottom: -4px;
-	border-width: 0px 0px 4px 4px;
+	border-width: 0 0 4px 4px;
 }
 
 #footer-wrapper {
@@ -932,4 +921,55 @@ footer {
 
 .card-content h2 {
 	font-weight: bold;
+}
+
+#register-background {
+	background: url(media/register-background.png);
+	height: 1038px;
+	width: 670px;
+	padding: 0 30px;
+}
+
+#main-title {
+	padding: 0 20px;
+	display: inline-block;
+	background-color: #87767C;
+	-webkit-transform: skewx(-7deg);
+	-moz-transform: skewx(-7deg);
+	-ms-transform: skewx(-7deg);
+	color: #FFF;
+	position: relative;
+	top: -4px;
+	font-size: 29px;
+	font-weight: bold;
+	right: 50px;
+}
+
+#main-title:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: -5px;
+	border-width: 0 5px 4px 0;
+	border-style: solid;
+	border-color: #634F54 transparent;
+}
+
+#register {
+	margin-top: 80px;
+}
+
+#register legend {
+	font-size: 19px;
+	font-weight: bold;
+}
+
+#register [type='radio'] {
+    vertical-align: text-top;
+
+}
+
+#register [type='radio'] + label {
+	margin: 0 5px 0 30px;
+
 }

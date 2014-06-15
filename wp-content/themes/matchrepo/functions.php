@@ -1,5 +1,21 @@
 <?
 
+function restrict_admin(){
+	if(!current_user_can('manage_options')){
+		wp_redirect(site_url());
+		exit;
+	}
+}
+
+add_action('admin_init', 'restrict_admin');
+
+function remove_admin_bar(){
+	if(!current_user_can('manage_options'))
+		show_admin_bar(false);
+}
+
+add_action('after_setup_theme', 'remove_admin_bar');
+
 define('THEME_NAME', 'Matchrepo');
 
 if(!function_exists('Matchrepo_setup')) :

@@ -9,7 +9,7 @@ function lost_password_link(){
 }
 
 function register_link(){
-	$url = esc_url(wp_registration_url());
+	$url = Matchrepo::get_register_url();
 	$label =  __('Register');
 
 	return "<a class='login-register' href='$url'><input type='button' value='$label'></a>";

@@ -25,7 +25,7 @@ abstract class Cards{
 		'look'
 	];
 
-	protected $indexItems = ['status', 'community', 'conception', 'look', 'smoke'];
+	protected $indexItems = ['status', 'community', 'conception', 'look', 'smoke', 'healthy'];
 
 	protected $labeledItems = ['age' => 'גיל'];
 
@@ -40,7 +40,7 @@ abstract class Cards{
 	protected static function build_form($params, $options = null){
 
 		$defaults = [
-			'id' => 'form-' . ++self::$formsCount,
+			'id' => 'form-' . ++Cards::$formsCount,
 			'class' => '',
 			'action' => '',
 			'method' => 'get',
@@ -85,6 +85,9 @@ abstract class Cards{
 
 					foreach($props['options'] as $value => $text){
 
+						if(isset($props['termByValue']) && $props['termByValue'])
+							$value = $text;
+
 						$selected = $hasSearch && $searchValue == $value ? " selected='true'" : '';
 
 						echo "<option value='$value'$selected>$text</option>";
@@ -100,6 +103,9 @@ abstract class Cards{
 					foreach($props['options'] as $key => $value){
 
 						$checked = '';
+
+						if(isset($props['termByValue']) && $props['termByValue'])
+							$key = $value;
 
 						if(! $i++ || ($hasSearch && $searchValue == $key))
 							$checked = 'checked="checked"';
@@ -203,7 +209,7 @@ abstract class Cards{
 
 			$param = in_array($key, $this -> indexItems) ? $this::$props[$key]['options'][$meta[$key]] : $meta[$key];
 
-			if(gettype($param) == 'array')
+			if(is_array($param))
 				$param = implode('<br>', $param);
 
 			if($withLabels)

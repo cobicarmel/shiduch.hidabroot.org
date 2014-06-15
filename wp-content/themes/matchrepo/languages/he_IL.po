@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Matchrepo v1.0-wpcom\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-06-05 23:15:39+0000\n"
+"PO-Revision-Date: 2014-06-14 22:28:40+0000\n"
 "Last-Translator: cobicarmel <jzaltzberg@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,26 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: 404.php:15
+#: 404.php:10
 #@ Matchrepo
 msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
+msgstr "אופס! הגעת למקום שלא קיים.."
 
-#: 404.php:19
+#: 404.php:14
 #@ Matchrepo
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
-msgstr ""
-
-#: 404.php:27
-#@ Matchrepo
-msgid "Most Used Categories"
-msgstr ""
-
-#. translators: %1$s: smiley
-#: 404.php:44
-#, php-format
-#@ Matchrepo
-msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
 #: archive.php:27
@@ -188,7 +176,7 @@ msgid "Pages:"
 msgstr ""
 
 #: content-page.php:23
-#: content-single.php:38
+#: content-single.php:49
 #: content.php:61
 #@ Matchrepo
 #@ default
@@ -234,7 +222,7 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: functions.php:34
+#: functions.php:50
 #@ Matchrepo
 msgid "Primary Menu"
 msgstr ""
@@ -312,22 +300,22 @@ msgstr "%d כרטיסים במאגר"
 msgid "Lost Password"
 msgstr ""
 
-#: sidebar.php:55
+#: sidebar.php:64
 #@ default
 msgid "Username"
 msgstr ""
 
-#: sidebar.php:56
+#: sidebar.php:65
 #@ default
 msgid "Password"
 msgstr ""
 
-#: sidebar.php:57
+#: sidebar.php:66
 #@ Matchrepo
 msgid "Login"
 msgstr "כניסה"
 
-#: sidebar.php:50
+#: sidebar.php:59
 #@ Matchrepo
 msgid "Enter"
 msgstr "כניסה למערכת"
@@ -337,7 +325,7 @@ msgstr "כניסה למערכת"
 msgid "Register"
 msgstr ""
 
-#: sidebar.php:70
+#: sidebar.php:79
 #@ Matchrepo
 msgid "Quick Search"
 msgstr "חיפוש מהיר"
@@ -395,6 +383,7 @@ msgid "View Card"
 msgstr "הצגת כרטיס"
 
 #: cards/register.php:12
+#: my_account.php:32
 #@ Matchrepo
 msgid "Add New Card"
 msgstr "הוספת כרטיס חדש"
@@ -454,37 +443,37 @@ msgstr "מקום לימודים/עיסוק כיום"
 msgid "City"
 msgstr "עיר מגורים"
 
-#: cards/properties.php:54
+#: cards/properties.php:64
 #@ Matchrepo
 msgid "Community"
 msgstr "עדה"
 
-#: cards/properties.php:64
+#: cards/properties.php:75
 #@ Matchrepo
 msgid "Height"
 msgstr "גובה"
 
-#: cards/properties.php:69
+#: cards/properties.php:98
 #@ Matchrepo
 msgid "Father Work"
 msgstr "עיסוק האב"
 
-#: cards/properties.php:74
+#: cards/properties.php:103
 #@ Matchrepo
 msgid "Mother Work"
 msgstr "עיסוק האם"
 
-#: cards/properties.php:79
+#: cards/properties.php:108
 #@ Matchrepo
 msgid "Healthy"
 msgstr "מצב בריאותי"
 
-#: cards/properties.php:140
+#: cards/properties.php:170
 #@ Matchrepo
 msgid "Smoking"
 msgstr "עישון"
 
-#: cards/properties.php:176
+#: cards/properties.php:218
 #@ Matchrepo
 msgid "Cover"
 msgstr "כיסוי ראש"
@@ -499,12 +488,12 @@ msgstr "תוכן דף ראשי"
 msgid "Marital Status"
 msgstr "מצב משפחתי"
 
-#: cards/properties.php:85
+#: cards/properties.php:114
 #@ Matchrepo
 msgid "Min Age"
 msgstr "מגיל"
 
-#: cards/properties.php:91
+#: cards/properties.php:120
 #@ Matchrepo
 msgid "Max Age"
 msgstr "עד גיל"
@@ -514,22 +503,22 @@ msgstr "עד גיל"
 msgid "Zone"
 msgstr "איזור"
 
-#: cards/properties.php:48
+#: cards/properties.php:53
 #@ Matchrepo
 msgid "View"
 msgstr "מראה כללי"
 
-#: content-single.php:24
+#: content-single.php:25
 #@ Matchrepo
 msgid "This Card Managed By"
 msgstr "הכרטיס מנוהל ע\\\"י:"
 
-#: content-single.php:28
+#: content-single.php:29
 #@ Matchrepo
 msgid "Contact Details"
 msgstr "לפרטים נוספים ויצירת קשר:"
 
-#: functions.php:35
+#: functions.php:51
 #@ Matchrepo
 msgid "Footer Menu"
 msgstr "תפריט תחתון"
@@ -539,55 +528,56 @@ msgstr "תפריט תחתון"
 msgid "Age"
 msgstr "גיל"
 
-#: cards/properties.php:146
+#: cards/properties.php:188
 #@ Matchrepo
 msgctxt "male"
 msgid "Little_About_The_Candidate"
 msgstr "קצת על המועמד"
 
-#: cards/properties.php:182
+#: cards/properties.php:232
 #@ Matchrepo
 msgctxt "female"
 msgid "Little_About_The_Candidate"
 msgstr "קצת על המועמדת"
 
-#: content-single.php:36
+#: content-single.php:37
 #@ Matchrepo
 msgid "Delete"
 msgstr "מחיקה"
 
-#: my_account.php:36
+#: my_account.php:39
 #, php-format
 #@ Matchrepo
 msgid "Hello %s, there are %d cards in your account"
 msgstr "שלום %s, ישנם %d כרטיסים בחשבון שלך"
 
-#: my_account.php:30
+#: my_account.php:33
 #@ Matchrepo
 msgid "Account Managing"
 msgstr "ניהול חשבון"
 
-#: my_account.php:31
+#: my_account.php:34
 #@ Matchrepo
 msgid "Email Notifications Settings"
 msgstr "הגדרת התראות במייל"
 
 #: content-account.php:25
+#: content-edit.php:25
 #@ Matchrepo
 msgid "To Full Card"
 msgstr "לכרטיס המלא"
 
-#: cards/properties.php:97
+#: cards/properties.php:126
 #@ Matchrepo
 msgid "Looking For"
 msgstr "מחפש/ת"
 
-#: cards/properties.php:100
+#: cards/properties.php:129
 #@ Matchrepo
 msgid "Man"
 msgstr "גבר"
 
-#: cards/properties.php:101
+#: cards/properties.php:130
 #@ Matchrepo
 msgid "Woman"
 msgstr "אישה"
@@ -607,36 +597,46 @@ msgstr "גרוש/ה"
 msgid "Widow"
 msgstr "אלמנ/ה"
 
-#: cards/properties.php:107
+#: cards/properties.php:136
 #@ Matchrepo
 msgid "Conception"
 msgstr "השקפה"
 
-#: cards/cards.class.php:113
+#: cards/cards.class.php:120
 #@ default
 msgid "Submit"
 msgstr ""
 
-#: search-cards.php:48
+#: search-cards.php:50
 #, php-format
 #@ Matchrepo
 msgid "Found %d Cards For Search"
 msgstr "נמצאו %d כרטיסים בחיפוש"
 
-#: advanced-search.php:56
+#: advanced-search.php:187
 #@ default
 msgid "Search"
 msgstr ""
 
-#: sidebar.php:33
+#: sidebar.php:34
 #, php-format
 #@ Matchrepo
 msgid "Hello %s"
 msgstr "שלום %s"
 
-#: sidebar.php:41
+#: sidebar.php:42
 #, php-format
 #@ Matchrepo
 msgid "%d cards was published in your account"
 msgstr "בחשבונך פורסמו %d כרטיסים"
+
+#: cards/properties.php:80
+#@ Matchrepo
+msgid "Min Height"
+msgstr ""
+
+#: cards/properties.php:89
+#@ Matchrepo
+msgid "Max Height"
+msgstr ""
 

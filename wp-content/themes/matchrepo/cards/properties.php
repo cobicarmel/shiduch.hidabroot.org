@@ -39,9 +39,14 @@ $globalProps = [
 		'label' => __('Zone', THEME_NAME),
 		'type' => 'select',
 		'options' => [
-			'המרכז' => 'המרכז',
-			'ירושלים' => 'ירושלים'
-		]
+			'אזור הצפון',
+			'אזור המרכז',
+			'אזור הדרום',
+			'אזור השרון והשפלה',
+			'ירושלים והסביבה'
+		],
+		'termByValue' => true,
+		'compare' => 'IN'
 	],
 
 	'look' => [
@@ -62,12 +67,31 @@ $globalProps = [
 			'אשכנזי',
 			'ספרדי',
 			'תימני'
-		]
+		],
+		'compare' => 'IN'
 	],
 
 	'height' => [
 		'label' => __('Height', THEME_NAME),
 		'type' => 'number'
+	],
+
+	'min_height' => [
+		'label' => __('Min Height', THEME_NAME),
+		'type' => 'select',
+		'options' => range(120, 210),
+		'compare' => '>=',
+		'queryKey' => 'height',
+		'queryType' => 'DECIMAL'
+	],
+
+	'max_height' => [
+		'label' => __('Max Height', THEME_NAME),
+		'type' => 'select',
+		'options' => range(120, 210),
+		'compare' => '<=',
+		'queryKey' => 'height',
+		'queryType' => 'DECIMAL'
 	],
 
 	'father_work' => [
@@ -112,10 +136,11 @@ $globalProps = [
 		'label' => __('Conception', THEME_NAME),
 		'type' => 'select',
 		'options' => [
-			'ליטאי/ת',
-			'ספרדי/ת',
-			'חסידי/ת'
-		]
+			'ליטאית',
+			'ספרדית',
+			'חסידית'
+		],
+		'compare' => 'IN'
 	],
 
 	'children' => [
@@ -147,6 +172,14 @@ $maleProps = [
 		'options' => [
 			'לא מעשן',
 			'מעשן'
+		]
+	],
+
+	'healthy' => [
+		'options' => [
+			'בריא לחלוטין',
+			'בעיה קלה',
+			'בעל מוגבלות'
 		]
 	]
 ];
@@ -184,6 +217,14 @@ $femaleProps = [
 	'cover' => [
 		'label' => __('Cover', THEME_NAME),
 		'type' => 'bool'
+	],
+
+	'healthy' => [
+		'options' => [
+			'בריאה לחלוטין',
+			'בעיה קלה',
+			'בעלת מוגבלות'
+		]
 	]
 ];
 

@@ -16,17 +16,18 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<form id="advanced-search" class="search-form" action="<?= get_page_link(get_page_by_title('תוצאות חיפוש') ->ID) ?>">
+			<form id="advanced-search" class="search-form"
+				  action="<?= get_page_link(get_page_by_title('תוצאות חיפוש') ->ID) ?>">
 				<div id="choose-gender" class="toggle-trigger labels-replace-trigger" data-toggle-key="gender">
 					<div>
 						<img src="<?= get_stylesheet_directory_uri() . '/media/male-main.png' ?>">
-						<input name="gender" value="male" type="radio" id="option-male"
+						<input name="gender" value="0" type="radio" id="option-male"
 							   class="toggle-trigger show-hide-trigger" data-toggle-key="male" checked>
 						<label for="option-male">חיפוש גבר</label>
 					</div>
 					<div>
 						<img src="<?= get_stylesheet_directory_uri() . '/media/female-main.png' ?>">
-						<input name="gender" value="female" type="radio" id="option-female"
+						<input name="gender" value="1" type="radio" id="option-female"
 							   class="toggle-trigger show-hide-trigger" data-toggle-key="female">
 						<label for="option-female">חיפוש אישה</label>
 					</div>
@@ -71,14 +72,22 @@ get_header(); ?>
 						<label for="as-zone-os">חו"ל</label>
 						<br>
 						<span class="toggle-affected-group" data-check-group="israel">
-							<input name="zone[]" type="checkbox" id="as-zone1" value="1">
-							<label for="as-zone1">אזור הצפון</label>
-							<input name="zone[]" type="checkbox" id="as-zone2" value="2">
-							<label for="as-zone2">אזור המרכז</label>
-							<input name="zone[]" type="checkbox" id="as-zone3" value="3">
-							<label for="as-zone3">אזור השרון והשפלה</label>
-							<input name="zone[]" type="checkbox" id="as-zone4" value="4">
-							<label for="as-zone4">ירושלים והסביבה</label>
+							<?
+							$zones = Cards::$props['zone']['options'];
+							$itemsPerLine = 3;
+							$itemsCounter = 0;
+
+							foreach($zones as $i => $zone){
+								?>
+
+								<input name="zone[]" type="checkbox" id="as-zone<?= $i ?>" value="<?= $zone ?>">
+								<label for="as-zone<?= $i ?>"><?= $zone ?></label>
+								<?
+								if(++$itemsCounter == $itemsPerLine){
+									echo '<br>';
+									$itemsCounter = 0;
+								}
+							}?>
 						</span>
 					</span>
 					</p>
@@ -90,12 +99,14 @@ get_header(); ?>
 						<label for="as-community-all">הכל</label>
 					<span class="toggle-affected-group" data-check-group="community" data-labels="gender"
 						  data-labels-group="community">
-						<input name="community[]" type="checkbox" id="as-community0">
-						<label for="as-community0">אשכנזי</label>
-						<input name="community[]" type="checkbox" id="as-community1">
-						<label for="as-community1">ספרדי</label>
-						<input name="community[]" type="checkbox" id="as-community2">
-						<label for="as-community2">תימני</label>
+							<?
+							$communities = Cards::$props['community']['options'];
+
+							foreach($communities as $i => $community){
+								?>
+								<input name="community[]" type="checkbox" id="as-community<?= $i ?>" value="<?= $i ?>">
+								<label for="as-community<?= $i ?>"><?= $community ?></label>
+							<? } ?>
 					</span>
 					</p>
 					<h4>השקפה</h4>
@@ -106,12 +117,14 @@ get_header(); ?>
 						<label for="as-concept-all">הכל</label>
 					<span class="toggle-affected-group" data-check-group="concept" data-labels="gender"
 						  data-labels-group="concept">
-						<input name="concept[]" type="checkbox" id="as-concept0">
-						<label for="as-concept0">אשכנזית</label>
-						<input name="concept[]" type="checkbox" id="as-concept1">
-						<label for="as-concept1">ספרדית</label>
-						<input name="concept[]" type="checkbox" id="as-concept2">
-						<label for="as-concept2">חסידית</label>
+						<?
+						$concepts = Cards::$props['conception']['options'];
+
+						foreach($concepts as $i => $concept){
+							?>
+							<input name="conception[]" type="checkbox" id="as-concept<?= $i ?>" value="<?= $i ?>">
+							<label for="as-concept<?= $i ?>"><?= $concept ?></label>
+						<? } ?>
 					</span>
 					</p>
 					<h4>מראה כללי</h4>
@@ -125,21 +138,22 @@ get_header(); ?>
 						<label for="as-look0">מבנה רזה</label>
 						<input name="look[]" type="checkbox" id="as-look1" value="1">
 						<label for="as-look1">מבנה בינוני</label>
-						<input name="look[]" type="checkbox" id="as-look2"  value="2">
+						<input name="look[]" type="checkbox" id="as-look2" value="2">
 						<label for="as-look2">מבנה מלא</label>
 					</span>
 					</p>
 					<h4>גובה</h4>
+
 					<p>
 						<label for="as-min-height">מינימום</label>
-						<select name="min-height" id="as-min-height">
+						<select name="min_height" id="as-min-height">
 							<option></option>
 							<? foreach(range(120, 210) as $height){ ?>
 								<option><?= $height ?></option>
 							<? } ?>
 						</select>
 						<label for="as-max-height">מקסימום</label>
-						<select name="max-height" id="as-max-height">
+						<select name="max_height" id="as-max-height">
 							<option></option>
 							<? foreach(range(120, 210) as $height){ ?>
 								<option><?= $height ?></option>

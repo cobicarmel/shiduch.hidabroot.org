@@ -25,6 +25,10 @@
 .card-content h2 {
   font-size: 19px;
 }
+.card-content p {
+  height: 85%;
+  overflow: hidden;
+}
 .meta-label {
   font-size: 19px;
 }
