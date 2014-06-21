@@ -35,6 +35,7 @@ $site_name = get_option('blogname');
 						$current_user -> data -> display_name
 					);
 					?>
+					<a id="logout" href="<?= wp_logout_url(home_url()) ?>"><? _e('Log out &raquo;') ?></a>
 				</h3>
 				<div id="user-published-count">
 					<?
@@ -64,6 +65,7 @@ $site_name = get_option('blogname');
 					'label_username' => __('Username') . ':',
 					'label_password' => __('Password') . ':',
 					'label_log_in' => __('Login', THEME_NAME),
+					'redirect' => site_url(),
 					'value_remember' => true
 				];
 

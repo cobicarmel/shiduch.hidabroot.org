@@ -2,7 +2,11 @@
 
 abstract class Matchrepo{
 
-	const REGISTER_URL = '';
+	static function mainFormHeader(){
+		add_action('wp_enqueue_scripts', function(){
+			wp_enqueue_style('main-form');
+		});
+	}
 
 	static function multiCardsHeader(){
 		wp_register_style('multi-cards', get_stylesheet_directory_uri() . '/css/multi-cards.css');

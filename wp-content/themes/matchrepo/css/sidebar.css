@@ -125,3 +125,9 @@
 #user-published-count {
   font-size: 21px;
 }
+#logout {
+  float: left;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 3.3;
+}
