@@ -1,0 +1,61 @@
+#main-form {
+  position: relative;
+  margin-top: 50px;
+}
+#main-form h4 {
+  font-size: 19px;
+}
+#main-form select {
+  margin-right: 5px;
+}
+#as-options input + label {
+  margin: 0 5px 2px 50px;
+  display: inline-block;
+}
+#choose-gender {
+  width: 360px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+#choose-gender > div {
+  width: 50%;
+  float: right;
+}
+#choose-gender label {
+  margin-right: 5px;
+}
+#main-form-background {
+  background: url(../media/register-background.png);
+  height: 1038px;
+  width: 670px;
+  padding: 0 30px;
+}
+#main-title {
+  padding: 0 20px;
+  display: inline-block;
+  background-color: #87767C;
+  -webkit-transform: skewx(-7deg);
+  -moz-transform: skewx(-7deg);
+  -ms-transform: skewx(-7deg);
+  color: #FFF;
+  position: relative;
+  top: -4px;
+  font-size: 29px;
+  font-weight: bold;
+  right: 50px;
+}
+#main-title:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -5px;
+  border-width: 0 5px 4px 0;
+  border-style: solid;
+  border-color: #634F54 transparent;
+}
+#submit {
+  text-align: center;
+  margin-top: 30px;
+}
