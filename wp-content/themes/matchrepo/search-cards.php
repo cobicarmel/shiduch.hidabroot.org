@@ -18,6 +18,9 @@ foreach($_GET as $key => $value){
 
 	if(isset($props[$key])){
 
+		if(isset($props[$key]['queryValue']))
+			$value = call_user_func($props[$key]['queryValue'], $value);
+
 		$tempArgs = [
 			'key' => isset($props[$key]['queryKey']) ? $props[$key]['queryKey'] : $key,
 			'value' => $value,

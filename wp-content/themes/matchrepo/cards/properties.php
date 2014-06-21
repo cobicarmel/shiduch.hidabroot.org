@@ -113,13 +113,25 @@ $globalProps = [
 	'min_age' => [
 		'label' => __('Min Age', THEME_NAME),
 		'type' => 'select',
-		'options' => range(18, 99)
+		'options' => range(18, 99),
+		'termByValue' => true,
+		'queryKey' => 'birthday',
+		'queryValue' => function($value){
+			return date('Y-m-d', strtotime("-$value year"));
+		},
+		'compare' => '<'
 	],
 
 	'max_age' => [
 		'label' => __('Max Age', THEME_NAME),
 		'type' => 'select',
-		'options' => range(18, 99)
+		'options' => range(18, 99),
+		'termByValue' => true,
+		'queryKey' => 'birthday',
+		'queryValue' => function($value){
+			return date('Y-m-d', strtotime("-$value year"));
+		},
+		'compare' => '>'
 	],
 
 	'gender' => [

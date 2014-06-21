@@ -85,7 +85,7 @@ abstract class Cards{
 
 					foreach($props['options'] as $value => $text){
 
-						if(isset($props['termByValue']) && $props['termByValue'])
+						if(! empty($props['termByValue']))
 							$value = $text;
 
 						$selected = $hasSearch && $searchValue == $value ? " selected='true'" : '';

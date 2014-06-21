@@ -4,19 +4,14 @@
 Template Name: חיפוש מתקדם
 */
 
-wp_register_style('advanced-search', get_stylesheet_directory_uri() . '/css/advanced-search.css');
-
-wp_enqueue_style('advanced-search');
-
-wp_register_script('advanced-search', get_stylesheet_directory_uri() . '/js/advanced-search.js', ['main-script'], '', true);
-
-wp_enqueue_script('advanced-search');
+Matchrepo::mainFormHeader();
 
 get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<form id="advanced-search" class="search-form"
+			<h2 id="main-title">חיפוש מתקדם</h2>
+			<form id="main-form" class="search-form"
 				  action="<?= get_page_link(get_page_by_title('תוצאות חיפוש') ->ID) ?>">
 				<div id="choose-gender" class="toggle-trigger labels-replace-trigger" data-toggle-key="gender">
 					<div>
@@ -33,8 +28,24 @@ get_header(); ?>
 					</div>
 				</div>
 				<div id="as-options">
+					<h4>טווח גילאים</h4>
+					<p>
+						<label for="as-min-age">מגיל</label>
+						<select name="min_age" id="as-min-age">
+							<option></option>
+							<? foreach(range(17, 99) as $age){ ?>
+								<option><?= $age ?></option>
+							<? } ?>
+						</select>
+						<label for="as-max-age">עד גיל</label>
+						<select name="max_age" id="as-max-age">
+							<option></option>
+							<? foreach(range(17, 99) as $age){ ?>
+								<option><?= $age ?></option>
+							<? } ?>
+						</select>
+					</p>
 					<h4>מצב משפחתי</h4>
-
 					<p id="as-status">
 						<input type="checkbox" id="as-status-all" class="toggle-trigger select-all"
 							   data-toggle-key="status">
@@ -186,7 +197,7 @@ get_header(); ?>
 						</p>
 					</div>
 				</div>
-				<div style="text-align: center">
+				<div id="submit">
 					<input type="submit" value="<? _e('Search') ?>">
 				</div>
 			</form>
