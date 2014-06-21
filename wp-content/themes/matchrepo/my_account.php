@@ -29,7 +29,9 @@ query_posts($args);
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 		<div id="user-managing">
-			<button><? _e('Add New Card', THEME_NAME) ?></button>
+			<a href="<?= get_permalink(get_page_by_title('הוספת כרטיס')) ?>">
+				<button><? _e('Add New Card', THEME_NAME) ?></button>
+			</a>
 			<button><? _e('Account Managing', THEME_NAME) ?></button>
 			<button><? _e('Email Notifications Settings', THEME_NAME) ?></button>
 		</div>
