@@ -2,9 +2,19 @@
 
 abstract class Matchrepo{
 
+	static function cardFormHeader(){
+		add_action('wp_enqueue_scripts', function (){
+			wp_enqueue_style('add-card');
+			wp_enqueue_script('jquery-ui-datepicker');
+			wp_enqueue_script('add-card');
+			wp_enqueue_style('jquery-ui');
+		});
+	}
+
 	static function mainFormHeader(){
 		add_action('wp_enqueue_scripts', function(){
 			wp_enqueue_style('main-form');
+			wp_enqueue_script('main-form');
 		});
 	}
 
@@ -51,5 +61,29 @@ abstract class Matchrepo{
 
 	static function get_register_url(){
 		return get_permalink(get_page_by_title('הרשמה'));
+	}
+
+	static function textToDBDate($dateText){
+		if(! $date = DateTime::createFromFormat('d/m/Y', $dateText))
+			return false;
+
+		return $date->format('Y-m-d');
+	}
+
+	/**
+	 * @param string $phone
+	 * @return string
+	 */
+	static function phone_format($phone){
+
+		$phone = filter_var($phone, FILTER_SANITIZE_NUMBER_INT);
+
+		$splitAt = $phone[1] == 5 ? 3 : 2;
+
+		$area = substr($phone, 0, $splitAt);
+
+		$number = substr($phone, $splitAt);
+
+		return $area . '-' . $number;
 	}
 } 

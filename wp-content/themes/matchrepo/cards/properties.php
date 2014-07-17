@@ -2,6 +2,11 @@
 
 $globalProps = [
 
+	'title' => [
+		'label' => __('First Name', THEME_NAME),
+		'pattern' => '/^[a-zא-ת| ]+$/'
+	],
+
 	'age' => [
 		'label' => __('Age', THEME_NAME)
 	],
@@ -9,7 +14,14 @@ $globalProps = [
 	'birthday' => [
 		'label' => __('Date Of Birth', THEME_NAME),
 		'type' => 'text',
-		'pattern' => ''
+		'pattern' => function ($str){
+			if(!$date = DateTime::createFromFormat('d/m/Y', $str))
+				return false;
+
+			$dateParams = explode('-', $date->format('m-d-Y'));
+
+			return checkdate($dateParams[0], $dateParams[1], $dateParams[2]);
+		}
 	],
 
 	'status' => [
@@ -21,7 +33,8 @@ $globalProps = [
 			__('Widow', THEME_NAME),
 		],
 		'attr' => [],
-		'compare' => 'IN'
+		'compare' => 'IN',
+		'pattern' => '/^[0-2]$/'
 	],
 
 	'work' => [
@@ -32,7 +45,12 @@ $globalProps = [
 	'city' => [
 		'label' => __('City', THEME_NAME),
 		'type' => 'select',
-		'options' => []
+		'options' => [
+			'ירושלים',
+			'בני ברק',
+			'תל אביב',
+			'חיפה'
+		]
 	],
 
 	'zone' => [
@@ -57,7 +75,8 @@ $globalProps = [
 			'מבנה בינוני',
 			'מבנה מלא'
 		],
-		'compare' => 'IN'
+		'compare' => 'IN',
+		'pattern' => '/^[0-2]$/'
 	],
 
 	'community' => [
@@ -68,12 +87,16 @@ $globalProps = [
 			'ספרדי',
 			'תימני'
 		],
-		'compare' => 'IN'
+		'compare' => 'IN',
+		'pattern' => '/^[0-2]$/'
 	],
 
 	'height' => [
 		'label' => __('Height', THEME_NAME),
-		'type' => 'number'
+		'type' => 'number',
+		'pattern' => function ($str){
+			return is_numeric($str = (int) $str) && $str >= 100 && $str <= 240;
+		}
 	],
 
 	'min_height' => [
@@ -107,7 +130,8 @@ $globalProps = [
 	'healthy' => [
 		'label' => __('Healthy', THEME_NAME),
 		'type' => 'select',
-		'options' => []
+		'options' => [],
+		'pattern' => '/^[0-2]$/'
 	],
 
 	'min_age' => [
@@ -116,7 +140,7 @@ $globalProps = [
 		'options' => range(18, 99),
 		'termByValue' => true,
 		'queryKey' => 'birthday',
-		'queryValue' => function($value){
+		'queryValue' => function ($value){
 			return date('Y-m-d', strtotime("-$value year"));
 		},
 		'compare' => '<'
@@ -128,7 +152,7 @@ $globalProps = [
 		'options' => range(18, 99),
 		'termByValue' => true,
 		'queryKey' => 'birthday',
-		'queryValue' => function($value){
+		'queryValue' => function ($value){
 			return date('Y-m-d', strtotime("-$value year"));
 		},
 		'compare' => '>'
@@ -141,7 +165,8 @@ $globalProps = [
 			__('Man', THEME_NAME),
 			__('Woman', THEME_NAME)
 		],
-		'compare' => '='
+		'compare' => '=',
+		'pattern' => '/^[0-1]$/'
 	],
 
 	'conception' => [
@@ -152,11 +177,33 @@ $globalProps = [
 			'ספרדית',
 			'חסידית'
 		],
-		'compare' => 'IN'
+		'compare' => 'IN',
+		'pattern' => '/^[0-2]$/'
 	],
 
 	'children' => [
-		'compare' => '<='
+		'compare' => '<=',
+		'pattern' => function ($str){
+			return is_numeric($str = (int) $str) && $str >= 0 && $str <= 30;
+		}
+	],
+
+	'hasidism' => [
+		'options' => [
+			'אשלג',
+			'בעלז',
+			'ברסלב',
+			'גור',
+			'ויז\'ניץ',
+			'חב"ד',
+			'לעלוב',
+			'מודז\'יץ',
+			'סלונים',
+			'צאנז',
+			'קרלין',
+			'שומר אמונים',
+			'תולדות אהרון'
+		]
 	]
 ];
 
@@ -184,7 +231,8 @@ $maleProps = [
 		'options' => [
 			'לא מעשן',
 			'מעשן'
-		]
+		],
+		'pattern' => ''
 	],
 
 	'healthy' => [
@@ -192,6 +240,18 @@ $maleProps = [
 			'בריא לחלוטין',
 			'בעיה קלה',
 			'בעל מוגבלות'
+		]
+	],
+
+	'disability_details' => [
+		'options' => [
+			'לקוי שמיעה',
+			'לקוי ראיה',
+			'תלוי בזולת',
+			'נעזר חלקית',
+			'עצמאי',
+			'בעיה נפשית',
+			'בעיה חברתית'
 		]
 	]
 ];
@@ -228,7 +288,13 @@ $femaleProps = [
 
 	'cover' => [
 		'label' => __('Cover', THEME_NAME),
-		'type' => 'bool'
+		'type' => 'bool',
+		'options' => [
+			'פאה בלבד',
+			'מטפחת בלבד',
+			'פאה ומטפחת'
+		],
+		'pattern' => ''
 	],
 
 	'healthy' => [
@@ -236,6 +302,18 @@ $femaleProps = [
 			'בריאה לחלוטין',
 			'בעיה קלה',
 			'בעלת מוגבלות'
+		]
+	],
+
+	'disability_details' => [
+		'options' => [
+			'לקוית שמיעה',
+			'לקוית ראיה',
+			'תלויה בזולת',
+			'נעזרת חלקית',
+			'עצמאית',
+			'בעיה נפשית',
+			'בעיה חברתית'
 		]
 	]
 ];

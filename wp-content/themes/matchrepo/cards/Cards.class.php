@@ -14,6 +14,15 @@ abstract class Cards{
 
 	static $props;
 
+	public static $user_types = [
+		'שדכנית',
+		'שדכנית מצווה',
+		'הורה',
+		'רב',
+		'רבנית',
+		'בן משפחה של המועמד/ת'
+	];
+
 	public $myAccountItems = [
 		'age',
 		'status',
@@ -25,7 +34,16 @@ abstract class Cards{
 		'look'
 	];
 
-	protected $indexItems = ['status', 'community', 'conception', 'look', 'smoke', 'healthy'];
+	protected $indexItems = [
+		'status',
+		'community',
+		'conception',
+		'look',
+		'smoke',
+		'healthy',
+		'disability_details',
+		'cover'
+	];
 
 	protected $labeledItems = ['age' => 'גיל'];
 
@@ -190,7 +208,7 @@ abstract class Cards{
 		self::build_form($args, $options);
 	}
 
-	private function prepare_display($items = null, $withLabels = true){
+	function prepare_display($items = null, $withLabels = true){
 
 		$meta = $this -> meta;
 
@@ -207,10 +225,24 @@ abstract class Cards{
 			else
 				$label = get_field_object($key)['label'];
 
-			$param = in_array($key, $this -> indexItems) ? $this::$props[$key]['options'][$meta[$key]] : $meta[$key];
+			if(in_array($key, $this -> indexItems)){
+
+				if(is_array($meta[$key])){
+
+					$param = [];
+
+					foreach($meta[$key] as $k){
+						$param[] = $this::$props[$key]['options'][$k];
+					}
+				}
+				else
+					$param = $this::$props[$key]['options'][$meta[$key]];
+			}
+			else
+				$param = $meta[$key];
 
 			if(is_array($param))
-				$param = implode('<br>', $param);
+				$param = implode(', ', $param);
 
 			if($withLabels)
 				$itemsStack[$label] = $param;
