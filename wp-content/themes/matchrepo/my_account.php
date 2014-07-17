@@ -13,8 +13,12 @@ get_header();
 if(!$paged = get_query_var('paged'))
 	$paged = 1;
 
+$user_id = $current_user->ID;
+
+$user_meta = get_user_meta($user_id);
+
 $args = array(
-	'author' => $current_user->ID,
+	'author' => $user_id,
 	'post_type' => 'card',
 	'orderby' => 'post_date',
 	'order' => 'DESC',
@@ -39,7 +43,7 @@ query_posts($args);
 			<?
 			printf(
 				__('Hello %s, there are %d cards in your account', THEME_NAME),
-				$current_user ->data ->display_name,
+				$user_meta['nickname'][0],
 				$wp_query ->found_posts
 			)
 			?>

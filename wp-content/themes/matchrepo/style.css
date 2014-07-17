@@ -867,6 +867,7 @@ footer {
 .card-avatar {
 	background-color: #323227;
 	overflow: hidden;
+	margin-bottom: 20px;
 }
 
 .card-title {

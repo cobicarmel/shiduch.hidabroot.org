@@ -25,14 +25,18 @@ $site_name = get_option('blogname');
 
 			global $current_user, $wpdb;
 
-			$posts_count = $wpdb -> get_var("SELECT COUNT(ID) FROM " . $wpdb -> prefix . "posts WHERE post_author = '" . $current_user -> ID . "' AND post_type = 'card' AND post_status = 'publish'");
+			$id = $current_user -> ID;
+
+			$user_meta = get_user_meta($id);
+
+			$posts_count = $wpdb -> get_var('SELECT COUNT(ID) FROM ' . $wpdb -> prefix . "posts WHERE post_author = '$id' AND post_type = 'card' AND post_status = 'publish'");
 			?>
 			<div id="user-logged-in">
 				<h3>
 					<?
 					printf(
 						__('Hello %s', THEME_NAME) . ',',
-						$current_user -> data -> display_name
+						$user_meta['nickname'][0]
 					);
 					?>
 					<a id="logout" href="<?= wp_logout_url(home_url()) ?>"><? _e('Log out &raquo;') ?></a>
