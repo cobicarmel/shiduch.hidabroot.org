@@ -6,7 +6,12 @@ Template Name: חיפוש מתקדם
 
 Matchrepo::mainFormHeader();
 
-get_header(); ?>
+add_action('wp_enqueue_scripts', function(){
+	wp_enqueue_script('advanced-search');
+});
+
+get_header();
+?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -27,7 +32,7 @@ get_header(); ?>
 						<label for="option-female">חיפוש אישה</label>
 					</div>
 				</div>
-				<div id="as-options">
+				<div id="mf-options">
 					<h4>טווח גילאים</h4>
 					<p>
 						<label for="as-min-age">מגיל</label>

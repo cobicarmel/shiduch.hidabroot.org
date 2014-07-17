@@ -36,7 +36,9 @@ foreach($_GET as $key => $value){
 
 $args = [
 	'post_type' => 'card',
-	'meta_query' => $metaArgs
+	'meta_query' => $metaArgs,
+	'posts_per_page' => 4,
+	'paged' => get_query_var('paged', 1)
 ];
 
 query_posts($args);
