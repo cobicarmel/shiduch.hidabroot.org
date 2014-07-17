@@ -1,51 +1,77 @@
 article {
-	height: 947px;
+  height: 947px;
 }
 
 .card-side-box {
-	margin-top: 20px;
 
-	.title {
-		font-size: 19px;
-		height: 28px;
-		line-height: 28px;
-	}
+  .title {
+    font-size: 19px;
+    height: 28px;
+    line-height: 28px;
+  }
+}
+
+.cdb-content {
+  font-size: 19px;
+
+  .row {
+    padding-right: 5px;
+    overflow: hidden;
+
+   > * {
+      float: right;
+      line-height: 1;
+      padding: 5px 0;
+    }
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .term {
+    padding: 6px;
+  }
+}
+
+#card-manager {
+  text-align: center;
 }
 
 #treat-card {
-	padding-left: 50px;
+  padding-left: 50px;
 
-	> div {
-		background-color: #FFF;
-		float: left;
-		font-size: 19px;
-		padding: 0 15px;
-		border-radius: 0 0 5px 5px;
-		border: 1px solid #AFA4A2;
-		border-top: none;
-		box-shadow: 1px 2px 7px rgba(0,0,0,0.2);
-		margin: 0 5px;
+  > div {
+    background-color: #FFF;
+    float: left;
+    font-size: 19px;
+    padding: 0 15px;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #AFA4A2;
+    border-top: none;
+    box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.2);
+    margin: 0 5px;
 
-	}
+  }
 }
 
 .card-meta li {
-	width: 100%;
+  width: 100%;
 }
 
 .card-content h2 {
-	font-size: 27px;
+  font-size: 27px;
 }
 
 .card-details {
-	border-bottom: 4px solid #A19491;
+  border-bottom: 4px solid #A19491;
 }
 
 .meta-label {
-	font-size: 23px;
+  font-size: 23px;
 }
 
 .meta-value {
-	font-size: 19px;
-	line-height: 1.6;
+  font-size: 19px;
+  line-height: 1.6;
 }

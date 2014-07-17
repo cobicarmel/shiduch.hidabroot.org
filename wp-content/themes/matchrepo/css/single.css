@@ -1,13 +1,31 @@
 article {
   height: 947px;
 }
-.card-side-box {
-  margin-top: 20px;
-}
 .card-side-box .title {
   font-size: 19px;
   height: 28px;
   line-height: 28px;
+}
+.cdb-content {
+  font-size: 19px;
+}
+.cdb-content .row {
+  padding-right: 5px;
+  overflow: hidden;
+}
+.cdb-content .row > * {
+  float: right;
+  line-height: 1;
+  padding: 5px 0;
+}
+.cdb-content .label {
+  font-weight: bold;
+}
+.cdb-content .term {
+  padding: 6px;
+}
+#card-manager {
+  text-align: center;
 }
 #treat-card {
   padding-left: 50px;
