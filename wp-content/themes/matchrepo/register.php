@@ -19,14 +19,20 @@ if($_POST){
 	if(empty($agree) || count($agree) < 2)
 		$errorMsg[] = '<strong>שגיאה:</strong> יש להסכים לכל תנאי השימוש באתר.';
 	else {
-		$errors = register_new_user($user_login, $user_email);
+		$newUser = register_new_user($user_login, $user_email);
 
-		if(is_wp_error($errors)){
-			foreach($errors -> errors as $error)
+		if(is_wp_error($newUser)){
+			foreach($newUser -> errors as $error)
 				$errorMsg[] = $error[0];
 		}
-		else
+		else{
 			$registerSuccess = true;
+
+			$metaTerms = ['nickname', 'user_type', 'user_phone', 'user_zone'];
+
+			foreach($metaTerms as $term)
+				update_user_meta($newUser, $term, $$term);
+		}
 	}
 
 	$errorMsg = implode('<br>', $errorMsg);
@@ -82,8 +88,12 @@ get_header(); ?>
 					</fieldset>
 					<fieldset>
 						<div class="label-top">
-							<label for="username">שם</label>
+							<label for="username">שם משתמש (באנגלית בלבד)</label>
 							<input type="text" id="username" name="user_login" value="<?= isset($user_login) ? $user_login : '' ?>" required>
+						</div>
+						<div class="label-top">
+							<label for="nickname">שם פרטי</label>
+							<input type="text" id="nickname" name="nickname" value="<?= isset($nickname) ? $nickname : '' ?>" required>
 						</div>
 						<div class="label-top">
 							<label for="user-phone">טלפון</label>
@@ -119,7 +129,7 @@ get_header(); ?>
 						</div>
 						<div>
 							<input type="checkbox" id="agree1" name="agree[]" required>
-							<label for="agree1">אני מתחייבת כי במידה ועז"ה אחד המועמדים שרשמתי יגיע לחופה עם משודכ/ת אחר/ת מהמאגר, ישולם להידברות סך של 1,000 ש"ח.</label>
+							<label for="agree1">אני מתחייב/ת כי במידה ובעז"ה אחד המועמדים שרשמתי יגיע לחופה עם משודכ/ת אחר/ת מהמאגר, ישולם להידברות סך של 1,000 ש"ח.</label>
 						</div>
 					</fieldset>
 					<button>סיום הרשמה</button>
