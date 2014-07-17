@@ -10,27 +10,126 @@ Matchrepo::mainFormHeader();
 
 $level = 1;
 
-if(isset($_POST['gender'])){
-	$level = 2;
+if(isset($_POST['from_level']))
+	$level = $_POST['from_level'] + 1;
+
+if($level == 2){
 	$gender = $_POST['gender'];
 
-	add_action('wp_enqueue_scripts', function(){
-		wp_enqueue_script('jquery-ui-datepicker');
-		wp_enqueue_script('add-card');
-		wp_enqueue_style('jquery-ui');
-	});
+	$props = $gender ? Female::$props : Male::$props;
+
+	$labels = $gender ? Female::$labels : Male::$labels;
+
+	Matchrepo::cardFormHeader();
+}
+
+if($level == 3){
+
+	$register_successful = false;
+
+	$errors = [
+		'empty' => [],
+		'incorrect' => []
+	];
+
+	$props = Cards::$props;
+
+	$required = [
+		'gender',
+		'title',
+		'content',
+		'birthday',
+		'status',
+		'country',
+		'zone',
+		'city',
+		'community',
+		'conception',
+		'work',
+		'college',
+		'father_work',
+		'mother_work',
+		'height',
+		'look',
+		'healthy'
+	];
+
+	$optionals = [
+		'children',
+		'smoke',
+		'cover',
+		'disability_details'
+	];
+
+	if(!$_POST['gender'])
+		$optionals[] = 'smoke';
+	else
+		$required[] = 'cover';
+
+	$allTerms = array_merge($required, $optionals);
+
+	foreach($required as $term){
+		if(!isset($_POST[$term]) || $_POST[$term] == '')
+			$errors['empty'][] = $term;
+	}
+
+	foreach($allTerms as $term){
+
+		$isCorrect = true;
+
+		$prop = $props[$term];
+
+		if(!empty($prop['pattern'])){
+			if(is_callable($prop['pattern']))
+				$isCorrect = call_user_func($prop['pattern'], $_POST[$term]);
+			else
+				$isCorrect = preg_match($prop['pattern'], $_POST[$term]);
+		}
+
+		if(!$isCorrect)
+			$errors['incorrect'][] = $term;
+	}
+
+	$params = array(
+		'post_type' => 'card',
+		'post_title' => $_POST['title'],
+		'post_status' => 'pending',
+		'post_content' => $_POST['content']
+	);
+
+	unset($_POST['title'], $_POST['content']);
+
+	if(!$errors['empty'] && !$errors['incorrect']){
+
+		$post = wp_insert_post($params);
+
+		if(is_integer($post)){ // post inserted successfully
+
+			$_POST['birthday'] = Matchrepo::textToDBDate($_POST['birthday']);
+
+			foreach($allTerms as $term){
+				if(!empty($_POST[$term]))
+					update_post_meta($post, $term, $_POST[$term]);
+			}
+
+			$register_successful = true;
+		}
+	}
+	else
+		var_dump($errors);
 }
 
 get_header();
 ?>
 
-<div id="primary" class="content-area">
+	<div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 
 	<? if($level == 1) : ?>
-
 		<h2 id="main-title">פתיחת כרטיס אישי</h2>
 		<form id="main-form" method="post">
+			<input type="hidden" name="from_level" value="1">
+
 			<div id="choose-gender">
 				<div>
 					<img src="<?= get_stylesheet_directory_uri() . '/media/male-main.png' ?>">
@@ -48,192 +147,223 @@ get_header();
 			</div>
 		</form>
 
-	<? elseif($level == 2) : ?>
-
+	<? else : ?>
 		<div id="main-form-background">
-			<h2 id="main-title">הוספת כרטיס למאגר</h2>
+		<h2 id="main-title">הוספת כרטיס למאגר</h2>
+		<? if($level == 2) : ?>
+			<img id="avatar"
+				 src="<?= get_stylesheet_directory_uri() . '/media/' . ($gender ? 'female' : 'male') . '-new-card.png' ?>">
 
 			<form id="main-form" method="post">
+				<input type="hidden" name="gender" value="<?= $_POST['gender'] ?>">
+				<input type="hidden" name="from_level" value="2">
 
-				<div id="as-options">
-					<div class="label-top">
-						<label for="nc-first-name"></label>
-						<input id="nc-first-name" type="text" name="first_name" required>
-					</div>
-					<div class="label-top">
-						<label for="nc-birthday"></label>
-						<input id="nc-birthday" type="text" name="birthday" required>
-					</div>
-					<div class="label-top">
-						<label for="nc-status">מצב משפחתי</label>
-						<select id="nc-status" name="status" required>
-
-						</select>
-					</div>
-
-
-					<p id="as-status">
-						<input type="checkbox" id="as-status-all" class="toggle-trigger select-all"
-							   data-toggle-key="status">
-						<label for="as-status-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="status" data-labels="gender"
-							  data-labels-group="status">
-							<input name="status[]" type="checkbox" id="as-single" value="0">
-							<label for="as-single">רווק</label>
-							<input name="status[]" type="checkbox" id="as-divorcee" class="maybe-children" value="1">
-							<label for="as-divorcee">גרוש</label>
-							<br>
-							<input name="status[]" type="checkbox" id="as-widow" class="maybe-children" value="2">
-							<label for="as-widow">אלמן</label>
-						</span>
-						<span id="as-children-container" style="display: none">
-							<label for="as-children">מקסימום ילדים</label>
-							<select id="as-children" name="children" disabled>
+				<div id="mf-options">
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-first-name">שם פרטי</label>
+							<input id="cf-first-name" type="text" name="title" required>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-birthday">תאריך לידה</label>
+							<input id="cf-birthday" type="text" name="birthday" required>
+						</div>
+						<div class="label-top w16">
+							<label for="cf-status">מצב משפחתי</label>
+							<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
+									data-toggle-key="children" required>
+								<option></option>
+								<option value="0"><?= $props['status']['options'][0] ?></option>
+								<option value="1"><?= $props['status']['options'][1] ?></option>
+								<option value="2"><?= $props['status']['options'][2] ?></option>
+							</select>
+						</div>
+						<div class="label-top w16 toggle-affected show-hide-affected" data-affected="children"
+							 style="display: none">
+							<label for="cf-children">מספר ילדים</label>
+							<select id="cf-children" name="children">
 								<? foreach(range(0, 20) as $number){ ?>
 									<option><?= $number ?></option>
 								<? } ?>
 							</select>
-						</span>
-					</p>
-					<h4>אזור מגורים</h4>
-
-					<p>
-						<input type="checkbox" id="as-zone-all" class="toggle-trigger select-all"
-							   data-toggle-key="zone">
-						<label for="as-zone-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="zone">
-							<input type="checkbox" id="as-zone-il" class="toggle-trigger select-all"
-								   data-toggle-key="israel">
-							<label for="as-zone-il">ישראל</label>
-							<input type="checkbox" id="as-zone-os">
-							<label for="as-zone-os">חו"ל</label>
-							<br>
-							<span class="toggle-affected-group" data-check-group="israel">
-								<?
-								$zones = Cards::$props['zone']['options'];
-								$itemsPerLine = 3;
-								$itemsCounter = 0;
-
-								foreach($zones as $i => $zone){
-									?>
-
-									<input name="zone[]" type="checkbox" id="as-zone<?= $i ?>" value="<?= $zone ?>">
-									<label for="as-zone<?= $i ?>"><?= $zone ?></label>
-									<?
-									if(++$itemsCounter == $itemsPerLine){
-										echo '<br>';
-										$itemsCounter = 0;
-									}
-								}?>
-							</span>
-						</span>
-					</p>
-					<h4>מוצא עדתי</h4>
-
-					<p>
-						<input type="checkbox" id="as-community-all" class="toggle-trigger select-all"
-							   data-toggle-key="community">
-						<label for="as-community-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="community" data-labels="gender"
-							  data-labels-group="community">
-								<?
-								$communities = Cards::$props['community']['options'];
-
-								foreach($communities as $i => $community){
-									?>
-									<input name="community[]" type="checkbox" id="as-community<?= $i ?>"
-										   value="<?= $i ?>">
-									<label for="as-community<?= $i ?>"><?= $community ?></label>
-								<? } ?>
-						</span>
-					</p>
-					<h4>השקפה</h4>
-
-					<p>
-						<input type="checkbox" id="as-concept-all" class="toggle-trigger select-all"
-							   data-toggle-key="concept">
-						<label for="as-concept-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="concept" data-labels="gender"
-							  data-labels-group="concept">
-							<?
-							$concepts = Cards::$props['conception']['options'];
-
-							foreach($concepts as $i => $concept){
-								?>
-								<input name="conception[]" type="checkbox" id="as-concept<?= $i ?>" value="<?= $i ?>">
-								<label for="as-concept<?= $i ?>"><?= $concept ?></label>
-							<? } ?>
-						</span>
-					</p>
-					<h4>מראה כללי</h4>
-
-					<p>
-						<input type="checkbox" id="as-look-all" class="toggle-trigger select-all"
-							   data-toggle-key="look">
-						<label for="as-look-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="look">
-							<input name="look[]" type="checkbox" id="as-look0" value="0">
-							<label for="as-look0">מבנה רזה</label>
-							<input name="look[]" type="checkbox" id="as-look1" value="1">
-							<label for="as-look1">מבנה בינוני</label>
-							<input name="look[]" type="checkbox" id="as-look2" value="2">
-							<label for="as-look2">מבנה מלא</label>
-						</span>
-					</p>
-					<h4>גובה</h4>
-
-					<p>
-						<label for="as-min-height">מינימום</label>
-						<select name="min_height" id="as-min-height">
-							<option></option>
-							<? foreach(range(120, 210) as $height){ ?>
-								<option><?= $height ?></option>
-							<? } ?>
-						</select>
-						<label for="as-max-height">מקסימום</label>
-						<select name="max_height" id="as-max-height">
-							<option></option>
-							<? foreach(range(120, 210) as $height){ ?>
-								<option><?= $height ?></option>
-							<? } ?>
-						</select>
-					</p>
-					<div class="toggle-affected-group" data-show="female" data-hide="male"
-						 style="display: none">
-						<h4>כיסוי ראש</h4>
-
-						<p>
-							<input type="checkbox" id="as-cover-all" class="toggle-trigger select-all"
-								   data-toggle-key="cover">
-							<label for="as-cover-all">הכל</label>
-							<span class="toggle-affected-group" data-check-group="cover">
-								<input name="cover[]" type="checkbox" id="as-cover0">
-								<label for="as-cover0">מטפחת</label>
-								<input name="cover[]" type="checkbox" id="as-cover1">
-								<label for="as-cover1">פאה</label>
-								<input name="cover[]" type="checkbox" id="as-cover2">
-								<label for="as-cover2">פאה רק בשבתות ואירועים</label>
-							</span>
-						</p>
+						</div>
 					</div>
-					<div class="toggle-affected-group" data-show="male" data-hide="female">
-						<h4>עישון</h4>
-
-						<p>
-							<input name="smoke" id="as-smoke" type="checkbox">
-							<label for="as-smoke">לא מעשן</label>
-						</p>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-country">ארץ</label>
+							<select id="cf-country" name="country" required>
+								<option>ישראל</option>
+							</select>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-zone">איזור מגורים</label>
+							<select id="cf-zone" name="zone" required>
+								<option></option>
+								<? foreach($props['zone']['options'] as $zone){ ?>
+									<option><?= $zone ?></option>
+								<? } ?>
+							</select>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-city">עיר מגורים</label>
+							<select id="cf-city" name="city" required>
+								<option></option>
+								<? foreach($props['city']['options'] as $city){ ?>
+									<option><?= $city ?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w25">
+							<label for="cf-community">מוצא עדתי</label>
+							<select id="cf-community" name="community" required>
+								<option></option>
+								<? $communities = $props['community']['options']; ?>
+								<option value="0"><?= $communities[0] ?></option>
+								<option value="1"><?= $communities[1] ?></option>
+								<option value="2"><?= $communities[2] ?></option>
+							</select>
+						</div>
+						<div class="label-top w25">
+							<label for="cf-conception">השקפה</label>
+							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
+								<option></option>
+								<? $conceptions = $props['conception']['options']; ?>
+								<option value="0"><?= $conceptions[0] ?></option>
+								<option value="1"><?= $conceptions[1] ?></option>
+								<option value="2"><?= $conceptions[2] ?></option>
+							</select>
+						</div>
+						<div class="label-top w25 toggle-affected hasidism-affected" style="display: none">
+							<label for="cf-hasidism">חסידות</label>
+							<select id="cf-hasidism" name="hasidism" required>
+								<option></option>
+								<? foreach($props['hasidism']['options'] as $hasidut){ ?>
+									<option><?= $hasidut ?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-work">מקום לימודים/עיסוק כיום</label>
+							<input id="cf-work" type="text" name="work" required>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-college">לימודים בעבר</label>
+							<input id="cf-college" type="text" name="college" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-father-work">עיסוק האב</label>
+							<input id="cf-father-work" type="text" name="father_work" required>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-mother-work">עיסוק האם</label>
+							<input id="cf-mother-work" type="text" name="mother_work" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w16">
+							<label for="cf-height">גובה</label>
+							<select id="cf-height" name="height" required>
+								<option></option>
+								<? foreach(range(120, 210) as $height){ ?>
+									<option><?= $height ?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-look">מראה כללי</label>
+							<select id="cf-look" name="look">
+								<option></option>
+								<? foreach($props['look']['options'] as $i => $look){ ?>
+									<option value="<?= $i ?>"><?= $look ?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<? if($gender){ ?>
+							<div class="label-top w25">
+								<label for="cf-cover">כיסוי ראש</label>
+								<select id="cf-cover" name="cover">
+									<option></option>
+									<? foreach($props['cover']['options'] as $i => $cover){ ?>
+										<option value="<?= $i ?>"><?= $cover ?></option>
+									<? } ?>
+								</select>
+							</div>
+						<?
+						}
+						else{
+							?>
+							<div class="w25">
+								<input type="checkbox" id="cf-smoke" name="smoke">
+								<label for="cf-smoke">מעשן</label>
+							</div>
+						<? } ?>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-healthy">מצב בריאותי</label>
+							<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
+									name="healthy">
+								<option></option>
+								<? foreach($props['healthy']['options'] as $i => $healthy){ ?>
+									<option value="<?= $i ?>"><?= $healthy ?></option>
+								<? } ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy">
+							<div>פירוט מוגבלות</div>
+							<? foreach($props['disability_details']['options'] as $i => $disability){ ?>
+								<div>
+									<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
+										   value="<?= $i ?>">
+									<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
+								</div>
+							<? } ?>
+							<div>
+								<input type="checkbox" id="cf-disability-other">
+								<label for="cf-disability-other">אחר - נא לפרט:</label>
+								<textarea name="disability_details[]"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<label for="cf-content"><?= $labels['Little_About_The_Candidate'] ?>:</label>
+						<textarea id="cf-content" name="content" required></textarea>
 					</div>
 				</div>
-				<div style="text-align: center">
-					<input type="submit" value="<? _e('Search') ?>">
+				<div id="submit">
+					<input type="submit" value="הוספת כרטיס">
 				</div>
 			</form>
+		<? elseif($level == 3) : ?>
+			<div id="register-complete">
+			<? if($register_successful) : ?>
+				<div id="register-success">
+					<h3>הכרטיס נרשם בהצלחה!</h3>
+					<p>הכרטיס של <?= $params['post_title'] ?> נכנס למערכת והוא יופיע בחשבונך לאחר אישורו על ידי צוות
+						האתר.</p>
+				</div>
+			<? else : ?>
+				<div id="register-error"></div>
+			<? endif ?>
+				</div>
+		<? endif ?>
 		</div>
 	<? endif ?>
 	</main>
 	<!-- #main -->
-</div><!-- #primary -->
+	</div><!-- #primary -->
 
 <? get_sidebar() ?>
 <? get_footer() ?>

@@ -1,0 +1,23 @@
+#avatar {
+  float: left;
+}
+.row {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+#nc-content {
+  height: 200px;
+}
+textarea {
+  padding: 5px;
+}
+#nc-disability {
+  display: none;
+}
+#nc-disability [type="checkbox"] {
+  margin-right: 10px;
+}
+#register-complete {
+  margin: 150px 25px;
+  display: inline-block;
+}

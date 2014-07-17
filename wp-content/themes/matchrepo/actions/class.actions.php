@@ -50,6 +50,8 @@ abstract class MR_actions {
 
 		wp_register_style('main-form', get_stylesheet_directory_uri() . '/css/main-form.css');
 
+		wp_register_style('add-card', get_stylesheet_directory_uri() . '/css/add-card.css');
+
 		wp_register_style('jquery-ui', get_stylesheet_directory_uri() . '/css/jquery-ui-1.10.4.custom.min.css');
 
 		wp_enqueue_style('style', get_stylesheet_uri());
@@ -59,6 +61,8 @@ abstract class MR_actions {
 		wp_register_script('main-form', get_template_directory_uri() . '/js/main-form.js', array(), '', true);
 
 		wp_register_script('add-card', get_template_directory_uri() . '/js/add-card.js', array(), '', true);
+
+		wp_register_script('advanced-search', get_template_directory_uri() . '/js/advanced-search.js', array(), '', true);
 
 		wp_enqueue_script('jquery');
 
