@@ -1,17 +1,23 @@
 #main-form {
 	position: relative;
 	margin-top: 50px;
+	clear: both;
 
-	h4{
+	h4 {
 		font-size: 19px;
 	}
 
-	select {
+	p select {
 		margin-right: 5px;
 	}
 }
 
-#as-options {
+#mf-options {
+	padding: 0 30px;
+
+	[type="checkbox"] {
+		clear: right;
+	}
 
 	input + label {
 		margin: 0 5px 2px 50px;
@@ -37,10 +43,9 @@
 }
 
 #main-form-background {
-	background: url(../media/register-background.png);
-	height: 1038px;
+	background: url(../media/register-background.png) no-repeat;
 	width: 670px;
-	padding: 0 30px;
+	min-height: 1040px;
 }
 
 #main-title {
@@ -71,4 +76,60 @@
 #submit {
 	text-align: center;
 	margin-top: 30px;
+}
+
+.label-top {
+	float: right;
+	padding: 0 0 10px 20px;
+
+	label {
+		display: block;
+		line-height: 1;
+	}
+
+	input, select {
+		width: 100%;
+		background-color: transparent;
+		height: 30px;
+	}
+}
+
+.w25 {
+	width: 25%;
+}
+
+.w12 {
+	width: 12.5%;
+}
+
+.w33 {
+	width: 33.33%;
+}
+
+.w16 {
+	width: 16.66666666666667%;
+}
+
+#register-success {
+
+	h3 {
+		font-weight: bold;
+		font-size: 27px;
+	}
+
+	p {
+		font-size: 19px
+	}
+}
+
+#register-error {
+	background-color: #FFF;
+	padding-right: 20px;
+	border-right: 4px solid #dd3d36;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+
+	strong {
+		font-weight: bold;
+	}
 }

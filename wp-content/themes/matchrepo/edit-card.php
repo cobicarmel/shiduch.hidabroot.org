@@ -7,6 +7,10 @@ Template Name: עריכת כרטיס
 if(! current_user_can('edit_posts', $_GET['id']))
 	wp_die('לך הביתה, פעם אחרונה שאתה עושה כאלו שטויות!');
 
+Matchrepo::mainFormHeader();
+
+Matchrepo::cardFormHeader();
+
 get_header();
 
 $args = array(
@@ -24,11 +28,15 @@ query_posts($args);
 		<div class="background-area">
 			<?
 
-			while(have_posts()) : the_post(); ?>
+			while(have_posts()) :
 
-				<? get_template_part('content', 'edit'); ?>
+				the_post();
 
-			<? endwhile ?>
+				get_template_part('content', 'edit');
+
+			endwhile;
+
+			?>
 		</div>
 	</main>
 	<!-- #main -->
