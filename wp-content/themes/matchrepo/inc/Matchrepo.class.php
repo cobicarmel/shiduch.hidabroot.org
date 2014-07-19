@@ -1,9 +1,11 @@
 <?
 
-abstract class Matchrepo{
+abstract class Matchrepo {
 
 	static function cardFormHeader(){
+
 		add_action('wp_enqueue_scripts', function (){
+
 			wp_enqueue_style('add-card');
 			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script('add-card');
@@ -11,14 +13,76 @@ abstract class Matchrepo{
 		});
 	}
 
+	static function listCheckboxes($params, $options){
+
+		$defaultOptions = [
+			'name' => '',
+			'id' => '',
+			'compare' => '',
+			'valueByText' => false,
+			'wrapTag' => 'div'
+		];
+
+		$options = array_merge($defaultOptions, $options);
+
+		$count = 1;
+
+		foreach($params as $value => $text) {
+
+			if($options['valueByText'])
+				$value = $text;
+
+			$checked = '';
+
+			if($options['compare'] !== null){
+
+				if(is_array($options['compare'])){
+					if(in_array($value, $options['compare']))
+						$checked = ' checked';
+				}
+				elseif($options['compare'] == $value)
+					$checked = ' checked';
+			}
+
+			if($options['wrapTag'])
+				echo "<$options[wrapTag]>";
+
+			echo "<input type='checkbox' id='$options[id]$count' name='$options[name][]' value='$value'$checked>";
+			echo "<label for='$options[id]$count'>$text</label>";
+
+			if($options['wrapTag'])
+				echo "</$options[wrapTag]>";
+
+			$count++;
+		}
+	}
+
+	static function listOptions($options, $compare = null, $byText = false){
+
+		foreach($options as $value => $text) {
+
+			if($byText)
+				$value = $text;
+
+			$selected = $compare !== null && $compare == $value ? ' selected' : '';
+
+			$attrValue = $byText ? '' : ' value="' . $value . '"';
+
+			echo "<option$attrValue$selected>$text</option>";
+		}
+	}
+
 	static function mainFormHeader(){
-		add_action('wp_enqueue_scripts', function(){
+
+		add_action('wp_enqueue_scripts', function (){
+
 			wp_enqueue_style('main-form');
 			wp_enqueue_script('main-form');
 		});
 	}
 
 	static function multiCardsHeader(){
+
 		wp_register_style('multi-cards', get_stylesheet_directory_uri() . '/css/multi-cards.css');
 		wp_enqueue_style('multi-cards');
 	}
@@ -29,17 +93,10 @@ abstract class Matchrepo{
 
 		$big = 9999999;
 
-		if(!$paged = get_query_var('paged'))
+		if(! $paged = get_query_var('paged'))
 			$paged = 1;
 
-		$args = array(
-			'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-			'format' => '?paged=%#%',
-			'current' => $paged,
-			'total' => $wp_query->max_num_pages,
-			'prev_text' => '<',
-			'next_text' => '>',
-		);
+		$args = array('base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))), 'format' => '?paged=%#%', 'current' => $paged, 'total' => $wp_query->max_num_pages, 'prev_text' => '<', 'next_text' => '>',);
 
 		echo '<div id="page-navigation">' . paginate_links($args) . '</div>';
 	}
@@ -49,7 +106,8 @@ abstract class Matchrepo{
 	 */
 
 	static function redirect_not_logged(){
-		if(! is_user_logged_in()){
+
+		if(! is_user_logged_in()) {
 			wp_redirect(self::get_register_url());
 			exit;
 		}
@@ -60,10 +118,12 @@ abstract class Matchrepo{
 	 */
 
 	static function get_register_url(){
+
 		return get_permalink(get_page_by_title('הרשמה'));
 	}
 
 	static function textToDBDate($dateText){
+
 		if(! $date = DateTime::createFromFormat('d/m/Y', $dateText))
 			return false;
 
