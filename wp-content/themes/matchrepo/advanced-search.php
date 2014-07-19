@@ -17,7 +17,7 @@ get_header();
 		<main id="main" class="site-main" role="main">
 			<h2 id="main-title">חיפוש מתקדם</h2>
 			<form id="main-form" class="search-form"
-				  action="<?= get_page_link(get_page_by_title('תוצאות חיפוש') ->ID) ?>">
+				  action="<?= get_page_link(get_page_by_title('תוצאות חיפוש')) ?>">
 				<div id="choose-gender" class="toggle-trigger labels-replace-trigger" data-toggle-key="gender">
 					<div>
 						<img src="<?= get_stylesheet_directory_uri() . '/media/male-main.png' ?>">

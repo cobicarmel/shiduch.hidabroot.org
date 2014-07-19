@@ -14,6 +14,35 @@ abstract class Cards{
 
 	static $props;
 
+	private static $requiredTerms = [
+		'gender',
+		'title',
+		'content',
+		'birthday',
+		'status',
+		'country',
+		'zone',
+		'city',
+		'community',
+		'conception',
+		'work',
+		'college',
+		'father_work',
+		'mother_work',
+		'height',
+		'look',
+		'healthy'
+	];
+
+	private static $optionalTerms = [
+		'children',
+		'smoke',
+		'cover',
+		'disability_details',
+		'other_disability',
+		'hasidism'
+	];
+
 	public static $user_types = [
 		'שדכנית',
 		'שדכנית מצווה',
@@ -51,7 +80,7 @@ abstract class Cards{
 		$this -> card = $card;
 		$this -> id = $card['ID'];
 		$this -> name = $card['post_title'];
-		$this -> get_meta();
+		$this -> getMetaFromDB();
 		$this -> set_age();
 	}
 
@@ -140,8 +169,18 @@ abstract class Cards{
 		echo '</form>';
 	}
 
-	protected function get_meta(){
-		$this -> meta = get_fields($this -> id);
+	protected function getMetaFromDB(){
+
+		$stack = [];
+
+		$meta = get_post_meta($this -> id);
+
+		$terms = Cards::getTerms();
+
+		foreach($terms as $term)
+			$stack[$term] = isset($meta[$term]) ? $meta[$term][0] : '';
+
+		$this -> meta = $stack;
 	}
 
 	protected function set_age(){
@@ -173,6 +212,9 @@ abstract class Cards{
 		echo '<ul>';
 
 		foreach($meta as $label => $param){
+
+			if(! $label)
+				continue;
 
 			echo '<li>';
 
@@ -220,10 +262,15 @@ abstract class Cards{
 
 		foreach($keys as $key){
 
+			if(empty($this::$props[$key]))
+				continue;
+
 			if(isset($this -> labeledItems[$key]))
 				$label = $this -> labeledItems[$key];
 			else
 				$label = get_field_object($key)['label'];
+
+			$param = null;
 
 			if(in_array($key, $this -> indexItems)){
 
@@ -232,10 +279,11 @@ abstract class Cards{
 					$param = [];
 
 					foreach($meta[$key] as $k){
-						$param[] = $this::$props[$key]['options'][$k];
+						if(isset( $this::$props[$key]['options'][$k]))
+							$param[] = $this::$props[$key]['options'][$k];
 					}
 				}
-				else
+				elseif($meta[$key] !== '')
 					$param = $this::$props[$key]['options'][$meta[$key]];
 			}
 			else
@@ -253,6 +301,54 @@ abstract class Cards{
 		return $itemsStack;
 	}
 
+	static function validateCardData($data){
+
+		$errors = [
+			'empty' => [],
+			'incorrect' => []
+		];
+
+		$props = self::$props;
+
+		$required = self::$requiredTerms;
+
+		$optionals = self::$optionalTerms;
+
+		if(!$data['gender'])
+			$optionals[] = 'smoke';
+		else
+			$required[] = 'cover';
+
+		$allTerms = array_merge($required, $optionals);
+
+		foreach($required as $term){
+			if(!isset($data[$term]) || $data[$term] == '')
+				$errors['empty'][] = $term;
+		}
+
+		foreach($allTerms as $term){
+
+			if(empty($props[$term]) || ! isset($data[$term]))
+				continue;
+
+			$isCorrect = true;
+
+			$prop = $props[$term];
+
+			if(!empty($prop['pattern'])){
+				if(is_callable($prop['pattern']))
+					$isCorrect = call_user_func($prop['pattern'], $data[$term]);
+				else
+					$isCorrect = preg_match($prop['pattern'], $data[$term]);
+			}
+
+			if(!$isCorrect)
+				$errors['incorrect'][] = $term;
+		}
+
+		return $errors['empty'] || $errors['incorrect'] ? $errors : true;
+	}
+
 	function advancedSearch(){
 
 		$args = [
@@ -268,6 +364,14 @@ abstract class Cards{
 		];
 
 		self::build_form($args);
+	}
+
+	function get_meta(){
+		return $this -> meta;
+	}
+
+	static function getTerms(){
+		return array_merge(self::$requiredTerms, self::$optionalTerms);
 	}
 }
 

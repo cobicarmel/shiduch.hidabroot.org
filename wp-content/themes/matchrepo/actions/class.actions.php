@@ -69,6 +69,28 @@ abstract class MR_actions {
 		wp_enqueue_script('main-script');
 	}
 
+	static function remove_default_widgets() {
+
+		$defaultWidgets = [
+			'WP_Widget_Pages',
+			'WP_Widget_Calendar',
+			'WP_Widget_Archives',
+			'WP_Widget_Links',
+			'WP_Widget_Meta',
+			'WP_Widget_Search',
+			'WP_Widget_Text',
+			'WP_Widget_Categories',
+			'WP_Widget_Recent_Posts',
+			'WP_Widget_Recent_Comments',
+			'WP_Widget_RSS',
+			'WP_Widget_Tag_Cloud',
+			'WP_Nav_Menu_Widget'
+		];
+
+		foreach($defaultWidgets as $widget)
+			unregister_widget($widget);
+	}
+
 	static function theme_setup(){
 
 		load_theme_textdomain(THEME_NAME, get_template_directory() . '/languages');
@@ -93,6 +115,10 @@ abstract class MR_actions {
 add_action('after_setup_theme', 'MR_actions::theme_setup');
 
 add_action('wp_enqueue_scripts', 'MR_actions::register_sources');
+
+/* removing default wp widgets */
+
+add_action('widgets_init', 'MR_actions::remove_default_widgets');
 
 /* Admin actions */
 

@@ -27,68 +27,7 @@ if($level == 3){
 
 	$register_successful = false;
 
-	$errors = [
-		'empty' => [],
-		'incorrect' => []
-	];
-
-	$props = Cards::$props;
-
-	$required = [
-		'gender',
-		'title',
-		'content',
-		'birthday',
-		'status',
-		'country',
-		'zone',
-		'city',
-		'community',
-		'conception',
-		'work',
-		'college',
-		'father_work',
-		'mother_work',
-		'height',
-		'look',
-		'healthy'
-	];
-
-	$optionals = [
-		'children',
-		'smoke',
-		'cover',
-		'disability_details'
-	];
-
-	if(!$_POST['gender'])
-		$optionals[] = 'smoke';
-	else
-		$required[] = 'cover';
-
-	$allTerms = array_merge($required, $optionals);
-
-	foreach($required as $term){
-		if(!isset($_POST[$term]) || $_POST[$term] == '')
-			$errors['empty'][] = $term;
-	}
-
-	foreach($allTerms as $term){
-
-		$isCorrect = true;
-
-		$prop = $props[$term];
-
-		if(!empty($prop['pattern'])){
-			if(is_callable($prop['pattern']))
-				$isCorrect = call_user_func($prop['pattern'], $_POST[$term]);
-			else
-				$isCorrect = preg_match($prop['pattern'], $_POST[$term]);
-		}
-
-		if(!$isCorrect)
-			$errors['incorrect'][] = $term;
-	}
+	$isCorrect = Cards::validateCardData($_POST);
 
 	$params = array(
 		'post_type' => 'card',
@@ -99,7 +38,7 @@ if($level == 3){
 
 	unset($_POST['title'], $_POST['content']);
 
-	if(!$errors['empty'] && !$errors['incorrect']){
+	if($isCorrect === true){
 
 		$post = wp_insert_post($params);
 
@@ -107,16 +46,14 @@ if($level == 3){
 
 			$_POST['birthday'] = Matchrepo::textToDBDate($_POST['birthday']);
 
-			foreach($allTerms as $term){
-				if(!empty($_POST[$term]))
-					update_post_meta($post, $term, $_POST[$term]);
-			}
+			$cardTerms = Cards::getTerms();
+
+			foreach($cardTerms as $term)
+				update_post_meta($post, $term, isset($_POST[$term]) ? $_POST[$term] : '');
 
 			$register_successful = true;
 		}
 	}
-	else
-		var_dump($errors);
 }
 
 get_header();
@@ -181,7 +118,7 @@ get_header();
 						<div class="label-top w16 toggle-affected show-hide-affected" data-affected="children"
 							 style="display: none">
 							<label for="cf-children">מספר ילדים</label>
-							<select id="cf-children" name="children">
+							<select id="cf-children" name="children" disabled>
 								<? foreach(range(0, 20) as $number){ ?>
 									<option><?= $number ?></option>
 								<? } ?>
@@ -237,7 +174,7 @@ get_header();
 						</div>
 						<div class="label-top w25 toggle-affected hasidism-affected" style="display: none">
 							<label for="cf-hasidism">חסידות</label>
-							<select id="cf-hasidism" name="hasidism" required>
+							<select id="cf-hasidism" name="hasidism" required disabled>
 								<option></option>
 								<? foreach($props['hasidism']['options'] as $hasidut){ ?>
 									<option><?= $hasidut ?></option>
@@ -303,7 +240,7 @@ get_header();
 						else{
 							?>
 							<div class="w25">
-								<input type="checkbox" id="cf-smoke" name="smoke">
+								<input type="checkbox" id="cf-smoke" name="smoke" value="1">
 								<label for="cf-smoke">מעשן</label>
 							</div>
 						<? } ?>
@@ -312,7 +249,7 @@ get_header();
 						<div class="label-top w33">
 							<label for="cf-healthy">מצב בריאותי</label>
 							<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
-									name="healthy">
+									name="healthy" required>
 								<option></option>
 								<? foreach($props['healthy']['options'] as $i => $healthy){ ?>
 									<option value="<?= $i ?>"><?= $healthy ?></option>
@@ -321,7 +258,7 @@ get_header();
 						</div>
 					</div>
 					<div class="row">
-						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy">
+						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy" style="display: none">
 							<div>פירוט מוגבלות</div>
 							<? foreach($props['disability_details']['options'] as $i => $disability){ ?>
 								<div>
@@ -333,7 +270,7 @@ get_header();
 							<div>
 								<input type="checkbox" id="cf-disability-other">
 								<label for="cf-disability-other">אחר - נא לפרט:</label>
-								<textarea name="disability_details[]"></textarea>
+								<textarea id="cf-disability-other" name="other_disability"></textarea>
 							</div>
 						</div>
 					</div>
