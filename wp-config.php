@@ -14,7 +14,11 @@
  * @package WordPress
  */
 
-if($_SERVER['HTTP_HOST'] == 'localhost'){
+function is_local(){
+	return $_SERVER['HTTP_HOST'] == 'localhost';
+}
+
+if(is_local()){
 
 	define('DB_NAME', 'matchrepo');
 

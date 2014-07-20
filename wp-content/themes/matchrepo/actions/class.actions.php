@@ -136,7 +136,8 @@ add_action( 'login_enqueue_scripts', 'MR_actions::login_logo');
 
 /* Mail actions */
 
-add_action('phpmailer_init','MR_actions::send_smtp_email');
+if(is_local())
+	add_action('phpmailer_init','MR_actions::send_smtp_email');
 
 /* adding excerpt support for pages */
 
