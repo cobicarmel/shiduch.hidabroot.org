@@ -1,0 +1,82 @@
+.wpcf7 {
+  background-image: linear-gradient(to bottom, #e9e9e9, #f3f3f3, #e9e9e9);
+  border: 6px solid #d6d0d2;
+}
+.wpcf7 form {
+  margin: 15px;
+}
+.wpcf7 h3 {
+  font-weight: bold;
+  font-size: 27px;
+}
+#envelope-top {
+  overflow: hidden;
+}
+#envelope-top > div {
+  float: right;
+  width: 50%;
+}
+#et-right {
+  margin-top: 40px;
+  border-left: 1px solid #d0d0d0;
+}
+#et-right p {
+  border-bottom: 1px solid #d0d0d0;
+  overflow: hidden;
+  width: 94%;
+  margin-bottom: 23px;
+  line-height: 1;
+}
+#et-right p > * {
+  float: right;
+}
+#et-right .wpcf7-form-control-wrap {
+  width: 70%;
+  margin-right: 10px;
+}
+#et-right .wpcf7-form-control-wrap input {
+  border: none;
+  background: none;
+  outline: none;
+  line-height: 1;
+}
+#et-right h3 {
+  margin-bottom: 30px;
+}
+#et-left {
+  padding-right: 10px;
+}
+#stamp {
+  background: url(../media/stamp.png) no-repeat;
+  height: 142px;
+}
+#address h5 {
+  font-family: arial;
+  font-weight: bold;
+  font-size: 18px;
+}
+#address p {
+  font-family: arial;
+}
+.cf-title {
+  line-height: 1.6;
+}
+.cf-title,
+#et-right input {
+  font-family: arial;
+  font-size: 15px;
+}
+#envelop-bottom {
+  margin-top: 7px;
+}
+#envelop-bottom textarea {
+  padding: 5px;
+  width: 100%;
+}
+.wpcf7-submit {
+  float: left;
+  margin-top: 3px;
+}
+.your-message {
+  display: block !important;
+}

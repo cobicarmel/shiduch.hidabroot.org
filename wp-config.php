@@ -40,6 +40,12 @@ define('DB_CHARSET', 'utf8');
 
 define('DB_COLLATE', '');
 
+/* Loading Contact Form 7 javascript and stylesheet only when it's necessary */
+
+define('WPCF7_LOAD_CSS', false);
+
+define('WPCF7_LOAD_JS', false);
+
 define('AUTH_KEY',         'put your unique phrase here');
 define('SECURE_AUTH_KEY',  'put your unique phrase here');
 define('LOGGED_IN_KEY',    'put your unique phrase here');
