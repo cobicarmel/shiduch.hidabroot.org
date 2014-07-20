@@ -1,5 +1,9 @@
 <?
 
+wp_register_style('page', get_stylesheet_directory_uri() . '/css/page.css');
+
+wp_enqueue_style('page');
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -9,14 +13,7 @@ get_header(); ?>
 
 				<? get_template_part( 'content', 'page' ); ?>
 
-				<?
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || '0' != get_comments_number() ) :
-						comments_template();
-					endif;
-				?>
-
-			<? endwhile; // end of the loop. ?>
+			<? endwhile ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

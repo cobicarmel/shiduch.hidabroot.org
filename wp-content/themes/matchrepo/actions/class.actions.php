@@ -25,6 +25,10 @@ abstract class MR_actions {
 		</style>
 	<? }
 
+	static function page_excerpt_support(){
+		add_post_type_support('page', 'excerpt');
+	}
+
 	static function send_smtp_email( $phpmailer ) {
 
 		$phpmailer->isSMTP();
@@ -100,13 +104,13 @@ abstract class MR_actions {
 			'footer' => __('Footer Menu', THEME_NAME)
 		));
 
-		add_theme_support('post-formats', array('aside', 'image', 'link'));
-
 		add_theme_support('html5', array(
 			'search-form',
 			'gallery',
 			'caption',
 		));
+
+		add_theme_support('post-thumbnails');
 	}
 }
 
@@ -133,3 +137,7 @@ add_action( 'login_enqueue_scripts', 'MR_actions::login_logo');
 /* Mail actions */
 
 add_action('phpmailer_init','MR_actions::send_smtp_email');
+
+/* adding excerpt support for pages */
+
+add_action('init', 'MR_actions::page_excerpt_support');
