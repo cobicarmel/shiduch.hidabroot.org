@@ -14,8 +14,8 @@ function register_card(){
 		'edit_item' => __('Edit Card', THEME_NAME),
 		'update_item' => __('Update Card', THEME_NAME),
 		'search_items' => __('Search Card', THEME_NAME),
-		'not_found' => __('Not found'),
-		'not_found_in_trash' => __('Not found in Trash'),
+		'not_found' => __('Not found', THEME_NAME),
+		'not_found_in_trash' => __('Not found in Trash', THEME_NAME),
 	);
 
 	$args = array(
