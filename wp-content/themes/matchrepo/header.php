@@ -11,17 +11,6 @@
 </head>
 
 <body <? body_class(); ?>>
-<nav id="site-navigation" class="main-navigation" role="navigation">
-	<?
-
-	$navParams = array(
-		'theme_location' => 'primary',
-		'menu_class' => 'menu auto-center'
-	);
-
-	wp_nav_menu($navParams);
-	?>
-</nav>
 <div id="side-sticky-icons">
 	<a href="http://www.7brachot.co.il">
 		<img src="<?= WP_CONTENT_URL ?>/uploads/images/7brachot-icon.png">
@@ -31,10 +20,8 @@
 	</a>
 </div>
 <div id="page" class="hfeed site">
-	<div id="header-wrapper">
-		<header id="masthead" class="site-header" role="banner">
-			<? dynamic_sidebar('Top Sidebar') ?>
-		</header>
-	</div>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+		<? wp_nav_menu(['theme_location' => 'primary']) ?>
+	</nav>
 	<div id="content-wrapper">
 		<div id="content" class="site-content">
