@@ -33,17 +33,6 @@ Tags:
 	font-style: normal;
 }
 
-/*@font-face {
-	font-family: Spoiler-Black;
-	src: url(fonts/Spoiler-Black.eot);
-	src: url(fonts/Spoiler-Black.eot?#iefix) format(embedded-opentype),
-		 url(fonts/Spoiler-Black.woff) format(woff),
-		 url(fonts/Spoiler-Black.ttf) format(truetype),
-		 url(fonts/Spoiler-Black.svg) format(svg);
-	font-weight: normal;
-	font-style: normal;
-}*/
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -64,8 +53,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 html {
-	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
-	overflow-y: scroll; /* Keeps page centered in all browsers regardless of content height */
+	overflow-y: scroll;
 }
 
 *,
@@ -94,20 +82,6 @@ section {
 
 ol, ul {
 	list-style: none;
-}
-
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: "";
-}
-
-blockquote, q {
-	quotes: "" "";
 }
 
 a:focus {
@@ -143,79 +117,15 @@ p {
 	margin-bottom: 1.5em;
 }
 
-dfn, cite, em, i {
-	font-style: italic;
-}
-
-blockquote {
-	margin: 0 1.5em;
-}
-
-address {
-	margin: 0 0 1.5em;
-}
-
-pre {
-	background: #EEE;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
-}
-
-sup,
-sub {
-	font-size: 75%;
-	height: 0;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-
-sup {
-	bottom: 1ex;
-}
-
-sub {
-	top: .5ex;
-}
-
-hr {
-	background-color: #CCC;
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
-}
-
 li > ul,
 li > ol {
 	margin-bottom: 0;
 	margin-left: 1.5em;
 }
 
-dt {
-	font-weight: bold;
-}
-
-dd {
-	margin: 0 1.5em 1.5em;
-}
-
 img {
 	height: auto;
 	max-width: 100%;
-}
-
-table {
-	margin: 0 0 1.5em;
-	width: 100%;
-}
-
-th {
-	font-weight: bold;
 }
 
 button,
@@ -272,13 +182,6 @@ input[type="search"]::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-	/* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-	border: 0;
-	padding: 0;
-}
-
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -291,11 +194,7 @@ textarea {
 	border-radius: 3px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
+input:focus,
 textarea:focus {
 	color: #111;
 }
@@ -414,191 +313,6 @@ a {
 }
 
 /*--------------------------------------------------------------
-8.0 Clearings
---------------------------------------------------------------*/
-.clear:before,
-.clear:after,
-.entry-content:before,
-.entry-content:after,
-.comment-content:before,
-.comment-content:after,
-.site-header:before,
-.site-header:after,
-.site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
-	content: '';
-	display: table;
-}
-
-.clear:after,
-.entry-content:after,
-.comment-content:after,
-.site-header:after,
-.site-content:after,
-.site-footer:after {
-	clear: both;
-}
-
-/*--------------------------------------------------------------
-9.0 Widgets
---------------------------------------------------------------*/
-.widget {
-	margin: 0 0 1.5em;
-}
-
-/* Make sure select elements fit in widgets */
-.widget select {
-	max-width: 100%;
-}
-
-/* Search widget */
-.widget_search .search-submit {
-	display: none;
-}
-
-/*--------------------------------------------------------------
-10.0 Content
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-10.1 Posts and pages
---------------------------------------------------------------*/
-.sticky {
-}
-
-.hentry {
-	margin: 0 0 1.5em;
-}
-
-.byline,
-.updated {
-	display: none;
-}
-
-.single .byline,
-.group-blog .byline {
-	display: inline;
-}
-
-.page-links {
-	clear: both;
-	margin: 0 0 1.5em;
-}
-
-/*--------------------------------------------------------------
-10.2 Asides
---------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
-	display: none;
-}
-
-/*--------------------------------------------------------------
-11.0 Infinite scroll
---------------------------------------------------------------*/
-/* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
-.infinite-scroll.neverending .site-footer {
-	/* Theme Footer (when set to scrolling) */
-	display: none;
-}
-
-/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
-.infinity-end.neverending .site-footer {
-	display: block;
-}
-
-/*--------------------------------------------------------------
-12.0 Media
---------------------------------------------------------------*/
-.page-content img.wp-smiley,
-.entry-content img.wp-smiley,
-.comment-content img.wp-smiley {
-	border: none;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 0;
-}
-
-/* Make sure embeds and iframes fit their containers */
-embed,
-iframe,
-object {
-	max-width: 100%;
-}
-
-/*--------------------------------------------------------------
-12.1 Captions
---------------------------------------------------------------*/
-.wp-caption {
-	margin-bottom: 1.5em;
-	max-width: 100%;
-}
-
-.wp-caption img[class*="wp-image-"] {
-	display: block;
-	margin: 0 auto;
-}
-
-.wp-caption-text {
-	text-align: center;
-}
-
-.wp-caption .wp-caption-text {
-	margin: 0.8075em 0;
-}
-
-/*--------------------------------------------------------------
-12.2 Galleries
---------------------------------------------------------------*/
-.gallery {
-	margin-bottom: 1.5em;
-}
-
-.gallery-item {
-	display: inline-block;
-	text-align: center;
-	vertical-align: top;
-	width: 100%;
-}
-
-.gallery-columns-2 .gallery-item {
-	max-width: 50%;
-}
-
-.gallery-columns-3 .gallery-item {
-	max-width: 33.33%;
-}
-
-.gallery-columns-4 .gallery-item {
-	max-width: 25%;
-}
-
-.gallery-columns-5 .gallery-item {
-	max-width: 20%;
-}
-
-.gallery-columns-6 .gallery-item {
-	max-width: 16.66%;
-}
-
-.gallery-columns-7 .gallery-item {
-	max-width: 14.28%;
-}
-
-.gallery-columns-8 .gallery-item {
-	max-width: 12.5%;
-}
-
-.gallery-columns-9 .gallery-item {
-	max-width: 11.11%;
-}
-
-.gallery-caption {
-}
-
-/*--------------------------------------------------------------
 Custom
 --------------------------------------------------------------*/
 
@@ -660,15 +374,16 @@ Custom
 }
 
 main {
-	padding: 0 20px;
+	margin: 0 20px;
 	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 #content-wrapper {
 	background-image: url('media/background.png');
 }
 
-.side-box-title {
+.decorative-box h3 {
 	margin-top: -32px;
 	line-height: 32px;
 	background-image: linear-gradient(to left, #720D02, #BE0F02);
@@ -677,9 +392,10 @@ main {
 	padding: 0 10px;
 	position: absolute;
 	font-weight: bold;
+	z-index: 1;
 }
 
-.side-box-title:after {
+.decorative-box h3:after {
 	content: ' ';
 	left: -11px;
 	position: absolute;
@@ -687,6 +403,14 @@ main {
 	border-width: 32px 11px 0 0;
 	border-style: solid;
 	border-color: transparent #BE0F02;
+}
+
+.decorative-box:before {
+	content: '';
+	right: -6px;
+	position: absolute;
+	border-style: solid;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.15);
 }
 
 .title-deco {
