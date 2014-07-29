@@ -29,6 +29,10 @@
   margin: 45px 0 5px;
   position: relative;
 }
+.side-box:before {
+  top: -91px;
+  border-width: 75px 0 75px 6px;
+}
 #loginform p {
   overflow: hidden;
   margin-bottom: 5px;

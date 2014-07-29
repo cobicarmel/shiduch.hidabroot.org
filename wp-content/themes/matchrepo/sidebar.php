@@ -58,8 +58,8 @@ $site_name = get_option('blogname');
 				</a>
 			</div>
 		<? else : ?>
-			<div class="side-box">
-				<h3 class="side-box-title">
+			<div class="side-box decorative-box">
+				<h3>
 					<span class="title-deco"></span>
 					<? _e('Enter', THEME_NAME) ?>
 				</h3>
@@ -79,8 +79,8 @@ $site_name = get_option('blogname');
 	</aside>
 
 	<aside id="quick-search">
-		<div class="side-box">
-			<h3 class="side-box-title">
+		<div class="side-box decorative-box">
+			<h3>
 				<span class="title-deco"></span>
 				<? _e('Quick Search', THEME_NAME) ?>
 			</h3>

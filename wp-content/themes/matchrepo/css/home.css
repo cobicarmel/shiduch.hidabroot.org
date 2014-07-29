@@ -11,6 +11,10 @@
   width: 33%;
   margin-top: 50px;
 }
+#home-new-cards:before {
+  top: -56px;
+  border-width: 40px 0 40px 6px;
+}
 #home-new-cards h3 img {
   margin: 5px 0 0 10px;
   float: right;

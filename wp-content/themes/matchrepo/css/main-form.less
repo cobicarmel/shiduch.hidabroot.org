@@ -1,135 +1,175 @@
+#primary {
+  position: relative;
+
+  &:before {
+    content: '';
+    top: -4px;
+    position: absolute;
+    border-style: solid;
+    border-width: 0 150px 6px 150px;
+    border-color: transparent transparent rgba(0, 0, 0, 0.25) transparent;
+    right: 20px;
+    z-index: 1;
+  }
+}
+
+main {
+  position: relative;
+  border: 2px solid #A19491;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2px;
+    height: 100%;
+    width: 2px;
+    background-image: linear-gradient(to bottom, #fff 50%, transparent);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    height:2px;
+    width: 100%;
+    background-image: linear-gradient(to left, #fff 50%, transparent);
+  }
+}
+
 #main-form {
-	position: relative;
-	margin-top: 50px;
-	clear: both;
+  position: relative;
+  margin-top: 50px;
+  clear: both;
 
-	h4 {
-		font-size: 19px;
-	}
+  h4 {
+    font-size: 19px;
+  }
 
-	p select {
-		margin-right: 5px;
-	}
+  p select {
+    margin-right: 5px;
+  }
 }
 
 #mf-options {
-	padding: 0 30px;
+  padding: 0 30px;
 
-	[type="checkbox"] {
-		clear: right;
-	}
+  [type="checkbox"] {
+    clear: right;
+  }
 
-	input + label {
-		margin: 0 5px 2px 50px;
-		display: inline-block;
-	}
+  input + label {
+    margin: 0 5px 2px 50px;
+    display: inline-block;
+  }
 }
 
 #choose-gender {
-	width: 360px;
-	text-align: center;
-	position: relative;
-	overflow: hidden;
-	margin: auto;
+  width: 360px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
 
-	> div {
-		width: 50%;
-		float: right;
-	}
+  > div {
+    width: 50%;
+    float: right;
+  }
 
-	label {
-		margin-right: 5px;
-	}
+  label {
+    margin-right: 5px;
+  }
 }
 
 #main-form-background {
-	background: url(../media/register-background.png) no-repeat;
-	width: 670px;
-	min-height: 1040px;
+  background: url(../media/register-background.png) no-repeat;
+  width: 670px;
+  min-height: 1040px;
 }
 
 #main-title {
-	padding: 0 20px;
-	display: inline-block;
-	background-color: #87767C;
-	-webkit-transform: skewx(-7deg);
-	-moz-transform: skewx(-7deg);
-	-ms-transform: skewx(-7deg);
-	color: #FFF;
-	position: relative;
-	top: -4px;
-	font-size: 29px;
-	font-weight: bold;
-	right: 50px;
+  padding: 0 20px;
+  display: inline-block;
+  background-color: #87767C;
+  -webkit-transform: skewx(-7deg);
+  -moz-transform: skewx(-7deg);
+  -ms-transform: skewx(-7deg);
+  color: #FFF;
+  position: relative;
+  top: -4px;
+  font-size: 29px;
+  font-weight: bold;
+  right: 50px;
+  z-index: 1;
 }
 
 #main-title:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: -5px;
-	border-width: 0 5px 4px 0;
-	border-style: solid;
-	border-color: #634F54 transparent;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -5px;
+  border-width: 0 5px 4px 0;
+  border-style: solid;
+  border-color: #634F54 transparent;
 }
 
 #submit {
-	text-align: center;
-	margin-top: 30px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .label-top {
-	float: right;
-	padding: 0 0 10px 20px;
+  float: right;
+  padding: 0 0 10px 20px;
 
-	label {
-		display: block;
-		line-height: 1;
-	}
+  label {
+    display: block;
+    line-height: 1;
+  }
 
-	input, select {
-		width: 100%;
-		background-color: transparent;
-		height: 30px;
-	}
+  input, select {
+    width: 100%;
+    background-color: transparent;
+    height: 30px;
+  }
 }
 
 .w25 {
-	width: 25%;
+  width: 25%;
 }
 
 .w12 {
-	width: 12.5%;
+  width: 12.5%;
 }
 
 .w33 {
-	width: 33.33%;
+  width: 33.33%;
 }
 
 .w16 {
-	width: 16.66666666666667%;
+  width: 16.66666666666667%;
 }
 
 #register-success {
 
-	h3 {
-		font-weight: bold;
-		font-size: 27px;
-	}
+  h3 {
+    font-weight: bold;
+    font-size: 27px;
+  }
 
-	p {
-		font-size: 19px
-	}
+  p {
+    font-size: 19px
+  }
 }
 
 #register-error {
-	background-color: #FFF;
-	padding-right: 20px;
-	border-right: 4px solid #dd3d36;
-	margin-bottom: 20px;
-	box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  background-color: #FFF;
+  padding-right: 20px;
+  border-right: 4px solid #dd3d36;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
 
-	strong {
-		font-weight: bold;
-	}
+  strong {
+    font-weight: bold;
+  }
 }
