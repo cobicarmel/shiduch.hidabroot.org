@@ -22,7 +22,7 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<?= do_shortcode('[contact-form-7 id="140" title="Contact Form"]') ?>
+			<?= do_shortcode('[contact-form-7 title="Contact Form"]') ?>
 		</main>
 		<!-- #main -->
 	</div><!-- #primary -->

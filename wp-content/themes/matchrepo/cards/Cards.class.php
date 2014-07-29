@@ -16,8 +16,6 @@ abstract class Cards{
 
 	private static $requiredTerms = [
 		'gender',
-		'title',
-		'content',
 		'birthday',
 		'status',
 		'country',
@@ -178,7 +176,7 @@ abstract class Cards{
 		$terms = Cards::getTerms();
 
 		foreach($terms as $term)
-			$stack[$term] = isset($meta[$term]) ? $meta[$term][0] : '';
+			$stack[$term] = isset($meta[$term]) ? maybe_unserialize($meta[$term][0]) : '';
 
 		$this -> meta = $stack;
 	}
@@ -256,6 +254,17 @@ abstract class Cards{
 
 		unset($meta['birthday'], $meta['gender']);
 
+		/* preparing optional terms */
+
+		if($meta['community'] != 2)
+			unset($meta['hasidism']);
+
+		if($meta['healthy'] == 0)
+			unset($meta['disability_details']);
+
+		if($meta['status'] == 0)
+			unset($meta['children']);
+
 		$keys = $items ? $items : array_keys($meta);
 
 		$itemsStack = [];
@@ -265,10 +274,14 @@ abstract class Cards{
 			if(empty($this::$props[$key]))
 				continue;
 
+			if(! isset( $this::$props[$key]['label'])){
+				die($key . ' is incorrect');
+			}
+
 			if(isset($this -> labeledItems[$key]))
 				$label = $this -> labeledItems[$key];
 			else
-				$label = get_field_object($key)['label'];
+				$label = $this::$props[$key]['label'];
 
 			$param = null;
 
@@ -313,6 +326,8 @@ abstract class Cards{
 		$required = self::$requiredTerms;
 
 		$optionals = self::$optionalTerms;
+
+		array_push($required, 'title', 'content');
 
 		if(!$data['gender'])
 			$optionals[] = 'smoke';

@@ -38,7 +38,8 @@ $args = [
 	'post_type' => 'card',
 	'meta_query' => $metaArgs,
 	'posts_per_page' => 4,
-	'paged' => get_query_var('paged', 1)
+	'paged' => get_query_var('paged', 1),
+	'post_status' => 'publish'
 ];
 
 query_posts($args);

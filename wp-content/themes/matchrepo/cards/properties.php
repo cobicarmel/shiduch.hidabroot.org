@@ -3,7 +3,7 @@
 $globalProps = [
 
 	'title' => [
-		'label' => __('First Name', THEME_NAME),
+		'label' => 'שם פרטי',
 		'pattern' => '/^[a-zא-ת| ]+$/'
 	],
 
@@ -182,6 +182,7 @@ $globalProps = [
 	],
 
 	'children' => [
+		'label' => 'מספר ילדים',
 		'compare' => '<=',
 		'pattern' => function ($str){
 			return is_numeric($str = (int) $str) && $str >= 0 && $str <= 30;
@@ -189,6 +190,7 @@ $globalProps = [
 	],
 
 	'hasidism' => [
+		'label' => 'חסידות',
 		'options' => [
 			'אשלג',
 			'בעלז',
@@ -204,6 +206,10 @@ $globalProps = [
 			'שומר אמונים',
 			'תולדות אהרון'
 		]
+	],
+
+	'disability_details' => [
+		'label' => 'פירוט מוגבלות'
 	]
 ];
 
@@ -324,10 +330,10 @@ $femaleLabels = [
 
 Cards::$props = $globalProps;
 
-Male::$props = array_merge_recursive($maleProps, $globalProps);
+Male::$props = array_replace_recursive($globalProps, $maleProps);
 
 Male::$labels = $maleLabels;
 
-Female::$props = array_merge_recursive($femaleProps, $globalProps);
+Female::$props = array_replace_recursive($globalProps, $femaleProps);
 
 Female::$labels = $femaleLabels;

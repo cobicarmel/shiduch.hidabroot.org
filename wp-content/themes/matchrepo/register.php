@@ -106,7 +106,7 @@ get_header(); ?>
 						<div class="label-top">
 							<label for="user-zone">אזור פעילות</label>
 							<select id="user-zone" name="user_zone" required>
-								<option></option>
+
 								<?
 								$zones = Cards::$props['zone']['options'];
 

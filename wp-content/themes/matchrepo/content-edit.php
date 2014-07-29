@@ -9,7 +9,7 @@ $MCard = new $gender($arr_post);
 
 $meta = $MCard ->get_meta();
 
-$props = $gender::$props;
+$props = $MCard::$props;
 ?>
 
 <form id="main-form" method="post">
@@ -30,7 +30,7 @@ $props = $gender::$props;
 				<label for="cf-status">מצב משפחתי</label>
 				<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 						data-toggle-key="children" required>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['status']['options'], $meta['status']) ?>
 				</select>
 			</div>
@@ -54,14 +54,14 @@ $props = $gender::$props;
 			<div class="label-top w33">
 				<label for="cf-zone">איזור מגורים</label>
 				<select id="cf-zone" name="zone" required>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['zone']['options'], $meta['zone'], true) ?>
 				</select>
 			</div>
 			<div class="label-top w33">
 				<label for="cf-city">עיר מגורים</label>
 				<select id="cf-city" name="city" required>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['city']['options'], $meta['city'], true) ?>
 				</select>
 			</div>
@@ -70,14 +70,14 @@ $props = $gender::$props;
 			<div class="label-top w25">
 				<label for="cf-community">מוצא עדתי</label>
 				<select id="cf-community" name="community" required>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['community']['options'], $meta['community']) ?>
 				</select>
 			</div>
 			<div class="label-top w25">
 				<label for="cf-conception">השקפה</label>
 				<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['conception']['options'], $meta['conception']) ?>
 				</select>
 			</div>
@@ -85,7 +85,7 @@ $props = $gender::$props;
 				class="label-top w25 toggle-affected hasidism-affected"<?= $meta['conception'] != 2 ? ' style="display: none"' : '' ?>>
 				<label for="cf-hasidism">חסידות</label>
 				<select id="cf-hasidism" name="hasidism" required<?= $meta['conception'] != 2 ? ' disabled' : '' ?>>
-					<option></option>
+
 					<? Matchrepo::listOptions($props['hasidism']['options'], $meta['hasidism'], true) ?>
 				</select>
 			</div>
@@ -114,7 +114,7 @@ $props = $gender::$props;
 			<div class="label-top w16">
 				<label for="cf-height">גובה</label>
 				<select id="cf-height" name="height" required>
-					<option></option>
+
 					<? Matchrepo::listOptions(range(120, 210), $meta['height'], true) ?>
 				</select>
 			</div>
@@ -123,7 +123,7 @@ $props = $gender::$props;
 			<div class="label-top w33">
 				<label for="cf-look">מראה כללי</label>
 				<select id="cf-look" name="look">
-					<option></option>
+
 					<? Matchrepo::listOptions($props['look']['options'], $meta['look']) ?>
 				</select>
 			</div>
@@ -133,7 +133,7 @@ $props = $gender::$props;
 				<div class="label-top w25">
 					<label for="cf-cover">כיסוי ראש</label>
 					<select id="cf-cover" name="cover">
-						<option></option>
+
 						<? Matchrepo::listOptions($props['cover']['options'], $meta['cover']) ?>
 					</select>
 				</div>
@@ -152,7 +152,7 @@ $props = $gender::$props;
 				<label for="cf-healthy">מצב בריאותי</label>
 				<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
 						name="healthy">
-					<option></option>
+
 					<? Matchrepo::listOptions($props['healthy']['options'], $meta['healthy']) ?>
 				</select>
 			</div>

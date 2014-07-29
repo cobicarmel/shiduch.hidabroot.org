@@ -109,7 +109,7 @@ get_header();
 							<label for="cf-status">מצב משפחתי</label>
 							<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 									data-toggle-key="children" required>
-								<option></option>
+
 								<option value="0"><?= $props['status']['options'][0] ?></option>
 								<option value="1"><?= $props['status']['options'][1] ?></option>
 								<option value="2"><?= $props['status']['options'][2] ?></option>
@@ -135,7 +135,7 @@ get_header();
 						<div class="label-top w33">
 							<label for="cf-zone">איזור מגורים</label>
 							<select id="cf-zone" name="zone" required>
-								<option></option>
+
 								<? foreach($props['zone']['options'] as $zone){ ?>
 									<option><?= $zone ?></option>
 								<? } ?>
@@ -144,7 +144,7 @@ get_header();
 						<div class="label-top w33">
 							<label for="cf-city">עיר מגורים</label>
 							<select id="cf-city" name="city" required>
-								<option></option>
+
 								<? foreach($props['city']['options'] as $city){ ?>
 									<option><?= $city ?></option>
 								<? } ?>
@@ -155,7 +155,7 @@ get_header();
 						<div class="label-top w25">
 							<label for="cf-community">מוצא עדתי</label>
 							<select id="cf-community" name="community" required>
-								<option></option>
+
 								<? $communities = $props['community']['options']; ?>
 								<option value="0"><?= $communities[0] ?></option>
 								<option value="1"><?= $communities[1] ?></option>
@@ -165,7 +165,7 @@ get_header();
 						<div class="label-top w25">
 							<label for="cf-conception">השקפה</label>
 							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
-								<option></option>
+
 								<? $conceptions = $props['conception']['options']; ?>
 								<option value="0"><?= $conceptions[0] ?></option>
 								<option value="1"><?= $conceptions[1] ?></option>
@@ -175,7 +175,7 @@ get_header();
 						<div class="label-top w25 toggle-affected hasidism-affected" style="display: none">
 							<label for="cf-hasidism">חסידות</label>
 							<select id="cf-hasidism" name="hasidism" required disabled>
-								<option></option>
+
 								<? foreach($props['hasidism']['options'] as $hasidut){ ?>
 									<option><?= $hasidut ?></option>
 								<? } ?>
@@ -206,7 +206,7 @@ get_header();
 						<div class="label-top w16">
 							<label for="cf-height">גובה</label>
 							<select id="cf-height" name="height" required>
-								<option></option>
+
 								<? foreach(range(120, 210) as $height){ ?>
 									<option><?= $height ?></option>
 								<? } ?>
@@ -217,7 +217,7 @@ get_header();
 						<div class="label-top w33">
 							<label for="cf-look">מראה כללי</label>
 							<select id="cf-look" name="look">
-								<option></option>
+
 								<? foreach($props['look']['options'] as $i => $look){ ?>
 									<option value="<?= $i ?>"><?= $look ?></option>
 								<? } ?>
@@ -229,7 +229,7 @@ get_header();
 							<div class="label-top w25">
 								<label for="cf-cover">כיסוי ראש</label>
 								<select id="cf-cover" name="cover">
-									<option></option>
+
 									<? foreach($props['cover']['options'] as $i => $cover){ ?>
 										<option value="<?= $i ?>"><?= $cover ?></option>
 									<? } ?>
@@ -250,7 +250,7 @@ get_header();
 							<label for="cf-healthy">מצב בריאותי</label>
 							<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
 									name="healthy" required>
-								<option></option>
+
 								<? foreach($props['healthy']['options'] as $i => $healthy){ ?>
 									<option value="<?= $i ?>"><?= $healthy ?></option>
 								<? } ?>
