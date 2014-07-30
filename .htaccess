@@ -10,3 +10,8 @@ RewriteRule . /Matchrepo/index.php [L]
 </IfModule>
 
 # END WordPress
+
+AuthUserFile .htpasswd
+AuthType Basic
+AuthName "אנא הכנס סיסמה"
+Require valid-user
