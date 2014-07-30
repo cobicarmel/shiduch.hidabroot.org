@@ -13,17 +13,18 @@ $level = 1;
 if(isset($_POST['from_level']))
 	$level = $_POST['from_level'] + 1;
 
-if($level == 2){
+if($level > 1)
+	Matchrepo::cardFormHeader();
+
+if($level == 2) {
 	$gender = $_POST['gender'];
 
 	$props = $gender ? Female::$props : Male::$props;
 
 	$labels = $gender ? Female::$labels : Male::$labels;
-
-	Matchrepo::cardFormHeader();
 }
 
-if($level == 3){
+if($level == 3) {
 
 	$register_successful = false;
 
@@ -38,11 +39,11 @@ if($level == 3){
 
 	unset($_POST['title'], $_POST['content']);
 
-	if($isCorrect === true){
+	if($isCorrect === true) {
 
 		$post = wp_insert_post($params);
 
-		if(is_integer($post)){ // post inserted successfully
+		if(is_integer($post)) { // post inserted successfully
 
 			$_POST['birthday'] = Matchrepo::textToDBDate($_POST['birthday']);
 
@@ -59,7 +60,7 @@ if($level == 3){
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area<?= $level != 1 ? : ' decorative' ?>">
 	<main id="main" class="site-main" role="main">
 
 	<? if($level == 1) : ?>
@@ -109,7 +110,7 @@ get_header();
 							<label for="cf-status">מצב משפחתי</label>
 							<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 									data-toggle-key="children" required>
-
+								<option></option>
 								<option value="0"><?= $props['status']['options'][0] ?></option>
 								<option value="1"><?= $props['status']['options'][1] ?></option>
 								<option value="2"><?= $props['status']['options'][2] ?></option>
@@ -119,7 +120,7 @@ get_header();
 							 style="display: none">
 							<label for="cf-children">מספר ילדים</label>
 							<select id="cf-children" name="children" disabled>
-								<? foreach(range(0, 20) as $number){ ?>
+								<? foreach(range(0, 20) as $number) { ?>
 									<option><?= $number ?></option>
 								<? } ?>
 							</select>
@@ -128,25 +129,17 @@ get_header();
 					<div class="row">
 						<div class="label-top w33">
 							<label for="cf-country">ארץ</label>
-							<select id="cf-country" name="country" required>
-								<option>ישראל</option>
+							<select id="cf-country" name="country" class="toggle-trigger zone-trigger" required>
+								<option></option>
+								<? Matchrepo::listOptions($props['country']['options'], null, true) ?>
 							</select>
 						</div>
-						<div class="label-top w33">
+						<div class="label-top w33 toggle-affected zone-affected" style="display: none">
 							<label for="cf-zone">איזור מגורים</label>
 							<select id="cf-zone" name="zone" required>
-
-								<? foreach($props['zone']['options'] as $zone){ ?>
+								<option></option>
+								<? foreach($props['zone']['options'] as $zone) { ?>
 									<option><?= $zone ?></option>
-								<? } ?>
-							</select>
-						</div>
-						<div class="label-top w33">
-							<label for="cf-city">עיר מגורים</label>
-							<select id="cf-city" name="city" required>
-
-								<? foreach($props['city']['options'] as $city){ ?>
-									<option><?= $city ?></option>
 								<? } ?>
 							</select>
 						</div>
@@ -155,7 +148,7 @@ get_header();
 						<div class="label-top w25">
 							<label for="cf-community">מוצא עדתי</label>
 							<select id="cf-community" name="community" required>
-
+								<option></option>
 								<? $communities = $props['community']['options']; ?>
 								<option value="0"><?= $communities[0] ?></option>
 								<option value="1"><?= $communities[1] ?></option>
@@ -164,8 +157,9 @@ get_header();
 						</div>
 						<div class="label-top w25">
 							<label for="cf-conception">השקפה</label>
-							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
-
+							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception"
+									required>
+								<option></option>
 								<? $conceptions = $props['conception']['options']; ?>
 								<option value="0"><?= $conceptions[0] ?></option>
 								<option value="1"><?= $conceptions[1] ?></option>
@@ -175,8 +169,8 @@ get_header();
 						<div class="label-top w25 toggle-affected hasidism-affected" style="display: none">
 							<label for="cf-hasidism">חסידות</label>
 							<select id="cf-hasidism" name="hasidism" required disabled>
-
-								<? foreach($props['hasidism']['options'] as $hasidut){ ?>
+								<option></option>
+								<? foreach($props['hasidism']['options'] as $hasidut) { ?>
 									<option><?= $hasidut ?></option>
 								<? } ?>
 							</select>
@@ -206,8 +200,8 @@ get_header();
 						<div class="label-top w16">
 							<label for="cf-height">גובה</label>
 							<select id="cf-height" name="height" required>
-
-								<? foreach(range(120, 210) as $height){ ?>
+								<option></option>
+								<? foreach(range(120, 210) as $height) { ?>
 									<option><?= $height ?></option>
 								<? } ?>
 							</select>
@@ -217,27 +211,27 @@ get_header();
 						<div class="label-top w33">
 							<label for="cf-look">מראה כללי</label>
 							<select id="cf-look" name="look">
-
-								<? foreach($props['look']['options'] as $i => $look){ ?>
+								<option></option>
+								<? foreach($props['look']['options'] as $i => $look) { ?>
 									<option value="<?= $i ?>"><?= $look ?></option>
 								<? } ?>
 							</select>
 						</div>
 					</div>
 					<div class="row">
-						<? if($gender){ ?>
+						<? if($gender) { ?>
 							<div class="label-top w25">
 								<label for="cf-cover">כיסוי ראש</label>
 								<select id="cf-cover" name="cover">
-
-									<? foreach($props['cover']['options'] as $i => $cover){ ?>
+									<option></option>
+									<? foreach($props['cover']['options'] as $i => $cover) { ?>
 										<option value="<?= $i ?>"><?= $cover ?></option>
 									<? } ?>
 								</select>
 							</div>
 						<?
 						}
-						else{
+						else {
 							?>
 							<div class="w25">
 								<input type="checkbox" id="cf-smoke" name="smoke" value="1">
@@ -250,17 +244,18 @@ get_header();
 							<label for="cf-healthy">מצב בריאותי</label>
 							<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
 									name="healthy" required>
-
-								<? foreach($props['healthy']['options'] as $i => $healthy){ ?>
+								<option></option>
+								<? foreach($props['healthy']['options'] as $i => $healthy) { ?>
 									<option value="<?= $i ?>"><?= $healthy ?></option>
 								<? } ?>
 							</select>
 						</div>
 					</div>
 					<div class="row">
-						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy" style="display: none">
+						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy"
+							 style="display: none">
 							<div>פירוט מוגבלות</div>
-							<? foreach($props['disability_details']['options'] as $i => $disability){ ?>
+							<? foreach($props['disability_details']['options'] as $i => $disability) { ?>
 								<div>
 									<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
 										   value="<?= $i ?>">
@@ -285,16 +280,51 @@ get_header();
 			</form>
 		<? elseif($level == 3) : ?>
 			<div id="register-complete">
-			<? if($register_successful) : ?>
-				<div id="register-success">
-					<h3>הכרטיס נרשם בהצלחה!</h3>
-					<p>הכרטיס של <?= $params['post_title'] ?> נכנס למערכת והוא יופיע בחשבונך לאחר אישורו על ידי צוות
-						האתר.</p>
-				</div>
-			<? else : ?>
-				<div id="register-error"></div>
-			<? endif ?>
-				</div>
+				<? if($register_successful) : ?>
+					<div id="register-success">
+						<h3>הכרטיס נרשם בהצלחה!</h3>
+
+						<p>הכרטיס של <?= $params['post_title'] ?> נכנס למערכת והוא יופיע בחשבונך לאחר אישורו על ידי צוות
+							האתר.</p>
+					</div>
+				<?
+				else :
+					$props =  Cards::$props;
+
+					foreach(['male', 'female'] as $class){
+						foreach($class::$props as $term => $prop){
+							if(! isset($props[$term]))
+								$props[$term] = $prop;
+						}
+					}
+					?>
+					<div id="register-error">
+						<h3>הוספת הכרטיס נכשלה</h3>
+						<? if($isCorrect['empty']) { ?>
+							<div>הפרטים שלהלן חסרים:</div>
+							<ul>
+								<? foreach($isCorrect['empty'] as $term) {
+										if(empty($props[$term]))
+											continue;
+									?>
+									<li><?= $props[$term]['label'] ?></li>
+								<? } ?>
+							</ul>
+						<? } ?>
+						<? if($isCorrect['incorrect']) { ?>
+							<div>הפרטים שלהלן אינם תקינים:</div>
+							<ul>
+								<? foreach($isCorrect['incorrect'] as $term) {
+										if(empty($props[$term]))
+											continue;
+									?>
+									<li><?= $props[$term]['label'] ?></li>
+								<? } ?>
+							</ul>
+						<? } ?>
+					</div>
+				<? endif ?>
+			</div>
 		<? endif ?>
 		</div>
 	<? endif ?>

@@ -1,29 +1,50 @@
 #avatar {
-	float: left;
+  float: left;
 }
 
 .row {
-	margin-bottom: 10px;
-	overflow: hidden;
+  margin-bottom: 10px;
+  overflow: hidden;
 }
 
-#nc-content {
-	height: 200px;
+#cf-content {
+  height: 150px;
 }
 
 textarea {
-	padding: 5px;
+  padding: 5px;
 }
 
 #nc-disability {
-	display: none;
+  display: none;
 
-	[type="checkbox"] {
-		margin-right: 10px;
-	}
+  [type="checkbox"] {
+    margin-right: 10px;
+  }
 }
 
 #register-complete {
-	margin: 150px 25px;
-	display: inline-block;
+  padding: 30px;
+}
+
+#register-error {
+  background-color: rgba(255, 255, 255, .4);
+
+  div {
+    margin: 7px;
+    font-size: 19px;
+  }
+
+  h3 {
+    font-size: 31px;
+  }
+
+  ul {
+    list-style-type: circle;
+    padding-right: 35px
+  }
+}
+
+#register-success {
+  margin-top: 45px;
 }

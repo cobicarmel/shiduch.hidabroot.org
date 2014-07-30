@@ -22,7 +22,9 @@ $(function(){
 		$showHideTriggers = $toggles.filter('.show-hide-trigger'),
 		$showHideAffected = $affected.filter('.show-hide-affected'),
 		$hasidismTrigger = $toggles.filter('.hasidism-trigger'),
-		$hasidismAffected = $affected.filter('.hasidism-affected');
+		$hasidismAffected = $affected.filter('.hasidism-affected'),
+		$zoneTrigger = $toggles.filter('.zone-trigger'),
+		$zoneAffected = $affected.filter('.zone-affected');
 
 	$showHideTriggers.each(function(index){
 
@@ -43,7 +45,7 @@ $(function(){
 		};
 
 		Toggle.addToggle(params);
-	})
+	});
 
 	params = {
 		name: 'hasidism',
@@ -52,6 +54,20 @@ $(function(){
 		$affected: $hasidismAffected,
 		handler: function(data){
 			var fn = this.val() == 2 ? 'show' : 'hide';
+
+			Toggle.applyDefaultFunction(fn, this, data);
+		}
+	};
+
+	Toggle.addToggle(params);
+
+	params = {
+		name: 'zone',
+		event: 'change',
+		$toggles: $zoneTrigger,
+		$affected: $zoneAffected,
+		handler: function(data){
+			var fn = this[0].value == 'ישראל' ? 'show' : 'hide';
 
 			Toggle.applyDefaultFunction(fn, this, data);
 		}
