@@ -1,7 +1,7 @@
 #primary {
   position: relative;
 }
-#primary:before {
+#primary.decorative:before {
   content: '';
   top: -4px;
   position: absolute;
@@ -11,11 +11,11 @@
   right: 20px;
   z-index: 1;
 }
-main {
+#primary.decorative main {
   position: relative;
   border: 2px solid #A19491;
 }
-main:before {
+#primary.decorative main:before {
   content: '';
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@ main:before {
   width: 2px;
   background-image: linear-gradient(to bottom, #ffffff 50%, transparent);
 }
-main:after {
+#primary.decorative main:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -41,7 +41,7 @@ main:after {
   font-size: 19px;
 }
 #main-form p select {
-  margin-right: 5px;
+  margin: 0 8px 0 20px;
 }
 #mf-options {
   padding: 0 30px;
@@ -142,4 +142,7 @@ main:after {
 }
 #register-error strong {
   font-weight: bold;
+}
+#cf-disability span {
+  display: block;
 }
