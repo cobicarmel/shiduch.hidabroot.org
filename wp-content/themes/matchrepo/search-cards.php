@@ -9,9 +9,15 @@ $props = Cards::$props;
 
 $metaArgs = [];
 
+$compareAfter = ['disability_details'];
+
 foreach($_GET as $key => $value){
 
-	if(! isset($props[$key]) || (is_string($value) && trim($value) == ''))
+	if(
+		! isset($props[$key]) ||
+		(is_string($value) && trim($value) == '') ||
+		in_array($key, $compareAfter)
+	)
 		continue;
 
 	$tempArgs = [];
@@ -43,6 +49,10 @@ $args = [
 ];
 
 query_posts($args);
+
+global $posts;
+
+
 
 get_header();
 

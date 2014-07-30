@@ -58,13 +58,6 @@ $props = $MCard::$props;
 					<? Matchrepo::listOptions($props['zone']['options'], $meta['zone'], true) ?>
 				</select>
 			</div>
-			<div class="label-top w33">
-				<label for="cf-city">עיר מגורים</label>
-				<select id="cf-city" name="city" required>
-
-					<? Matchrepo::listOptions($props['city']['options'], $meta['city'], true) ?>
-				</select>
-			</div>
 		</div>
 		<div class="row">
 			<div class="label-top w25">

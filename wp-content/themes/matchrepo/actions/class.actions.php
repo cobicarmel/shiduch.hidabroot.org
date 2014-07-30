@@ -97,8 +97,6 @@ abstract class MR_actions {
 
 	static function theme_setup(){
 
-		load_theme_textdomain(THEME_NAME, get_template_directory() . '/languages');
-
 		register_nav_menus(array(
 			'primary' => __('Primary Menu', THEME_NAME),
 			'footer' => __('Footer Menu', THEME_NAME)

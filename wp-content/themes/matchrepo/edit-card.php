@@ -33,11 +33,11 @@ if($_POST) {
 
 		foreach($cardTerms as $term)
 			update_post_meta($post_id, $term, isset($_POST[$term]) ? $_POST[$term] : '');
+
+		wp_redirect(get_permalink( $post_id ));
 	}
-	else{
-		var_dump($isCorrect);
-		die;
-	}
+
+	exit;
 }
 
 get_header();
