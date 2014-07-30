@@ -19,8 +19,6 @@ abstract class Cards{
 		'birthday',
 		'status',
 		'country',
-		'zone',
-		'city',
 		'community',
 		'conception',
 		'work',
@@ -38,7 +36,8 @@ abstract class Cards{
 		'cover',
 		'disability_details',
 		'other_disability',
-		'hasidism'
+		'hasidism',
+		'zone'
 	];
 
 	public static $user_types = [
@@ -194,7 +193,7 @@ abstract class Cards{
 
 	function get_excerpt(){
 
-		$excerpt_items = ['age', 'city', 'status'];
+		$excerpt_items = ['age', 'status'];
 
 		$items = $this -> prepare_display($excerpt_items, false);
 
@@ -343,7 +342,7 @@ abstract class Cards{
 
 		foreach($allTerms as $term){
 
-			if(empty($props[$term]) || ! isset($data[$term]))
+			if(empty($props[$term]) || ! isset($data[$term]) || in_array($term, $errors['empty']))
 				continue;
 
 			$isCorrect = true;

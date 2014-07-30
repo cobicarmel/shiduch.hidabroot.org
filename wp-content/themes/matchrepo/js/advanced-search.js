@@ -63,10 +63,23 @@ $(function(){
 			male: [
 				'אשכנזי',
 				'ספרדי',
-				'חסידי'
+				'תימני'
 			],
 			female: [
 				'אשכנזיה',
+				'ספרדיה',
+				'תימניה'
+			]
+		},
+
+		conception: {
+			male: [
+				'ליטאי',
+				'ספרדי',
+				'חסידי'
+			],
+			female: [
+				'ליטאית',
 				'ספרדיה',
 				'חסידית'
 			]
@@ -79,7 +92,7 @@ $(function(){
 			key = $currentTrigger.data('toggleKey'),
 			$labelsGroup = $affectedGroups.filter('[data-labels=' + key + ']');
 
-		for(var text in texts){
+		for(var text in texts) {
 
 			var params = {
 				name: 'replaceText' + triggersCount++,
@@ -105,7 +118,7 @@ $(function(){
 
 		var iterations = ['show', 'hide'];
 
-		for(var i in iterations){
+		for(var i in iterations) {
 
 			var action = iterations[i];
 
@@ -127,6 +140,27 @@ $(function(){
 
 			Toggle.addToggle(params);
 		}
+	});
+
+	var $switchTriggers = $triggers.filter('.switch-trigger');
+
+	$switchTriggers.each(function(index){
+
+		var $currentTrigger = $switchTriggers.eq(index),
+			key = $currentTrigger.data('toggleKey'),
+			$displayGroups = $affectedGroups.filter('[data-affected=' + key + ']');
+
+		var params = {
+			name: 'switch',
+			event: 'change',
+			$toggles: $currentTrigger,
+			$affected: $displayGroups,
+			handler: function(data){
+				Toggle.applyDefaultFunction(+this[0].value ? 'show' : 'hide', this, data);
+			}
+		};
+
+		Toggle.addToggle(params);
 	});
 
 	/* Custom toggles */
