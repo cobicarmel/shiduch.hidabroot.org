@@ -320,6 +320,8 @@ abstract class Cards{
 			'incorrect' => []
 		];
 
+
+		
 		$props = self::$props;
 
 		$required = self::$requiredTerms;
