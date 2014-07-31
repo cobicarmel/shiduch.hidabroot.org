@@ -1,3 +1,6 @@
+article {
+  border-bottom: 10px solid rgba(255, 255, 255, 0.4);
+}
 #user-managing {
   margin: 10px 0 25px;
 }
@@ -12,7 +15,7 @@
   content: '>';
 }
 .background-area {
-  height: 1150px;
+  min-height: 1150px;
 }
 .card-meta li {
   width: 50%;

@@ -106,7 +106,7 @@ get_header(); ?>
 						<div class="label-top">
 							<label for="user-zone">אזור פעילות</label>
 							<select id="user-zone" name="user_zone" required>
-
+								<option>הכל</option>
 								<?
 								$zones = Cards::$props['zone']['options'];
 
@@ -119,7 +119,9 @@ get_header(); ?>
 						</div>
 						<div class="label-top">
 							<label for="user-country">מדינה</label>
-							<select id="user-country"></select>
+							<select id="user-country" required>
+								<? Matchrepo::listOptions(Cards::$props['country']['options'], 'ישראל', true)?>
+							</select>
 						</div>
 					</fieldset>
 					<fieldset id="user-agree">

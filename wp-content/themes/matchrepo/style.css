@@ -73,6 +73,7 @@ main,
 nav,
 section {
 	display: block;
+	border-bottom: 10px solid rgba(255, 255, 255, 0.4);
 }
 
 ol, ul {
@@ -506,7 +507,6 @@ footer {
 .card-avatar {
 	background-color: #323227;
 	overflow: hidden;
-	margin-bottom: 20px;
 }
 
 .card-title {

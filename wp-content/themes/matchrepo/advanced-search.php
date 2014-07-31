@@ -41,14 +41,14 @@ get_header();
 		<label for="as-min-age">מגיל</label>
 		<select name="min_age" id="as-min-age">
 			<option></option>
-			<? foreach(range(17, 99) as $age) { ?>
+			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
 		</select>
 		<label for="as-max-age">עד גיל</label>
 		<select name="max_age" id="as-max-age">
 			<option></option>
-			<? foreach(range(17, 99) as $age) { ?>
+			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
 		</select>
@@ -212,8 +212,8 @@ get_header();
 
 		<p>
 			<select id="cf-healthy" class="toggle-trigger switch-trigger" data-toggle-key="healthy"
-					name="healthy" required>
-
+					name="healthy">
+				<option></option>
 				<? foreach(Cards::$props['healthy']['options'] as $i => $healthy) { ?>
 					<option value="<?= $i ?>"><?= $healthy ?></option>
 				<? } ?>
@@ -229,7 +229,7 @@ get_header();
 			<? foreach(Cards::$props['disability_details']['options'] as $i => $disability) { ?>
 				<span>
 					<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
-					   value="<?= $i ?>">
+						   value="<?= $i ?>">
 					<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
 				</span>
 			<? } ?>
