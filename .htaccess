@@ -1,4 +1,4 @@
-
+﻿
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -11,7 +11,7 @@ RewriteRule . /Matchrepo/index.php [L]
 
 # END WordPress
 
-AuthUserFile .htpasswd
-AuthType Basic
-AuthName "אנא הכנס סיסמה"
-Require valid-user
+# AuthUserFile C:\xampp\htdocs\Matchrepo\.htpasswd
+# AuthType Basic
+# AuthName "this is a protected website!!"
+# Require valid-user
