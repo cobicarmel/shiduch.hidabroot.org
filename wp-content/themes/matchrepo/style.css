@@ -316,7 +316,7 @@ Custom
 #side-sticky-icons {
 	position: fixed;
 	bottom: 160px;
-	width: 80px;
+	width: 60px;
 	left: 0;
 	z-index: 2;
 }
