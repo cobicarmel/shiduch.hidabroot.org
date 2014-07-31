@@ -8,4 +8,3 @@ abstract class CardHelpers {
 		return $gender ? 'female' : 'male';
 	}
 }
-
