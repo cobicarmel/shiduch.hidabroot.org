@@ -110,7 +110,7 @@ get_header();
 							<label for="cf-status">מצב משפחתי</label>
 							<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 									data-toggle-key="children" required>
-								<option></option>
+								<option value="">הכל</option>
 								<option value="0"><?= $props['status']['options'][0] ?></option>
 								<option value="1"><?= $props['status']['options'][1] ?></option>
 								<option value="2"><?= $props['status']['options'][2] ?></option>

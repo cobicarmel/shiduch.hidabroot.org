@@ -40,14 +40,14 @@ get_header();
 	<p>
 		<label for="as-min-age">מגיל</label>
 		<select name="min_age" id="as-min-age">
-			<option></option>
+			<option  value="">הכל</option>
 			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
 		</select>
 		<label for="as-max-age">עד גיל</label>
 		<select name="max_age" id="as-max-age">
-			<option></option>
+			<option  value="">הכל</option>
 			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
@@ -213,7 +213,7 @@ get_header();
 		<p>
 			<select id="cf-healthy" class="toggle-trigger switch-trigger" data-toggle-key="healthy"
 					name="healthy">
-				<option></option>
+				<option  value="">הכל</option>
 				<? foreach(Cards::$props['healthy']['options'] as $i => $healthy) { ?>
 					<option value="<?= $i ?>"><?= $healthy ?></option>
 				<? } ?>

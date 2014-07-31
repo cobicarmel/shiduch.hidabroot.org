@@ -125,7 +125,7 @@ abstract class Cards{
 
 					echo "<select name='$param'>";
 
-					echo "<option></option>";
+					echo '<option value="">הכל</option>';
 
 					foreach($props['options'] as $value => $text){
 
