@@ -1,0 +1,9 @@
+.error-404 div {
+    background: url(../media/404box.png) no-repeat;
+    height: 127px;
+    width: 400px;
+    margin: 150px auto;
+    padding: 38px;
+    font-size: 27px;
+    box-shadow: 3px 5px 11px rgba(0,0,0,.3);
+}
