@@ -566,38 +566,4 @@ if(function_exists("register_field_group"))
 		),
 		'menu_order' => 0,
 	));
-	register_field_group(array (
-		'id' => 'main_image',
-		'title' => 'תמונה בדף ראשי',
-		'fields' => array (
-			array (
-				'key' => 'field_539a51c5945a4',
-				'label' => 'תמונה ראשית',
-				'name' => 'main_image',
-				'type' => 'image',
-				'required' => 1,
-				'save_format' => 'object',
-				'preview_size' => 'medium',
-				'library' => 'all',
-			),
-		),
-		'location' => array (
-			array (
-				array (
-					'param' => 'page',
-					'operator' => '==',
-					'value' => '11',
-					'order_no' => 0,
-					'group_no' => 0,
-				),
-			),
-		),
-		'options' => array (
-			'position' => 'side',
-			'layout' => 'default',
-			'hide_on_screen' => array (
-			),
-		),
-		'menu_order' => 0,
-	));
 }

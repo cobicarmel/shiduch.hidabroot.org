@@ -11,8 +11,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<div id="main-image">
 				<?
-				$mainImage = get_field('main_image');
-				echo "<img src='$mainImage[url]' title='$mainImage[title]' alt='$mainImage[alt]'>";
+				the_post_thumbnail()
 				?>
 			</div>
 			<div id="home-middle">
