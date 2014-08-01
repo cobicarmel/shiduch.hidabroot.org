@@ -10,9 +10,9 @@ $MCard = new $gender($arr_post);
 
 $id = get_the_ID();
 
-$contact = get_user_by('id', $post -> post_author);
+$contact = get_user_by('id', $post ->post_author);
 
-$contact_meta = get_user_meta($post -> post_author);
+$contact_meta = get_user_meta($post ->post_author);
 
 $contactItems = ['user_type', 'user_phone'];
 
@@ -21,7 +21,7 @@ foreach($contactItems as $item)
 
 $cardManager = get_the_author();
 
-if(! empty( Cards::$user_types[$user_type]))
+if(! empty(Cards::$user_types[$user_type]))
 	$cardManager .= ', ' . Cards::$user_types[$user_type];
 
 ?>
@@ -29,7 +29,7 @@ if(! empty( Cards::$user_types[$user_type]))
 <article id="post-<? $id ?>" class="background-area">
 	<div class="card-details">
 		<div class="card-meta">
-			<? $MCard -> list_meta() ?>
+			<? $MCard ->list_meta() ?>
 			<div class="card-content">
 				<h2><?= $MCard::$labels['Little_About_The_Candidate'] ?></h2>
 				<? the_content() ?>
@@ -49,7 +49,7 @@ if(! empty( Cards::$user_types[$user_type]))
 			<div class="card-side-box">
 				<div class="title"><? _e('Contact Details', THEME_NAME) ?></div>
 				<div class="cdb-content">
-					<? if($user_phone){ ?>
+					<? if($user_phone) { ?>
 						<div class="row">
 							<div class="label">טלפון:</div>
 							<div class="term">
@@ -61,7 +61,8 @@ if(! empty( Cards::$user_types[$user_type]))
 					<div class="row">
 						<div class="label">דוא"ל:</div>
 						<div class="term">
-							<a target="_blank" href="mailto:<?= $contact -> user_email ?>"><?= $contact -> user_email ?></a>
+							<a target="_blank"
+							   href="mailto:<?= $contact ->user_email ?>"><?= $contact ->user_email ?></a>
 						</div>
 					</div>
 				</div>
@@ -70,13 +71,16 @@ if(! empty( Cards::$user_types[$user_type]))
 	</div>
 	<div id="treat-card">
 		<?
-		if($url = get_delete_post_link($id)) { ?>
+		if(current_user_can('delete_post', $id)) {
+			?>
 
 			<div>
-				<a href="<?= $url ?>&redirect" onclick="return confirm('האם למחוק את הכרטיס של <?= the_title()?>?')"><?= __('Delete', THEME_NAME) ?></a>
+				<a href="?trash"
+				   onclick="return confirm('האם למחוק את הכרטיס של <?= the_title() ?>?')"><?= __('Delete', THEME_NAME) ?></a>
 			</div>";
-<?}
-		if(current_user_can('edit_posts', $id)){
+		<?
+		}
+		if(current_user_can('edit_post', $id)) {
 			$editLink = get_permalink(get_page_by_title('עריכת כרטיס'));
 
 			$args = [
@@ -88,7 +92,8 @@ if(! empty( Cards::$user_types[$user_type]))
 			<div>
 				<a href="<?= $link ?>"><? _e('Edit') ?></a>
 			</div>
-		<? }
+		<?
+		}
 		?>
 	</div>
 </article><!-- #post-## -->

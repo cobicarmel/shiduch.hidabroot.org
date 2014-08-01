@@ -6,8 +6,8 @@ Template Name: עריכת כרטיס
 
 $post_id = $_GET['id'];
 
-if(! current_user_can('edit_posts', $post_id))
-	wp_die('לך הביתה, פעם אחרונה שאתה עושה כאלו שטויות!');
+if(! current_user_can('edit_post', $post_id))
+	wp_die('אין לך הרשאות לערוך את הכרטיס הזה.');
 
 Matchrepo::mainFormHeader();
 
