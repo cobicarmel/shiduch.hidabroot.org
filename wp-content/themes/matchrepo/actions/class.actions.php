@@ -50,6 +50,16 @@ abstract class MR_actions {
 		$phpmailer->FromName = "Cobi";
 	}
 
+	function redirect_after_trashing() {
+
+		if(! isset($_GET['redirect']))
+			return;
+
+		wp_redirect(get_page_link(get_page_by_title('החשבון שלי')));
+
+		exit;
+	}
+
 	static function register_sources(){
 
 		wp_register_style('main-form', get_stylesheet_directory_uri() . '/css/main-form.css');
@@ -140,3 +150,7 @@ if(is_local())
 /* adding excerpt support for pages */
 
 add_action('init', 'MR_actions::page_excerpt_support');
+
+/* redirect after deleting post */
+
+add_action('trashed_post', 'MR_actions::redirect_after_trashing');

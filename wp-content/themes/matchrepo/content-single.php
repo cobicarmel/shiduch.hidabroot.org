@@ -70,9 +70,12 @@ if(! empty( Cards::$user_types[$user_type]))
 	</div>
 	<div id="treat-card">
 		<?
-		if($url = get_delete_post_link($id))
-			echo "<div><a href='$url'>" . __('Delete', THEME_NAME)  . "</a></div>";
+		if($url = get_delete_post_link($id)) { ?>
 
+			<div>
+				<a href="<?= $url ?>&redirect" onclick="return confirm('האם למחוק את הכרטיס של <?= the_title()?>?')"><?= __('Delete', THEME_NAME) ?></a>
+			</div>";
+<?}
 		if(current_user_can('edit_posts', $id)){
 			$editLink = get_permalink(get_page_by_title('עריכת כרטיס'));
 
