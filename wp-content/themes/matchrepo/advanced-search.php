@@ -138,7 +138,7 @@ get_header();
 					<span class="toggle-affected-group" data-check-group="conception" data-labels="gender"
 						  data-labels-group="conception">
 						<?
-						$concepts = Cards::$props['conception']['options'];
+						$concepts = Male::$props['conception']['options'];
 
 						foreach($concepts as $i => $concept) {
 							?>
