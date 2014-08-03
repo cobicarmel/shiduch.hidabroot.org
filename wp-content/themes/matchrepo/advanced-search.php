@@ -40,14 +40,14 @@ get_header();
 	<p>
 		<label for="as-min-age">מגיל</label>
 		<select name="min_age" id="as-min-age">
-			<option  value="">הכל</option>
+			<option value="">הכל</option>
 			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
 		</select>
 		<label for="as-max-age">עד גיל</label>
 		<select name="max_age" id="as-max-age">
-			<option  value="">הכל</option>
+			<option value="">הכל</option>
 			<? foreach(range(18, 99) as $age) { ?>
 				<option><?= $age ?></option>
 			<? } ?>
@@ -187,14 +187,16 @@ get_header();
 			<input type="checkbox" id="as-cover-all" class="toggle-trigger select-all"
 				   data-toggle-key="cover">
 			<label for="as-cover-all">הכל</label>
-						<span class="toggle-affected-group" data-check-group="cover">
-							<input name="cover[]" type="checkbox" id="as-cover0">
-							<label for="as-cover0">מטפחת</label>
-							<input name="cover[]" type="checkbox" id="as-cover1">
-							<label for="as-cover1">פאה</label>
-							<input name="cover[]" type="checkbox" id="as-cover2">
-							<label for="as-cover2">פאה רק בשבתות ואירועים</label>
-						</span>
+			<span class="toggle-affected-group" data-check-group="cover">
+				<?
+				$args = [
+					'wrapTag' => '',
+					'name' => 'cover'
+				];
+
+				Matchrepo::listCheckboxes( Female::$props['cover']['options'], $args)
+				?>
+			</span>
 		</p>
 	</div>
 	<div class="toggle-affected-group" data-show="male" data-hide="female">
@@ -213,7 +215,7 @@ get_header();
 		<p>
 			<select id="cf-healthy" class="toggle-trigger switch-trigger" data-toggle-key="healthy"
 					name="healthy">
-				<option  value="">הכל</option>
+				<option value="">הכל</option>
 				<? foreach(Cards::$props['healthy']['options'] as $i => $healthy) { ?>
 					<option value="<?= $i ?>"><?= $healthy ?></option>
 				<? } ?>

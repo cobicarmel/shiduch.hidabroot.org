@@ -351,7 +351,8 @@ $femaleProps = [
 			'מטפחת בלבד',
 			'פאה ומטפחת'
 		],
-		'pattern' => ''
+		'pattern' => '',
+		'compare' => 'IN'
 	],
 
 	'healthy' => [

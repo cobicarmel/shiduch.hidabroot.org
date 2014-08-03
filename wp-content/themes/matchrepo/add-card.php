@@ -110,7 +110,7 @@ get_header();
 							<label for="cf-status">מצב משפחתי</label>
 							<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 									data-toggle-key="children" required>
-								<option value="">הכל</option>
+								<option></option>
 								<option value="0"><?= $props['status']['options'][0] ?></option>
 								<option value="1"><?= $props['status']['options'][1] ?></option>
 								<option value="2"><?= $props['status']['options'][2] ?></option>
@@ -224,9 +224,7 @@ get_header();
 								<label for="cf-cover">כיסוי ראש</label>
 								<select id="cf-cover" name="cover">
 									<option></option>
-									<? foreach($props['cover']['options'] as $i => $cover) { ?>
-										<option value="<?= $i ?>"><?= $cover ?></option>
-									<? } ?>
+									<? Matchrepo::listOptions($props['cover']['options']) ?>
 								</select>
 							</div>
 						<?
@@ -262,8 +260,7 @@ get_header();
 									<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
 								</div>
 							<? } ?>
-							<div>
-								<input type="checkbox" id="cf-disability-other">
+							<div
 								<label for="cf-disability-other">אחר - נא לפרט:</label>
 								<textarea id="cf-disability-other" name="other_disability"></textarea>
 							</div>
@@ -273,7 +270,6 @@ get_header();
 						<label for="cf-content"><?= $labels['Little_About_The_Candidate'] ?>:</label>
 						<textarea id="cf-content" name="content" required></textarea>
 					</div>
-				</div>
 				<div id="submit">
 					<input type="submit" value="הוספת כרטיס">
 				</div>

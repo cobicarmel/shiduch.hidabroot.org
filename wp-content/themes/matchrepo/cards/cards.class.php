@@ -14,6 +14,30 @@ abstract class Cards {
 
 	static $props;
 
+	private static $orderTerms = [
+		'gender',
+		'age',
+		'birthday',
+		'status',
+		'children',
+		'country',
+		'zone',
+		'community',
+		'conception',
+		'hasidism',
+		'college',
+		'work',
+		'father_work',
+		'mother_work',
+		'height',
+		'look',
+		'healthy',
+		'disability_details',
+		'other_disability',
+		'smoke',
+		'cover'
+	];
+
 	private static $requiredTerms = [
 		'gender',
 		'birthday',
@@ -54,9 +78,9 @@ abstract class Cards {
 		'status',
 		'college',
 		'height',
+		'country',
 		'zone',
 		'conception',
-		'work',
 		'look'
 	];
 
@@ -268,9 +292,14 @@ abstract class Cards {
 		if($meta['country'] != 'ישראל')
 			unset($meta['zone']);
 
-		$keys = $items ? $items : array_keys($meta);
+		$unsortedKeys = $items ? $items : array_keys($meta);
 
 		$itemsStack = [];
+
+		foreach(self::$orderTerms as $term){
+			if(in_array($term, $unsortedKeys))
+				$keys[] = $term;
+		}
 
 		foreach($keys as $key) {
 
@@ -394,7 +423,7 @@ abstract class Cards {
 
 	static function getTerms(){
 
-		return array_merge(self::$requiredTerms, self::$optionalTerms);
+		return self::$orderTerms;
 	}
 }
 

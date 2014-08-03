@@ -30,7 +30,6 @@ $props = $MCard::$props;
 				<label for="cf-status">מצב משפחתי</label>
 				<select id="cf-status" class="toggle-trigger show-hide-trigger" name="status"
 						data-toggle-key="children" required>
-
 					<? Matchrepo::listOptions($props['status']['options'], $meta['status']) ?>
 				</select>
 			</div>
@@ -162,7 +161,6 @@ $props = $MCard::$props;
 
 				?>
 				<div>
-					<input type="checkbox" id="cf-disability-other">
 					<label for="cf-disability-other">אחר - נא לפרט:</label>
 					<textarea id="cf-disability-other"
 							  name="other_disability"><?= $meta['other_disability'] ?></textarea>

@@ -2,6 +2,8 @@
 
 abstract class Matchrepo {
 
+	static $checkboxLists = 0;
+
 	static function cardFormHeader(){
 
 		add_action('wp_enqueue_scripts', function (){
@@ -15,17 +17,26 @@ abstract class Matchrepo {
 
 	static function listCheckboxes($params, $options = []){
 
+		self::$checkboxLists++;
+
 		$defaultOptions = [
 			'echo' => true,
 			'name' => '',
 			'id' => '',
-			'compare' => '',
+			'compare' => null,
 			'type' => 'checkbox',
 			'valueByText' => false,
 			'wrapTag' => 'div'
 		];
 
 		$options = array_merge($defaultOptions, $options);
+
+		if(! $options['id']){
+			if($options['name'])
+				$options['id'] = $options['name'];
+			else
+				$options['id'] = 'checkbox_' . self::$checkboxLists;
+		}
 
 		$count = 1;
 
@@ -144,6 +155,7 @@ abstract class Matchrepo {
 			wp_enqueue_script('register');
 		});
 	}
+
 	/**
 	 * @return string
 	 */

@@ -5,7 +5,7 @@ Template Name: תוצאות חיפוש
 
 Matchrepo::multiCardsHeader();
 
-$props = Cards::$props;
+$props = (int) $_GET['gender'] ? Female::$props : Male::$props;
 
 $metaArgs = [];
 
@@ -80,8 +80,7 @@ get_header();
 			<? Matchrepo::multiCardsNavigation() ?>
 		</div>
 	</main>
-	<!-- #main -->
-</div><!-- #primary -->
+</div>
 
 <? get_sidebar() ?>
 <? get_footer() ?>
