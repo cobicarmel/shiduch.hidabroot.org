@@ -2,6 +2,10 @@
 
 abstract class MR_actions {
 
+	static function html_headers(){
+		return 'text/html';
+	}
+
 	static function restrict_admin(){
 		if(!current_user_can('manage_options')){
 			wp_redirect(site_url());
@@ -56,17 +60,21 @@ abstract class MR_actions {
 
 		wp_register_style('add-card', get_stylesheet_directory_uri() . '/css/add-card.css');
 
+		wp_register_style('register', get_stylesheet_directory_uri() . '/register/register.css');
+
 		wp_register_style('jquery-ui', get_stylesheet_directory_uri() . '/css/jquery-ui-1.10.4.custom.min.css');
 
 		wp_enqueue_style('style', get_stylesheet_uri());
 
-		wp_register_script('main-script', get_template_directory_uri() . '/js/script.js', array(), '', true);
+		wp_register_script('main-script', get_template_directory_uri() . '/js/script.js', [], '', true);
 
-		wp_register_script('main-form', get_template_directory_uri() . '/js/main-form.js', array(), '', true);
+		wp_register_script('main-form', get_template_directory_uri() . '/js/main-form.js', [], '', true);
 
-		wp_register_script('add-card', get_template_directory_uri() . '/js/add-card.js', array(), '', true);
+		wp_register_script('add-card', get_template_directory_uri() . '/js/add-card.js', [], '', true);
 
-		wp_register_script('advanced-search', get_template_directory_uri() . '/js/advanced-search.js', array(), '', true);
+		wp_register_script('advanced-search', get_template_directory_uri() . '/js/advanced-search.js', [], '', true);
+
+		wp_register_script('register', get_stylesheet_directory_uri() . '/register/register.js', [], '', true);
 
 		wp_enqueue_script('jquery');
 
@@ -136,6 +144,8 @@ add_action( 'login_enqueue_scripts', 'MR_actions::login_logo');
 
 if(is_local())
 	add_action('phpmailer_init','MR_actions::send_smtp_email');
+
+add_filter('wp_mail_content_type', 'MR_actions::html_headers');
 
 /* adding excerpt support for pages */
 

@@ -184,14 +184,8 @@ input[type="password"],
 input[type="search"],
 input[type="tel"],
 textarea {
-	/* color: #666; */
 	border: 1px solid #CCC;
 	border-radius: 3px;
-}
-
-input:focus,
-textarea:focus {
-	color: #111;
 }
 
 input[type="text"],
@@ -285,10 +279,6 @@ a {
 	color: #161C1A;
 }
 
-/*--------------------------------------------------------------
-Custom
---------------------------------------------------------------*/
-
 .auto-alignment {
 	right: 0;
 	left: 0;
@@ -347,8 +337,7 @@ Custom
 }
 
 main {
-	margin: 0 20px;
-	margin-bottom: 20px;
+	margin: 0 20px 20px;
 	padding-bottom: 20px;
 }
 
@@ -472,9 +461,8 @@ footer {
 }
 
 .background-area {
-	background-image: url(media/singel-card-background.png);
-	background-repeat: no-repeat;
-	background-size: cover;
+    background: url(media/singel-card-background.png) no-repeat;
+    background-size: cover;
 	overflow: hidden;
 }
 

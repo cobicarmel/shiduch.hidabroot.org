@@ -13,12 +13,14 @@ abstract class Matchrepo {
 		});
 	}
 
-	static function listCheckboxes($params, $options){
+	static function listCheckboxes($params, $options = []){
 
 		$defaultOptions = [
+			'echo' => true,
 			'name' => '',
 			'id' => '',
 			'compare' => '',
+			'type' => 'checkbox',
 			'valueByText' => false,
 			'wrapTag' => 'div'
 		];
@@ -27,6 +29,8 @@ abstract class Matchrepo {
 
 		$count = 1;
 
+		$list = [];
+
 		foreach($params as $value => $text) {
 
 			if($options['valueByText'])
@@ -34,9 +38,9 @@ abstract class Matchrepo {
 
 			$checked = '';
 
-			if($options['compare'] !== null){
+			if($options['compare'] !== null) {
 
-				if(is_array($options['compare'])){
+				if(is_array($options['compare'])) {
 					if(in_array($value, $options['compare']))
 						$checked = ' checked';
 				}
@@ -44,17 +48,29 @@ abstract class Matchrepo {
 					$checked = ' checked';
 			}
 
-			if($options['wrapTag'])
-				echo "<$options[wrapTag]>";
+			if($count == 1 && ! $options['compare'] && $options['type'] == 'radio')
+				$checked = ' checked';
 
-			echo "<input type='checkbox' id='$options[id]$count' name='$options[name][]' value='$value'$checked>";
-			echo "<label for='$options[id]$count'>$text</label>";
+			$option = '';
 
 			if($options['wrapTag'])
-				echo "</$options[wrapTag]>";
+				$option .= "<$options[wrapTag]>";
+
+			$option .= "<input type='$options[type]' id='$options[id]$count' name='$options[name][]' value='$value'$checked>";
+			$option .= "<label for='$options[id]$count'>$text</label>";
+
+			if($options['wrapTag'])
+				$option .= "</$options[wrapTag]>";
+
+			$list[] = $option;
 
 			$count++;
 		}
+
+		if($options['echo'])
+			echo implode('', $list);
+
+		return $list;
 	}
 
 	static function listOptions($options, $compare = null, $byText = false){
@@ -96,7 +112,14 @@ abstract class Matchrepo {
 		if(! $paged = get_query_var('paged'))
 			$paged = 1;
 
-		$args = array('base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))), 'format' => '?paged=%#%', 'current' => $paged, 'total' => $wp_query->max_num_pages, 'prev_text' => '<', 'next_text' => '>',);
+		$args = array(
+			'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+			'format' => '?paged=%#%',
+			'current' => $paged,
+			'total' => $wp_query->max_num_pages,
+			'prev_text' => '<',
+			'next_text' => '>',
+		);
 
 		echo '<div id="page-navigation">' . paginate_links($args) . '</div>';
 	}
@@ -113,6 +136,14 @@ abstract class Matchrepo {
 		}
 	}
 
+	static function registerHeader(){
+
+		add_action('wp_enqueue_scripts', function (){
+
+			wp_enqueue_style('register');
+			wp_enqueue_script('register');
+		});
+	}
 	/**
 	 * @return string
 	 */

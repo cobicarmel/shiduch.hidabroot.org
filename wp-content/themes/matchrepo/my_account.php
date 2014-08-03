@@ -10,12 +10,9 @@ Matchrepo::multiCardsHeader();
 
 get_header();
 
-if(!$paged = get_query_var('paged'))
-	$paged = 1;
+$paged = get_query_var('paged', 1);
 
 $user_id = $current_user->ID;
-
-$user_meta = get_user_meta($user_id);
 
 $args = array(
 	'author' => $user_id,
@@ -36,16 +33,14 @@ query_posts($args);
 			<a href="<?= get_permalink(get_page_by_title('הוספת כרטיס')) ?>">
 				<button><? _e('Add New Card', THEME_NAME) ?></button>
 			</a>
-			<button><? _e('Account Managing', THEME_NAME) ?></button>
+			<a href="<?= get_permalink(get_page_by_title('ניהול חשבון')) ?>">
+				<button><? _e('Account Managing', THEME_NAME) ?></button>
+			</a>
 			<button><? _e('Email Notifications Settings', THEME_NAME) ?></button>
 		</div>
 		<div id="user-crumbs">
 			<?
-			printf(
-				__('Hello %s, there are %d cards in your account', THEME_NAME),
-				$user_meta['nickname'][0],
-				$wp_query ->found_posts
-			)
+			printf(__('Hello %s, there are %d cards in your account', THEME_NAME), $current_user -> display_name, $wp_query ->found_posts)
 			?>
 		</div>
 		<div class="background-area">

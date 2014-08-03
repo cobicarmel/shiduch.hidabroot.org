@@ -8,6 +8,49 @@ $isRegister = false;
 
 $registerSuccess = false;
 
+$blog_name = get_bloginfo();
+
+function new_user_notify($user_data){
+
+	global $blog_name;
+
+	$message = '<div style="direction: rtl">';
+
+	$message .= sprintf('שלום %s ותודה שנרשמת ל%s.', $user_data['display_name'], $blog_name);
+
+	$message .= '<br><br>';
+
+	$message .= 'להלן פרטי ההתחברות לחשבון שלך:';
+
+	$message .= '<br><br>';
+
+	$message .= sprintf("&emsp;שם משתמש: %s", $user_data['user_login']);
+
+	$message .= '<br>';
+
+	$message .= sprintf("&emsp;סיסמה: %s", $user_data['user_pass']);
+
+	$message .= '<br><br>';
+
+	$message .= sprintf('לאחר ההתחברות אפשר לשנות את הסיסמה ב-%s.', '<a href="' . get_permalink(get_page_by_title('ניהול חשבון')) . '">דף ניהול החשבון שלך</a>');
+
+	$message  .= '<br><br>';
+
+	$message .= 'בברכה,';
+
+	$message .= '<br>';
+
+	$message .= sprintf('&emsp;צוות %s.', '<a href="' . get_site_url() . '">' . $blog_name . '</a>');
+
+	$message .= '</div>';
+
+	wp_mail(
+		$user_data['user_email'],
+		get_bloginfo(),
+		$message
+	);
+}
+
 if($_POST){
 
 	$isRegister = true;
@@ -19,7 +62,14 @@ if($_POST){
 	if(empty($agree) || count($agree) < 2)
 		$errorMsg[] = '<strong>שגיאה:</strong> יש להסכים לכל תנאי השימוש באתר.';
 	else {
-		$newUser = register_new_user($user_login, $user_email);
+		$args = [
+			'user_login' => $user_login,
+			'user_email' => $user_email,
+			'user_pass' => wp_generate_password(12, false),
+			'display_name' => $display_name
+		];
+
+		$newUser = wp_insert_user($args);
 
 		if(is_wp_error($newUser)){
 			foreach($newUser -> errors as $error)
@@ -28,7 +78,9 @@ if($_POST){
 		else{
 			$registerSuccess = true;
 
-			$metaTerms = ['nickname', 'user_type', 'user_phone', 'user_zone'];
+			new_user_notify($args);
+
+			$metaTerms = ['user_type', 'user_phone', 'user_zone'];
 
 			foreach($metaTerms as $term)
 				update_user_meta($newUser, $term, $$term);
@@ -40,7 +92,7 @@ if($_POST){
 
 Matchrepo::mainFormHeader();
 
-wp_enqueue_style('register', get_stylesheet_directory_uri() . '/register/register.css');
+Matchrepo::registerHeader();
 
 $userTypes = [
 	'שדכנית',
@@ -89,21 +141,27 @@ get_header(); ?>
 					<fieldset>
 						<div class="label-top">
 							<label for="username">שם משתמש (באנגלית בלבד)</label>
-							<input type="text" id="username" name="user_login" value="<?= isset($user_login) ? $user_login : '' ?>" required>
+							<input type="text" id="username" name="user_login" value="<?= @$user_login ?>" required>
 						</div>
 						<div class="label-top">
-							<label for="nickname">שם פרטי</label>
-							<input type="text" id="nickname" name="nickname" value="<?= isset($nickname) ? $nickname : '' ?>" required>
+							<label for="display_name">שם פרטי</label>
+							<input type="text" id="display_name" name="display_name" value="<?= @$display_name ?>" required>
 						</div>
 						<div class="label-top">
 							<label for="user-phone">טלפון</label>
-							<input type="tel" id="user-phone" name="user_phone" value="<?= isset($user_phone) ? $user_phone : '' ?>" required>
+							<input type="tel" id="user-phone" name="user_phone" value="<?= @$user_phone ?>" required>
 						</div>
 						<div class="label-top">
 							<label for="user-email">מייל</label>
-							<input type="email" id="user-email" name="user_email" value="<?= isset($user_email) ? $user_email : '' ?>" required>
+							<input type="email" id="user-email" name="user_email" value="<?= @$user_email ?>" required>
 						</div>
 						<div class="label-top">
+							<label for="user-country">מדינה</label>
+							<select id="user-country" required>
+								<? Matchrepo::listOptions(Cards::$props['country']['options'], 'ישראל', true)?>
+							</select>
+						</div>
+						<div class="label-top" id="user-zone-wrapper">
 							<label for="user-zone">אזור פעילות</label>
 							<select id="user-zone" name="user_zone" required>
 								<option>הכל</option>
@@ -115,12 +173,6 @@ get_header(); ?>
 									?>
 									<option<?= $selected ?>><?= $zone ?></option>
 								<? }?>
-							</select>
-						</div>
-						<div class="label-top">
-							<label for="user-country">מדינה</label>
-							<select id="user-country" required>
-								<? Matchrepo::listOptions(Cards::$props['country']['options'], 'ישראל', true)?>
 							</select>
 						</div>
 					</fieldset>
