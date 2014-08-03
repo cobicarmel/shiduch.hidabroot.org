@@ -20,8 +20,10 @@
 	</a>
 </div>
 <div id="page" class="hfeed site">
-	<nav id="site-navigation" class="main-navigation" role="navigation">
-		<? wp_nav_menu(['theme_location' => 'primary']) ?>
-	</nav>
+	<div id="site-navigation-wrapper">
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<? wp_nav_menu(['theme_location' => 'primary']) ?>
+		</nav>
+	</div>
 	<div id="content-wrapper">
 		<div id="content" class="site-content">
