@@ -1,6 +1,6 @@
 <?
 
-abstract class Cards{
+abstract class Cards {
 
 	protected $card;
 
@@ -74,11 +74,12 @@ abstract class Cards{
 	protected $labeledItems = ['age' => 'גיל'];
 
 	function __construct(array $card){
-		$this -> card = $card;
-		$this -> id = $card['ID'];
-		$this -> name = $card['post_title'];
-		$this -> getMetaFromDB();
-		$this -> set_age();
+
+		$this ->card = $card;
+		$this ->id = $card['ID'];
+		$this ->name = $card['post_title'];
+		$this ->getMetaFromDB();
+		$this ->set_age();
 	}
 
 	protected static function build_form($params, $options = null){
@@ -95,7 +96,7 @@ abstract class Cards{
 
 		echo "<form method='$options[method]' action='$options[action]' id='$options[id]' class='$options[class]'>";
 
-		foreach($params as $param){
+		foreach($params as $param) {
 
 			$props = self::$props[$param];
 
@@ -107,14 +108,14 @@ abstract class Cards{
 			$hasSearch = $searchValue || $searchValue == '0';
 			?>
 
-			<div class="form-field form-field-<?= $param ?>">
-				<div class="form-label">
-					<label><?= $props['label'] ?>:</label>
-				</div>
-				<div class="form-input">
+		<div class="form-field form-field-<?= $param ?>">
+			<div class="form-label">
+				<label><?= $props['label'] ?>:</label>
+			</div>
+			<div class="form-input">
 
 			<?
-			switch($props['type']){
+			switch($props['type']) {
 
 				case 'text':
 					$value = $hasSearch ? " value='$searchValue'" : '';
@@ -127,7 +128,7 @@ abstract class Cards{
 
 					echo '<option value="">הכל</option>';
 
-					foreach($props['options'] as $value => $text){
+					foreach($props['options'] as $value => $text) {
 
 						if(! empty($props['termByValue']))
 							$value = $text;
@@ -144,7 +145,7 @@ abstract class Cards{
 				case 'radio':
 					$i = 0;
 
-					foreach($props['options'] as $key => $value){
+					foreach($props['options'] as $key => $value) {
 
 						$checked = '';
 
@@ -170,45 +171,45 @@ abstract class Cards{
 
 		$stack = [];
 
-		$meta = get_post_meta($this -> id);
+		$meta = get_post_meta($this ->id);
 
 		$terms = Cards::getTerms();
 
 		foreach($terms as $term)
 			$stack[$term] = isset($meta[$term]) ? maybe_unserialize($meta[$term][0]) : '';
 
-		$this -> meta = $stack;
+		$this ->meta = $stack;
 	}
 
 	protected function set_age(){
 
-		$oldTime = DateTime::createFromFormat('Y-m-d', $this -> meta['birthday']) -> getTimestamp();
+		$oldTime = DateTime::createFromFormat('Y-m-d', $this ->meta['birthday']) ->getTimestamp();
 
 		$rangeMS = time() - $oldTime;
 
 		$years = $rangeMS / 3600 / 24 / 365;
 
-		$this -> meta['age'] = floor($years);
+		$this ->meta['age'] = floor($years);
 	}
 
 	function get_excerpt(){
 
 		$excerpt_items = ['age', 'status'];
 
-		$items = $this -> prepare_display($excerpt_items, false);
+		$items = $this ->prepare_display($excerpt_items, false);
 
-		$items['community'] = 'מוצא ' . Cards::$props['community']['options'][$this -> meta['community']];
+		$items['community'] = 'מוצא ' . Cards::$props['community']['options'][$this ->meta['community']];
 
-		return $this -> name . ', ' . implode(', ', $items);
+		return $this ->name . ', ' . implode(', ', $items);
 	}
 
 	function list_meta($items = null){
 
-		$meta = $this -> prepare_display($items);
+		$meta = $this ->prepare_display($items);
 
 		echo '<ul>';
 
-		foreach($meta as $label => $param){
+		foreach($meta as $label => $param) {
 
 			if(! $label)
 				continue;
@@ -239,7 +240,7 @@ abstract class Cards{
 		$actionPage = get_page_by_title('תוצאות חיפוש');
 
 		$options = [
-			'action' => get_page_link($actionPage -> ID),
+			'action' => get_page_link($actionPage ->ID),
 			'class' => 'search-form',
 			'get_search_params' => true
 		];
@@ -249,7 +250,7 @@ abstract class Cards{
 
 	function prepare_display($items = null, $withLabels = true){
 
-		$meta = $this -> meta;
+		$meta = $this ->meta;
 
 		unset($meta['birthday'], $meta['gender']);
 
@@ -264,36 +265,42 @@ abstract class Cards{
 		if($meta['status'] == 0)
 			unset($meta['children']);
 
+		if($meta['country'] != 'ישראל')
+			unset($meta['zone']);
+
 		$keys = $items ? $items : array_keys($meta);
 
 		$itemsStack = [];
 
-		foreach($keys as $key){
+		foreach($keys as $key) {
 
-			if(empty($this::$props[$key]))
+			if(empty($this::$props[$key]) || ! isset($meta[$key]))
 				continue;
 
-			if(! isset( $this::$props[$key]['label'])){
+			if(! isset($this::$props[$key]['label'])) {
 				die($key . ' is incorrect');
 			}
 
-			if(isset($this -> labeledItems[$key]))
-				$label = $this -> labeledItems[$key];
+			if(isset($this ->labeledItems[$key]))
+				$label = $this ->labeledItems[$key];
 			else
 				$label = $this::$props[$key]['label'];
 
 			$param = null;
 
-			if(in_array($key, $this -> indexItems)){
+			if(in_array($key, $this ->indexItems)) {
 
-				if(is_array($meta[$key])){
+				if(is_array($meta[$key])) {
 
 					$param = [];
 
-					foreach($meta[$key] as $k){
-						if(isset( $this::$props[$key]['options'][$k]))
+					foreach($meta[$key] as $k) {
+						if(isset($this::$props[$key]['options'][$k]))
 							$param[] = $this::$props[$key]['options'][$k];
 					}
+
+					if($key == 'disability_details' && ! empty($meta['other_disability']))
+						$param[] = $meta['other_disability'];
 				}
 				elseif($meta[$key] !== '')
 					$param = $this::$props[$key]['options'][$meta[$key]];
@@ -328,19 +335,19 @@ abstract class Cards{
 
 		array_push($required, 'title', 'content');
 
-		if(!$data['gender'])
+		if(! $data['gender'])
 			$optionals[] = 'smoke';
 		else
 			$required[] = 'cover';
 
 		$allTerms = array_merge($required, $optionals);
 
-		foreach($required as $term){
-			if(!isset($data[$term]) || $data[$term] == '')
+		foreach($required as $term) {
+			if(! isset($data[$term]) || $data[$term] == '')
 				$errors['empty'][] = $term;
 		}
 
-		foreach($allTerms as $term){
+		foreach($allTerms as $term) {
 
 			if(empty($props[$term]) || ! isset($data[$term]) || in_array($term, $errors['empty']))
 				continue;
@@ -349,14 +356,14 @@ abstract class Cards{
 
 			$prop = $props[$term];
 
-			if(!empty($prop['pattern'])){
+			if(! empty($prop['pattern'])) {
 				if(is_callable($prop['pattern']))
 					$isCorrect = call_user_func($prop['pattern'], $data[$term]);
 				else
 					$isCorrect = preg_match($prop['pattern'], $data[$term]);
 			}
 
-			if(!$isCorrect)
+			if(! $isCorrect)
 				$errors['incorrect'][] = $term;
 		}
 
@@ -381,15 +388,17 @@ abstract class Cards{
 	}
 
 	function get_meta(){
-		return $this -> meta;
+
+		return $this ->meta;
 	}
 
 	static function getTerms(){
+
 		return array_merge(self::$requiredTerms, self::$optionalTerms);
 	}
 }
 
-class Male extends Cards{
+class Male extends Cards {
 
 	static $labels;
 
@@ -398,9 +407,10 @@ class Male extends Cards{
 	public $images = [
 		'recent_cards' => 'male.png'
 	];
+
 }
 
-class Female extends Cards{
+class Female extends Cards {
 
 	static $labels;
 

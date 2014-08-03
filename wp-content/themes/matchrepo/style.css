@@ -464,6 +464,7 @@ footer {
     background: url(media/singel-card-background.png) no-repeat;
     background-size: cover;
 	overflow: hidden;
+    padding-bottom: 15px;
 }
 
 .card-details {

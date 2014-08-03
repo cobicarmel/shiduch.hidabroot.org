@@ -47,14 +47,14 @@ $props = $MCard::$props;
 		<div class="row">
 			<div class="label-top w33">
 				<label for="cf-country">ארץ</label>
-				<select id="cf-country" name="country" required>
-					<option>ישראל</option>
+				<select id="cf-country" name="country" class="toggle-trigger zone-trigger" required>
+					<? Matchrepo::listOptions($props['country']['options'], $meta['country'], true) ?>
 				</select>
 			</div>
-			<div class="label-top w33">
+			<? $style = $meta['country'] == 'ישראל'? : 'style="display: none"'?>
+			<div class="label-top w33 toggle-affected zone-affected"<?= $style ?>>
 				<label for="cf-zone">איזור מגורים</label>
 				<select id="cf-zone" name="zone" required>
-
 					<? Matchrepo::listOptions($props['zone']['options'], $meta['zone'], true) ?>
 				</select>
 			</div>
