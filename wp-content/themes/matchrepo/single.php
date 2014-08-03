@@ -23,10 +23,10 @@ get_header(); ?>
 
 			<? get_template_part( 'content', 'single' ); ?>
 
-		<? endwhile; // end of the loop. ?>
+		<? endwhile ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 <? get_sidebar(); ?>
 <? get_footer(); ?>
