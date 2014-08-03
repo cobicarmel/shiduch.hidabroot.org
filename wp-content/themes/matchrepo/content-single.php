@@ -77,7 +77,7 @@ if(! empty(Cards::$user_types[$user_type]))
 			<div>
 				<a href="?trash"
 				   onclick="return confirm('האם למחוק את הכרטיס של <?= the_title() ?>?')"><?= __('Delete', THEME_NAME) ?></a>
-			</div>";
+			</div>
 		<?
 		}
 		if(current_user_can('edit_post', $id)) {
