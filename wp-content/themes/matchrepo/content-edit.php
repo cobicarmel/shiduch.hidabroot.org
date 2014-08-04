@@ -37,9 +37,7 @@ $props = $MCard::$props;
 				 data-affected="children"<?= $meta['status'] ? '' : ' style="display: none"' ?>>
 				<label for="cf-children">מספר ילדים</label>
 				<select id="cf-children" name="children">
-					<? foreach(range(0, 20) as $number) { ?>
-						<option><?= $number ?></option>
-					<? } ?>
+					<? Matchrepo::listOptions(range(0, 20), $meta['children']) ?>
 				</select>
 			</div>
 		</div>
@@ -69,7 +67,6 @@ $props = $MCard::$props;
 			<div class="label-top w25">
 				<label for="cf-conception">השקפה</label>
 				<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
-
 					<? Matchrepo::listOptions($props['conception']['options'], $meta['conception']) ?>
 				</select>
 			</div>

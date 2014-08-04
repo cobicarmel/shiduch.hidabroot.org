@@ -50,7 +50,7 @@ if($level == 3) {
 			$cardTerms = Cards::getTerms();
 
 			foreach($cardTerms as $term)
-				update_post_meta($post, $term, isset($_POST[$term]) ? $_POST[$term] : '');
+				update_post_meta($post, $term, @$_POST[$term]);
 
 			$register_successful = true;
 		}

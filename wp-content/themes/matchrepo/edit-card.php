@@ -32,7 +32,7 @@ if($_POST) {
 		$cardTerms = Cards::getTerms();
 
 		foreach($cardTerms as $term)
-			update_post_meta($post_id, $term, isset($_POST[$term]) ? $_POST[$term] : '');
+			update_post_meta($post_id, $term, @$_POST[$term]);
 
 		wp_redirect(get_permalink( $post_id ));
 	}

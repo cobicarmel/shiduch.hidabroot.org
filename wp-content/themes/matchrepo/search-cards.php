@@ -52,8 +52,6 @@ query_posts($args);
 
 global $posts;
 
-
-
 get_header();
 
 ?>

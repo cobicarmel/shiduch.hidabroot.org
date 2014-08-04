@@ -26,7 +26,7 @@ if(! empty(Cards::$user_types[$user_type]))
 
 ?>
 
-<article id="post-<? $id ?>" class="background-area">
+<article id="post-<?= $id ?>" class="background-area">
 	<div class="card-details">
 		<div class="card-meta">
 			<? $MCard ->list_meta() ?>

@@ -64,10 +64,12 @@ abstract class Matchrepo {
 
 			$option = '';
 
+			$value = $options['valueByText'] ? '' : " value='$value'";
+
 			if($options['wrapTag'])
 				$option .= "<$options[wrapTag]>";
 
-			$option .= "<input type='$options[type]' id='$options[id]$count' name='$options[name][]' value='$value'$checked>";
+			$option .= "<input type='$options[type]' id='$options[id]$count' name='$options[name][]'$value$checked>";
 			$option .= "<label for='$options[id]$count'>$text</label>";
 
 			if($options['wrapTag'])
