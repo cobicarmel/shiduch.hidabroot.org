@@ -6,6 +6,38 @@ abstract class MR_actions {
 		return 'text/html';
 	}
 
+	static function manage_users_columns($columns){
+
+		unset($columns['posts']);
+
+		$columns['cards'] = 'כרטיסים';
+
+		return $columns;
+	}
+
+	static function manage_users_custom_column($value, $column_name, $user_id){
+
+		if($column_name != 'cards')
+			return $value;
+
+		global $wpdb;
+
+		$value = "<a href='edit.php?author=$user_id&post_type=card' title='הצג כרטיסים של משתמש זה'>";
+
+		$value .= $wpdb ->get_var('SELECT COUNT(ID) FROM ' . $wpdb ->prefix . "posts WHERE post_author = '$user_id' AND post_type = 'card' AND post_status = 'publish'");
+
+		$value .= '<a>';
+
+		return $value;
+	}
+
+	static function manage_card_columns($columns){
+
+		$columns['title'] = 'שם המועמד/ת';
+
+		return $columns;
+	}
+
 	static function restrict_admin(){
 		if(!current_user_can('manage_options')){
 			wp_redirect(site_url());
@@ -150,3 +182,16 @@ add_filter('wp_mail_content_type', 'MR_actions::html_headers');
 /* adding excerpt support for pages */
 
 add_action('init', 'MR_actions::page_excerpt_support');
+
+if(is_admin()){
+
+	/* change users columns */
+
+	add_filter('manage_users_columns', 'MR_actions::manage_users_columns');
+
+	add_action('manage_users_custom_column', 'MR_actions::manage_users_custom_column', 10, 3);
+
+	/* change cards columns */
+
+	add_filter('manage_edit-card_columns', 'MR_actions::manage_card_columns');
+}
