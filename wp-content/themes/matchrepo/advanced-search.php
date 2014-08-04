@@ -57,110 +57,113 @@ get_header();
 
 	<p id="as-status">
 		<input type="checkbox" id="as-status-all" class="toggle-trigger select-all"
-			   data-toggle-key="status">
+			   data-toggle-key="status" checked>
 		<label for="as-status-all">הכל</label>
-					<span class="toggle-affected-group" data-check-group="status" data-labels="gender"
-						  data-labels-group="status">
-						<input name="status[]" type="checkbox" id="as-single" value="0">
-						<label for="as-single">רווק</label>
-						<input name="status[]" type="checkbox" id="as-divorcee" class="maybe-children" value="1">
-						<label for="as-divorcee">גרוש</label>
-						<br>
-						<input name="status[]" type="checkbox" id="as-widow" class="maybe-children" value="2">
-						<label for="as-widow">אלמן</label>
-					</span>
-					<span id="as-children-container" style="display: none">
-						<label for="as-children">מקסימום ילדים</label>
-						<select id="as-children" name="children" disabled>
-							<? foreach(range(0, 20) as $number) { ?>
-								<option><?= $number ?></option>
-							<? } ?>
-						</select>
-					</span>
+		<span class="toggle-affected-group" data-check-group="status" data-labels="gender"
+			  data-labels-group="status">
+			<input name="status[]" type="checkbox" id="as-single" value="0">
+			<label for="as-single">רווק</label>
+			<input name="status[]" type="checkbox" id="as-divorcee" class="maybe-children" value="1">
+			<label for="as-divorcee">גרוש</label>
+			<br>
+			<input name="status[]" type="checkbox" id="as-widow" class="maybe-children" value="2">
+			<label for="as-widow">אלמן</label>
+		</span>
+		<span id="as-children-container" style="display: none">
+			<label for="as-children">מקסימום ילדים</label>
+			<select id="as-children" name="children" disabled>
+				<? foreach(range(0, 20) as $number) { ?>
+					<option><?= $number ?></option>
+				<? } ?>
+			</select>
+		</span>
 	</p>
-	<h4>אזור מגורים</h4>
+	<h4>ארץ</h4>
 
 	<p>
-		<input type="checkbox" id="as-zone-all" class="toggle-trigger select-all"
-			   data-toggle-key="zone">
-		<label for="as-zone-all">הכל</label>
-					<span class="toggle-affected-group" data-check-group="zone">
-						<input type="checkbox" id="as-zone-il" class="toggle-trigger select-all"
-							   data-toggle-key="israel">
-						<label for="as-zone-il">ישראל</label>
-						<input type="checkbox" id="as-zone-os">
-						<label for="as-zone-os">חו"ל</label>
-						<br>
-						<span class="toggle-affected-group" data-check-group="israel">
-							<?
-							$zones = Cards::$props['zone']['options'];
-							$itemsPerLine = 3;
-							$itemsCounter = 0;
-
-							foreach($zones as $i => $zone) {
-								?>
-
-								<input name="zone[]" type="checkbox" id="as-zone<?= $i ?>" value="<?= $zone ?>">
-								<label for="as-zone<?= $i ?>"><?= $zone ?></label>
-								<?
-								if(++$itemsCounter == $itemsPerLine) {
-									echo '<br>';
-									$itemsCounter = 0;
-								}
-							}?>
-						</span>
-					</span>
+		<select name="country" class="toggle-trigger switch-trigger" data-compare="in" data-toggle-key="zone"
+				data-param="ישראל,">
+			<option value="">הכל</option>
+			<? Matchrepo::listOptions(Cards::$props['country']['options'], null, true) ?>
+		</select>
 	</p>
+	<div class="toggle-affected-group switch-affected" data-affected="zone">
+		<h4>אזור מגורים</h4>
+
+		<p>
+			<input type="checkbox" id="as-zone-all" class="toggle-trigger select-all"
+				   data-toggle-key="zone" checked>
+			<label for="as-zone-all">הכל</label>
+			<span class="toggle-affected-group" data-check-group="zone">
+			<?
+			$args = [
+				'echo' => false,
+				'name' => 'zone',
+				'wrapTag' => '',
+				'valueByText' => true
+			];
+
+			$options = Matchrepo::listCheckboxes(Cards::$props['zone']['options'], $args);
+
+			echo implode('<br>', array_map(function ($i){
+
+				return implode('', $i);
+			}, array_chunk($options, 3)));
+			?>
+			</span>
+		</p>
+	</div>
+
 	<h4>מוצא עדתי</h4>
 
 	<p>
 		<input type="checkbox" id="as-community-all" class="toggle-trigger select-all"
-			   data-toggle-key="community">
+			   data-toggle-key="community" checked>
 		<label for="as-community-all">הכל</label>
-					<span class="toggle-affected-group" data-check-group="community" data-labels="gender"
-						  data-labels-group="community">
-							<?
-							$communities = Cards::$props['community']['options'];
+		<span class="toggle-affected-group" data-check-group="community" data-labels="gender"
+			  data-labels-group="community">
+				<?
+				$communities = Cards::$props['community']['options'];
 
-							foreach($communities as $i => $community) {
-								?>
-								<input name="community[]" type="checkbox" id="as-community<?= $i ?>" value="<?= $i ?>">
-								<label for="as-community<?= $i ?>"><?= $community ?></label>
-							<? } ?>
-					</span>
+				foreach($communities as $i => $community) {
+					?>
+					<input name="community[]" type="checkbox" id="as-community<?= $i ?>" value="<?= $i ?>">
+					<label for="as-community<?= $i ?>"><?= $community ?></label>
+				<? } ?>
+		</span>
 	</p>
 	<h4>השקפה</h4>
 
 	<p>
 		<input type="checkbox" id="as-concept-all" class="toggle-trigger select-all"
-			   data-toggle-key="conception">
+			   data-toggle-key="conception" checked>
 		<label for="as-concept-all">הכל</label>
-					<span class="toggle-affected-group" data-check-group="conception" data-labels="gender"
-						  data-labels-group="conception">
-						<?
-						$concepts = Male::$props['conception']['options'];
+		<span class="toggle-affected-group" data-check-group="conception" data-labels="gender"
+			  data-labels-group="conception">
+			<?
+			$concepts = Male::$props['conception']['options'];
 
-						foreach($concepts as $i => $concept) {
-							?>
-							<input name="conception[]" type="checkbox" id="as-concept<?= $i ?>" value="<?= $i ?>">
-							<label for="as-concept<?= $i ?>"><?= $concept ?></label>
-						<? } ?>
-					</span>
+			foreach($concepts as $i => $concept) {
+				?>
+				<input name="conception[]" type="checkbox" id="as-concept<?= $i ?>" value="<?= $i ?>">
+				<label for="as-concept<?= $i ?>"><?= $concept ?></label>
+			<? } ?>
+		</span>
 	</p>
 	<h4>מראה כללי</h4>
 
 	<p>
 		<input type="checkbox" id="as-look-all" class="toggle-trigger select-all"
-			   data-toggle-key="look">
+			   data-toggle-key="look" checked>
 		<label for="as-look-all">הכל</label>
-					<span class="toggle-affected-group" data-check-group="look">
-						<input name="look[]" type="checkbox" id="as-look0" value="0">
-						<label for="as-look0">מבנה רזה</label>
-						<input name="look[]" type="checkbox" id="as-look1" value="1">
-						<label for="as-look1">מבנה בינוני</label>
-						<input name="look[]" type="checkbox" id="as-look2" value="2">
-						<label for="as-look2">מבנה מלא</label>
-					</span>
+		<span class="toggle-affected-group" data-check-group="look">
+			<input name="look[]" type="checkbox" id="as-look0" value="0">
+			<label for="as-look0">מבנה רזה</label>
+			<input name="look[]" type="checkbox" id="as-look1" value="1">
+			<label for="as-look1">מבנה בינוני</label>
+			<input name="look[]" type="checkbox" id="as-look2" value="2">
+			<label for="as-look2">מבנה מלא</label>
+		</span>
 	</p>
 	<h4>גובה</h4>
 
@@ -185,7 +188,7 @@ get_header();
 
 		<p>
 			<input type="checkbox" id="as-cover-all" class="toggle-trigger select-all"
-				   data-toggle-key="cover">
+				   data-toggle-key="cover" checked>
 			<label for="as-cover-all">הכל</label>
 			<span class="toggle-affected-group" data-check-group="cover">
 				<?
@@ -194,7 +197,7 @@ get_header();
 					'name' => 'cover'
 				];
 
-				Matchrepo::listCheckboxes( Female::$props['cover']['options'], $args)
+				Matchrepo::listCheckboxes(Female::$props['cover']['options'], $args)
 				?>
 			</span>
 		</p>
@@ -203,7 +206,7 @@ get_header();
 		<h4>עישון</h4>
 
 		<p>
-			<input name="smoke" id="as-smoke" type="checkbox">
+			<input name="smoke" id="as-smoke" type="checkbox" value="0">
 			<label for="as-smoke">לא מעשן</label>
 		</p>
 	</div>
@@ -214,7 +217,7 @@ get_header();
 
 		<p>
 			<select id="cf-healthy" class="toggle-trigger switch-trigger" data-toggle-key="healthy"
-					name="healthy">
+					name="healthy" data-compare="!=" data-param="0">
 				<option value="">הכל</option>
 				<? foreach(Cards::$props['healthy']['options'] as $i => $healthy) { ?>
 					<option value="<?= $i ?>"><?= $healthy ?></option>

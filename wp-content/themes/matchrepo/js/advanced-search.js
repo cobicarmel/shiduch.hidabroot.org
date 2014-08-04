@@ -151,12 +151,31 @@ $(function(){
 			$displayGroups = $affectedGroups.filter('[data-affected=' + key + ']');
 
 		var params = {
-			name: 'switch',
+			name: 'switch' + index,
 			event: 'change',
 			$toggles: $currentTrigger,
 			$affected: $displayGroups,
 			handler: function(data){
-				Toggle.applyDefaultFunction(+this[0].value ? 'show' : 'hide', this, data);
+
+				var operators = {
+					'==': function(a, b){
+						return a == b;
+					},
+					'!=': function(a, b){
+						return a != b;
+					},
+					'in': function(a, b){
+						return b.split(',').map(function(str){
+							return str.trim();
+						}).indexOf(a) > -1;
+					}
+				};
+
+				var selectData = this.data(),
+					compare = selectData.compare || '==',
+					param = selectData.param;
+
+				Toggle.applyDefaultFunction(operators[compare](this[0].value, param) ? 'show' : 'hide', this, data);
 			}
 		};
 
