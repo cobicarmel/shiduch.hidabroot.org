@@ -280,7 +280,7 @@ abstract class Cards {
 
 		/* preparing optional terms */
 
-		if($meta['community'] != 2)
+		if($meta['conception'] != 2)
 			unset($meta['hasidism']);
 
 		if($meta['healthy'] == 0)
@@ -333,6 +333,8 @@ abstract class Cards {
 				}
 				elseif($meta[$key] !== '')
 					$param = $this::$props[$key]['options'][$meta[$key]];
+				else
+					$param = current($this::$props[$key]['options']);
 			}
 			else
 				$param = $meta[$key];
