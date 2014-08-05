@@ -11,9 +11,10 @@ Domain Path: /languages/
 @font-face {
 	font-family: Spoiler;
 	src: url(fonts/Spoiler.eot);
-	src: url(fonts/Spoiler.eot?#iefix) format(embedded-opentype),
-	url(fonts/Spoiler.woff) format(woff),
-	url(fonts/Spoiler.svg) format(svg);
+	src: url(fonts/Spoiler.eot?#iefix) format('embedded-opentype'),
+	url(fonts/Spoiler.woff) format('woff'),
+	url(fonts/Spoiler.svg) format('svg'),
+    url(fonts/Spoiler.ttf) format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -21,9 +22,10 @@ Domain Path: /languages/
 @font-face {
 	font-family: Spoiler;
 	src: url(fonts/Spoiler-Bold.eot);
-	src: url(fonts/Spoiler-Bold.eot?#iefix) format(embedded-opentype),
-	url(fonts/Spoiler-Bold.woff) format(woff),
-	url(fonts/Spoiler-Bold.svg) format(svg);
+	src: url(fonts/Spoiler-Bold.eot?#iefix) format('embedded-opentype'),
+	url(fonts/Spoiler-Bold.woff) format('woff'),
+	url(fonts/Spoiler-Bold.svg) format('svg'),
+    url('fonts/Spoiler-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -132,10 +134,7 @@ textarea {
 	vertical-align: baseline;
 }
 
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+button, input[type="button"], input[type="reset"], input[type="submit"], .button {
 	border: none;
 	background: #86767B;
 	color: #FFF;
@@ -145,11 +144,9 @@ input[type="submit"] {
 	padding: .2em .9em .1em;
 }
 
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover {
 	box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
+	text-decoration: none;
 }
 
 button:focus,
@@ -349,6 +346,7 @@ main {
 	margin-top: -32px;
 	line-height: 32px;
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2JlMGYwMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3MjBkMDIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background-size: cover;
 	font-size: 21px;
 	color: #FFF;
 	padding: 0 10px;

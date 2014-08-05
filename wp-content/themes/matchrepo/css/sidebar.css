@@ -33,26 +33,29 @@
   top: -91px;
   border-width: 75px 0 75px 6px;
 }
-#loginform p {
+#login-form p {
   overflow: hidden;
   margin-bottom: 5px;
 }
-#loginform label {
+#login-form label {
   float: right;
 }
-#loginform input[type="text"],
-#loginform input[type="password"] {
+#login-form input[type="text"],
+#login-form input[type="password"] {
   float: left;
   height: 25px;
   width: 65%;
 }
-#loginform .login-submit {
-  float: left;
-}
-#loginform .login-register {
+#login-form .login-register {
   float: right;
 }
-.login-lost-password {
+#login-form input[type="submit"] {
+  float: left;
+}
+#login-form input[type="checkbox"] {
+  margin-left: 5px;
+}
+#lost-password {
   float: left;
 }
 #quick-search form .form-field {

@@ -56,19 +56,29 @@ $site_name = get_option('blogname');
 			<div class="side-box decorative-box">
 				<h3>
 					<span class="title-deco"></span>
-					<? _e('Enter', THEME_NAME) ?>
+					<?= __('Enter', THEME_NAME) ?>
 				</h3>
-				<?
-
-				$args = [
-					'label_username' => __('Username') . ':',
-					'label_password' => __('Password') . ':',
-					'label_log_in' => __('Login', THEME_NAME),
-					'redirect' => site_url(),
-					'value_remember' => true
-				];
-
-				wp_login_form($args); ?>
+				<form id="login-form" action="<?= site_url( 'wp-login.php', 'login_post' ) ?>">
+					<input type="hidden" name="redirect_to" value="<?= $site_url ?>">
+					<p>
+						<label for="user_login">שם משתמש:</label>
+						<input type="text" name="log" id="user_login" required>
+					</p>
+					<p>
+						<label for="user_pass">סיסמה:</label>
+						<input type="password" name="pwd" id="user_pass" required>
+					</p>
+					<p>
+						<label>
+							<input name="rememberme" type="checkbox" value="forever" checked>זכור אותי
+						</label>
+						<a id="lost-password" href="<?= wp_lostpassword_url() ?>"><?= __('Lost Password') ?></a>
+					</p>
+					<p>
+						<input type="submit" name="wp-submit" value="<?= __('Enter', THEME_NAME) ?>">
+						<a class="button login-register" href="<?= Matchrepo::get_register_url() ?>">הרשמה</a>
+					</p>
+				</form>
 			</div>
 		<? endif ?>
 	</aside>

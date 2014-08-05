@@ -9,10 +9,12 @@ function lost_password_link(){
 }
 
 function register_link(){
+
 	$url = Matchrepo::get_register_url();
+
 	$label =  __('Register');
 
-	return "<a class='login-register' href='$url'><input type='button' value='$label'></a>";
+	return "<a class='button login-register' href='$url'>$label</a>";
 }
 
 add_filter('login_form_middle', 'lost_password_link');
