@@ -9,7 +9,7 @@ Author: Cobi Carmel
 
 class Intelligent {
 
-	private $version = 0.1;
+	private static $version = 0.1;
 
 	private $name;
 
@@ -49,7 +49,7 @@ class Intelligent {
 
 		dbDelta($sql);
 
-		add_option($this -> name . '_db_version', $this -> version);
+		add_option($this -> name . '_db_version', self::$version);
 	}
 }
 
