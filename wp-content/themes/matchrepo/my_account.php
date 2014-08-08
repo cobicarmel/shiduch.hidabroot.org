@@ -19,7 +19,7 @@ $args = array(
 	'post_type' => 'card',
 	'orderby' => 'post_date',
 	'order' => 'DESC',
-	'posts_per_page' => 4,
+	'posts_per_page' => 10,
 	'paged' => $paged
 );
 
