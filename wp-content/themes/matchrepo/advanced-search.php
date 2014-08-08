@@ -87,7 +87,7 @@ get_header();
 			<? Matchrepo::listOptions(Cards::$props['country']['options'], null, true) ?>
 		</select>
 	</p>
-	<div class="toggle-affected-group switch-affected" data-affected="zone">
+	<div class="toggle-affected-group switch-affected" data-affected="zone" style="display: none">
 		<h4>אזור מגורים</h4>
 
 		<p>
