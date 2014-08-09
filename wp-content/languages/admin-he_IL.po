@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2014-04-18 20:52:18+0000\n"
+"PO-Revision-Date: 2014-07-21 20:35:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -96,7 +96,7 @@ msgstr "חיפוש ערכת עיצוב חדשה יכולה להיות קלה ו�
 
 #: wp-admin/includes/template.php:1976
 msgid "New Feature: Live Widget Previews"
-msgstr "מאפיין חדש: תצוגה מקדימה חייה לווידג׳טים"
+msgstr "מאפיין חדש: תצוגה מקדימה און ליין לווידג׳טים"
 
 #: wp-admin/includes/template.php:1977
 msgid "Add, edit, and play around with your widgets from the theme customizer."
