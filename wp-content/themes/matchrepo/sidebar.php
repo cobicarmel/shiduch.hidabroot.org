@@ -58,7 +58,7 @@ $site_name = get_option('blogname');
 					<span class="title-deco"></span>
 					<?= __('Enter', THEME_NAME) ?>
 				</h3>
-				<form id="login-form" action="<?= site_url( 'wp-login.php', 'login_post' ) ?>">
+				<form id="login-form" action="<?= site_url( 'wp-login.php', 'login_post' ) ?>" method="post">
 					<input type="hidden" name="redirect_to" value="<?= $site_url ?>">
 					<p>
 						<label for="user_login">שם משתמש:</label>
