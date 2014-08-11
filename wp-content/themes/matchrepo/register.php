@@ -111,7 +111,7 @@ get_header(); ?>
 			<h2 id="main-title">הרשמה</h2>
 			<div id="register-wrapper">
 				<? if(isset($errorMsg)){ ?>
-					<div id="register-error"><?= $errorMsg ?></div>
+					<div id="response-error" class="query-response"><?= $errorMsg ?></div>
 				<?
 				} if($registerSuccess) : ?>
 				<div id="register-success">
