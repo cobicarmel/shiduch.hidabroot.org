@@ -135,23 +135,24 @@ abstract class MR_actions {
 			unregister_widget($widget);
 	}
 
-	static function retrieve_password_message($message, $key){
+	static function retrieve_password_message($message){
 
-		$message =
+		preg_match('/<(.+)>/', $message, $url);
+
+		preg_match('/&login=([a-zA-Z]+)/', $message, $user_login);
+
+		return
 			'<div dir="rtl">' .
-			sprintf('שלום, התקבלה בקשה לאיפוס סיסמה עבור המשתמש %s.', $_POST['user_login']) .
+			sprintf('שלום, התקבלה בקשה לאיפוס סיסמה עבור המשתמש %s.', $user_login[1]) .
 			'<br><br>' .
 			'בכדי לאפס את הסיסמה, אנא ' .
 			'<a href="' .
-			network_site_url("wp-login.php?action=rp&key=$key&login=" .
-				rawurlencode($_POST['user_login']), 'login') .
+			$url[1] .
 			'">' .
 			'לחצ/י כאן.' .
 			'</a>' .
 			'</div>'
 		;
-
-		return $message;
 	}
 
 	static function theme_setup(){
@@ -215,4 +216,4 @@ if(is_admin()){
 	add_filter('manage_edit-card_columns', 'MR_actions::manage_card_columns');
 }
 
-add_filter('retrieve_password_message', 'MR_actions::retrieve_password_message', 10, 2);
+add_filter('retrieve_password_message', 'MR_actions::retrieve_password_message');
