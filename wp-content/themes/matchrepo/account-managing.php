@@ -53,7 +53,7 @@ if($_POST) {
 	if($errorMsg)
 		$errorMsg = implode('<br>', $errorMsg);
 	else{
-		wp_redirect(get_permalink(get_page_by_title('החשבון שלי')));
+		wp_redirect(add_query_arg(['account_saved' => 1], get_permalink(get_page_by_title('ניהול חשבון'))));
 		exit;
 	}
 }
@@ -84,7 +84,7 @@ get_header(); ?>
 					<? if(isset($errorMsg)) { ?>
 						<div id="response-error" class="query-response"><?= $errorMsg ?></div>
 					<? } ?>
-
+					<? Matchrepo::listQueryResponse() ?>
 					<form id="register" method="post">
 						<fieldset>
 							<legend>אני</legend>

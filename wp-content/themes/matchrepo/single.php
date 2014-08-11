@@ -6,7 +6,7 @@ if(isset($_GET['trash']) && current_user_can('delete_post', $post->ID)){
 
 	wp_trash_post();
 
-	wp_redirect(get_permalink(get_page_by_title('החשבון שלי')));
+	wp_redirect(add_query_arg(['card_trashed' => 1], get_permalink(get_page_by_title('החשבון שלי'))));
 
 	exit;
 }

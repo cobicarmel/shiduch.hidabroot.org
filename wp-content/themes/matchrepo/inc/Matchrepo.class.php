@@ -5,8 +5,14 @@ abstract class Matchrepo {
 	static $checkboxLists = 0;
 
 	static $responses = [
+		'account_saved' => [
+			1 => 'השינויים נשמרו.'
+		],
 		'card_saved' => [
-			1 => 'הכרטיס עודכן בהצלחה!'
+			1 => 'הכרטיס עודכן בהצלחה.'
+		],
+		'card_trashed' => [
+			1 => 'הכרטיס נמחק.'
 		]
 	];
 
