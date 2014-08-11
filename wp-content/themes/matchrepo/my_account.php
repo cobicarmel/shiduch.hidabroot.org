@@ -36,7 +36,7 @@ query_posts($args);
 			<a href="<?= get_permalink(get_page_by_title('ניהול חשבון')) ?>">
 				<button><? _e('Account Managing', THEME_NAME) ?></button>
 			</a>
-			<button><? _e('Email Notifications Settings', THEME_NAME) ?></button>
+			<!--<button><?/* _e('Email Notifications Settings', THEME_NAME) */?></button>-->
 		</div>
 		<? Matchrepo::listQueryResponse() ?>
 		<div id="user-crumbs">
