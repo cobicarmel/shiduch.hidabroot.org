@@ -33,9 +33,9 @@ if($_POST) {
 
 		foreach($cardTerms as $term)
 			update_post_meta($post_id, $term, @$_POST[$term]);
-
-		wp_redirect(get_permalink( $post_id ));
 	}
+
+	wp_redirect(add_query_arg(['card_saved' => !! $isCorrect], get_permalink( $post_id )));
 
 	exit;
 }
