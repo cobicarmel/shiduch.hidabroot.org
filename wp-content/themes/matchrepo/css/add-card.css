@@ -20,17 +20,17 @@ textarea {
 #register-complete {
   padding: 30px;
 }
-#register-error {
+.query-response {
   background-color: rgba(255, 255, 255, 0.4);
 }
-#register-error div {
+.query-response div {
   margin: 7px;
   font-size: 19px;
 }
-#register-error h3 {
+.query-response h3 {
   font-size: 31px;
 }
-#register-error ul {
+.query-response ul {
   list-style-type: circle;
   padding-right: 35px;
 }

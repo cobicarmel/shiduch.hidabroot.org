@@ -82,7 +82,7 @@ get_header(); ?>
 
 				<div id="register-wrapper">
 					<? if(isset($errorMsg)) { ?>
-						<div id="register-error"><?= $errorMsg ?></div>
+						<div id="response-error" class="query-response"><?= $errorMsg ?></div>
 					<? } ?>
 
 					<form id="register" method="post">

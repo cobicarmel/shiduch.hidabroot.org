@@ -294,7 +294,7 @@ get_header();
 						}
 					}
 					?>
-					<div id="register-error">
+					<div id="response-error" class="query-response">
 						<h3>הוספת הכרטיס נכשלה</h3>
 						<? if($isCorrect['empty']) { ?>
 							<div>הפרטים שלהלן חסרים:</div>
