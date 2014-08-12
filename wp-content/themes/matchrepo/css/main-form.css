@@ -107,6 +107,7 @@
 .label-top label {
   display: block;
   line-height: 1;
+  height: 17px;
 }
 .label-top input,
 .label-top select {

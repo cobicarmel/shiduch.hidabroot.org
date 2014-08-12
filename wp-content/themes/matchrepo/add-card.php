@@ -145,28 +145,22 @@ get_header();
 						</div>
 					</div>
 					<div class="row">
-						<div class="label-top w25">
+						<div class="label-top w33">
 							<label for="cf-community">מוצא עדתי</label>
 							<select id="cf-community" name="community" required>
 								<option></option>
-								<? $communities = $props['community']['options']; ?>
-								<option value="0"><?= $communities[0] ?></option>
-								<option value="1"><?= $communities[1] ?></option>
-								<option value="2"><?= $communities[2] ?></option>
+								<? Matchrepo::listOptions($props['community']['options'])?>
 							</select>
 						</div>
-						<div class="label-top w25">
+						<div class="label-top w33">
 							<label for="cf-conception">השקפה</label>
 							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception"
 									required>
 								<option></option>
-								<? $conceptions = $props['conception']['options']; ?>
-								<option value="0"><?= $conceptions[0] ?></option>
-								<option value="1"><?= $conceptions[1] ?></option>
-								<option value="2"><?= $conceptions[2] ?></option>
+								<? Matchrepo::listOptions($props['conception']['options'])?>
 							</select>
 						</div>
-						<div class="label-top w25 toggle-affected hasidism-affected" style="display: none">
+						<div class="label-top w33 toggle-affected hasidism-affected" style="display: none">
 							<label for="cf-hasidism">חסידות</label>
 							<select id="cf-hasidism" name="hasidism" required disabled>
 								<option></option>
@@ -210,13 +204,27 @@ get_header();
 					<div class="row">
 						<div class="label-top w33">
 							<label for="cf-look">מראה כללי</label>
-							<select id="cf-look" name="look">
+							<select id="cf-look" name="look" required>
 								<option></option>
-								<? foreach($props['look']['options'] as $i => $look) { ?>
-									<option value="<?= $i ?>"><?= $look ?></option>
-								<? } ?>
+								<? Matchrepo::listOptions($props['look']['options']) ?>
 							</select>
 						</div>
+						<div class="label-top w33">
+							<label for="cf-skin">גוון עור</label>
+							<select id="cf-skin" name="skin" required>
+								<option></option>
+								<? Matchrepo::listOptions($props['skin']['options']) ?>
+							</select>
+						</div>
+						<? if(! $gender) { ?>
+							<div class="label-top w33">
+								<label for="cf-beard">זקן</label>
+								<select id="cf-beard" name="beard" required>
+									<option></option>
+									<? Matchrepo::listOptions($props['beard']['options']) ?>
+								</select>
+							</div>
+						<? } ?>
 					</div>
 					<div class="row">
 						<? if($gender) { ?>
@@ -261,15 +269,15 @@ get_header();
 								</div>
 							<? } ?>
 							<div
-								<label for="cf-disability-other">אחר - נא לפרט:</label>
-								<textarea id="cf-disability-other" name="other_disability"></textarea>
-							</div>
+							<label for="cf-disability-other">אחר - נא לפרט:</label>
+							<textarea id="cf-disability-other" name="other_disability"></textarea>
 						</div>
 					</div>
-					<div class="row">
-						<label for="cf-content"><?= $labels['Little_About_The_Candidate'] ?>:</label>
-						<textarea id="cf-content" name="content" required></textarea>
-					</div>
+				</div>
+				<div class="row">
+					<label for="cf-content"><?= $labels['Little_About_The_Candidate'] ?>:</label>
+					<textarea id="cf-content" name="content" required></textarea>
+				</div>
 				<div id="submit">
 					<input type="submit" value="הוספת כרטיס">
 				</div>
@@ -285,10 +293,10 @@ get_header();
 					</div>
 				<?
 				else :
-					$props =  Cards::$props;
+					$props = Cards::$props;
 
-					foreach(['male', 'female'] as $class){
-						foreach($class::$props as $term => $prop){
+					foreach(['male', 'female'] as $class) {
+						foreach($class::$props as $term => $prop) {
 							if(! isset($props[$term]))
 								$props[$term] = $prop;
 						}
@@ -300,8 +308,8 @@ get_header();
 							<div>הפרטים שלהלן חסרים:</div>
 							<ul>
 								<? foreach($isCorrect['empty'] as $term) {
-										if(empty($props[$term]))
-											continue;
+									if(empty($props[$term]))
+										continue;
 									?>
 									<li><?= $props[$term]['label'] ?></li>
 								<? } ?>
@@ -311,8 +319,8 @@ get_header();
 							<div>הפרטים שלהלן אינם תקינים:</div>
 							<ul>
 								<? foreach($isCorrect['incorrect'] as $term) {
-										if(empty($props[$term]))
-											continue;
+									if(empty($props[$term]))
+										continue;
 									?>
 									<li><?= $props[$term]['label'] ?></li>
 								<? } ?>

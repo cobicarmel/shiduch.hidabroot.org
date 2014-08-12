@@ -31,6 +31,8 @@ abstract class Cards {
 		'mother_work',
 		'height',
 		'look',
+		'skin',
+		'beard',
 		'healthy',
 		'disability_details',
 		'other_disability',
@@ -51,6 +53,8 @@ abstract class Cards {
 		'mother_work',
 		'height',
 		'look',
+		'skin',
+		'beard',
 		'healthy'
 	];
 
@@ -89,6 +93,8 @@ abstract class Cards {
 		'community',
 		'conception',
 		'look',
+		'skin',
+		'beard',
 		'smoke',
 		'healthy',
 		'disability_details',

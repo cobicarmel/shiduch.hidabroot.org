@@ -116,6 +116,12 @@ $props = $MCard::$props;
 					<? Matchrepo::listOptions($props['look']['options'], $meta['look']) ?>
 				</select>
 			</div>
+			<div class="label-top w33">
+				<label for="cf-skin">גוון עור</label>
+				<select id="cf-skin" name="skin">
+					<? Matchrepo::listOptions($props['skin']['options'], $meta['skin']) ?>
+				</select>
+			</div>
 		</div>
 		<div class="row">
 			<? if($gender == 'female') { ?>

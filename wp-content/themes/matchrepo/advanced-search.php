@@ -122,14 +122,10 @@ get_header();
 		<label for="as-community-all">הכל</label>
 		<span class="toggle-affected-group" data-check-group="community" data-labels="gender"
 			  data-labels-group="community">
-				<?
-				$communities = Cards::$props['community']['options'];
-
-				foreach($communities as $i => $community) {
-					?>
-					<input name="community[]" type="checkbox" id="as-community<?= $i ?>" value="<?= $i ?>">
-					<label for="as-community<?= $i ?>"><?= $community ?></label>
-				<? } ?>
+			<? Matchrepo::listCheckboxes(Cards::$props['community']['options'], [
+				'wrapTag' => '',
+				'name' => 'community'
+			]) ?>
 		</span>
 	</p>
 	<h4>השקפה</h4>
@@ -140,14 +136,10 @@ get_header();
 		<label for="as-concept-all">הכל</label>
 		<span class="toggle-affected-group" data-check-group="conception" data-labels="gender"
 			  data-labels-group="conception">
-			<?
-			$concepts = Male::$props['conception']['options'];
-
-			foreach($concepts as $i => $concept) {
-				?>
-				<input name="conception[]" type="checkbox" id="as-concept<?= $i ?>" value="<?= $i ?>">
-				<label for="as-concept<?= $i ?>"><?= $concept ?></label>
-			<? } ?>
+			<? Matchrepo::listCheckboxes(Male::$props['conception']['options'], [
+				'wrapTag' => '',
+				'name' => 'conception'
+			]) ?>
 		</span>
 	</p>
 	<h4>מראה כללי</h4>
@@ -157,14 +149,32 @@ get_header();
 			   data-toggle-key="look" checked>
 		<label for="as-look-all">הכל</label>
 		<span class="toggle-affected-group" data-check-group="look">
-			<input name="look[]" type="checkbox" id="as-look0" value="0">
-			<label for="as-look0">מבנה רזה</label>
-			<input name="look[]" type="checkbox" id="as-look1" value="1">
-			<label for="as-look1">מבנה בינוני</label>
-			<input name="look[]" type="checkbox" id="as-look2" value="2">
-			<label for="as-look2">מבנה מלא</label>
+			<? Matchrepo::listCheckboxes(Cards::$props['look']['options'], ['wrapTag' => '', 'name' => 'look']) ?>
 		</span>
 	</p>
+	<h4>גוון עור</h4>
+
+	<p>
+		<input type="checkbox" id="as-skin-all" class="toggle-trigger select-all"
+			   data-toggle-key="skin" checked>
+		<label for="as-skin-all">הכל</label>
+		<span class="toggle-affected-group" data-check-group="skin">
+			<? Matchrepo::listCheckboxes(Cards::$props['skin']['options'], ['wrapTag' => '', 'name' => 'skin']) ?>
+		</span>
+	</p>
+
+	<div class="toggle-affected-group" data-show="male" data-hide="female">
+		<h4>זקן</h4>
+
+		<p>
+			<input type="checkbox" id="as-beard-all" class="toggle-trigger select-all"
+				   data-toggle-key="beard" checked>
+			<label for="as-beard-all">הכל</label>
+			<span class="toggle-affected-group" data-check-group="beard">
+				<? Matchrepo::listCheckboxes(Male::$props['beard']['options'], ['wrapTag' => '', 'name' => 'beard']) ?>
+			</span>
+		</p>
+	</div>
 	<h4>גובה</h4>
 
 	<p>
@@ -191,14 +201,10 @@ get_header();
 				   data-toggle-key="cover" checked>
 			<label for="as-cover-all">הכל</label>
 			<span class="toggle-affected-group" data-check-group="cover">
-				<?
-				$args = [
-					'wrapTag' => '',
-					'name' => 'cover'
-				];
-
-				Matchrepo::listCheckboxes(Female::$props['cover']['options'], $args)
-				?>
+				<? Matchrepo::listCheckboxes(Female::$props['cover']['options'], [
+						'wrapTag' => '',
+						'name' => 'cover'
+					]) ?>
 			</span>
 		</p>
 	</div>
@@ -231,13 +237,10 @@ get_header();
 		<h4>פירוט מוגבלות</h4>
 
 		<p>
-			<? foreach(Cards::$props['disability_details']['options'] as $i => $disability) { ?>
-				<span>
-					<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
-						   value="<?= $i ?>">
-					<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
-				</span>
-			<? } ?>
+			<? Matchrepo::listCheckboxes(Cards::$props['disability_details']['options'], [
+				'wrapTag' => 'span',
+				'name' => 'disability_details'
+			]) ?>
 		</p>
 	</div>
 	</div>
