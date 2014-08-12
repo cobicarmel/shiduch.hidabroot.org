@@ -557,11 +557,15 @@ footer {
     border-right-style: solid;
     margin-bottom: 20px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
+    padding: 1px 20px;
     line-height: 1;
     border-color: #7ad03a;
 }
 
 .query-response strong {
     font-weight: bold;
+}
+
+.query-response p {
+    margin: 7px 0;
 }

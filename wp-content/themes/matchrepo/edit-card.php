@@ -4,6 +4,8 @@
 Template Name: עריכת כרטיס
 */
 
+use Matchrepo\QueryResponse;
+
 $post_id = $_GET['id'];
 
 if(! current_user_can('edit_post', $post_id))
@@ -35,9 +37,9 @@ if($_POST) {
 			update_post_meta($post_id, $term, @$_POST[$term]);
 	}
 
-	wp_redirect(add_query_arg(['card_saved' => !! $isCorrect], get_permalink( $post_id )));
+	QueryResponse::addResponse('card_saved', !! $isCorrect);
 
-	exit;
+	QueryResponse::sendResponse(get_permalink( $post_id ));
 }
 
 get_header();

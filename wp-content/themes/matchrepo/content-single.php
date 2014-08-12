@@ -2,6 +2,8 @@
 
 /** @var WP_Post $post */
 
+use Matchrepo\QueryResponse;
+
 $arr_post = (array) $post;
 
 $gender = CardHelpers::get_gender($arr_post);
@@ -27,7 +29,7 @@ if(! empty(Cards::$user_types[$user_type]))
 ?>
 
 <article id="post-<?= $id ?>" class="background-area">
-	<? Matchrepo::listQueryResponse() ?>
+	<? QueryResponse::listResponse() ?>
 	<div class="card-details">
 		<div class="card-meta">
 			<? $MCard ->list_meta() ?>

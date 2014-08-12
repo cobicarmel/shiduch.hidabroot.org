@@ -4,18 +4,6 @@ abstract class Matchrepo {
 
 	static $checkboxLists = 0;
 
-	static $responses = [
-		'account_saved' => [
-			1 => 'השינויים נשמרו.'
-		],
-		'card_saved' => [
-			1 => 'הכרטיס עודכן בהצלחה.'
-		],
-		'card_trashed' => [
-			1 => 'הכרטיס נמחק.'
-		]
-	];
-
 	static function cardFormHeader(){
 
 		add_action('wp_enqueue_scripts', function (){
@@ -110,27 +98,6 @@ abstract class Matchrepo {
 			$attrValue = $byText ? '' : ' value="' . $value . '"';
 
 			echo "<option$attrValue$selected>$text</option>";
-		}
-	}
-
-	static function listQueryResponse(){
-
-		if(! $_GET)
-			return;
-
-		$response = [];
-
-		foreach($_GET as $key => $value){
-			if(! empty(self::$responses[$key][$value]))
-				$response[] = self::$responses[$key][$value];
-		}
-
-		if($response){
-			echo '<div class="query-response">';
-
-			echo implode('<br>', $response);
-
-			echo '</div>';
 		}
 	}
 

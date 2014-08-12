@@ -4,6 +4,8 @@
 Template Name: החשבון שלי
 */
 
+use Matchrepo\QueryResponse;
+
 Matchrepo::redirect_not_logged();
 
 Matchrepo::multiCardsHeader();
@@ -38,7 +40,7 @@ query_posts($args);
 			</a>
 			<!--<button><?/* _e('Email Notifications Settings', THEME_NAME) */?></button>-->
 		</div>
-		<? Matchrepo::listQueryResponse() ?>
+		<? QueryResponse::listResponse() ?>
 		<div id="user-crumbs">
 			<?
 			printf(__('Hello %s, there are %d cards in your account', THEME_NAME), $current_user -> display_name, $wp_query ->found_posts)

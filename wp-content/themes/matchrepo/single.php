@@ -1,14 +1,14 @@
 <?
 
+use Matchrepo\QueryResponse;
+
 /* @var WP_post $post*/
 
 if(isset($_GET['trash']) && current_user_can('delete_post', $post->ID)){
 
-	wp_trash_post();
+	QueryResponse::addResponse('card_trashed', !! wp_trash_post());
 
-	wp_redirect(add_query_arg(['card_trashed' => 1], get_permalink(get_page_by_title('החשבון שלי'))));
-
-	exit;
+	QueryResponse::sendResponse(get_permalink(get_page_by_title('החשבון שלי')));
 }
 
 wp_register_style('single', get_stylesheet_directory_uri() . '/css/single.css');

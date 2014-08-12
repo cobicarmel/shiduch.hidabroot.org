@@ -16,4 +16,6 @@ require get_template_directory() . '/init/sidebars.php';
 
 require get_template_directory() . '/inc/Matchrepo.class.php';
 
+require get_template_directory() . '/inc/QueryResponse.class.php';
+
 require get_template_directory() . '/acf/fields.php';

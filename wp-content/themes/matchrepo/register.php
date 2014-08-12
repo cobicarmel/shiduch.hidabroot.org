@@ -4,6 +4,8 @@
 Template Name: הרשמה
 */
 
+use Matchrepo\QueryResponse;
+
 $isRegister = false;
 
 $registerSuccess = false;
@@ -87,7 +89,7 @@ if($_POST){
 		}
 	}
 
-	$errorMsg = implode('<br>', $errorMsg);
+	$errorMsg = QueryResponse::prepareList($errorMsg);
 }
 
 Matchrepo::mainFormHeader();
@@ -110,7 +112,7 @@ get_header(); ?>
 		<div id="main-form-background">
 			<h2 id="main-title">הרשמה</h2>
 			<div id="register-wrapper">
-				<? if(isset($errorMsg)){ ?>
+				<? if(! empty($errorMsg)){ ?>
 					<div id="response-error" class="query-response"><?= $errorMsg ?></div>
 				<?
 				} if($registerSuccess) : ?>
