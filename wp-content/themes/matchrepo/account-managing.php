@@ -4,6 +4,8 @@
 Template Name: ניהול חשבון
 */
 
+use Matchrepo\QueryResponse;
+
 global $current_user;
 
 if($_POST) {
