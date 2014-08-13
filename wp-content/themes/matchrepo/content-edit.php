@@ -48,7 +48,7 @@ $props = $MCard::$props;
 					<? Matchrepo::listOptions($props['country']['options'], $meta['country'], true) ?>
 				</select>
 			</div>
-			<? $style = $meta['country'] == 'ישראל'? : 'style="display: none"'?>
+			<? $style = $meta['country'] == 'ישראל' ? : 'style="display: none"' ?>
 			<div class="label-top w33 toggle-affected zone-affected"<?= $style ?>>
 				<label for="cf-zone">איזור מגורים</label>
 				<select id="cf-zone" name="zone" required>
@@ -57,21 +57,20 @@ $props = $MCard::$props;
 			</div>
 		</div>
 		<div class="row">
-			<div class="label-top w25">
+			<div class="label-top w33">
 				<label for="cf-community">מוצא עדתי</label>
 				<select id="cf-community" name="community" required>
-
 					<? Matchrepo::listOptions($props['community']['options'], $meta['community']) ?>
 				</select>
 			</div>
-			<div class="label-top w25">
+			<div class="label-top w33">
 				<label for="cf-conception">השקפה</label>
 				<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception" required>
 					<? Matchrepo::listOptions($props['conception']['options'], $meta['conception']) ?>
 				</select>
 			</div>
 			<div
-				class="label-top w25 toggle-affected hasidism-affected"<?= $meta['conception'] != 2 ? ' style="display: none"' : '' ?>>
+				class="label-top w33 toggle-affected hasidism-affected"<?= $meta['conception'] != 2 ? ' style="display: none"' : '' ?>>
 				<label for="cf-hasidism">חסידות</label>
 				<select id="cf-hasidism" name="hasidism" required<?= $meta['conception'] != 2 ? ' disabled' : '' ?>>
 
@@ -80,13 +79,29 @@ $props = $MCard::$props;
 			</div>
 		</div>
 		<div class="row">
+			<? if($gender == 'female') { ?>
+				<div class="label-top w33">
+					<label for="cf-college">סמינר</label>
+					<input id="cf-college" type="text" name="college" value="<?= $meta['college'] ?>" required>
+				</div>
+			<?
+			}
+			else {
+				?>
+				<div class="label-top w33">
+					<label for="cf-yeshiva_k">ישיבה קטנה</label>
+					<input id="cf-yeshiva_k" type="text" name="yeshiva_k" value="<?= $meta['yeshiva_k'] ?>" required>
+				</div>
+				<div class="label-top w33">
+					<label for="cf-yeshiva_g">ישיבה גדולה</label>
+					<input id="cf-yeshiva_g" type="text" name="yeshiva_g" value="<?= $meta['yeshiva_g'] ?>" required>
+				</div>
+			<? } ?>
+		</div>
+		<div class="row">
 			<div class="label-top w33">
 				<label for="cf-work">מקום לימודים/עיסוק כיום</label>
 				<input id="cf-work" type="text" name="work" value="<?= $meta['work'] ?>" required>
-			</div>
-			<div class="label-top w33">
-				<label for="cf-college">לימודים בעבר</label>
-				<input id="cf-college" type="text" name="college" value="<?= $meta['college'] ?>" required>
 			</div>
 		</div>
 		<div class="row">
@@ -158,7 +173,11 @@ $props = $MCard::$props;
 				<div>פירוט מוגבלות</div>
 				<?
 
-				$options = ['id' => 'cf-disability', 'name' => 'disability_details', 'compare' => $meta['disability_details']];
+				$options = [
+					'id' => 'cf-disability',
+					'name' => 'disability_details',
+					'compare' => $meta['disability_details']
+				];
 
 				Matchrepo::listCheckboxes($props['disability_details']['options'], $options);
 

@@ -335,6 +335,10 @@ $maleProps = [
 
 	'yeshiva_k' => [
 		'label' => 'ישיבה קטנה'
+	],
+
+	'yeshiva_g' => [
+		'label' => 'ישיבה גדולה'
 	]
 ];
 

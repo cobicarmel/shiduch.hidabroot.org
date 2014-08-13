@@ -207,8 +207,32 @@ if(function_exists("register_field_group"))
 			),
 			array (
 				'key' => 'field_539a5ac8d451e',
-				'label' => 'ישיבה',
-				'name' => 'college',
+				'label' => 'ישיבה קטנה',
+				'name' => 'yeshiva_k',
+				'type' => 'text',
+				'required' => 1,
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_539a56d552cf5',
+							'operator' => '==',
+							'value' => '0',
+						),
+					),
+					'allorany' => 'all',
+				),
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_549a5ac8d451e',
+				'label' => 'ישיבה גדולה',
+				'name' => 'yeshiva_g',
 				'type' => 'text',
 				'required' => 1,
 				'conditional_logic' => array (

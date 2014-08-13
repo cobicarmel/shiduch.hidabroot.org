@@ -25,6 +25,8 @@ abstract class Cards {
 		'community',
 		'conception',
 		'hasidism',
+		'yeshiva_k',
+		'yeshiva_g',
 		'college',
 		'work',
 		'father_work',
@@ -48,13 +50,11 @@ abstract class Cards {
 		'community',
 		'conception',
 		'work',
-		'college',
 		'father_work',
 		'mother_work',
 		'height',
 		'look',
 		'skin',
-		'beard',
 		'healthy'
 	];
 
@@ -62,6 +62,10 @@ abstract class Cards {
 		'children',
 		'smoke',
 		'cover',
+		'beard',
+		'yeshiva_k',
+		'yeshiva_g',
+		'college',
 		'disability_details',
 		'other_disability',
 		'hasidism',

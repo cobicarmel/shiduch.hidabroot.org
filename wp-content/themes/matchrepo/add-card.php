@@ -149,7 +149,7 @@ get_header();
 							<label for="cf-community">מוצא עדתי</label>
 							<select id="cf-community" name="community" required>
 								<option></option>
-								<? Matchrepo::listOptions($props['community']['options'])?>
+								<? Matchrepo::listOptions($props['community']['options']) ?>
 							</select>
 						</div>
 						<div class="label-top w33">
@@ -157,7 +157,7 @@ get_header();
 							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception"
 									required>
 								<option></option>
-								<? Matchrepo::listOptions($props['conception']['options'])?>
+								<? Matchrepo::listOptions($props['conception']['options']) ?>
 							</select>
 						</div>
 						<div class="label-top w33 toggle-affected hasidism-affected" style="display: none">
@@ -171,13 +171,27 @@ get_header();
 						</div>
 					</div>
 					<div class="row">
+						<? if($gender) { ?>
+							<div class="label-top w33">
+								<label for="cf-college">סמינר</label>
+								<input id="cf-college" type="text" name="college" required>
+							</div>
+						<? }
+						else { ?>
+							<div class="label-top w33">
+								<label for="cf-yeshiva_k">ישיבה קטנה</label>
+								<input id="cf-yeshiva_k" type="text" name="yeshiva_k" required>
+							</div>
+							<div class="label-top w33">
+								<label for="cf-yeshiva_g">ישיבה גדולה</label>
+								<input id="cf-yeshiva_g" type="text" name="yeshiva_g" required>
+							</div>
+						<? } ?>
+					</div>
+					<div class="row">
 						<div class="label-top w33">
 							<label for="cf-work">מקום לימודים/עיסוק כיום</label>
 							<input id="cf-work" type="text" name="work" required>
-						</div>
-						<div class="label-top w33">
-							<label for="cf-college">לימודים בעבר</label>
-							<input id="cf-college" type="text" name="college" required>
 						</div>
 					</div>
 					<div class="row">
