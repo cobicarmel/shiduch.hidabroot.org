@@ -2,6 +2,12 @@
 
 abstract class MR_actions {
 
+	static function card_columns_style(){ ?>
+		<style>
+			#title {width: 250px}
+		</style>
+	<? }
+
 	static function html_headers(){
 		return 'text/html';
 	}
@@ -33,9 +39,18 @@ abstract class MR_actions {
 
 	static function manage_card_columns($columns){
 
-		$columns['title'] = 'שם המועמד/ת';
+		$custom_fields = [
+			'cb' => array_shift($columns),
+			'title' => 'שם המועמד/ת',
+			'id' => 'מספר כרטיס'
+		];
 
-		return $columns;
+		return array_merge($custom_fields, $columns);
+	}
+
+	static function manage_card_custom_column($column_name, $id){
+		if($column_name == 'id')
+			echo $id;
 	}
 
 	static function restrict_admin(){
@@ -214,6 +229,12 @@ if(is_admin()){
 	/* change cards columns */
 
 	add_filter('manage_edit-card_columns', 'MR_actions::manage_card_columns');
+
+	add_action('admin_head', 'MR_actions::card_columns_style');
+
+	add_action('manage_card_posts_custom_column', 'MR_actions::manage_card_custom_column', 10, 2);
 }
+
+/* retrieving password email message */
 
 add_filter('retrieve_password_message', 'MR_actions::retrieve_password_message');
