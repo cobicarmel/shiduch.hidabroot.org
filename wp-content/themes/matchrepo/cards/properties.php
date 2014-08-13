@@ -293,7 +293,17 @@ $globalProps = [
 			'נוטה לכהה'
 		],
 		'compare' => 'IN',
-		'pattern' => '/^[0-3]$/'
+		'pattern' => '/^[0-4]$/'
+	],
+
+	'father_community' => [
+		'label' => 'מוצא האב',
+		'compare' => 'IN'
+	],
+
+	'mother_community' => [
+		'label' => 'מוצא האם',
+		'compare' => 'IN'
 	]
 ];
 
@@ -419,6 +429,10 @@ $femaleProps = [
 $femaleLabels = [
 	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'female', THEME_NAME)
 ];
+
+$globalProps['father_community']['options'] = $globalProps['community']['options'];
+
+$globalProps['mother_community']['options'] = $femaleProps['community']['options'];
 
 Cards::$props = $globalProps;
 

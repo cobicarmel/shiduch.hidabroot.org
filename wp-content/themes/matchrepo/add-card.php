@@ -171,6 +171,22 @@ get_header();
 						</div>
 					</div>
 					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-father_community">מוצא האב</label>
+							<select id="cf-father_community" name="father_community" required>
+								<option></option>
+								<? Matchrepo::listOptions(Male::$props['community']['options']) ?>
+							</select>
+						</div>
+						<div class="label-top w33">
+							<label for="cf-mother_community">מוצא האם</label>
+							<select id="cf-mother_community" name="mother_community" required>
+								<option></option>
+								<? Matchrepo::listOptions(Female::$props['community']['options']) ?>
+							</select>
+						</div>
+					</div>
+					<div class="row">
 						<? if($gender) { ?>
 							<div class="label-top w33">
 								<label for="cf-college">סמינר</label>
