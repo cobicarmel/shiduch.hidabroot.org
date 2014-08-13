@@ -254,6 +254,28 @@ if(function_exists("register_field_group"))
 				'maxlength' => '',
 			),
 			array (
+				'key' => 'field_549a5a20fcf56',
+				'label' => 'עיסוק',
+				'name' => 'practice',
+				'type' => 'select',
+				'required' => 1,
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_539a56d552cf5',
+							'operator' => '==',
+							'value' => '0',
+						),
+					),
+					'allorany' => 'all',
+				),
+				'choices' => Male::$props['practice']['options'],
+				'default_value' => '',
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
 				'key' => 'field_539a66ca052d1',
 				'label' => 'סמינר',
 				'name' => 'college',

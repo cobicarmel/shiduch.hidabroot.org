@@ -339,6 +339,16 @@ $maleProps = [
 
 	'yeshiva_g' => [
 		'label' => 'ישיבה גדולה'
+	],
+
+	'practice' => [
+		'label' => 'עיסוק',
+		'options' => [
+			'לומד',
+			'עובד',
+			'עובד ולומד'
+		],
+		'compare' => 'IN'
 	]
 ];
 

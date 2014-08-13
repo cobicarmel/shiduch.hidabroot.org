@@ -99,6 +99,15 @@ $props = $MCard::$props;
 			<? } ?>
 		</div>
 		<div class="row">
+			<? if($gender == 'male') { ?>
+				<div class="label-top w33">
+					<label for="cf-practice">עיסוק</label>
+					<select id="cf-practice" name="practice" required>
+						<option></option>
+						<? Matchrepo::listOptions($props['practice']['options'], $meta['practice']) ?>
+					</select>
+				</div>
+			<? }?>
 			<div class="label-top w33">
 				<label for="cf-work">מקום לימודים/עיסוק כיום</label>
 				<input id="cf-work" type="text" name="work" value="<?= $meta['work'] ?>" required>

@@ -142,6 +142,22 @@ get_header();
 			]) ?>
 		</span>
 	</p>
+
+	<div class="toggle-affected-group" data-show="male" data-hide="female">
+		<h4>עיסוק</h4>
+
+		<p>
+			<input type="checkbox" id="as-practice-all" class="toggle-trigger select-all"
+				   data-toggle-key="practice" checked>
+			<label for="as-practice-all">הכל</label>
+		<span class="toggle-affected-group" data-check-group="practice">
+			<? Matchrepo::listCheckboxes(Male::$props['practice']['options'], [
+				'wrapTag' => '',
+				'name' => 'practice'
+			]) ?>
+		</span>
+		</p>
+	</div>
 	<h4>מראה כללי</h4>
 
 	<p>
@@ -202,9 +218,9 @@ get_header();
 			<label for="as-cover-all">הכל</label>
 			<span class="toggle-affected-group" data-check-group="cover">
 				<? Matchrepo::listCheckboxes(Female::$props['cover']['options'], [
-						'wrapTag' => '',
-						'name' => 'cover'
-					]) ?>
+					'wrapTag' => '',
+					'name' => 'cover'
+				]) ?>
 			</span>
 		</p>
 	</div>

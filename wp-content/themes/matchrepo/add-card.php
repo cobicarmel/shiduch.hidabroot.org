@@ -189,6 +189,15 @@ get_header();
 						<? } ?>
 					</div>
 					<div class="row">
+						<? if(! $gender) { ?>
+							<div class="label-top w33">
+								<label for="cf-practice">עיסוק</label>
+								<select id="cf-practice" name="practice" required>
+									<option></option>
+									<? Matchrepo::listOptions($props['practice']['options']) ?>
+								</select>
+							</div>
+						<? }?>
 						<div class="label-top w33">
 							<label for="cf-work">מקום לימודים/עיסוק כיום</label>
 							<input id="cf-work" type="text" name="work" required>
