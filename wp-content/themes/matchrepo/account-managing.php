@@ -14,7 +14,7 @@ if($_POST) {
 
 	$user_terms = ['user_email', 'display_name'];
 
-	$metaTerms = ['user_type', 'user_phone', 'user_zone'];
+	$metaTerms = ['user_type', 'user_phone', 'user_zone', 'user_country'];
 
 	$errorMsg = [];
 
@@ -128,7 +128,7 @@ get_header(); ?>
 							</div>
 							<div class="label-top">
 								<label for="user-country">מדינה</label>
-								<select id="user-country" required>
+								<select id="user-country" name="user_country" required>
 									<? Matchrepo::listOptions(Cards::$props['country']['options'], @$user_meta['user_country'][0], true) ?>
 								</select>
 							</div>

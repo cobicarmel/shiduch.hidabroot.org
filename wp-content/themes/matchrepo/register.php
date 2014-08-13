@@ -82,7 +82,7 @@ if($_POST){
 
 			new_user_notify($args);
 
-			$metaTerms = ['user_type', 'user_phone', 'user_zone'];
+			$metaTerms = ['user_type', 'user_phone', 'user_country', 'user_zone'];
 
 			foreach($metaTerms as $term)
 				update_user_meta($newUser, $term, $$term);
@@ -159,7 +159,7 @@ get_header(); ?>
 						</div>
 						<div class="label-top">
 							<label for="user-country">מדינה</label>
-							<select id="user-country" required>
+							<select id="user-country" name="user_country" required>
 								<? Matchrepo::listOptions(Cards::$props['country']['options'], 'ישראל', true)?>
 							</select>
 						</div>
