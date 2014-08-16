@@ -2,20 +2,20 @@
 
 define('THEME_NAME', 'Matchrepo');
 
-require get_template_directory() . '/actions/class.actions.php';
+require STYLESHEETPATH . '/actions/class.actions.php';
 
-require get_template_directory() . '/filters/class.filters.php';
+require STYLESHEETPATH . '/filters/class.filters.php';
 
-require get_template_directory() . '/widgets/banner.php';
+require STYLESHEETPATH . '/widgets/banner.php';
 
-require get_template_directory() . '/cards/manager.php';
+require STYLESHEETPATH . '/cards/manager.php';
 
-require get_template_directory() . '/init/register.php';
+require STYLESHEETPATH . '/init/register.php';
 
-require get_template_directory() . '/init/sidebars.php';
+require STYLESHEETPATH . '/init/sidebars.php';
 
-require get_template_directory() . '/inc/Matchrepo.class.php';
+require STYLESHEETPATH . '/inc/Matchrepo.class.php';
 
-require get_template_directory() . '/inc/QueryResponse.class.php';
+require STYLESHEETPATH . '/inc/QueryResponse.class.php';
 
-require get_template_directory() . '/acf/fields.php';
+require STYLESHEETPATH . '/acf/fields.php';
