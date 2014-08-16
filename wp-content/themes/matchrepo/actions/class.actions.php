@@ -185,6 +185,15 @@ abstract class MR_actions {
 
 		add_theme_support('post-thumbnails');
 	}
+
+	static function user_contact_meta($methods){
+
+		$methods['user_phone'] = 'טלפון';
+
+		$methods['user_country'] = 'מדינה';
+
+		return $methods;
+	}
 }
 
 /* Global actions */
@@ -233,6 +242,10 @@ if(is_admin()){
 	add_action('admin_head', 'MR_actions::card_columns_style');
 
 	add_action('manage_card_posts_custom_column', 'MR_actions::manage_card_custom_column', 10, 2);
+
+	/* adding meta contact data to user profile in admin panel */
+
+	add_filter('user_contactmethods', 'MR_actions::user_contact_meta');
 }
 
 /* retrieving password email message */
