@@ -218,7 +218,7 @@ add_action( 'login_enqueue_scripts', 'MR_actions::login_logo');
 
 /* Mail actions */
 
-if(is_local())
+if(IS_LOCAL)
 	add_action('phpmailer_init','MR_actions::send_smtp_email');
 
 add_filter('wp_mail_content_type', 'MR_actions::html_headers');
