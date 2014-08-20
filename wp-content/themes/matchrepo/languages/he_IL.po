@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Matchrepo v\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-07-30 20:36:47+0000\n"
+"PO-Revision-Date: 2014-08-20 01:41:43+0000\n"
 "Last-Translator: cobicarmel <jzaltzberg@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,15 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: 404.php:10
+#: 404.php:12
 #@ Matchrepo
 msgid "Oops! That page can&rsquo;t be found."
 msgstr "אופס! הגעת למקום שלא קיים.."
-
-#: 404.php:14
-#@ Matchrepo
-msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
-msgstr ""
 
 #: archive.php:27
 #, php-format
@@ -174,7 +169,7 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: content-single.php:86
+#: content-single.php:96
 #: content.php:61
 #@ default
 #@ Matchrepo
@@ -220,7 +215,7 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: actions/class.actions.php:103
+#: actions/class.actions.php:176
 #@ Matchrepo
 msgid "Primary Menu"
 msgstr ""
@@ -241,43 +236,30 @@ msgstr "קישור לבאנר:"
 msgid "Banner target"
 msgstr "יעד:"
 
-#: sidebar.php:20
+#: sidebar.php:21
 #, php-format
 #@ Matchrepo
 msgid "%d cards in repository"
 msgstr "%d כרטיסים במאגר"
 
 #: init/register.php:6
+#: sidebar.php:75
 #@ default
 msgid "Lost Password"
 msgstr ""
 
-#: sidebar.php:69
-#@ default
-msgid "Username"
-msgstr ""
-
-#: sidebar.php:70
-#@ default
-msgid "Password"
-msgstr ""
-
-#: sidebar.php:71
-#@ Matchrepo
-msgid "Login"
-msgstr "כניסה"
-
-#: sidebar.php:64
+#: sidebar.php:59
+#: sidebar.php:78
 #@ Matchrepo
 msgid "Enter"
 msgstr "כניסה למערכת"
 
-#: init/register.php:13
+#: init/register.php:15
 #@ default
 msgid "Register"
 msgstr ""
 
-#: sidebar.php:85
+#: sidebar.php:90
 #@ Matchrepo
 msgid "Quick Search"
 msgstr "חיפוש מהיר"
@@ -287,7 +269,7 @@ msgstr "חיפוש מהיר"
 msgid "Right Sidebar"
 msgstr "סרגל צד ימין"
 
-#: home.php:23
+#: home.php:22
 #@ Matchrepo
 msgid "New Cards In Repository"
 msgstr "כרטיסים חדשים במאגר"
@@ -330,7 +312,7 @@ msgid "View Card"
 msgstr "הצגת כרטיס"
 
 #: cards/register.php:12
-#: my_account.php:37
+#: my_account.php:36
 #@ Matchrepo
 msgid "Add New Card"
 msgstr "הוספת כרטיס חדש"
@@ -410,12 +392,12 @@ msgstr "עיסוק האם"
 msgid "Healthy"
 msgstr "מצב בריאותי"
 
-#: cards/properties.php:306
+#: cards/properties.php:329
 #@ Matchrepo
 msgid "Smoking"
 msgstr "עישון"
 
-#: cards/properties.php:347
+#: cards/properties.php:407
 #@ Matchrepo
 msgid "Cover"
 msgstr "כיסוי ראש"
@@ -445,17 +427,17 @@ msgstr "איזור"
 msgid "View"
 msgstr "מראה כללי"
 
-#: content-single.php:46
+#: content-single.php:49
 #@ Matchrepo
 msgid "This Card Managed By"
 msgstr "הכרטיס מנוהל ע\\\"י:"
 
-#: content-single.php:50
+#: content-single.php:53
 #@ Matchrepo
 msgid "Contact Details"
 msgstr "לפרטים נוספים ויצירת קשר:"
 
-#: actions/class.actions.php:104
+#: actions/class.actions.php:177
 #@ Matchrepo
 msgid "Footer Menu"
 msgstr "תפריט תחתון"
@@ -465,24 +447,24 @@ msgstr "תפריט תחתון"
 msgid "Age"
 msgstr "גיל"
 
-#: cards/properties.php:317
+#: cards/properties.php:377
 #@ Matchrepo
 msgctxt "male"
 msgid "Little_About_The_Candidate"
 msgstr "קצת על המועמד"
 
-#: cards/properties.php:379
+#: cards/properties.php:440
 #@ Matchrepo
 msgctxt "female"
 msgid "Little_About_The_Candidate"
 msgstr "קצת על המועמדת"
 
-#: content-single.php:74
+#: content-single.php:82
 #@ Matchrepo
 msgid "Delete"
 msgstr "מחיקה"
 
-#: my_account.php:45
+#: my_account.php:46
 #, php-format
 #@ Matchrepo
 msgid "Hello %s, there are %d cards in your account"
@@ -492,11 +474,6 @@ msgstr "שלום %s, ישנם %d כרטיסים בחשבון שלך"
 #@ Matchrepo
 msgid "Account Managing"
 msgstr "ניהול חשבון"
-
-#: my_account.php:40
-#@ Matchrepo
-msgid "Email Notifications Settings"
-msgstr "הגדרת התראות במייל"
 
 #: content-account.php:25
 #@ Matchrepo
@@ -538,29 +515,29 @@ msgstr "אלמנ/ה"
 msgid "Conception"
 msgstr "השקפה"
 
-#: cards/cards.class.php:164
+#: cards/cards.class.php:211
 #@ default
 msgid "Submit"
 msgstr ""
 
-#: search-cards.php:62
+#: search-cards.php:64
 #, php-format
 #@ Matchrepo
 msgid "Found %d Cards For Search"
 msgstr "נמצאו %d כרטיסים בחיפוש"
 
-#: advanced-search.php:240
+#: advanced-search.php:264
 #@ default
 msgid "Search"
 msgstr ""
 
-#: sidebar.php:38
+#: sidebar.php:37
 #, php-format
 #@ Matchrepo
 msgid "Hello %s"
 msgstr "שלום %s"
 
-#: sidebar.php:47
+#: sidebar.php:44
 #, php-format
 #@ Matchrepo
 msgid "%d cards was published in your account"
@@ -576,8 +553,109 @@ msgstr ""
 msgid "Max Height"
 msgstr ""
 
-#: sidebar.php:42
+#: sidebar.php:39
 #@ default
 msgid "Log out &raquo;"
+msgstr ""
+
+#: cards/properties.php:339
+#@ Matchrepo
+msgid "license"
+msgstr "רשיון"
+
+#: framework/classes/WordPress.php:15
+#: framework/classes/WordPress.php:61
+#, php-format
+#@ default
+msgid "Parent %s:"
+msgstr ""
+
+#: framework/classes/WordPress.php:16
+#: framework/classes/WordPress.php:59
+#, php-format
+#@ default
+msgid "All %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:17
+#, php-format
+#@ default
+msgid "View %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:18
+#: framework/classes/WordPress.php:63
+#, php-format
+#@ default
+msgid "Add New %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:19
+#, php-format
+#@ default
+msgid "New %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:20
+#: framework/classes/WordPress.php:64
+#, php-format
+#@ default
+msgid "Edit %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:21
+#: framework/classes/WordPress.php:65
+#, php-format
+#@ default
+msgid "Update %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:22
+#: framework/classes/WordPress.php:67
+#, php-format
+#@ default
+msgid "Search %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:23
+#, php-format
+#@ default
+msgid "No %s found"
+msgstr ""
+
+#: framework/classes/WordPress.php:24
+#, php-format
+#@ default
+msgid "No %s found in Trash"
+msgstr ""
+
+#: framework/classes/WordPress.php:60
+#, php-format
+#@ default
+msgid "Parent %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:62
+#, php-format
+#@ default
+msgid "New %s Name"
+msgstr ""
+
+#: framework/classes/WordPress.php:66
+#, php-format
+#@ default
+msgid "Separate %s with commas"
+msgstr ""
+
+#: framework/classes/WordPress.php:68
+#, php-format
+#@ default
+msgid "Add or remove %s"
+msgstr ""
+
+#: framework/classes/WordPress.php:69
+#, php-format
+#@ default
+msgid "Choose from the most used %s"
 msgstr ""
 
