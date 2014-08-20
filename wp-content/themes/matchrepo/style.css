@@ -174,13 +174,7 @@ input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-textarea {
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], textarea, select {
     border: 1px solid #CCC;
     border-radius: 3px;
 }

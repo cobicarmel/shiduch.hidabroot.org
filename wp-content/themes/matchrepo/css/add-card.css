@@ -1,15 +1,29 @@
 #avatar {
   float: left;
 }
-.row {
+fieldset {
   margin-bottom: 10px;
-  overflow: hidden;
+  padding: 10px 15px 0;
+  border: 1px solid #DDD;
+}
+legend {
+  position: relative;
+  z-index: 1;
+  margin: 0 15px;
+  font-size: 19px;
+  padding: 0 10px;
+  color: teal;
 }
 #cf-content {
   height: 150px;
 }
 textarea {
   padding: 5px;
+  border: none;
+  resize: none;
+  outline: none;
+  box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 }
 #nc-disability {
   display: none;
@@ -36,4 +50,7 @@ textarea {
 }
 #register-success {
   margin-top: 45px;
+}
+.row {
+  overflow: hidden;
 }

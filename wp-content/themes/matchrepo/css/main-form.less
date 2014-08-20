@@ -13,31 +13,6 @@
       right: 20px;
       z-index: 1;
     }
-
-    main {
-      position: relative;
-      border: 2px solid #A19491;
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: -2px;
-        height: 100%;
-        width: 2px;
-        background-image: linear-gradient(to bottom, #fff 50%, transparent);
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: -2px;
-        height:2px;
-        width: 100%;
-        background-image: linear-gradient(to left, #fff 50%, transparent);
-      }
-    }
-
   }
 }
 
@@ -89,6 +64,7 @@
   background: url(../media/register-background.png) no-repeat;
   width: 670px;
   min-height: 1040px;
+  background-size: cover;
 }
 
 #main-title {
@@ -172,4 +148,44 @@
 
 #cf-disability span {
   display: block;
+}
+
+.decorative-border {
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2px;
+    height: 100%;
+    width: 2px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    height:2px;
+    width: 100%;
+  }
+}
+
+main.decorative-border {
+  border-color: #A19491;
+
+  &:before {
+    background-image: linear-gradient(to bottom, #fff 50%, transparent);
+  }
+
+  &:after {
+    background-image: linear-gradient(to left, #fff 50%, transparent);
+    top: -2px;
+  }
+}
+
+#ui-datepicker-div {
+  font-size: 15px;
 }

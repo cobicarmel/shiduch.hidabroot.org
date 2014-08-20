@@ -97,7 +97,8 @@ get_header();
 				<input type="hidden" name="from_level" value="2">
 
 				<div id="mf-options">
-					<div class="row">
+					<fieldset>
+						<legend>פרטים בסיסיים</legend>
 						<div class="label-top w33">
 							<label for="cf-first-name">שם פרטי</label>
 							<input id="cf-first-name" type="text" name="title" required>
@@ -125,8 +126,9 @@ get_header();
 								<? } ?>
 							</select>
 						</div>
-					</div>
-					<div class="row">
+					</fieldset>
+					<fieldset>
+						<legend>מקום מגורים</legend>
 						<div class="label-top w33">
 							<label for="cf-country">ארץ</label>
 							<select id="cf-country" name="country" class="toggle-trigger zone-trigger" required>
@@ -143,34 +145,35 @@ get_header();
 								<? } ?>
 							</select>
 						</div>
-					</div>
-					<div class="row">
-						<div class="label-top w33">
-							<label for="cf-community">מוצא עדתי</label>
-							<select id="cf-community" name="community" required>
-								<option></option>
-								<? Matchrepo::listOptions($props['community']['options']) ?>
-							</select>
+					</fieldset>
+					<fieldset>
+						<legend>מוצא</legend>
+						<div class="row">
+							<div class="label-top w33">
+								<label for="cf-community">מוצא עדתי</label>
+								<select id="cf-community" name="community" required>
+									<option></option>
+									<? Matchrepo::listOptions($props['community']['options']) ?>
+								</select>
+							</div>
+							<div class="label-top w33">
+								<label for="cf-conception">השקפה</label>
+								<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception"
+										required>
+									<option></option>
+									<? Matchrepo::listOptions($props['conception']['options']) ?>
+								</select>
+							</div>
+							<div class="label-top w33 toggle-affected hasidism-affected" style="display: none">
+								<label for="cf-hasidism">חסידות</label>
+								<select id="cf-hasidism" name="hasidism" required disabled>
+									<option></option>
+									<? foreach($props['hasidism']['options'] as $hasidut) { ?>
+										<option><?= $hasidut ?></option>
+									<? } ?>
+								</select>
+							</div>
 						</div>
-						<div class="label-top w33">
-							<label for="cf-conception">השקפה</label>
-							<select id="cf-conception" class="toggle-trigger hasidism-trigger" name="conception"
-									required>
-								<option></option>
-								<? Matchrepo::listOptions($props['conception']['options']) ?>
-							</select>
-						</div>
-						<div class="label-top w33 toggle-affected hasidism-affected" style="display: none">
-							<label for="cf-hasidism">חסידות</label>
-							<select id="cf-hasidism" name="hasidism" required disabled>
-								<option></option>
-								<? foreach($props['hasidism']['options'] as $hasidut) { ?>
-									<option><?= $hasidut ?></option>
-								<? } ?>
-							</select>
-						</div>
-					</div>
-					<div class="row">
 						<div class="label-top w33">
 							<label for="cf-father_community">מוצא האב</label>
 							<select id="cf-father_community" name="father_community" required>
@@ -185,8 +188,9 @@ get_header();
 								<? Matchrepo::listOptions(Female::$props['community']['options']) ?>
 							</select>
 						</div>
-					</div>
-					<div class="row">
+					</fieldset>
+					<fieldset>
+						<legend>לימודים</legend>
 						<? if($gender) { ?>
 							<div class="label-top w33">
 								<label for="cf-college">סמינר</label>
@@ -203,33 +207,37 @@ get_header();
 								<input id="cf-yeshiva_g" type="text" name="yeshiva_g" required>
 							</div>
 						<? } ?>
-					</div>
-					<div class="row">
-						<? if(! $gender) { ?>
+					</fieldset>
+					<fieldset>
+						<legend>עיסוק</legend>
+						<div class="row">
+							<? if(! $gender) { ?>
+								<div class="label-top w33">
+									<label for="cf-practice">עיסוק</label>
+									<select id="cf-practice" name="practice" required>
+										<option></option>
+										<? Matchrepo::listOptions($props['practice']['options']) ?>
+									</select>
+								</div>
+							<? }?>
 							<div class="label-top w33">
-								<label for="cf-practice">עיסוק</label>
-								<select id="cf-practice" name="practice" required>
-									<option></option>
-									<? Matchrepo::listOptions($props['practice']['options']) ?>
-								</select>
+								<label for="cf-work">מקום לימודים/עיסוק כיום</label>
+								<input id="cf-work" type="text" name="work" required>
 							</div>
-						<? }?>
-						<div class="label-top w33">
-							<label for="cf-work">מקום לימודים/עיסוק כיום</label>
-							<input id="cf-work" type="text" name="work" required>
 						</div>
-					</div>
-					<div class="row">
-						<div class="label-top w33">
-							<label for="cf-father-work">עיסוק האב</label>
-							<input id="cf-father-work" type="text" name="father_work" required>
+						<div class="row">
+							<div class="label-top w33">
+								<label for="cf-father-work">עיסוק האב</label>
+								<input id="cf-father-work" type="text" name="father_work" required>
+							</div>
+							<div class="label-top w33">
+								<label for="cf-mother-work">עיסוק האם</label>
+								<input id="cf-mother-work" type="text" name="mother_work" required>
+							</div>
 						</div>
-						<div class="label-top w33">
-							<label for="cf-mother-work">עיסוק האם</label>
-							<input id="cf-mother-work" type="text" name="mother_work" required>
-						</div>
-					</div>
-					<div class="row">
+					</fieldset>
+					<fieldset>
+						<legend>מראה</legend>
 						<div class="label-top w16">
 							<label for="cf-height">גובה</label>
 							<select id="cf-height" name="height" required>
@@ -239,8 +247,6 @@ get_header();
 								<? } ?>
 							</select>
 						</div>
-					</div>
-					<div class="row">
 						<div class="label-top w33">
 							<label for="cf-look">מראה כללי</label>
 							<select id="cf-look" name="look" required>
@@ -248,7 +254,7 @@ get_header();
 								<? Matchrepo::listOptions($props['look']['options']) ?>
 							</select>
 						</div>
-						<div class="label-top w33">
+						<div class="label-top w25">
 							<label for="cf-skin">גוון עור</label>
 							<select id="cf-skin" name="skin" required>
 								<option></option>
@@ -256,7 +262,7 @@ get_header();
 							</select>
 						</div>
 						<? if(! $gender) { ?>
-							<div class="label-top w33">
+							<div class="label-top w25">
 								<label for="cf-beard">זקן</label>
 								<select id="cf-beard" name="beard" required>
 									<option></option>
@@ -264,8 +270,40 @@ get_header();
 								</select>
 							</div>
 						<? } ?>
-					</div>
-					<div class="row">
+					</fieldset>
+					<fieldset>
+						<legend>מצב בריאותי</legend>
+						<div class="row">
+							<div class="label-top w33">
+								<label for="cf-healthy">מצב בריאותי</label>
+								<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
+										name="healthy" required>
+									<option></option>
+									<? foreach($props['healthy']['options'] as $i => $healthy) { ?>
+										<option value="<?= $i ?>"><?= $healthy ?></option>
+									<? } ?>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy"
+								 style="display: none">
+								<div>פירוט מוגבלות</div>
+								<? foreach($props['disability_details']['options'] as $i => $disability) { ?>
+									<div>
+										<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
+											   value="<?= $i ?>">
+										<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
+									</div>
+								<? } ?>
+								<div
+								<label for="cf-disability-other">אחר - נא לפרט:</label>
+								<textarea id="cf-disability-other" name="other_disability"></textarea>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>שונות</legend>
 						<? if($gender) { ?>
 							<div class="label-top w25">
 								<label for="cf-cover">כיסוי ראש</label>
@@ -287,39 +325,11 @@ get_header();
 								<label for="cf-license">בעל רשיון נהיגה</label>
 							</div>
 						<? } ?>
-					</div>
-					<div class="row">
-						<div class="label-top w33">
-							<label for="cf-healthy">מצב בריאותי</label>
-							<select id="cf-healthy" class="toggle-trigger show-hide-trigger" data-toggle-key="healthy"
-									name="healthy" required>
-								<option></option>
-								<? foreach($props['healthy']['options'] as $i => $healthy) { ?>
-									<option value="<?= $i ?>"><?= $healthy ?></option>
-								<? } ?>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div id="cf-disability" class="toggle-affected show-hide-affected" data-affected="healthy"
-							 style="display: none">
-							<div>פירוט מוגבלות</div>
-							<? foreach($props['disability_details']['options'] as $i => $disability) { ?>
-								<div>
-									<input type="checkbox" name="disability_details[]" id="cf-disability<?= $i ?>"
-										   value="<?= $i ?>">
-									<label for="cf-disability<?= $i ?>"><?= $disability ?></label>
-								</div>
-							<? } ?>
-							<div
-							<label for="cf-disability-other">אחר - נא לפרט:</label>
-							<textarea id="cf-disability-other" name="other_disability"></textarea>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<label for="cf-content"><?= $labels['Little_About_The_Candidate'] ?>:</label>
-					<textarea id="cf-content" name="content" required></textarea>
+					</fieldset>
+					<fieldset>
+						<legend><?= $labels['Little_About_The_Candidate'] ?></legend>
+						<textarea id="cf-content" name="content" required></textarea>
+					</fieldset>
 				</div>
 				<div id="submit">
 					<input type="submit" value="הוספת כרטיס">

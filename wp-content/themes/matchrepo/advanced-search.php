@@ -15,7 +15,7 @@ get_header();
 ?>
 
 	<div id="primary" class="content-area decorative">
-	<main id="main" class="site-main" role="main">
+	<main id="main" class="site-main decorative-border" role="main">
 	<h2 id="main-title">חיפוש מתקדם</h2>
 
 	<form id="main-form" class="search-form"
