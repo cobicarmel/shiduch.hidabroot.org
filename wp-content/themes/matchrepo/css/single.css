@@ -1,5 +1,6 @@
 article {
   height: 947px;
+  position: relative;
 }
 .card-side-box .title {
   font-size: 19px;
@@ -62,4 +63,16 @@ article {
 }
 .query-response {
   margin: 10px 13px 0 8px;
+}
+#card-id {
+  padding: 1px 8px;
+  position: absolute;
+  bottom: 20px;
+  right: -1px;
+  line-height: 1;
+  font-size: 15px;
+  color: #1D1D52;
+  background-color: #FFF;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #DBDBDB;
 }

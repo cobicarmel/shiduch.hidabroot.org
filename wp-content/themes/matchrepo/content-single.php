@@ -99,4 +99,5 @@ if(! empty(Cards::$user_types[$user_type]))
 		}
 		?>
 	</div>
-</article><!-- #post-## -->
+	<div id="card-id"><? printf('כרטיס מספר %d', $id) ?></div>
+</article>
