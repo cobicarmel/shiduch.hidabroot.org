@@ -367,6 +367,25 @@ if(function_exists("register_field_group"))
 				'default_value' => 0,
 			),
 			array (
+				'key' => 'field_542a5b443b9a8',
+				'label' => 'רשיון נהיגה',
+				'name' => 'license',
+				'type' => 'true_false',
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_539a56d552cf5',
+							'operator' => '==',
+							'value' => '0',
+						),
+					),
+					'allorany' => 'all',
+				),
+				'message' => 'בעל רשיון נהיגה',
+				'default_value' => 0,
+			),
+			array (
 				'key' => 'field_539a5bc1576a8',
 				'label' => 'גובה',
 				'name' => 'height',

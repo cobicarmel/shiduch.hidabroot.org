@@ -278,9 +278,13 @@ get_header();
 						}
 						else {
 							?>
-							<div class="w25">
+							<div class="w33">
 								<input type="checkbox" id="cf-smoke" name="smoke" value="1">
 								<label for="cf-smoke">מעשן</label>
+							</div>
+							<div class="w33">
+								<input type="checkbox" id="cf-license" name="license" value="1">
+								<label for="cf-license">בעל רשיון נהיגה</label>
 							</div>
 						<? } ?>
 					</div>

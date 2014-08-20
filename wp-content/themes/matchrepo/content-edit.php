@@ -180,6 +180,10 @@ $props = $MCard::$props;
 					<input type="checkbox" id="cf-smoke" name="smoke" value="1" <? checked($meta['smoke']) ?>>
 					<label for="cf-smoke">מעשן</label>
 				</div>
+				<div class="w25">
+					<input type="checkbox" id="cf-license" name="license" value="1" <? checked($meta['license']) ?>>
+					<label for="cf-license">בעל רשיון נהיגה</label>
+				</div>
 			<? } ?>
 		</div>
 		<div class="row">

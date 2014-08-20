@@ -335,6 +335,16 @@ $maleProps = [
 		'pattern' => ''
 	],
 
+	'license' => [
+		'label' => __('license', THEME_NAME),
+		'type' => 'bool',
+		'options' => [
+			'ללא רשיון נהיגה',
+			'בעל רשיון נהיגה'
+		],
+		'pattern' => ''
+	],
+
 	'beard' => [
 		'label' => 'זקן',
 		'options' => [

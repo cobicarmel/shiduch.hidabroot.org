@@ -42,6 +42,7 @@ abstract class Cards {
 		'disability_details',
 		'other_disability',
 		'smoke',
+		'license',
 		'cover'
 	];
 
@@ -66,6 +67,7 @@ abstract class Cards {
 	private static $optionalTerms = [
 		'children',
 		'smoke',
+		'license',
 		'cover',
 		'beard',
 		'yeshiva_k',
@@ -109,6 +111,7 @@ abstract class Cards {
 		'beard',
 		'practice',
 		'smoke',
+		'license',
 		'healthy',
 		'disability_details',
 		'cover'
