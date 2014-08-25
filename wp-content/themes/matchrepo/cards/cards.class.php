@@ -16,6 +16,7 @@ abstract class Cards {
 
 	private static $orderTerms = [
 		'gender',
+		'last_name',
 		'age',
 		'birthday',
 		'status',
@@ -77,7 +78,8 @@ abstract class Cards {
 		'disability_details',
 		'other_disability',
 		'hasidism',
-		'zone'
+		'zone',
+		'last_name'
 	];
 
 	public static $user_types = [

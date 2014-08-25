@@ -7,6 +7,10 @@ $globalProps = [
 		'pattern' => '/^[a-zא-ת| ]+$/'
 	],
 
+	'last_name' => [
+		'label' => 'שם משפחה'
+	],
+
 	'age' => [
 		'label' => __('Age', THEME_NAME)
 	],

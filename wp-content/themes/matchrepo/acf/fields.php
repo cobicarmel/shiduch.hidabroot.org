@@ -7,6 +7,19 @@ if(function_exists("register_field_group"))
 		'title' => 'פרטי כרטיס',
 		'fields' => array (
 			array (
+				'key' => 'field_540a5aa6d451d',
+				'label' => 'שם משפחה',
+				'name' => 'last_name',
+				'type' => 'text',
+				'required' => 0,
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+			array (
 				'key' => 'field_539a56d552cf5',
 				'label' => 'מין',
 				'name' => 'gender',

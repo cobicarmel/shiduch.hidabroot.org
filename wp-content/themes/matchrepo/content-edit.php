@@ -22,6 +22,10 @@ $props = $MCard::$props;
 				<input id="cf-first-name" type="text" name="title" value="<? the_title() ?>" required>
 			</div>
 			<div class="label-top w33">
+				<label for="cf-last-name">שם משפחה</label>
+				<input id="cf-last-name" type="text" name="last_name" value="<?= $meta['last_name'] ?>" required>
+			</div>
+			<div class="label-top w33">
 				<label for="cf-birthday">תאריך לידה</label>
 				<input id="cf-birthday" type="text" name="birthday"
 					   value="<?= date('d/m/Y', strtotime($meta['birthday'])) ?>" required>
