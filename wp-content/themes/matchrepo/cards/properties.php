@@ -316,6 +316,10 @@ $globalProps = [
 	'mother_community' => [
 		'label' => 'מוצא האם',
 		'compare' => 'IN'
+	],
+
+	'family_children' => [
+		'label' => 'מספר ילדים במשפחה'
 	]
 ];
 

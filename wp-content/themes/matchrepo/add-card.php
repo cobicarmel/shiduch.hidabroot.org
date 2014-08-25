@@ -194,19 +194,21 @@ get_header();
 						<input id="cf-mother-name" type="text" name="mother_name">
 					</div>
 				</div>
-				<div class="label-top w33">
-					<label for="cf-father_community">מוצא האב</label>
-					<select id="cf-father_community" name="father_community">
-						<option></option>
-						<? Matchrepo::listOptions(Male::$props['community']['options']) ?>
-					</select>
-				</div>
-				<div class="label-top w33">
-					<label for="cf-mother_community">מוצא האם</label>
-					<select id="cf-mother_community" name="mother_community">
-						<option></option>
-						<? Matchrepo::listOptions(Female::$props['community']['options']) ?>
-					</select>
+				<div class="row">
+					<div class="label-top w33">
+						<label for="cf-father_community">מוצא האב</label>
+						<select id="cf-father_community" name="father_community">
+							<option></option>
+							<? Matchrepo::listOptions(Male::$props['community']['options']) ?>
+						</select>
+					</div>
+					<div class="label-top w33">
+						<label for="cf-mother_community">מוצא האם</label>
+						<select id="cf-mother_community" name="mother_community">
+							<option></option>
+							<? Matchrepo::listOptions(Female::$props['community']['options']) ?>
+						</select>
+					</div>
 				</div>
 				<div class="row">
 					<div class="label-top w33">
@@ -216,6 +218,12 @@ get_header();
 					<div class="label-top w33">
 						<label for="cf-mother-work">עיסוק האם</label>
 						<input id="cf-mother-work" type="text" name="mother_work">
+					</div>
+				</div>
+				<div class="row">
+					<div class="label-top w25">
+						<label for="cf-family-children">מספר ילדים במשפחה</label>
+						<input id="cf-family-children" type="number" min="0" max="20" name="family_children">
 					</div>
 				</div>
 			</fieldset>

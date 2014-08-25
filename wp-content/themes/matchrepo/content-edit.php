@@ -23,7 +23,7 @@ $props = $MCard::$props;
 			</div>
 			<div class="label-top w33">
 				<label for="cf-last-name">שם משפחה</label>
-				<input id="cf-last-name" type="text" name="last_name" value="<?= $meta['last_name'] ?>" required>
+				<input id="cf-last-name" type="text" name="last_name" value="<?= $meta['last_name'] ?>">
 			</div>
 			<div class="label-top w33">
 				<label for="cf-birthday">תאריך לידה</label>
@@ -151,6 +151,10 @@ $props = $MCard::$props;
 					<option></option>
 					<? Matchrepo::listOptions(Female::$props['community']['options'], $meta['mother_community']) ?>
 				</select>
+			</div>
+			<div class="label-top w25">
+				<label for="cf-family-children">מספר ילדים במשפחה</label>
+				<input id="cf-family-children" type="number" min="0" max="20" name="family_children" value="<?= $meta['family_children'] ?>">
 			</div>
 		</div>
 		<div class="row">

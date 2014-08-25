@@ -32,6 +32,7 @@ abstract class Cards {
 		'mother_community',
 		'father_work',
 		'mother_work',
+		'family_children',
 		'yeshiva_k',
 		'yeshiva_g',
 		'college',
@@ -83,7 +84,8 @@ abstract class Cards {
 		'zone',
 		'last_name',
 		'father_name',
-		'mother_name'
+		'mother_name',
+		'family_children'
 	];
 
 	public static $user_types = [
