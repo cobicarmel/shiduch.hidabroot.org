@@ -25,16 +25,18 @@ abstract class Cards {
 		'zone',
 		'community',
 		'conception',
+		'hasidism',
+		'father_name',
+		'mother_name',
 		'father_community',
 		'mother_community',
-		'hasidism',
+		'father_work',
+		'mother_work',
 		'yeshiva_k',
 		'yeshiva_g',
 		'college',
 		'practice',
 		'work',
-		'father_work',
-		'mother_work',
 		'height',
 		'look',
 		'skin',
@@ -79,7 +81,9 @@ abstract class Cards {
 		'other_disability',
 		'hasidism',
 		'zone',
-		'last_name'
+		'last_name',
+		'father_name',
+		'mother_name'
 	];
 
 	public static $user_types = [

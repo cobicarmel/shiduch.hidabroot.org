@@ -83,22 +83,6 @@ $props = $MCard::$props;
 			</div>
 		</div>
 		<div class="row">
-			<div class="label-top w33">
-				<label for="cf-father_community">מוצא האב</label>
-				<select id="cf-father_community" name="father_community" required>
-					<option></option>
-					<? Matchrepo::listOptions(Male::$props['community']['options'], $meta['father_community']) ?>
-				</select>
-			</div>
-			<div class="label-top w33">
-				<label for="cf-mother_community">מוצא האם</label>
-				<select id="cf-mother_community" name="mother_community" required>
-					<option></option>
-					<? Matchrepo::listOptions(Female::$props['community']['options'], $meta['mother_community']) ?>
-				</select>
-			</div>
-		</div>
-		<div class="row">
 			<? if($gender == 'female') { ?>
 				<div class="label-top w33">
 					<label for="cf-college">סמינר</label>
@@ -135,12 +119,38 @@ $props = $MCard::$props;
 		</div>
 		<div class="row">
 			<div class="label-top w33">
+				<label for="cf-father-name">שם האב</label>
+				<input id="cf-father-name" type="text" name="father_name" value="<?= $meta['father_name'] ?>">
+			</div>
+			<div class="label-top w33">
+				<label for="cf-mother-name">שם האם</label>
+				<input id="cf-mother-name" type="text" name="mother_name" value="<?= $meta['mother_name'] ?>">
+			</div>
+		</div>
+		<div class="row">
+			<div class="label-top w33">
 				<label for="cf-father-work">עיסוק האב</label>
-				<input id="cf-father-work" type="text" name="father_work" value="<?= $meta['father_work'] ?>" required>
+				<input id="cf-father-work" type="text" name="father_work" value="<?= $meta['father_work'] ?>">
 			</div>
 			<div class="label-top w33">
 				<label for="cf-mother-work">עיסוק האם</label>
-				<input id="cf-mother-work" type="text" name="mother_work" value="<?= $meta['mother_work'] ?>" required>
+				<input id="cf-mother-work" type="text" name="mother_work" value="<?= $meta['mother_work'] ?>">
+			</div>
+		</div>
+		<div class="row">
+			<div class="label-top w33">
+				<label for="cf-father_community">מוצא האב</label>
+				<select id="cf-father_community" name="father_community">
+					<option></option>
+					<? Matchrepo::listOptions(Male::$props['community']['options'], $meta['father_community']) ?>
+				</select>
+			</div>
+			<div class="label-top w33">
+				<label for="cf-mother_community">מוצא האם</label>
+				<select id="cf-mother_community" name="mother_community">
+					<option></option>
+					<? Matchrepo::listOptions(Female::$props['community']['options'], $meta['mother_community']) ?>
+				</select>
 			</div>
 		</div>
 		<div class="row">

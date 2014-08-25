@@ -300,6 +300,14 @@ $globalProps = [
 		'pattern' => '/^[0-4]$/'
 	],
 
+	'father_name' => [
+		'label' => 'שם האב'
+	],
+
+	'mother_name' => [
+		'label' => 'שם האם'
+	],
+
 	'father_community' => [
 		'label' => 'מוצא האב',
 		'compare' => 'IN'
