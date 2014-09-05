@@ -54,3 +54,12 @@ textarea {
 .row {
   overflow: hidden;
 }
+#private-area {
+  background-color: lightblue;
+  background-color: rgba(173, 216, 230, 0.2);
+  padding: 0 20px 10px;
+}
+#private-area h2 {
+  font-size: 27px;
+  text-align: center;
+}
