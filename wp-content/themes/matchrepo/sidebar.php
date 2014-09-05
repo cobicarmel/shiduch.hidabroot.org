@@ -29,7 +29,7 @@ $site_name = get_option('blogname');
 
 			$id = $current_user ->ID;
 
-			$posts_count = $wpdb ->get_var('SELECT COUNT(ID) FROM ' . $wpdb ->prefix . "posts WHERE post_author = '$id' AND post_type = 'card' AND post_status = 'publish'");
+			$posts_count = $wpdb ->get_var('SELECT COUNT(ID) FROM ' . $wpdb ->prefix . "posts WHERE post_author = '$id' AND post_type = 'card' AND (post_status = 'publish' OR post_status = 'private')");
 			?>
 			<div id="user-logged-in">
 				<h3>

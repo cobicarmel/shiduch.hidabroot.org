@@ -22,7 +22,8 @@ $args = array(
 	'orderby' => 'post_date',
 	'order' => 'DESC',
 	'posts_per_page' => 10,
-	'paged' => $paged
+	'paged' => $paged,
+	'post_status' => ['publish', 'private']
 );
 
 query_posts($args);

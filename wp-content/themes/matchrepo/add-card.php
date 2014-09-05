@@ -30,10 +30,12 @@ if($level == 3) {
 
 	$isCorrect = Cards::validateCardData($_POST);
 
+	$post_status = $_POST['privacy'] ? 'private' : 'pending';
+
 	$params = array(
 		'post_type' => 'card',
 		'post_title' => $_POST['title'],
-		'post_status' => 'pending',
+		'post_status' => $post_status,
 		'post_content' => $_POST['content']
 	);
 
@@ -102,10 +104,6 @@ get_header();
 				<div class="label-top w33">
 					<label for="cf-first-name">שם פרטי</label>
 					<input id="cf-first-name" type="text" name="title" required>
-				</div>
-				<div class="label-top w33">
-					<label for="cf-last-name">שם משפחה</label>
-					<input id="cf-last-name" type="text" name="last_name">
 				</div>
 				<div class="label-top w33">
 					<label for="cf-birthday">תאריך לידה</label>
@@ -186,83 +184,18 @@ get_header();
 				<legend>משפחה</legend>
 				<div class="row">
 					<div class="label-top w33">
-						<label for="cf-father-name">שם האב</label>
-						<input id="cf-father-name" type="text" name="father_name">
-					</div>
-					<div class="label-top w33">
-						<label for="cf-mother-name">שם האם</label>
-						<input id="cf-mother-name" type="text" name="mother_name">
-					</div>
-				</div>
-				<div class="row">
-					<div class="label-top w33">
 						<label for="cf-father_community">מוצא האב</label>
-						<select id="cf-father_community" name="father_community">
+						<select id="cf-father_community" name="father_community" required>
 							<option></option>
 							<? Matchrepo::listOptions(Male::$props['community']['options']) ?>
 						</select>
 					</div>
 					<div class="label-top w33">
 						<label for="cf-mother_community">מוצא האם</label>
-						<select id="cf-mother_community" name="mother_community">
+						<select id="cf-mother_community" name="mother_community" required>
 							<option></option>
 							<? Matchrepo::listOptions(Female::$props['community']['options']) ?>
 						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="label-top w33">
-						<label for="cf-father-work">עיסוק האב</label>
-						<input id="cf-father-work" type="text" name="father_work">
-					</div>
-					<div class="label-top w33">
-						<label for="cf-mother-work">עיסוק האם</label>
-						<input id="cf-mother-work" type="text" name="mother_work">
-					</div>
-				</div>
-				<div class="row">
-					<div class="label-top w25">
-						<label for="cf-family-children">מספר ילדים במשפחה</label>
-						<input id="cf-family-children" type="number" min="0" max="20" name="family_children">
-					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>לימודים</legend>
-				<? if($gender) { ?>
-					<div class="label-top w33">
-						<label for="cf-college">סמינר</label>
-						<input id="cf-college" type="text" name="college" required>
-					</div>
-				<?
-				}
-				else {
-					?>
-					<div class="label-top w33">
-						<label for="cf-yeshiva_k">ישיבה קטנה</label>
-						<input id="cf-yeshiva_k" type="text" name="yeshiva_k" required>
-					</div>
-					<div class="label-top w33">
-						<label for="cf-yeshiva_g">ישיבה גדולה</label>
-						<input id="cf-yeshiva_g" type="text" name="yeshiva_g" required>
-					</div>
-				<? } ?>
-			</fieldset>
-			<fieldset>
-				<legend>עיסוק</legend>
-				<div class="row">
-					<? if(! $gender) { ?>
-						<div class="label-top w33">
-							<label for="cf-practice">עיסוק</label>
-							<select id="cf-practice" name="practice" required>
-								<option></option>
-								<? Matchrepo::listOptions($props['practice']['options']) ?>
-							</select>
-						</div>
-					<? } ?>
-					<div class="label-top w33">
-						<label for="cf-work">מקום לימודים/עיסוק כיום</label>
-						<input id="cf-work" type="text" name="work" required>
 					</div>
 				</div>
 			</fieldset>
@@ -360,6 +293,90 @@ get_header();
 				<legend><?= $labels['Little_About_The_Candidate'] ?></legend>
 				<textarea id="cf-content" name="content" required></textarea>
 			</fieldset>
+			<div id="private-area">
+				<h2>אזור אישי</h2>
+				<h5>הפרטים שלהלן יהיו גלויים רק לך ולצוות האתר:</h5>
+				<fieldset>
+					<legend>משפחה</legend>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-last-name">שם משפחה</label>
+							<input id="cf-last-name" type="text" name="last_name">
+						</div>
+						<div class="label-top w25">
+							<label for="cf-family-children">מספר ילדים במשפחה</label>
+							<input id="cf-family-children" type="number" min="0" max="20" name="family_children">
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-father-name">שם האב</label>
+							<input id="cf-father-name" type="text" name="father_name">
+						</div>
+						<div class="label-top w33">
+							<label for="cf-mother-name">שם האם</label>
+							<input id="cf-mother-name" type="text" name="mother_name">
+						</div>
+					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-father-work">עיסוק האב</label>
+							<input id="cf-father-work" type="text" name="father_work">
+						</div>
+						<div class="label-top w33">
+							<label for="cf-mother-work">עיסוק האם</label>
+							<input id="cf-mother-work" type="text" name="mother_work">
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>לימודים</legend>
+					<? if($gender) { ?>
+						<div class="label-top w33">
+							<label for="cf-college">סמינר</label>
+							<input id="cf-college" type="text" name="college">
+						</div>
+					<?
+					}
+					else {
+						?>
+						<div class="label-top w33">
+							<label for="cf-yeshiva_k">ישיבה קטנה</label>
+							<input id="cf-yeshiva_k" type="text" name="yeshiva_k">
+						</div>
+						<div class="label-top w33">
+							<label for="cf-yeshiva_g">ישיבה גדולה</label>
+							<input id="cf-yeshiva_g" type="text" name="yeshiva_g">
+						</div>
+					<? } ?>
+				</fieldset>
+				<fieldset>
+					<legend>עיסוק</legend>
+					<div class="row">
+						<? if(! $gender) { ?>
+							<div class="label-top w33">
+								<label for="cf-practice">עיסוק</label>
+								<select id="cf-practice" name="practice">
+									<option></option>
+									<? Matchrepo::listOptions($props['practice']['options']) ?>
+								</select>
+							</div>
+						<? } ?>
+						<div class="label-top w33">
+							<label for="cf-work">מקום לימודים/עיסוק כיום</label>
+							<input id="cf-work" type="text" name="work">
+						</div>
+					</div>
+				</fieldset>
+
+			</div>
+			<fieldset>
+				<legend>פרטיות</legend>
+				<select name="privacy" id="privacy">
+					<option value="0">הכרטיס גלוי לכולם</option>
+					<option value="1">הכרטיס גלוי רק לי ולצוות האתר</option>
+				</select>
+			</fieldset>
 			</div>
 			<div id="submit">
 				<input type="submit" value="הוספת כרטיס">
@@ -371,8 +388,11 @@ get_header();
 					<div id="register-success">
 						<h3>הכרטיס נרשם בהצלחה!</h3>
 
-						<p>הכרטיס של <?= $params['post_title'] ?> נכנס למערכת והוא יופיע בחשבונך לאחר אישורו על ידי צוות
-							האתר.</p>
+						<p><?
+							$future = $post_status == 'pending' ? ' והוא יופיע בחשבונך לאחר אישורו על ידי צוות האתר' : '. הכרטיס יהיה גלוי רק לך ולצוות האתר.';
+
+							printf('הכרטיס של %s נכנס למערכת%s', $params['post_title'], $future);
+							?></p>
 					</div>
 				<?
 				else :
