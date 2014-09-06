@@ -39,12 +39,7 @@ if(! empty(Cards::$user_types[$user_type]))
 			</div>
 		</div>
 		<div class="card-side">
-			<div class="card-avatar">
-				<div class="card-title title"><? the_title() ?></div>
-				<div class="card-image">
-					<img src="<?= WP_CONTENT_URL ?>/themes/matchrepo/media/<?= $MCard ->images['recent_cards'] ?>">
-				</div>
-			</div>
+			<? $MCard -> getAvatar() ?>
 			<div class="card-side-box">
 				<div class="title"><?= stripslashes(__('This Card Managed By', THEME_NAME)) ?></div>
 				<div id="card-manager" class="cdb-content"><?= $cardManager ?></div>

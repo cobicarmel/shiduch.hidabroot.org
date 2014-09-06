@@ -486,7 +486,8 @@ footer {
 
 .card-avatar {
     background-color: #323227;
-    overflow: hidden;
+    position: relative;
+    padding-bottom: 1px;
 }
 
 .card-title {
@@ -507,6 +508,23 @@ footer {
 .card-image img {
     height: 100%;
     width: 100%;
+}
+
+.private-indicator {
+    position: absolute;
+    top: 50%;
+    padding: 0 10px;
+    background-color: #6a6ae9;
+    color: #FFF;
+    border-radius: 5px 0 0 5px;
+}
+
+.private-indicator .title-deco {
+    background-color: #6a6ae9;
+}
+
+.private-indicator .title-deco:before, .private-indicator .title-deco:after {
+    border-color: transparent #6a6ae9;
 }
 
 .card-meta ul {

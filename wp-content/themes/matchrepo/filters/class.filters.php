@@ -10,6 +10,10 @@ class MR_filters {
 		return get_bloginfo();
 	}
 
+	static function private_title_format(){
+		return '%s';
+	}
+
 	static function custom_mail_from(){
 
 		$from = preg_replace('/^https?:\/\/(www\.)?/', '', site_url());
@@ -36,3 +40,7 @@ add_filter('login_headertitle', 'MR_filters::login_logo_title');
 add_filter('wp_mail_from', 'MR_filters::custom_mail_from');
 
 add_filter('wp_mail_from_name', 'MR_filters::custom_mail_from_name');
+
+/* Post title filters */
+
+add_filter('private_title_format', 'MR_filters::private_title_format');

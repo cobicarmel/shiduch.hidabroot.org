@@ -450,12 +450,33 @@ abstract class Cards {
 
 	function get_meta(){
 
-		return $this ->meta;
+		return $this->meta;
 	}
 
 	static function getTerms(){
 
 		return self::$orderTerms;
+	}
+
+	function getAvatar(){
+
+		global $post;
+
+		?>
+
+		<div class="card-avatar">
+			<div class="card-title title"><? the_title() ?></div>
+			<div class="card-image">
+				<img src="<?= WP_CONTENT_URL ?>/themes/matchrepo/media/<?= $this->images['recent_cards'] ?>">
+			</div>
+			<? if($post->post_status == 'private') { ?>
+				<div class="private-indicator">
+					<div class="title-deco"></div>
+					כרטיס פרטי
+				</div>
+			<? } ?>
+		</div>
+	<?
 	}
 }
 

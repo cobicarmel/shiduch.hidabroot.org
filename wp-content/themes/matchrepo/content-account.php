@@ -14,12 +14,7 @@ $MCard = new $gender($arr_post);
 			</div>
 		</div>
 		<div class="card-side">
-			<div class="card-avatar">
-				<div class="card-title title"><? the_title() ?></div>
-				<div class="card-image">
-					<img src="<?= WP_CONTENT_URL ?>/themes/matchrepo/media/<?= $MCard ->images['recent_cards'] ?>">
-				</div>
-			</div>
+			<? $MCard -> getAvatar() ?>
 		</div>
 		<div class="to-full-card">
 			<a href="<? the_permalink() ?>"><? _e('To Full Card', THEME_NAME) ?></a>
