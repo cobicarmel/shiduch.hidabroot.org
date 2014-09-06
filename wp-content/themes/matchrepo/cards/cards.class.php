@@ -47,7 +47,8 @@ abstract class Cards {
 		'other_disability',
 		'smoke',
 		'license',
-		'cover'
+		'cover',
+		'privacy'
 	];
 
 	private static $requiredTerms = [
@@ -59,9 +60,6 @@ abstract class Cards {
 		'conception',
 		'father_community',
 		'mother_community',
-		'work',
-		'father_work',
-		'mother_work',
 		'height',
 		'look',
 		'skin',
@@ -85,7 +83,23 @@ abstract class Cards {
 		'last_name',
 		'father_name',
 		'mother_name',
-		'family_children'
+		'father_work',
+		'mother_work',
+		'family_children',
+		'work'
+	];
+
+	private static $privateTerms = [
+		'college',
+		'family_children',
+		'father_name',
+		'father_work',
+		'last_name',
+		'mother_name',
+		'mother_work',
+		'yeshiva_k',
+		'yeshiva_g',
+		'work'
 	];
 
 	public static $user_types = [
@@ -129,11 +143,11 @@ abstract class Cards {
 
 	function __construct(array $card){
 
-		$this ->card = $card;
-		$this ->id = $card['ID'];
-		$this ->name = $card['post_title'];
-		$this ->getMetaFromDB();
-		$this ->set_age();
+		$this->card = $card;
+		$this->id = $card['ID'];
+		$this->name = $card['post_title'];
+		$this->getMetaFromDB();
+		$this->set_age();
 	}
 
 	protected static function build_form($params, $options = null){
@@ -162,7 +176,7 @@ abstract class Cards {
 			$hasSearch = $searchValue || $searchValue == '0';
 			?>
 
-		<div class="form-field form-field-<?= $param ?>">
+			<div class="form-field form-field-<?= $param ?>">
 			<div class="form-label">
 				<label><?= $props['label'] ?>:</label>
 			</div>
@@ -225,41 +239,41 @@ abstract class Cards {
 
 		$stack = [];
 
-		$meta = get_post_meta($this ->id);
+		$meta = get_post_meta($this->id);
 
 		$terms = Cards::getTerms();
 
 		foreach($terms as $term)
 			$stack[$term] = isset($meta[$term]) ? maybe_unserialize($meta[$term][0]) : '';
 
-		$this ->meta = $stack;
+		$this->meta = $stack;
 	}
 
 	protected function set_age(){
 
-		$oldTime = DateTime::createFromFormat('Y-m-d', $this ->meta['birthday']) ->getTimestamp();
+		$oldTime = DateTime::createFromFormat('Y-m-d', $this->meta['birthday'])->getTimestamp();
 
 		$rangeMS = time() - $oldTime;
 
 		$years = $rangeMS / 3600 / 24 / 365;
 
-		$this ->meta['age'] = floor($years);
+		$this->meta['age'] = floor($years);
 	}
 
 	function get_excerpt(){
 
 		$excerpt_items = ['age', 'status'];
 
-		$items = $this ->prepare_display($excerpt_items, false);
+		$items = $this->prepare_display($excerpt_items, false);
 
-		$items['community'] = 'מוצא ' . Cards::$props['community']['options'][$this ->meta['community']];
+		$items['community'] = 'מוצא ' . Cards::$props['community']['options'][$this->meta['community']];
 
-		return $this ->name . ', ' . implode(', ', $items);
+		return $this->name . ', ' . implode(', ', $items);
 	}
 
 	function list_meta($items = null){
 
-		$meta = $this ->prepare_display($items);
+		$meta = $this->prepare_display($items);
 
 		echo '<ul>';
 
@@ -294,7 +308,7 @@ abstract class Cards {
 		$actionPage = get_page_by_title('תוצאות חיפוש');
 
 		$options = [
-			'action' => get_page_link($actionPage ->ID),
+			'action' => get_page_link($actionPage->ID),
 			'class' => 'search-form',
 			'get_search_params' => true
 		];
@@ -304,7 +318,7 @@ abstract class Cards {
 
 	function prepare_display($items = null, $withLabels = true){
 
-		$meta = $this ->meta;
+		$meta = $this->meta;
 
 		unset($meta['birthday'], $meta['gender']);
 
@@ -326,28 +340,32 @@ abstract class Cards {
 
 		$itemsStack = [];
 
-		foreach(self::$orderTerms as $term){
-			if(in_array($term, $unsortedKeys))
+		$privateAccess = current_user_can('edit_post', $this->id);
+
+		foreach(self::$orderTerms as $term) {
+			if(
+				in_array($term, $unsortedKeys) &&
+				! empty($this::$props[$term]) &&
+				isset($meta[$term]) &&
+				($privateAccess || ! in_array($term, self::$privateTerms))
+			)
 				$keys[] = $term;
 		}
 
 		foreach($keys as $key) {
 
-			if(empty($this::$props[$key]) || ! isset($meta[$key]))
-				continue;
-
 			if(! isset($this::$props[$key]['label'])) {
 				die($key . ' is incorrect');
 			}
 
-			if(isset($this ->labeledItems[$key]))
-				$label = $this ->labeledItems[$key];
+			if(isset($this->labeledItems[$key]))
+				$label = $this->labeledItems[$key];
 			else
 				$label = $this::$props[$key]['label'];
 
 			$param = null;
 
-			if(in_array($key, $this ->indexItems)) {
+			if(in_array($key, $this->indexItems)) {
 
 				if(is_array($meta[$key])) {
 
