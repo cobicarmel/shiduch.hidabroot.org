@@ -42,8 +42,8 @@ msgstr "הערות נוספות"
 msgid "%s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "%s <span class=\"meta-nav\">&larr;</span>"
 
-#: inc/customizer.php:37 inc/customizer.php:102 inc/featured-content.php:410
-#: inc/featured-content.php:419 inc/featured-content.php:479
+#: inc/customizer.php:37 inc/customizer.php:102 inc/featured-content.php:407
+#: inc/featured-content.php:416 inc/featured-content.php:476
 msgctxt "featured content default tag slug"
 msgid "featured"
 msgstr "featured"
@@ -55,7 +55,7 @@ msgstr "השתמשו בוידג'ט זה כדי להציג הערות, ציטוט
 msgid "http://wordpress.org/themes/twentyfourteen"
 msgstr "http://wordpress.org/themes/twentyfourteen"
 
-#: inc/customizer.php:36 inc/featured-content.php:409
+#: inc/customizer.php:36 inc/featured-content.php:406
 msgid "Use a <a href=\"%1$s\">tag</a> to feature your posts. If no posts match the tag, <a href=\"%2$s\">sticky posts</a> will be displayed instead."
 msgstr "השתמשו ב<a href=\"%1$s\">תגית</a> כדי לקדם תכנים בעמוד הראשי. אם לא ימצאו תכנים עם התגית הזו, יוצגו במקום <a href=\"%2$s\">הפוסטים הדביקים</a>."
 
@@ -85,11 +85,11 @@ msgstr "Y"
 msgid "Site Title Color"
 msgstr "צבע כותרת אתר"
 
-#: inc/featured-content.php:431
+#: inc/featured-content.php:428
 msgid "Tag Name"
 msgstr "שם תגית"
 
-#: inc/featured-content.php:436
+#: inc/featured-content.php:433
 msgid "Don&rsquo;t display tag on front end."
 msgstr "אל תציג תגיות האתר."
 
@@ -153,7 +153,7 @@ msgstr "דרישת המינימום להפעלת ערכת העיצוב Twenty Fo
 msgid "Background may only be visible on wide screens."
 msgstr "רקע האתר נראה רק במסכים רחבים במיוחד."
 
-#: inc/customizer.php:35 inc/featured-content.php:408
+#: inc/customizer.php:35 inc/featured-content.php:405
 msgid "Featured Content"
 msgstr "תוכן ראשי"
 
@@ -173,19 +173,19 @@ msgstr "סליידר"
 msgid "Enhance your site design by using <a href=\"%s\">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Twenty Fourteen uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page."
 msgstr "שפרו את עיצוב האתר תוך שימוש ב<a href=\"%s\">תמונות ראשיות</a> לתכנים (הידועות גם כתמונות ממוזערות). הדבר מאפשר לשייך תמונות לתכנים מבלי להכניס אותן לתוכן. התבנית Twenty Fourteen עושה שימוש בתמונות ראשיות  לפוסטים ועמודים, מעל לכותרת ובאזור התכנים המקודמים בעמוד הבית."
 
-#: inc/template-tags.php:53
+#: inc/template-tags.php:58
 msgid "Posts navigation"
 msgstr "ניווט פוסטים"
 
-#: inc/template-tags.php:84
+#: inc/template-tags.php:89
 msgid "<span class=\"meta-nav\">Published In</span>%title"
 msgstr "<span class=\"meta-nav\">פורסם ב</span>%title"
 
-#: inc/template-tags.php:86
+#: inc/template-tags.php:91
 msgid "<span class=\"meta-nav\">Previous Post</span>%title"
 msgstr "<span class=\"meta-nav\">פוסט קודם</span>%title"
 
-#: inc/template-tags.php:87
+#: inc/template-tags.php:92
 msgid "<span class=\"meta-nav\">Next Post</span>%title"
 msgstr "<span class=\"meta-nav\">פוסט הבא</span>%title"
 
@@ -334,7 +334,7 @@ msgctxt "Lato font: on or off"
 msgid "on"
 msgstr "off"
 
-#: functions.php:488
+#: functions.php:491
 msgid "Page %s"
 msgstr "עמוד %s"
 
@@ -350,19 +350,19 @@ msgstr "תפריט ראשי"
 msgid "Skip to content"
 msgstr "דילוג לתוכן"
 
-#: inc/template-tags.php:80
+#: inc/template-tags.php:85
 msgid "Post navigation"
 msgstr "ניווט פוסטים"
 
-#: inc/template-tags.php:45
+#: inc/template-tags.php:50
 msgid "&larr; Previous"
 msgstr "תמונה קודמת"
 
-#: inc/template-tags.php:46
+#: inc/template-tags.php:51
 msgid "Next &rarr;"
 msgstr "תמונה הבאה"
 
-#: inc/template-tags.php:104
+#: inc/template-tags.php:109
 msgid "Sticky"
 msgstr "דביק"
 
