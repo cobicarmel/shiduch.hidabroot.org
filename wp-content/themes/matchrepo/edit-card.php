@@ -9,7 +9,7 @@ use Matchrepo\QueryResponse;
 $post_id = $_GET['id'];
 
 if(! current_user_can('edit_post', $post_id))
-	wp_die('אין לך הרשאות לערוך את הכרטיס הזה.');
+	wp_die('אין לך הרשאות לערוך את הכרטיס הזה.', 'הגישה נדחתה');
 
 Matchrepo::mainFormHeader();
 
@@ -21,11 +21,14 @@ if($_POST) {
 
 	if($isCorrect === true) {
 
-		wp_update_post([
+		$args = [
 			'ID' => $post_id,
 			'post_title' => $_POST['title'],
-			'post_content' => $_POST['content']
-		]);
+			'post_content' => $_POST['content'],
+			'post_status' => $_POST['privacy'] ? 'private' : 'publish'
+		];
+
+		wp_update_post($args);
 
 		unset($_POST['title'], $_POST['content']);
 
