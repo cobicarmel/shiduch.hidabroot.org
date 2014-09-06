@@ -1,6 +1,10 @@
 <?
 $arr_post = (array) $post;
+
 $gender = CardHelpers::get_gender($arr_post);
+
+/** @var Cards $MCard */
+
 $MCard = new $gender($arr_post);
 ?>
 

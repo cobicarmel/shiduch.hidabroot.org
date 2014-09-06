@@ -1,6 +1,8 @@
 <?
 
-/** @var WP_Post $post */
+/* @var WP_Post $post
+ * @var Cards $MCard
+ */
 
 use Matchrepo\QueryResponse;
 
