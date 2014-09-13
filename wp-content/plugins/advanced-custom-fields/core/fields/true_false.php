@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_true_false extends acf_field
 {
@@ -74,13 +74,13 @@ class acf_field_true_false extends acf_field
 		
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Message",'acf'); ?></label>
-		<p class="description"><? _e("eg. Show extra content",'acf'); ?></a></p>
+		<label><?php _e("Message",'acf'); ?></label>
+		<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][message]',
@@ -89,12 +89,12 @@ class acf_field_true_false extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Default Value",'acf'); ?></label>
+		<label><?php _e("Default Value",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'true_false',
@@ -105,7 +105,7 @@ class acf_field_true_false extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

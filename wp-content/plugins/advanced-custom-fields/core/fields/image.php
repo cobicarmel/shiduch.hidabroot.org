@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_image extends acf_field
 {
@@ -75,22 +75,22 @@ class acf_field_image extends acf_field
 		}
 		
 		?>
-<div class="acf-image-uploader clearfix <? echo $o['class']; ?>" data-preview_size="<? echo $field['preview_size']; ?>" data-library="<? echo $field['library']; ?>" >
-	<input class="acf-image-value" type="hidden" name="<? echo $field['name']; ?>" value="<? echo $field['value']; ?>" />
+<div class="acf-image-uploader clearfix <?php echo $o['class']; ?>" data-preview_size="<?php echo $field['preview_size']; ?>" data-library="<?php echo $field['library']; ?>" >
+	<input class="acf-image-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 	<div class="has-image">
 		<div class="hover">
 			<ul class="bl">
-				<li><a class="acf-button-delete ir" href="#"><? _e("Remove",'acf'); ?></a></li>
-				<li><a class="acf-button-edit ir" href="#"><? _e("Edit",'acf'); ?></a></li>
+				<li><a class="acf-button-delete ir" href="#"><?php _e("Remove",'acf'); ?></a></li>
+				<li><a class="acf-button-edit ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
-		<img class="acf-image-image" src="<? echo $o['url']; ?>" alt=""/>
+		<img class="acf-image-image" src="<?php echo $o['url']; ?>" alt=""/>
 	</div>
 	<div class="no-image">
-		<p><? _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<? _e('Add Image','acf'); ?>" />
+		<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />
 	</div>
 </div>
-		<?
+		<?php
 	}
 	
 	
@@ -113,13 +113,13 @@ class acf_field_image extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Return Value",'acf'); ?></label>
-		<p><? _e("Specify the returned value on front end",'acf') ?></p>
+		<label><?php _e("Return Value",'acf'); ?></label>
+		<p><?php _e("Specify the returned value on front end",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
 			'name'		=>	'fields['.$key.'][save_format]',
@@ -134,13 +134,13 @@ class acf_field_image extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Preview Size",'acf'); ?></label>
-		<p><? _e("Shown when entering data",'acf') ?></p>
+		<label><?php _e("Preview Size",'acf'); ?></label>
+		<p><?php _e("Shown when entering data",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
@@ -153,13 +153,13 @@ class acf_field_image extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Library",'acf'); ?></label>
-		<p><? _e("Limit the media library choice",'acf') ?></p>
+		<label><?php _e("Library",'acf'); ?></label>
+		<p><?php _e("Limit the media library choice",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
@@ -175,7 +175,7 @@ class acf_field_image extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

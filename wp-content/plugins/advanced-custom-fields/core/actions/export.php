@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  Export
@@ -202,26 +202,26 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<? the_generator( 'export' ); ?>
+<?php the_generator( 'export' ); ?>
 <rss version="2.0"
-	xmlns:excerpt="http://wordpress.org/export/<? echo WXR_VERSION; ?>/excerpt/"
+	xmlns:excerpt="http://wordpress.org/export/<?php echo WXR_VERSION; ?>/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:wp="http://wordpress.org/export/<? echo WXR_VERSION; ?>/"
+	xmlns:wp="http://wordpress.org/export/<?php echo WXR_VERSION; ?>/"
 >
 
 <channel>
-	<title><? bloginfo_rss( 'name' ); ?></title>
-	<link><? bloginfo_rss( 'url' ); ?></link>
-	<description><? bloginfo_rss( 'description' ); ?></description>
-	<pubDate><? echo date( 'D, d M Y H:i:s +0000' ); ?></pubDate>
-	<language><? echo get_option( 'rss_language' ); ?></language>
-	<wp:wxr_version><? echo WXR_VERSION; ?></wp:wxr_version>
-	<wp:base_site_url><? echo wxr_site_url(); ?></wp:base_site_url>
-	<wp:base_blog_url><? bloginfo_rss( 'url' ); ?></wp:base_blog_url>
-<? wxr_authors_list(); ?>
-<? if ( $my_options['acf_posts'] ) {
+	<title><?php bloginfo_rss( 'name' ); ?></title>
+	<link><?php bloginfo_rss( 'url' ); ?></link>
+	<description><?php bloginfo_rss( 'description' ); ?></description>
+	<pubDate><?php echo date( 'D, d M Y H:i:s +0000' ); ?></pubDate>
+	<language><?php echo get_option( 'rss_language' ); ?></language>
+	<wp:wxr_version><?php echo WXR_VERSION; ?></wp:wxr_version>
+	<wp:base_site_url><?php echo wxr_site_url(); ?></wp:base_site_url>
+	<wp:base_blog_url><?php bloginfo_rss( 'url' ); ?></wp:base_blog_url>
+<?php wxr_authors_list(); ?>
+<?php if ( $my_options['acf_posts'] ) {
 
 	global $wp_query, $wpdb, $post;
 	$wp_query->in_the_loop = true; // Fake being in the loop.
@@ -237,23 +237,23 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 		setup_postdata( $post );
 ?>
 	<item>
-		<title><? echo apply_filters( 'the_title_rss', $post->post_title ); ?></title>
-		<link><? the_permalink_rss() ?></link>
-		<pubDate><? echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
-		<dc:creator><? echo get_the_author_meta( 'login' ); ?></dc:creator>
-		<guid isPermaLink="false"><? esc_url( the_guid() ); ?></guid>
-		<wp:post_id><? echo $post->ID; ?></wp:post_id>
-		<wp:post_date><? echo $post->post_date; ?></wp:post_date>
-		<wp:post_date_gmt><? echo $post->post_date_gmt; ?></wp:post_date_gmt>
-		<wp:comment_status><? echo $post->comment_status; ?></wp:comment_status>
-		<wp:ping_status><? echo $post->ping_status; ?></wp:ping_status>
-		<wp:post_name><? echo $post->post_name; ?></wp:post_name>
-		<wp:status><? echo $post->post_status; ?></wp:status>
-		<wp:post_parent><? echo $post->post_parent; ?></wp:post_parent>
-		<wp:menu_order><? echo $post->menu_order; ?></wp:menu_order>
-		<wp:post_type><? echo $post->post_type; ?></wp:post_type>
-		<wp:post_password><? echo $post->post_password; ?></wp:post_password>
-<?	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
+		<title><?php echo apply_filters( 'the_title_rss', $post->post_title ); ?></title>
+		<link><?php the_permalink_rss() ?></link>
+		<pubDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
+		<dc:creator><?php echo get_the_author_meta( 'login' ); ?></dc:creator>
+		<guid isPermaLink="false"><?php esc_url( the_guid() ); ?></guid>
+		<wp:post_id><?php echo $post->ID; ?></wp:post_id>
+		<wp:post_date><?php echo $post->post_date; ?></wp:post_date>
+		<wp:post_date_gmt><?php echo $post->post_date_gmt; ?></wp:post_date_gmt>
+		<wp:comment_status><?php echo $post->comment_status; ?></wp:comment_status>
+		<wp:ping_status><?php echo $post->ping_status; ?></wp:ping_status>
+		<wp:post_name><?php echo $post->post_name; ?></wp:post_name>
+		<wp:status><?php echo $post->post_status; ?></wp:status>
+		<wp:post_parent><?php echo $post->post_parent; ?></wp:post_parent>
+		<wp:menu_order><?php echo $post->menu_order; ?></wp:menu_order>
+		<wp:post_type><?php echo $post->post_type; ?></wp:post_type>
+		<wp:post_password><?php echo $post->post_password; ?></wp:post_password>
+<?php	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
 		foreach( $postmeta as $meta ) : if ( $meta->meta_key != '_edit_lock' ) : 
 			
 			$meta->meta_value = maybe_unserialize( $meta->meta_value );
@@ -262,12 +262,12 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 						
 		?>
 		<wp:postmeta>
-			<wp:meta_key><? echo $meta->meta_key; ?></wp:meta_key>
-			<wp:meta_value><? echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
+			<wp:meta_key><?php echo $meta->meta_key; ?></wp:meta_key>
+			<wp:meta_value><?php echo wxr_cdata( $meta->meta_value ); ?></wp:meta_value>
 		</wp:postmeta>
-<?	endif; endforeach; ?>
+<?php	endif; endforeach; ?>
 	</item>
-<?
+<?php
 	}
 } 
 ?>

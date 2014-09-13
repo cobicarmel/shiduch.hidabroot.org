@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_file extends acf_field
 {
@@ -88,12 +88,12 @@ class acf_field_file extends acf_field
 		
 		
 		?>
-<div class="acf-file-uploader clearfix <? echo $o['class']; ?>" data-library="<? echo $field['library']; ?>">
-	<input class="acf-file-value" type="hidden" name="<? echo $field['name']; ?>" value="<? echo $field['value']; ?>" />
+<div class="acf-file-uploader clearfix <?php echo $o['class']; ?>" data-library="<?php echo $field['library']; ?>">
+	<input class="acf-file-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 	<div class="has-file">
 		<ul class="hl clearfix">
 			<li>
-				<img class="acf-file-icon" src="<? echo $o['icon']; ?>" alt=""/>
+				<img class="acf-file-icon" src="<?php echo $o['icon']; ?>" alt=""/>
 				<div class="hover">
 					<ul class="bl">
 						<li><a href="#" class="acf-button-delete ir">Remove</a></li>
@@ -103,15 +103,15 @@ class acf_field_file extends acf_field
 			</li>
 			<li>
 				<p>
-					<strong class="acf-file-title"><? echo $o['title']; ?></strong>
+					<strong class="acf-file-title"><?php echo $o['title']; ?></strong>
 				</p>
 				<p>
-					<strong><? _e('Name', 'acf'); ?>:</strong>
-					<a class="acf-file-name" href="<? echo $o['url']; ?>" target="_blank"><? echo $o['name']; ?></a>
+					<strong><?php _e('Name', 'acf'); ?>:</strong>
+					<a class="acf-file-name" href="<?php echo $o['url']; ?>" target="_blank"><?php echo $o['name']; ?></a>
 				</p>
 				<p>
-					<strong><? _e('Size', 'acf'); ?>:</strong>
-					<span class="acf-file-size"><? echo $o['size']; ?></span>
+					<strong><?php _e('Size', 'acf'); ?>:</strong>
+					<span class="acf-file-size"><?php echo $o['size']; ?></span>
 				</p>
 				
 			</li>
@@ -120,12 +120,12 @@ class acf_field_file extends acf_field
 	<div class="no-file">
 		<ul class="hl clearfix">
 			<li>
-				<span><? _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><? _e('Add File','acf'); ?></a>
+				<span><?php _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><?php _e('Add File','acf'); ?></a>
 			</li>
 		</ul>
 	</div>
 </div>
-		<?
+		<?php
 	}
 	
 	
@@ -148,12 +148,12 @@ class acf_field_file extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Return Value",'acf'); ?></label>
+		<label><?php _e("Return Value",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
@@ -170,12 +170,12 @@ class acf_field_file extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Library",'acf'); ?></label>
+		<label><?php _e("Library",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
@@ -191,7 +191,7 @@ class acf_field_file extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

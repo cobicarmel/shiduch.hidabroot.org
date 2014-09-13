@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /*
 *  acf_export
@@ -156,8 +156,8 @@ class acf_export
 <div class="wrap">
 
 	<div class="icon32" id="icon-acf"><br></div>
-	<h2 style="margin: 4px 0 25px;"><? _e("Export",'acf'); ?></h2>
-		<?
+	<h2 style="margin: 4px 0 25px;"><?php _e("Export",'acf'); ?></h2>
+		<?php
 		
 		if( $this->action == "export_to_php" )
 		{
@@ -170,7 +170,7 @@ class acf_export
 		
 		?>
 </div>
-		<?
+		<?php
 		
 		return;
 		
@@ -210,19 +210,19 @@ class acf_export
 		
 		?>
 <form method="post">
-<input type="hidden" name="nonce" value="<? echo wp_create_nonce( 'export' ); ?>" />
+<input type="hidden" name="nonce" value="<?php echo wp_create_nonce( 'export' ); ?>" />
 <div class="wp-box">
 	<div class="title">
-		<h3><? _e("Export Field Groups",'acf'); ?></h3>
+		<h3><?php _e("Export Field Groups",'acf'); ?></h3>
 	</div>
 	<table class="acf_input widefat">
 		<tr>
 			<td class="label">
-				<label><? _e("Field Groups",'acf'); ?></label>
-				<p class="description"><? _e("Select the field groups to be exported",'acf'); ?></p>
+				<label><?php _e("Field Groups",'acf'); ?></label>
+				<p class="description"><?php _e("Select the field groups to be exported",'acf'); ?></p>
 			</td>
 			<td>
-				<? do_action('acf/create_field', array(
+				<?php do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'acf_posts',
 					'value'	=>	'',
@@ -236,10 +236,10 @@ class acf_export
 			<td>
 				<ul class="hl clearfix">
 					<li>
-						<input type="submit" class="acf-button" name="export_to_xml" value="<? _e("Export to XML",'acf'); ?>" />
+						<input type="submit" class="acf-button" name="export_to_xml" value="<?php _e("Export to XML",'acf'); ?>" />
 					</li>
 					<li>
-						<input type="submit" class="acf-button" name="export_to_php" value="<? _e("Export to PHP",'acf'); ?>" />
+						<input type="submit" class="acf-button" name="export_to_php" value="<?php _e("Export to PHP",'acf'); ?>" />
 					</li>
 				</ul>
 			</td>
@@ -249,32 +249,32 @@ class acf_export
 </form>
 
 <p><br /></p>
-<h3><? _e("Export to XML",'acf'); ?></h3>
-<p><? _e("ACF will create a .xml export file which is compatible with the native WP import plugin.",'acf'); ?></p>
-<p><? _e("Imported field groups <b>will</b> appear in the list of editable field groups. This is useful for migrating fields groups between Wp websites.",'acf'); ?></p>
+<h3><?php _e("Export to XML",'acf'); ?></h3>
+<p><?php _e("ACF will create a .xml export file which is compatible with the native WP import plugin.",'acf'); ?></p>
+<p><?php _e("Imported field groups <b>will</b> appear in the list of editable field groups. This is useful for migrating fields groups between Wp websites.",'acf'); ?></p>
 <ol>
-	<li><? _e("Select field group(s) from the list and click \"Export XML\"",'acf'); ?></li>
-	<li><? _e("Save the .xml file when prompted",'acf'); ?></li>
-	<li><? _e("Navigate to Tools &raquo; Import and select WordPress",'acf'); ?></li>
-	<li><? _e("Install WP import plugin if prompted",'acf'); ?></li>
-	<li><? _e("Upload and import your exported .xml file",'acf'); ?></li>
-	<li><? _e("Select your user and ignore Import Attachments",'acf'); ?></li>
-	<li><? _e("That's it! Happy WordPressing",'acf'); ?></li>
+	<li><?php _e("Select field group(s) from the list and click \"Export XML\"",'acf'); ?></li>
+	<li><?php _e("Save the .xml file when prompted",'acf'); ?></li>
+	<li><?php _e("Navigate to Tools &raquo; Import and select WordPress",'acf'); ?></li>
+	<li><?php _e("Install WP import plugin if prompted",'acf'); ?></li>
+	<li><?php _e("Upload and import your exported .xml file",'acf'); ?></li>
+	<li><?php _e("Select your user and ignore Import Attachments",'acf'); ?></li>
+	<li><?php _e("That's it! Happy WordPressing",'acf'); ?></li>
 </ol>
 
 <p><br /></p>
 
-<h3><? _e("Export to PHP",'acf'); ?></h3>
-<p><? _e("ACF will create the PHP code to include in your theme.",'acf'); ?></p>
-<p><? _e("Registered field groups <b>will not</b> appear in the list of editable field groups. This is useful for including fields in themes.",'acf'); ?></p>
-<p><? _e("Please note that if you export and register field groups within the same WP, you will see duplicate fields on your edit screens. To fix this, please move the original field group to the trash or remove the code from your functions.php file.",'acf'); ?></p>
+<h3><?php _e("Export to PHP",'acf'); ?></h3>
+<p><?php _e("ACF will create the PHP code to include in your theme.",'acf'); ?></p>
+<p><?php _e("Registered field groups <b>will not</b> appear in the list of editable field groups. This is useful for including fields in themes.",'acf'); ?></p>
+<p><?php _e("Please note that if you export and register field groups within the same WP, you will see duplicate fields on your edit screens. To fix this, please move the original field group to the trash or remove the code from your functions.php file.",'acf'); ?></p>
 <ol>
-	<li><? _e("Select field group(s) from the list and click \"Create PHP\"",'acf'); ?></li>
-	<li><? _e("Copy the PHP code generated",'acf'); ?></li>
-	<li><? _e("Paste into your functions.php file",'acf'); ?></li>
-	<li><? _e("To activate any Add-ons, edit and use the code in the first few lines.",'acf'); ?></li>
+	<li><?php _e("Select field group(s) from the list and click \"Create PHP\"",'acf'); ?></li>
+	<li><?php _e("Copy the PHP code generated",'acf'); ?></li>
+	<li><?php _e("Paste into your functions.php file",'acf'); ?></li>
+	<li><?php _e("To activate any Add-ons, edit and use the code in the first few lines.",'acf'); ?></li>
 </ol>
-<?
+<?php
 
 	}
 	
@@ -292,35 +292,35 @@ class acf_export
 		?>
 <div class="wp-box">
 	<div class="title">
-		<h3><? _e("Export Field Groups to PHP",'acf'); ?></h3>
+		<h3><?php _e("Export Field Groups to PHP",'acf'); ?></h3>
 	</div>
 	<table class="acf_input widefat">
 		<tr>
 			<td class="label">
-<h3><? _e("Instructions",'acf'); ?></h3>
+<h3><?php _e("Instructions",'acf'); ?></h3>
 <ol>
-	<li><? _e("Copy the PHP code generated",'acf'); ?></li>
-	<li><? _e("Paste into your functions.php file",'acf'); ?></li>
-	<li><? _e("To activate any Add-ons, edit and use the code in the first few lines.",'acf'); ?></li>
+	<li><?php _e("Copy the PHP code generated",'acf'); ?></li>
+	<li><?php _e("Paste into your functions.php file",'acf'); ?></li>
+	<li><?php _e("To activate any Add-ons, edit and use the code in the first few lines.",'acf'); ?></li>
 </ol>
 
 <p><br /></p>
 
-<h3><? _e("Notes",'acf'); ?></h3>
-<p><? _e("Registered field groups <b>will not</b> appear in the list of editable field groups. This is useful for including fields in themes.",'acf'); ?></p>
-<p><? _e("Please note that if you export and register field groups within the same WP, you will see duplicate fields on your edit screens. To fix this, please move the original field group to the trash or remove the code from your functions.php file.",'acf'); ?></p>
+<h3><?php _e("Notes",'acf'); ?></h3>
+<p><?php _e("Registered field groups <b>will not</b> appear in the list of editable field groups. This is useful for including fields in themes.",'acf'); ?></p>
+<p><?php _e("Please note that if you export and register field groups within the same WP, you will see duplicate fields on your edit screens. To fix this, please move the original field group to the trash or remove the code from your functions.php file.",'acf'); ?></p>
 
 
 <p><br /></p>
 
-<h3><? _e("Include in theme",'acf'); ?></h3>
-<p><? _e("The Advanced Custom Fields plugin can be included within a theme. To do so, move the ACF plugin inside your theme and add the following code to your functions.php file:",'acf'); ?></p>
+<h3><?php _e("Include in theme",'acf'); ?></h3>
+<p><?php _e("The Advanced Custom Fields plugin can be included within a theme. To do so, move the ACF plugin inside your theme and add the following code to your functions.php file:",'acf'); ?></p>
 
 <pre>
 include_once('advanced-custom-fields/acf.php');
 </pre>
 
-<p><? _e("To remove all visual interfaces from the ACF plugin, you can use a constant to enable lite mode. Add the following code to your functions.php file <b>before</b> the include_once code:",'acf'); ?></p>
+<p><?php _e("To remove all visual interfaces from the ACF plugin, you can use a constant to enable lite mode. Add the following code to your functions.php file <b>before</b> the include_once code:",'acf'); ?></p>
 
 <pre>
 define( 'ACF_LITE', true );
@@ -328,10 +328,10 @@ define( 'ACF_LITE', true );
  
 <p><br /></p>
 
-<p><a href="">&laquo; <? _e("Back to export",'acf'); ?></a></p>
+<p><a href="">&laquo; <?php _e("Back to export",'acf'); ?></a></p>
 			</td>
 			<td>
-				<textarea class="pre" readonly="true"><?
+				<textarea class="pre" readonly="true"><?php
 		
 		$acfs = array();
 		
@@ -351,7 +351,7 @@ define( 'ACF_LITE', true );
 			?>
 if(function_exists("register_field_group"))
 {
-<?
+<?php
 			foreach( $acfs as $i => $acf )
 			{
 				// populate acfs
@@ -388,12 +388,12 @@ if(function_exists("register_field_group"))
 				//$html = preg_replace("/'instructions'(.*?)('.*?')/", "'instructions'$1__($2)", $html);
 				
 								
-?>	register_field_group(<? echo $html ?>);
-<?
+?>	register_field_group(<?php echo $html ?>);
+<?php
 			}
 ?>
 }
-<?
+<?php
 		}
 		else
 		{
@@ -437,7 +437,7 @@ if(function_exists("register_field_group"))
 
 })(jQuery);
 </script>
-	<?
+	<?php
 	}
 	
 	

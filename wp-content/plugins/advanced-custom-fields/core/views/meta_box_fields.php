@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  Meta box - fields
@@ -61,7 +61,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 
 <!-- Hidden Fields -->
 <div style="display:none;">
-	<input type="hidden" name="acf_nonce" value="<? echo wp_create_nonce( 'field_group' ); ?>" />
+	<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'field_group' ); ?>" />
 </div>
 <!-- / Hidden Fields -->
 
@@ -71,11 +71,11 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 	<table class="acf widefat">
 		<thead>
 			<tr>
-				<th class="field_order"><? _e('Field Order','acf'); ?></th>
-				<th class="field_label"><? _e('Field Label','acf'); ?></th>
-				<th class="field_name"><? _e('Field Name','acf'); ?></th>
-				<th class="field_type"><? _e('Field Type','acf'); ?></th>
-				<th class="field_key"><? _e('Field Key','acf'); ?></th>
+				<th class="field_order"><?php _e('Field Order','acf'); ?></th>
+				<th class="field_label"><?php _e('Field Label','acf'); ?></th>
+				<th class="field_name"><?php _e('Field Name','acf'); ?></th>
+				<th class="field_type"><?php _e('Field Type','acf'); ?></th>
+				<th class="field_key"><?php _e('Field Key','acf'); ?></th>
 			</tr>
 		</thead>
 	</table>
@@ -86,34 +86,34 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 <div class="fields">
 	
 	<!-- No Fields Message -->
-	<div class="no_fields_message" <? if(count($fields) > 1){ echo 'style="display:none;"'; } ?>>
-		<? _e("No fields. Click the <strong>+ Add Field</strong> button to create your first field.",'acf'); ?>
+	<div class="no_fields_message" <?php if(count($fields) > 1){ echo 'style="display:none;"'; } ?>>
+		<?php _e("No fields. Click the <strong>+ Add Field</strong> button to create your first field.",'acf'); ?>
 	</div>
 	<!-- / No Fields Message -->
 	
-	<? foreach($fields as $field):
+	<?php foreach($fields as $field): 
 		$fake_name = $field['key'];
 	?>
-	<div class="field field_type-<? echo $field['type']; ?> field_key-<? echo $field['key']; ?>" data-type="<? echo $field['type']; ?>" data-id="<? echo $field['key']; ?>">
-		<input type="hidden" class="input-field_key" name="fields[<? echo $field['key']; ?>][key]" value="<? echo $field['key']; ?>" />
+	<div class="field field_type-<?php echo $field['type']; ?> field_key-<?php echo $field['key']; ?>" data-type="<?php echo $field['type']; ?>" data-id="<?php echo $field['key']; ?>">
+		<input type="hidden" class="input-field_key" name="fields[<?php echo $field['key']; ?>][key]" value="<?php echo $field['key']; ?>" />
 		<div class="field_meta">
 			<table class="acf widefat">
 				<tr>
-					<td class="field_order"><span class="circle"><? echo (int)$field['order_no'] + 1; ?></span></td>
+					<td class="field_order"><span class="circle"><?php echo (int)$field['order_no'] + 1; ?></span></td>
 					<td class="field_label">
 						<strong>
-							<a class="acf_edit_field row-title" title="<? _e("Edit this Field",'acf'); ?>" href="javascript:;"><? echo $field['label']; ?></a>
+							<a class="acf_edit_field row-title" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php echo $field['label']; ?></a>
 						</strong>
 						<div class="row_options">
-							<span><a class="acf_edit_field" title="<? _e("Edit this Field",'acf'); ?>" href="javascript:;"><? _e("Edit",'acf'); ?></a> | </span>
-							<span><a title="<? _e("Read documentation for this field",'acf'); ?>" href="http://www.advancedcustomfields.com/resources/#field-types" target="_blank"><? _e("Docs",'acf'); ?></a> | </span>
-							<span><a class="acf_duplicate_field" title="<? _e("Duplicate this Field",'acf'); ?>" href="javascript:;"><? _e("Duplicate",'acf'); ?></a> | </span>
-							<span><a class="acf_delete_field" title="<? _e("Delete this Field",'acf'); ?>" href="javascript:;"><? _e("Delete",'acf'); ?></a></span>
+							<span><a class="acf_edit_field" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php _e("Edit",'acf'); ?></a> | </span>
+							<span><a title="<?php _e("Read documentation for this field",'acf'); ?>" href="http://www.advancedcustomfields.com/resources/#field-types" target="_blank"><?php _e("Docs",'acf'); ?></a> | </span>
+							<span><a class="acf_duplicate_field" title="<?php _e("Duplicate this Field",'acf'); ?>" href="javascript:;"><?php _e("Duplicate",'acf'); ?></a> | </span>
+							<span><a class="acf_delete_field" title="<?php _e("Delete this Field",'acf'); ?>" href="javascript:;"><?php _e("Delete",'acf'); ?></a></span>
 						</div>
 					</td>
-					<td class="field_name"><? echo $field['name']; ?></td>
-					<td class="field_type"><? $l = field_type_exists( $field['type'] ); if( $l ){ echo $l; }else{ echo $error_field_type; } ?></td>
-					<td class="field_key"><? echo $field['key']; ?></td>
+					<td class="field_name"><?php echo $field['name']; ?></td>
+					<td class="field_type"><?php $l = field_type_exists( $field['type'] ); if( $l ){ echo $l; }else{ echo $error_field_type; } ?></td>
+					<td class="field_key"><?php echo $field['key']; ?></td>
 				</tr>
 			</table>
 		</div>
@@ -124,11 +124,11 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 					<tbody>
 						<tr class="field_label">
 							<td class="label">
-								<label><? _e("Field Label",'acf'); ?><span class="required">*</span></label>
-								<p class="description"><? _e("This is the name which will appear on the EDIT page",'acf'); ?></p>
+								<label><?php _e("Field Label",'acf'); ?><span class="required">*</span></label>
+								<p class="description"><?php _e("This is the name which will appear on the EDIT page",'acf'); ?></p>
 							</td>
 							<td>
-								<?
+								<?php 
 								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields[' .$fake_name . '][label]',
@@ -140,11 +140,11 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 						</tr>
 						<tr class="field_name">
 							<td class="label">
-								<label><? _e("Field Name",'acf'); ?><span class="required">*</span></label>
-								<p class="description"><? _e("Single word, no spaces. Underscores and dashes allowed",'acf'); ?></p>
+								<label><?php _e("Field Name",'acf'); ?><span class="required">*</span></label>
+								<p class="description"><?php _e("Single word, no spaces. Underscores and dashes allowed",'acf'); ?></p>
 							</td>
 							<td>
-								<?
+								<?php 
 								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields[' .$fake_name . '][name]',
@@ -156,10 +156,10 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 						</tr>
 						<tr class="field_type">
 							<td class="label">
-								<label><? _e("Field Type",'acf'); ?><span class="required">*</span></label>
+								<label><?php _e("Field Type",'acf'); ?><span class="required">*</span></label>
 							</td>
 							<td>
-								<?
+								<?php
 								do_action('acf/create_field', array(
 									'type'		=>	'select',
 									'name'		=>	'fields[' .$fake_name . '][type]',
@@ -170,10 +170,10 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 							</td>
 						</tr>
 						<tr class="field_instructions">
-							<td class="label"><label><? _e("Field Instructions",'acf'); ?></label>
-							<p class="description"><? _e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
+							<td class="label"><label><?php _e("Field Instructions",'acf'); ?></label>
+							<p class="description"><?php _e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
 							<td>
-								<?
+								<?php 
 								do_action('acf/create_field', array(
 									'type'	=>	'textarea',
 									'name'	=>	'fields[' .$fake_name . '][instructions]',
@@ -184,9 +184,9 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 							</td>
 						</tr>
 						<tr class="required">
-							<td class="label"><label><? _e("Required?",'acf'); ?></label></td>
+							<td class="label"><label><?php _e("Required?",'acf'); ?></label></td>
 							<td>
-								<?
+								<?php 
 								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields[' .$fake_name . '][required]',
@@ -200,16 +200,16 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 								?>
 							</td>
 						</tr>
-						<?
+						<?php 
 						
 						$field['name'] = $fake_name;
 						do_action('acf/create_field_options', $field );
 						
 						?>
-						<tr class="conditional-logic" data-field_name="<? echo $field['key']; ?>">
-							<td class="label"><label><? _e("Conditional Logic",'acf'); ?></label></td>
+						<tr class="conditional-logic" data-field_name="<?php echo $field['key']; ?>">
+							<td class="label"><label><?php _e("Conditional Logic",'acf'); ?></label></td>
 							<td>
-								<?
+								<?php 
 								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields['.$field['key'].'][conditional_logic][status]',
@@ -231,10 +231,10 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 								}
 								
 								?>
-								<div class="contional-logic-rules-wrapper" <? if( ! $field['conditional_logic']['status'] ) echo 'style="display:none"'; ?>>
-									<table class="conditional-logic-rules widefat acf-rules <? if( count($field['conditional_logic']['rules']) == 1) echo 'remove-disabled'; ?>">
+								<div class="contional-logic-rules-wrapper" <?php if( ! $field['conditional_logic']['status'] ) echo 'style="display:none"'; ?>>
+									<table class="conditional-logic-rules widefat acf-rules <?php if( count($field['conditional_logic']['rules']) == 1) echo 'remove-disabled'; ?>">
 										<tbody>
-										<? foreach( $field['conditional_logic']['rules'] as $rule_i => $rule ):
+										<?php foreach( $field['conditional_logic']['rules'] as $rule_i => $rule ): 
 											
 											// validate
 											$rule = array_merge($conditional_logic_rule, $rule);
@@ -247,12 +247,12 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 											}
 											
 											?>
-											<tr data-i="<? echo $rule_i; ?>">
+											<tr data-i="<?php echo $rule_i; ?>">
 												<td>
-													<input class="conditional-logic-field" type="hidden" name="fields[<? echo $field['key']; ?>][conditional_logic][rules][<? echo $rule_i; ?>][field]" value="<? echo $rule['field']; ?>" />
+													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][field]" value="<?php echo $rule['field']; ?>" />
 												</td>
 												<td width="25%">
-													<?
+													<?php 
 													do_action('acf/create_field', array(
 														'type'	=>	'select',
 														'name'	=>	'fields['.$field['key'].'][conditional_logic][rules][' . $rule_i . '][operator]',
@@ -264,7 +264,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 													));
 													?>
 												</td>
-												<td><input class="conditional-logic-value" type="hidden" name="fields[<? echo $field['key']; ?>][conditional_logic][rules][<? echo $rule_i; ?>][value]" value="<? echo $rule['value']; ?>" /></td>
+												<td><input class="conditional-logic-value" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][value]" value="<?php echo $rule['value']; ?>" /></td>
 												<td class="buttons">
 													<ul class="hl clearfix">
 														<li><a class="acf-button-remove" href="javascript:;"></a></li>
@@ -272,13 +272,13 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 													</ul>
 												</td>
 											</tr>	
-										<? endforeach; ?>
+										<?php endforeach; ?>
 										</tbody>
 									</table>
 									
 									<ul class="hl clearfix">
-										<li style="padding:4px 4px 0 0;"><? _e("Show this field when",'acf'); ?></li>
-										<li><? do_action('acf/create_field', array(
+										<li style="padding:4px 4px 0 0;"><?php _e("Show this field when",'acf'); ?></li>
+										<li><?php do_action('acf/create_field', array(
 												'type'	=>	'select',
 												'name'	=>	'fields['.$field['key'].'][conditional_logic][allorany]',
 												'value'	=>	$field['conditional_logic']['allorany'],
@@ -287,7 +287,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 													'any'	=>	__("any",'acf'),							
 												),
 										)); ?></li>
-										<li style="padding:4px 0 0 4px;"><? _e("these rules are met",'acf'); ?></li>
+										<li style="padding:4px 0 0 4px;"><?php _e("these rules are met",'acf'); ?></li>
 									</ul>
 									
 								</div>
@@ -301,7 +301,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 							<td>
 								<ul class="hl clearfix">
 									<li>
-										<a class="acf_edit_field acf-button grey" title="<? _e("Close Field",'acf'); ?>" href="javascript:;"><? _e("Close Field",'acf'); ?></a>
+										<a class="acf_edit_field acf-button grey" title="<?php _e("Close Field",'acf'); ?>" href="javascript:;"><?php _e("Close Field",'acf'); ?></a>
 									</li>
 								</ul>
 							</td>
@@ -311,9 +311,9 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 			</div>
 		</div>	
 	</div>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 </div>
 <div class="table_footer">
-	<div class="order_message"><? _e('Drag and drop to reorder','acf'); ?></div>
-	<a href="javascript:;" id="add_field" class="acf-button"><? _e('+ Add Field','acf'); ?></a>
+	<div class="order_message"><?php _e('Drag and drop to reorder','acf'); ?></div>
+	<a href="javascript:;" id="add_field" class="acf-button"><?php _e('+ Add Field','acf'); ?></a>
 </div>

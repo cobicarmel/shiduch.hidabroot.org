@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /*
 *  acf_controller_post
@@ -259,7 +259,7 @@ class acf_controller_post
 		<div style="display:none">
 			<input type="hidden" name="acf_has_changed" id="acf-has-changed" value="0" />
 		</div>
-		<?
+		<?php
 	}
 	
 	
@@ -309,12 +309,12 @@ class acf_controller_post
 <script type="text/javascript">
 (function($) {
 	
-	$('#<? echo $id; ?>').addClass('<? echo $class; ?>').removeClass('hide-if-js');
-	$('#adv-settings label[for="<? echo $id; ?>-hide"]').addClass('<? echo $toggle_class; ?>');
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
 	
 })(jQuery);	
 </script>
-			<?
+			<?php
 		echo '</div>';
 	}
 	

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_dummy extends acf_field
 {

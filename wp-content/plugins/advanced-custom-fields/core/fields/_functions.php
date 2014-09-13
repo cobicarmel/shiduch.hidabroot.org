@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  Field Functions
@@ -561,12 +561,12 @@ class acf_field_functions
 	
 	if( typeof acf !== 'undefined' )
 	{
-		acf.conditional_logic.items.push(<? echo json_encode($field['conditional_logic']); ?>);
+		acf.conditional_logic.items.push(<?php echo json_encode($field['conditional_logic']); ?>);
 	}
 	
 })(jQuery);	
 </script>
-			<?
+			<?php
 		}
 		
 	}

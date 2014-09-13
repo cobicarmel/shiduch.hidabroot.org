@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /*
 *  acf_third_party

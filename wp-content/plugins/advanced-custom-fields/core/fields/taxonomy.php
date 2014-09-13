@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_taxonomy extends acf_field
 {
@@ -212,44 +212,44 @@ class acf_field_taxonomy extends acf_field
 		$args = apply_filters('acf/fields/taxonomy/wp_list_categories', $args, $field );
 		
 		?>
-<div class="acf-taxonomy-field" data-load_save="<? echo $field['load_save_terms']; ?>">
-	<input type="hidden" name="<? echo $single_name; ?>" value="" />
+<div class="acf-taxonomy-field" data-load_save="<?php echo $field['load_save_terms']; ?>">
+	<input type="hidden" name="<?php echo $single_name; ?>" value="" />
 	
-	<? if( $field['field_type'] == 'select' ): ?>
+	<?php if( $field['field_type'] == 'select' ): ?>
 		
-		<select id="<? echo $field['id']; ?>" name="<? echo $field['name']; ?>" <? if( $field['multiple'] ): ?>multiple="multiple" size="5"<? endif; ?>>
-			<? if( $field['allow_null'] ): ?>
-				<option value=""><? _e("None", 'acf'); ?></option>
-			<? endif; ?>
+		<select id="<?php echo $field['id']; ?>" name="<?php echo $field['name']; ?>" <?php if( $field['multiple'] ): ?>multiple="multiple" size="5"<?php endif; ?>>
+			<?php if( $field['allow_null'] ): ?>
+				<option value=""><?php _e("None", 'acf'); ?></option>
+			<?php endif; ?>
 	
-	<? else: ?>
+	<?php else: ?>
 		<div class="categorychecklist-holder">
 		<ul class="acf-checkbox-list">
-			<? if( $field['allow_null'] ): ?>
+			<?php if( $field['allow_null'] ): ?>
 				<li>
 					<label class="selectit">
-						<input type="<? echo $field['field_type']; ?>" name="<? echo $field['name']; ?>" value="" /> <? _e("None", 'acf'); ?>
+						<input type="<?php echo $field['field_type']; ?>" name="<?php echo $field['name']; ?>" value="" /> <?php _e("None", 'acf'); ?>
 					</label>
 				</li>
-			<? endif; ?>
+			<?php endif; ?>
 	
-	<? endif; ?>
+	<?php endif; ?>
 			
-			<? wp_list_categories( $args ); ?>
+			<?php wp_list_categories( $args ); ?>
 	
-	<? if( $field['field_type'] == 'select' ): ?>
+	<?php if( $field['field_type'] == 'select' ): ?>
 	
 		</select>
 	
-	<? else: ?>
+	<?php else: ?>
 	
 		</ul>
 		</div>
 		
-	<? endif; ?>
+	<?php endif; ?>
 
 </div>
-	<?
+	<?php
 	
 	}
 	
@@ -273,12 +273,12 @@ class acf_field_taxonomy extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Taxonomy",'acf'); ?></label>
+		<label><?php _e("Taxonomy",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		// vars
 		$choices = array();
@@ -307,12 +307,12 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Field Type",'acf'); ?></label>
+		<label><?php _e("Field Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php	
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][field_type]',
@@ -332,12 +332,12 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Allow Null?",'acf'); ?></label>
+		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][allow_null]',
@@ -351,12 +351,12 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Load & Save Terms to Post",'acf'); ?></label>
+		<label><?php _e("Load & Save Terms to Post",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php	
 		do_action('acf/create_field', array(
 			'type'	=>	'true_false',
 			'name'	=>	'fields['.$key.'][load_save_terms]',
@@ -366,12 +366,12 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Return Value",'acf'); ?></label>
+		<label><?php _e("Return Value",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
 			'name'		=>	'fields['.$key.'][return_format]',
@@ -385,7 +385,7 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  Meta box - locations
@@ -45,30 +45,30 @@ if( empty($groups) )
 	<tbody>
 	<tr>
 		<td class="label">
-			<label for="post_type"><? _e("Rules",'acf'); ?></label>
-			<p class="description"><? _e("Create a set of rules to determine which edit screens will use these advanced custom fields",'acf'); ?></p>
+			<label for="post_type"><?php _e("Rules",'acf'); ?></label>
+			<p class="description"><?php _e("Create a set of rules to determine which edit screens will use these advanced custom fields",'acf'); ?></p>
 		</td>
 		<td>
 			<div class="location-groups">
 				
-<? if( is_array($groups) ): ?>
-	<? foreach( $groups as $group_id => $group ):
+<?php if( is_array($groups) ): ?>
+	<?php foreach( $groups as $group_id => $group ): 
 		$group_id = 'group_' . $group_id;
 		?>
-		<div class="location-group" data-id="<? echo $group_id; ?>">
-			<? if( $group_id == 'group_0' ): ?>
-				<h4><? _e("Show this field group if",'acf'); ?></h4>
-			<? else: ?>
-				<h4><? _e("or",'acf'); ?></h4>
-			<? endif; ?>
-			<? if( is_array($group) ): ?>
+		<div class="location-group" data-id="<?php echo $group_id; ?>">
+			<?php if( $group_id == 'group_0' ): ?>
+				<h4><?php _e("Show this field group if",'acf'); ?></h4>
+			<?php else: ?>
+				<h4><?php _e("or",'acf'); ?></h4>
+			<?php endif; ?>
+			<?php if( is_array($group) ): ?>
 			<table class="acf_input widefat">
 				<tbody>
-					<? foreach( $group as $rule_id => $rule ):
+					<?php foreach( $group as $rule_id => $rule ): 
 						$rule_id = 'rule_' . $rule_id;
 					?>
-					<tr data-id="<? echo $rule_id; ?>">
-					<td class="param"><?
+					<tr data-id="<?php echo $rule_id; ?>">
+					<td class="param"><?php 
 						
 						$choices = array(
 							__("Basic",'acf') => array(
@@ -111,7 +111,7 @@ if( empty($groups) )
 						do_action('acf/create_field', $args);							
 						
 					?></td>
-					<td class="operator"><?
+					<td class="operator"><?php 	
 						
 						$choices = array(
 							'=='	=>	__("is equal to",'acf'),
@@ -132,7 +132,7 @@ if( empty($groups) )
 						)); 	
 						
 					?></td>
-					<td class="value"><?
+					<td class="value"><?php 
 						
 						$this->ajax_render_location(array(
 							'group_id' => $group_id,
@@ -143,24 +143,24 @@ if( empty($groups) )
 						
 					?></td>
 					<td class="add">
-						<a href="#" class="location-add-rule button"><? _e("and",'acf'); ?></a>
+						<a href="#" class="location-add-rule button"><?php _e("and",'acf'); ?></a>
 					</td>
 					<td class="remove">
 						<a href="#" class="location-remove-rule acf-button-remove"></a>
 					</td>
 					</tr>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<? endif; ?>
+			<?php endif; ?>
 		</div>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 	
-	<h4><? _e("or",'acf'); ?></h4>
+	<h4><?php _e("or",'acf'); ?></h4>
 	
-	<a class="button location-add-group" href="#"><? _e("Add rule group",'acf'); ?></a>
+	<a class="button location-add-group" href="#"><?php _e("Add rule group",'acf'); ?></a>
 	
-<? endif; ?>
+<?php endif; ?>
 				
 			</div>
 		</td>

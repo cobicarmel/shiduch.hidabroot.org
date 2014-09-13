@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_user extends acf_field
 {
@@ -266,12 +266,12 @@ class acf_field_user extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e( "Filter by role", 'acf' ); ?></label>
+		<label><?php _e( "Filter by role", 'acf' ); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		
 		$choices = array('all' => __('All', 'acf'));
 		$editable_roles = get_editable_roles();
@@ -293,12 +293,12 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Field Type",'acf'); ?></label>
+		<label><?php _e("Field Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php	
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][field_type]',
@@ -317,12 +317,12 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Allow Null?",'acf'); ?></label>
+		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][allow_null]',
@@ -336,7 +336,7 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

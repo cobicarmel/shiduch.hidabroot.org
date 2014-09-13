@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  Meta box - options
@@ -22,11 +22,11 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 <table class="acf_input widefat" id="acf_options">
 	<tr>
 		<td class="label">
-			<label for=""><? _e("Order No.",'acf'); ?></label>
-			<p class="description"><? _e("Field groups are created in order <br />from lowest to highest",'acf'); ?></p>
+			<label for=""><?php _e("Order No.",'acf'); ?></label>
+			<p class="description"><?php _e("Field groups are created in order <br />from lowest to highest",'acf'); ?></p>
 		</td>
 		<td>
-			<?
+			<?php 
 			
 			do_action('acf/create_field', array(
 				'type'	=>	'number',
@@ -39,10 +39,10 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr>
 		<td class="label">
-			<label for=""><? _e("Position",'acf'); ?></label>
+			<label for=""><?php _e("Position",'acf'); ?></label>
 		</td>
 		<td>
-			<?
+			<?php 
 			
 			do_action('acf/create_field', array(
 				'type'	=>	'select',
@@ -61,10 +61,10 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr>
 		<td class="label">
-			<label for="post_type"><? _e("Style",'acf'); ?></label>
+			<label for="post_type"><?php _e("Style",'acf'); ?></label>
 		</td>
 		<td>
-			<?
+			<?php 
 			
 			do_action('acf/create_field', array(
 				'type'	=>	'select',
@@ -81,12 +81,12 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr id="hide-on-screen">
 		<td class="label">
-			<label for="post_type"><? _e("Hide on screen",'acf'); ?></label>
-			<p class="description"><? _e("<b>Select</b> items to <b>hide</b> them from the edit screen",'acf'); ?></p>
-			<p class="description"><? _e("If multiple field groups appear on an edit screen, the first field group's options will be used. (the one with the lowest order number)",'acf'); ?></p>
+			<label for="post_type"><?php _e("Hide on screen",'acf'); ?></label>
+			<p class="description"><?php _e("<b>Select</b> items to <b>hide</b> them from the edit screen",'acf'); ?></p>
+			<p class="description"><?php _e("If multiple field groups appear on an edit screen, the first field group's options will be used. (the one with the lowest order number)",'acf'); ?></p>
 		</td>
 		<td>
-			<?
+			<?php 
 			
 			do_action('acf/create_field', array(
 				'type'	=>	'checkbox',

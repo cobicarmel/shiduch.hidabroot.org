@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /*
 *  acf_field_group
@@ -374,18 +374,18 @@ class acf_field_group
 (function($) {
 
 	// vars
-	acf.post_id = <? echo $post->ID; ?>;
-	acf.nonce = "<? echo wp_create_nonce( 'acf_nonce' ); ?>";
-	acf.admin_url = "<? echo admin_url(); ?>";
-	acf.ajaxurl = "<? echo admin_url( 'admin-ajax.php' ); ?>";
+	acf.post_id = <?php echo $post->ID; ?>;
+	acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
+	acf.admin_url = "<?php echo admin_url(); ?>";
+	acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 	
 	
 	// l10n
-	acf.l10n = <? echo json_encode( $l10n ); ?>;
+	acf.l10n = <?php echo json_encode( $l10n ); ?>;
 	
 })(jQuery);	
 </script>
-		<?
+		<?php
 		
 		// new action
 		do_action('acf/field_group/admin_head');

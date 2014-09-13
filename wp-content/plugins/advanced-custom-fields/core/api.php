@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *  get_field_reference()
@@ -1235,21 +1235,21 @@ function acf_form( $options = array() )
 	
 	// display form
 	if( $options['form'] ): ?>
-	<form <? if($options['form_attributes']){foreach($options['form_attributes'] as $k => $v){echo $k . '="' . $v .'" '; }} ?>>
-	<? endif; ?>
+	<form <?php if($options['form_attributes']){foreach($options['form_attributes'] as $k => $v){echo $k . '="' . $v .'" '; }} ?>>
+	<?php endif; ?>
 	
 	<div style="display:none">
 		<script type="text/javascript">
-			acf.o.post_id = <? echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . $options['post_id'] . '"'; ?>;
+			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . $options['post_id'] . '"'; ?>;
 		</script>
-		<input type="hidden" name="acf_nonce" value="<? echo wp_create_nonce( 'input' ); ?>" />
-		<input type="hidden" name="post_id" value="<? echo $options['post_id']; ?>" />
-		<input type="hidden" name="return" value="<? echo $options['return']; ?>" />
-		<? wp_editor('', 'acf_settings'); ?>
+		<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'input' ); ?>" />
+		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
+		<input type="hidden" name="return" value="<?php echo $options['return']; ?>" />
+		<?php wp_editor('', 'acf_settings'); ?>
 	</div>
 	
 	<div id="poststuff">
-	<?
+	<?php
 	
 	// html before fields
 	echo $options['html_before_fields'];
@@ -1290,19 +1290,19 @@ function acf_form( $options = array() )
 	
 	?>
 	
-	<? if( $options['form'] ): ?>
+	<?php if( $options['form'] ): ?>
 	<!-- Submit -->
 	<div class="field">
-		<input type="submit" value="<? echo $options['submit_value']; ?>" />
+		<input type="submit" value="<?php echo $options['submit_value']; ?>" />
 	</div>
 	<!-- / Submit -->
-	<? endif; ?>
+	<?php endif; ?>
 	
 	</div><!-- <div id="poststuff"> -->
 	
-	<? if( $options['form'] ): ?>
+	<?php if( $options['form'] ): ?>
 	</form>
-	<? endif;
+	<?php endif;
 }
 
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_post_object extends acf_field
 {
@@ -263,12 +263,12 @@ class acf_field_post_object extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label for=""><? _e("Post Type",'acf'); ?></label>
+		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		
 		$choices = array(
 			'all'	=>	__("All",'acf')
@@ -287,12 +287,12 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Filter from Taxonomy",'acf'); ?></label>
+		<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		$choices = array(
 			'' => array(
 				'all' => __("All",'acf')
@@ -312,12 +312,12 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Allow Null?",'acf'); ?></label>
+		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
@@ -333,12 +333,12 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Select multiple values?",'acf'); ?></label>
+		<label><?php _e("Select multiple values?",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
@@ -354,7 +354,7 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

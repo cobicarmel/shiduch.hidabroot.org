@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_email extends acf_field
 {
@@ -101,13 +101,13 @@ class acf_field_email extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Default Value",'acf'); ?></label>
-		<p><? _e("Appears when creating a new post",'acf') ?></p>
+		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
@@ -118,13 +118,13 @@ class acf_field_email extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Placeholder Text",'acf'); ?></label>
-		<p><? _e("Appears within the input",'acf') ?></p>
+		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][placeholder]',
@@ -133,13 +133,13 @@ class acf_field_email extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Prepend",'acf'); ?></label>
-		<p><? _e("Appears before the input",'acf') ?></p>
+		<label><?php _e("Prepend",'acf'); ?></label>
+		<p><?php _e("Appears before the input",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][prepend]',
@@ -148,13 +148,13 @@ class acf_field_email extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Append",'acf'); ?></label>
-		<p><? _e("Appears after the input",'acf') ?></p>
+		<label><?php _e("Append",'acf'); ?></label>
+		<p><?php _e("Appears after the input",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][append]',
@@ -163,7 +163,7 @@ class acf_field_email extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 	}	
 	
 }

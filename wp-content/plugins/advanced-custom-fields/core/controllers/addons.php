@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /*
 *  acf_addons
@@ -190,60 +190,60 @@ class acf_addons
 <div class="wrap" style="max-width:970px;">
 
 	<div class="icon32" id="icon-acf"><br></div>
-	<h2 style="margin: 4px 0 15px;"><? _e("Advanced Custom Fields Add-Ons",'acf'); ?></h2>
+	<h2 style="margin: 4px 0 15px;"><?php _e("Advanced Custom Fields Add-Ons",'acf'); ?></h2>
 	
 	<div class="acf-alert">
-	<p style=""><? _e("The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin.",'acf'); ?><br />
-	<? _e("Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates).",'acf'); ?></p>
+	<p style=""><?php _e("The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin.",'acf'); ?><br />
+	<?php _e("Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates).",'acf'); ?></p>
 	</div>
-	<? /*
+	<?php /*
 	<div class="acf-alert">
-		<p><strong><? _e("Just updated to version 4?",'acf'); ?></strong> <? _e("Activation codes have changed to plugins! Download your purchased add-ons",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><? _e("here",'acf'); ?></a></p>
+		<p><strong><?php _e("Just updated to version 4?",'acf'); ?></strong> <?php _e("Activation codes have changed to plugins! Download your purchased add-ons",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><?php _e("here",'acf'); ?></a></p>
 	</div>
 	*/ ?>
 	
 	<div id="add-ons" class="clearfix">
 		
 		<div class="add-on-group clearfix">
-		<? foreach( $premium as $addon ): ?>
-		<div class="add-on wp-box <? if( $addon['active'] ): ?>add-on-active<? endif; ?>">
-			<a target="_blank" href="<? echo $addon['url']; ?>">
-				<img src="<? echo $addon['thumbnail']; ?>" />
+		<?php foreach( $premium as $addon ): ?>
+		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
+			<a target="_blank" href="<?php echo $addon['url']; ?>">
+				<img src="<?php echo $addon['thumbnail']; ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<? echo $addon['url']; ?>"><? echo $addon['title']; ?></a></h3>
-				<p><? echo $addon['description']; ?></p>
+				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
+				<p><?php echo $addon['description']; ?></p>
 			</div>
 			<div class="footer">
-				<? if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="acf-sprite-tick"></span><? _e("Installed",'acf'); ?></a>
-				<? else: ?>
-					<a target="_blank" href="<? echo $addon['url']; ?>" class="button"><? _e("Purchase & Install",'acf'); ?></a>
-				<? endif; ?>
+				<?php if( $addon['active'] ): ?>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
+				<?php else: ?>
+					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
+				<?php endif; ?>
 			</div>
 		</div>
-		<? endforeach; ?>
+		<?php endforeach; ?>
 		</div>
 		
 		<div class="add-on-group clearfix">
-		<? foreach( $free as $addon ): ?>
-		<div class="add-on wp-box <? if( $addon['active'] ): ?>add-on-active<? endif; ?>">
-			<a target="_blank" href="<? echo $addon['url']; ?>">
-				<img src="<? echo $addon['thumbnail']; ?>" />
+		<?php foreach( $free as $addon ): ?>
+		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
+			<a target="_blank" href="<?php echo $addon['url']; ?>">
+				<img src="<?php echo $addon['thumbnail']; ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<? echo $addon['url']; ?>"><? echo $addon['title']; ?></a></h3>
-				<p><? echo $addon['description']; ?></p>
+				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
+				<p><?php echo $addon['description']; ?></p>
 			</div>
 			<div class="footer">
-				<? if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="acf-sprite-tick"></span><? _e("Installed",'acf'); ?></a>
-				<? else: ?>
-					<a target="_blank" href="<? echo $addon['url']; ?>" class="button"><? _e("Download",'acf'); ?></a>
-				<? endif; ?>
+				<?php if( $addon['active'] ): ?>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
+				<?php else: ?>
+					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Download",'acf'); ?></a>
+				<?php endif; ?>
 			</div>
 		</div>
-		<? endforeach; ?>
+		<?php endforeach; ?>	
 		</div>
 		
 				
@@ -275,7 +275,7 @@ class acf_addons
 	
 })(jQuery);	
 </script>
-		<?
+		<?php
 		
 		return;
 		

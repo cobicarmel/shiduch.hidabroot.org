@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_checkbox extends acf_field
 {
@@ -141,15 +141,15 @@ class acf_field_checkbox extends acf_field
 		}
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label for=""><? _e("Choices",'acf'); ?></label>
-		<p><? _e("Enter each choice on a new line.",'acf'); ?></p>
-		<p><? _e("For more control, you may specify both a value and label like this:",'acf'); ?></p>
-		<p><? _e("red : Red",'acf'); ?><br /><? _e("blue : Blue",'acf'); ?></p>
+		<label for=""><?php _e("Choices",'acf'); ?></label>
+		<p><?php _e("Enter each choice on a new line.",'acf'); ?></p>
+		<p><?php _e("For more control, you may specify both a value and label like this:",'acf'); ?></p>
+		<p><?php _e("red : Red",'acf'); ?><br /><?php _e("blue : Blue",'acf'); ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
@@ -161,13 +161,13 @@ class acf_field_checkbox extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Default Value",'acf'); ?></label>
-		<p class="description"><? _e("Enter each default value on a new line",'acf'); ?></p>
+		<label><?php _e("Default Value",'acf'); ?></label>
+		<p class="description"><?php _e("Enter each default value on a new line",'acf'); ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
@@ -178,12 +178,12 @@ class acf_field_checkbox extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label for=""><? _e("Layout",'acf'); ?></label>
+		<label for=""><?php _e("Layout",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php
 		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
@@ -199,7 +199,7 @@ class acf_field_checkbox extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

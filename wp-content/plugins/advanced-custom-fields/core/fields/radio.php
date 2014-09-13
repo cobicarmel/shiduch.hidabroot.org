@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_radio extends acf_field
 {
@@ -142,20 +142,20 @@ class acf_field_radio extends acf_field
 		}
 		
 		?>
-		<tr class="field_option field_option_<? echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
-				<label for=""><? _e("Choices",'acf'); ?></label>
-				<p class="description"><? _e("Enter your choices one per line",'acf'); ?><br />
+				<label for=""><?php _e("Choices",'acf'); ?></label>
+				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
 				<br />
-				<? _e("Red",'acf'); ?><br />
-				<? _e("Blue",'acf'); ?><br />
+				<?php _e("Red",'acf'); ?><br />
+				<?php _e("Blue",'acf'); ?><br />
 				<br />
-				<? _e("red : Red",'acf'); ?><br />
-				<? _e("blue : Blue",'acf'); ?><br />
+				<?php _e("red : Red",'acf'); ?><br />
+				<?php _e("blue : Blue",'acf'); ?><br />
 				</p>
 			</td>
 			<td>
-				<?
+				<?php
 				
 				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
@@ -166,7 +166,7 @@ class acf_field_radio extends acf_field
 				
 				?>
 				<div class="radio-option-other_choice">
-				<?
+				<?php
 				
 				do_action('acf/create_field', array(
 					'type'		=>	'true_false',
@@ -177,8 +177,8 @@ class acf_field_radio extends acf_field
 				
 				?>
 				</div>
-				<div class="radio-option-save_other_choice" <? if( !$field['other_choice'] ): ?>style="display:none"<? endif; ?>>
-				<?
+				<div class="radio-option-save_other_choice" <?php if( !$field['other_choice'] ): ?>style="display:none"<?php endif; ?>>
+				<?php
 				
 				do_action('acf/create_field', array(
 					'type'		=>	'true_false',
@@ -191,12 +191,12 @@ class acf_field_radio extends acf_field
 				</div>
 			</td>
 		</tr>
-		<tr class="field_option field_option_<? echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
-				<label><? _e("Default Value",'acf'); ?></label>
+				<label><?php _e("Default Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?
+				<?php
 				
 				do_action('acf/create_field', array(
 					'type'	=>	'text',
@@ -207,12 +207,12 @@ class acf_field_radio extends acf_field
 				?>
 			</td>
 		</tr>
-		<tr class="field_option field_option_<? echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
-				<label for=""><? _e("Layout",'acf'); ?></label>
+				<label for=""><?php _e("Layout",'acf'); ?></label>
 			</td>
 			<td>
-				<?
+				<?php
 				
 				do_action('acf/create_field', array(
 					'type'	=>	'radio',
@@ -228,7 +228,7 @@ class acf_field_radio extends acf_field
 				?>
 			</td>
 		</tr>
-		<?
+		<?php
 		
 	}
 	

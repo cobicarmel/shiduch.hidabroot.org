@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_color_picker extends acf_field
 {
@@ -84,12 +84,12 @@ class acf_field_color_picker extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Default Value",'acf'); ?></label>
+		<label><?php _e("Default Value",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'			=>	'text',
 			'name'			=>	'fields[' .$key.'][default_value]',
@@ -99,7 +99,7 @@ class acf_field_color_picker extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	

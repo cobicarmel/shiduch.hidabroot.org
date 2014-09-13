@@ -1,4 +1,4 @@
-<?
+<?php
 
 class acf_field_relationship extends acf_field
 {
@@ -412,28 +412,28 @@ class acf_field_relationship extends acf_field
 		}
 				
 		?>
-<div class="acf_relationship<? echo $class; ?>"<? foreach( $attributes as $k => $v ): ?> data-<? echo $k; ?>="<? echo $v; ?>"<? endforeach; ?>>
+<div class="acf_relationship<?php echo $class; ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo $k; ?>="<?php echo $v; ?>"<?php endforeach; ?>>
 	
 	
 	<!-- Hidden Blank default value -->
-	<input type="hidden" name="<? echo $field['name']; ?>" value="" />
+	<input type="hidden" name="<?php echo $field['name']; ?>" value="" />
 	
 	
 	<!-- Left List -->
 	<div class="relationship_left">
 		<table class="widefat">
 			<thead>
-				<? if(in_array( 'search', $field['filters']) ): ?>
+				<?php if(in_array( 'search', $field['filters']) ): ?>
 				<tr>
 					<th>
-						<input class="relationship_search" placeholder="<? _e("Search...",'acf'); ?>" type="text" id="relationship_<? echo $field['name']; ?>" />
+						<input class="relationship_search" placeholder="<?php _e("Search...",'acf'); ?>" type="text" id="relationship_<?php echo $field['name']; ?>" />
 					</th>
 				</tr>
-				<? endif; ?>
-				<? if(in_array( 'post_type', $field['filters']) ): ?>
+				<?php endif; ?>
+				<?php if(in_array( 'post_type', $field['filters']) ): ?>
 				<tr>
 					<th>
-						<?
+						<?php 
 						
 						// vars
 						$choices = array(
@@ -467,7 +467,7 @@ class acf_field_relationship extends acf_field
 						?>
 					</th>
 				</tr>
-				<? endif; ?>
+				<?php endif; ?>
 			</thead>
 		</table>
 		<ul class="bl relationship_list">
@@ -481,7 +481,7 @@ class acf_field_relationship extends acf_field
 	<!-- Right List -->
 	<div class="relationship_right">
 		<ul class="bl relationship_list">
-		<?
+		<?php
 
 		if( $field['value'] )
 		{
@@ -492,7 +492,7 @@ class acf_field_relationship extends acf_field
 					
 					if( in_array('post_type', $field['result_elements']) )
 					{
-						$post_type_object = get_post_type_object( get_post_type() );
+						$post_type_object = get_post_type_object( get_post_type($p) );
 						$title .= $post_type_object->labels->singular_name;
 					}
 					
@@ -546,7 +546,7 @@ class acf_field_relationship extends acf_field
 	<!-- / Right List -->
 	
 </div>
-		<?
+		<?php
 	}
 	
 	
@@ -570,13 +570,13 @@ class acf_field_relationship extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Return Format",'acf'); ?></label>
-		<p><? _e("Specify the returned value on front end",'acf') ?></p>
+		<label><?php _e("Return Format",'acf'); ?></label>
+		<p><?php _e("Specify the returned value on front end",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
 			'name'		=>	'fields['.$key.'][return_format]',
@@ -590,12 +590,12 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label for=""><? _e("Post Type",'acf'); ?></label>
+		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		
 		$choices = array(
 			'all'	=>	__("All",'acf')
@@ -614,12 +614,12 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Filter from Taxonomy",'acf'); ?></label>
+		<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		$choices = array(
 			'' => array(
 				'all' => __("All",'acf')
@@ -639,12 +639,12 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Filters",'acf'); ?></label>
+		<label><?php _e("Filters",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'checkbox',
 			'name'	=>	'fields['.$key.'][filters]',
@@ -657,13 +657,13 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Elements",'acf'); ?></label>
-		<p><? _e("Selected elements will be displayed in each result",'acf') ?></p>
+		<label><?php _e("Elements",'acf'); ?></label>
+		<p><?php _e("Selected elements will be displayed in each result",'acf') ?></p>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'checkbox',
 			'name'	=>	'fields['.$key.'][result_elements]',
@@ -680,12 +680,12 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<? echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><? _e("Maximum posts",'acf'); ?></label>
+		<label><?php _e("Maximum posts",'acf'); ?></label>
 	</td>
 	<td>
-		<?
+		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'number',
 			'name'	=>	'fields['.$key.'][max]',
@@ -694,7 +694,7 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-		<?
+		<?php
 		
 	}
 	
