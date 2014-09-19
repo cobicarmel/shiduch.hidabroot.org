@@ -252,7 +252,7 @@ $props = $MCard::$props;
 			<? if($gender == 'female') { ?>
 				<div class="label-top w33">
 					<label for="cf-college">סמינר</label>
-					<input id="cf-college" type="text" name="college" value="<?= $meta['college'] ?>" required>
+					<input id="cf-college" type="text" name="college" value="<?= $meta['college'] ?>">
 				</div>
 			<?
 			}
@@ -260,11 +260,11 @@ $props = $MCard::$props;
 				?>
 				<div class="label-top w33">
 					<label for="cf-yeshiva_k">ישיבה קטנה</label>
-					<input id="cf-yeshiva_k" type="text" name="yeshiva_k" value="<?= $meta['yeshiva_k'] ?>" required>
+					<input id="cf-yeshiva_k" type="text" name="yeshiva_k" value="<?= $meta['yeshiva_k'] ?>">
 				</div>
 				<div class="label-top w33">
 					<label for="cf-yeshiva_g">ישיבה גדולה</label>
-					<input id="cf-yeshiva_g" type="text" name="yeshiva_g" value="<?= $meta['yeshiva_g'] ?>" required>
+					<input id="cf-yeshiva_g" type="text" name="yeshiva_g" value="<?= $meta['yeshiva_g'] ?>">
 				</div>
 			<? } ?>
 		</div>
@@ -283,9 +283,33 @@ $props = $MCard::$props;
 			<? } ?>
 			<div class="label-top w33">
 				<label for="cf-work">מקום לימודים/עיסוק כיום</label>
-				<input id="cf-work" type="text" name="work" value="<?= $meta['work'] ?>" required>
+				<input id="cf-work" type="text" name="work" value="<?= $meta['work'] ?>">
 			</div>
 		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>בירורים</legend>
+		<? for($i = 0; $i < 5; $i++) {
+			$nameValue = ! empty($meta['inquiries'][$i]['name']) ? ' value="' . $meta['inquiries'][$i]['name'] . '"' : null;
+			$phoneValue = ! empty($meta['inquiries'][$i]['phone']) ? ' value="' . $meta['inquiries'][$i]['phone'] . '"' : null;
+			$notesValue = ! empty($meta['inquiries'][$i]['notes']) ? ' value="' . $meta['inquiries'][$i]['notes'] . '"' : null;
+			?>
+			<div class="row">
+				<div class="label-top w33">
+					<label for="inquiries-name-<?= $i ?>">שם</label>
+					<input id="inquiries-name-<?= $i ?>" type="text" name="inquiries[<?= $i ?>][name]"<?= $nameValue ?>>
+				</div>
+				<div class="label-top w33">
+					<label for="inquiries-phone-<?= $i ?>">טלפון</label>
+					<input id="inquiries-phone-<?= $i ?>" type="tel" name="inquiries[<?= $i ?>][phone]"<?= $phoneValue ?>>
+				</div>
+				<div class="label-top w33">
+					<label for="inquiries-notes-<?= $i ?>">הערות</label>
+					<input id="inquiries-notes-<?= $i ?>" type="text" name="inquiries[<?= $i ?>][notes]"<?= $notesValue ?>>
+				</div>
+			</div>
+		<? } ?>
 	</fieldset>
 </div>
 

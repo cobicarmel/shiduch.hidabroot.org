@@ -210,7 +210,7 @@ if(function_exists("register_field_group"))
 				'label' => 'עיסוק',
 				'name' => 'work',
 				'type' => 'text',
-				'required' => 1,
+				'required' => 0,
 				'default_value' => '',
 				'placeholder' => '',
 				'prepend' => '',
@@ -311,7 +311,7 @@ if(function_exists("register_field_group"))
 				'label' => 'ישיבה קטנה',
 				'name' => 'yeshiva_k',
 				'type' => 'text',
-				'required' => 1,
+				'required' => 0,
 				'conditional_logic' => array (
 					'status' => 1,
 					'rules' => array (
@@ -335,7 +335,7 @@ if(function_exists("register_field_group"))
 				'label' => 'ישיבה גדולה',
 				'name' => 'yeshiva_g',
 				'type' => 'text',
-				'required' => 1,
+				'required' => 0,
 				'conditional_logic' => array (
 					'status' => 1,
 					'rules' => array (
@@ -359,7 +359,7 @@ if(function_exists("register_field_group"))
 				'label' => 'עיסוק',
 				'name' => 'practice',
 				'type' => 'select',
-				'required' => 1,
+				'required' => 0,
 				'conditional_logic' => array (
 					'status' => 1,
 					'rules' => array (
