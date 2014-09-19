@@ -6,7 +6,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 3.2.1
 Tested up to: 4.0
-Stable tag: 2.8.11
+Stable tag: 2.8.12
 
 Saves submitted form data to the database and allow you to export the data to a file and use short codes to display it.
 
@@ -80,6 +80,9 @@ You can always deactivate the plugin without loosing data.
 1. Admin Panel view of submitted form data
 
 == Changelog ==
+
+= 2.8.13 =
+* Bug fix in "trans"
 
 = 2.8.12 =
 * Work-around for WP bug https://core.trac.wordpress.org/ticket/29658
