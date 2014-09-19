@@ -368,7 +368,25 @@ get_header();
 						</div>
 					</div>
 				</fieldset>
-
+				<fieldset>
+					<legend>בירורים</legend>
+					<? for($i = 0; $i < 5; $i++) { ?>
+						<div class="row">
+							<div class="label-top w33">
+								<label for="inquiries-name-<?= $i ?>">שם</label>
+								<input id="inquiries-name-<?= $i ?>" type="text" name="inquiries[<?= $i ?>][name]">
+							</div>
+							<div class="label-top w33">
+								<label for="inquiries-phone-<?= $i ?>">טלפון</label>
+								<input id="inquiries-phone-<?= $i ?>" type="tel" name="inquiries[<?= $i ?>][phone]">
+							</div>
+							<div class="label-top w33">
+								<label for="inquiries-notes-<?= $i ?>">הערות</label>
+								<input id="inquiries-notes-<?= $i ?>" type="text" name="inquiries[<?= $i ?>][notes]">
+							</div>
+						</div>
+					<? } ?>
+				</fieldset>
 			</div>
 			<fieldset>
 				<legend>פרטיות</legend>

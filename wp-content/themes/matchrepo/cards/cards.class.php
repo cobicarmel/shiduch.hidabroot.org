@@ -48,6 +48,7 @@ abstract class Cards {
 		'smoke',
 		'license',
 		'cover',
+		'inquiries',
 		'privacy'
 	];
 
@@ -86,7 +87,8 @@ abstract class Cards {
 		'father_work',
 		'mother_work',
 		'family_children',
-		'work'
+		'work',
+		'inquiries'
 	];
 
 	private static $privateTerms = [
@@ -99,7 +101,8 @@ abstract class Cards {
 		'mother_work',
 		'yeshiva_k',
 		'yeshiva_g',
-		'work'
+		'work',
+		'inquiries',
 	];
 
 	public static $user_types = [
