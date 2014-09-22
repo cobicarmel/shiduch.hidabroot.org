@@ -263,6 +263,16 @@ abstract class Cards {
 		$this->meta['age'] = floor($years);
 	}
 
+	public static function getAllowedStatuses(){
+
+		$statuses = ['publish'];
+
+		if(current_user_can('read_private_cards'))
+			$statuses[] = 'private';
+
+		return $statuses;
+	}
+
 	function get_excerpt(){
 
 		$excerpt_items = ['age', 'status'];

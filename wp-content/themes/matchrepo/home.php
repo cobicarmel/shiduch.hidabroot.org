@@ -25,7 +25,7 @@ get_header(); ?>
 
 					$args = array(
 						'numberposts' => 5,
-						'post_status' => 'publish',
+						'post_status' => implode(', ', Cards::getAllowedStatuses()),
 						'post_type' => 'card'
 					);
 

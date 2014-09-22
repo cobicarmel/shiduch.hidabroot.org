@@ -9,7 +9,7 @@ $args = [
 	'post_type' => 'card',
 	'posts_per_page' => 10,
 	'paged' => get_query_var('paged', 1),
-	'post_status' => 'publish'
+	'post_status' => implode(', ', Cards::getAllowedStatuses())
 ];
 
 query_posts($args);

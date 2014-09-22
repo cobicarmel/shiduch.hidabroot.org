@@ -7,6 +7,13 @@ wp_enqueue_style('sidebar');
 $site_url = get_site_url();
 
 $site_name = get_option('blogname');
+
+$allCardsCount = wp_count_posts('card');
+
+$cardsCount = $allCardsCount->publish;
+
+if(in_array('private', Cards::getAllowedStatuses()))
+	$cardsCount +=  $allCardsCount->private;
 ?>
 <div id="secondary" class="widget-area" role="complementary">
 
@@ -18,7 +25,7 @@ $site_name = get_option('blogname');
 
 		<span id="cards-count">
 			<a href="<?= get_permalink(get_page_by_title('כרטיסים')) ?>">
-				<? printf(__('%d cards in repository', THEME_NAME), wp_count_posts('card')->publish) ?>
+				<? printf(__('%d cards in repository', THEME_NAME), $cardsCount) ?>
 			</a>
 		</span>
 
