@@ -54,7 +54,7 @@ abstract class MR_actions {
 	}
 
 	static function restrict_admin(){
-		if(!current_user_can('manage_options')){
+		if(!current_user_can('edit_others_cards')){
 			wp_redirect(site_url());
 			exit;
 		}

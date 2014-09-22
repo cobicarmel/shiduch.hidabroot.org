@@ -43,4 +43,79 @@ function register_card(){
 	register_post_type('card', $args);
 }
 
+function manage_caps(){
+
+	$capsGroups = [
+		'administrator' => [
+			'edit_cards' => true,
+			'edit_others_cards' => true,
+			'edit_private_cards' => true,
+			'delete_cards' => true,
+			'delete_others_cards' => true,
+			'delete_private_cards' => true,
+			'read_private_cards' => true,
+			'edit_published_cards' => true,
+			'delete_published_cards' => true,
+			'publish_cards' => true
+		],
+		'editor' => [
+			'edit_cards' => true,
+			'edit_others_cards' => false,
+			'edit_private_cards' => true,
+			'delete_cards' => true,
+			'delete_others_cards' => false,
+			'delete_private_cards' => true,
+			'read_private_cards' => true,
+			'delete_others_pages' => false,
+			'delete_others_posts' => false,
+			'delete_pages' => false,
+			'delete_posts' => false,
+			'delete_private_pages' => false,
+			'delete_private_posts' => false,
+			'delete_published_pages' => false,
+			'delete_published_posts' => false,
+			'edit_others_pages' => false,
+			'edit_others_posts' => false,
+			'edit_pages' => false,
+			'edit_posts' => false,
+			'edit_private_pages' => false,
+			'edit_private_posts' => false,
+			'edit_published_pages' => false,
+			'edit_published_posts' => false,
+			'manage_categories' => false,
+			'manage_links' => false,
+			'moderate_comments' => false,
+			'publish_pages' => false,
+			'publish_posts' => false,
+			'read_private_pages' => false,
+			'read_private_posts' => false,
+			'unfiltered_html' => false,
+			'upload_files' => false
+		],
+		'contributor' => [
+			'edit_cards' => true,
+			'edit_others_cards' => false,
+			'edit_private_cards' => true,
+			'edit_published_cards' => true,
+			'delete_cards' => true,
+			'delete_published_cards' => true,
+			'delete_others_cards' => false,
+			'delete_private_cards' => true,
+			'read_private_cards' => false,
+			'delete_posts' => false,
+			'edit_posts' => false
+		]
+	];
+
+	foreach($capsGroups as $roleName => $caps) {
+
+		$role = get_role($roleName);
+
+		foreach($caps as $capName => $grant)
+			$role ->add_cap($capName, $grant);
+	}
+}
+
 add_action('init', 'register_card', 0);
+
+add_action('admin_init', 'manage_caps', 0);
