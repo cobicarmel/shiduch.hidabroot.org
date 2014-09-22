@@ -90,7 +90,9 @@ function manage_caps(){
 			'read_private_pages' => false,
 			'read_private_posts' => false,
 			'unfiltered_html' => false,
-			'upload_files' => false
+			'upload_files' => false,
+			'edit_published_cards' => true,
+			'delete_published_cards' => true
 		],
 		'contributor' => [
 			'edit_cards' => true,
