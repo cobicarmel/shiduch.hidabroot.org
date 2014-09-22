@@ -698,17 +698,6 @@ if(function_exists("register_field_group"))
 				'default_value' => '',
 				'allow_null' => 0,
 				'multiple' => 0,
-			),
-			array (
-				'key' => 'field_53f400104e359',
-				'label' => 'פרטים מוסתרים',
-				'name' => 'hidden_details',
-				'type' => 'textarea',
-				'default_value' => '',
-				'placeholder' => '',
-				'maxlength' => '',
-				'rows' => '',
-				'formatting' => 'none',
 			)
 		),
 		'location' => array (
