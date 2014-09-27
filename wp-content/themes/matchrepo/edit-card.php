@@ -36,11 +36,15 @@ if($_POST) {
 
 		$cardTerms = Cards::getTerms();
 
-		foreach($cardTerms as $term)
-			update_post_meta($post_id, $term, @$_POST[$term]);
+		foreach($cardTerms as $term){
+
+			$newTerm = isset($_POST[$term]) ? $_POST[$term] : null;
+
+			update_post_meta($post_id, $term, $newTerm);
+		}
 	}
 
-	QueryResponse::addResponse('card_saved', !! $isCorrect);
+	QueryResponse::addResponse('card_saved', (int) ($isCorrect === true));
 
 	QueryResponse::sendResponse(get_permalink( $post_id ));
 }

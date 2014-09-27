@@ -401,7 +401,7 @@ abstract class Cards {
 				elseif($meta[$key] !== '')
 					$param = $this::$props[$key]['options'][$meta[$key]];
 				else
-					$param = current($this::$props[$key]['options']);
+					$param = null;
 			}
 			else
 				$param = $meta[$key];

@@ -55,7 +55,7 @@ abstract class Matchrepo {
 					if(in_array($value, $options['compare']))
 						$checked = ' checked';
 				}
-				elseif($options['compare'] == $value)
+				elseif($options['compare'] === $value)
 					$checked = ' checked';
 			}
 
