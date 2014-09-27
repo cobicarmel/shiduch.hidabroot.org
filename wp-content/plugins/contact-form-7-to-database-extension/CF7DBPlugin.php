@@ -59,6 +59,7 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
                                                     'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber', 'Anyone'),
             'CanChangeSubmitData' => array(__('Can Edit/Delete Submission data', 'contact-form-7-to-database-extension'),
                                            'Administrator', 'Editor', 'Author', 'Contributor', 'Subscriber', 'Anyone'),
+            'GenerateSubmitTimeInCF7Email' => array(__('Generate [submit_time] tag for Contact Form 7 email', 'contact-form-7-to-database-extension'), 'false', 'true'),
             'FunctionsInShortCodes' => array(__('Allow Any Function in Short Codes', 'contact-form-7-to-database-extension') .
                     ' <a target="_blank" href="http://cfdbplugin.com/?page_id=1073">' . __('(Creates a security hole)', 'contact-form-7-to-database-extension') . '</a>', 'false', 'true'),
             'AllowRSS' => array(__('Allow RSS URLs', 'contact-form-7-to-database-extension') .
@@ -272,7 +273,12 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
         // Hook into Contact Form 7 when a form post is made to save the data to the DB
         if ($this->getOption('IntegrateWithCF7', 'true') == 'true') {
             add_action('wpcf7_before_send_mail', array(&$this, 'saveCF7FormData'));
-            add_action('wpcf7_posted_data', array(&$this, 'generateSubmitTimeForCF7'));
+            // Generate submit_time for CF7 mail. Some people complain this causes an error
+            // so this is now optional and off by default. Seems to be related to CF7
+            // checking its data against blacklist
+            if ($this->getOption('GenerateSubmitTimeInCF7Email', 'false') == 'true') {
+                add_action('wpcf7_posted_data', array(&$this, 'generateSubmitTimeForCF7'));
+            }
         }
 
         // Hook into Fast Secure Contact Form
@@ -538,11 +544,14 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
         try {
             $time = $this->generateSubmitTime();
             $posted_data['submit_time'] = $time;
-            $url = get_admin_url() . sprintf('admin.php?page=%s&submit_time=%s',
 
-                    $this->getDBPageSlug(),
-                    $time);
-            $posted_data['submit_url'] = $url;
+// No longer generating submit_url because it seems to cause CF7 to think it is
+// a spam submission and it drops it.
+//            $url = get_admin_url() . sprintf('admin.php?page=%s&submit_time=%s',
+//
+//                    $this->getDBPageSlug(),
+//                    $time);
+//            $posted_data['submit_url'] = $url;
         } catch (Exception $ex) {
             error_log(sprintf('CFDB Error: %s:%s %s  %s', $ex->getFile(), $ex->getLine(), $ex->getMessage(), $ex->getTraceAsString()));
         }
@@ -865,7 +874,13 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
                         // List - value is serialized array
                         $valueArray = @unserialize($entry[$fieldId]);
                         if (is_array($valueArray)) {
-                            $postedData[$fieldName] = implode(',',$valueArray);
+                            $postedData[$fieldName] = '';
+                            // Array of (Array of column-name => value)
+                            $tmpArray = array();
+                            foreach ($valueArray as $listArray) {
+                                $tmpArray[] = implode(',', array_values($listArray));
+                            }
+                            $postedData[$fieldName] = implode('|', $tmpArray);
                         }
                         else {
                             $postedData[$fieldName] = $entry[$fieldId];
