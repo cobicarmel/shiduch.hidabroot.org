@@ -88,6 +88,16 @@ $props = $MCard::$props;
 	</div>
 </fieldset>
 <fieldset>
+	<legend>לימודים</legend>
+	<div class="row">
+		<label for="cf-college_type"><?= $props['college_type']['label'] ?></label>
+		<? Matchrepo::listCheckboxes($props['college_type']['options'], [
+			'name' => 'college_type',
+			'compare' => $meta['college_type']
+		])?>
+	</div>
+</fieldset>
+<fieldset>
 	<legend>משפחה</legend>
 	<div class="row">
 		<div class="label-top w33">

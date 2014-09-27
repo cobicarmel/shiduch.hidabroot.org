@@ -36,6 +36,7 @@ abstract class Cards {
 		'yeshiva_k',
 		'yeshiva_g',
 		'college',
+		'college_type',
 		'practice',
 		'work',
 		'height',
@@ -90,7 +91,8 @@ abstract class Cards {
 		'family_children',
 		'work',
 		'inquiries',
-		'looking_for_cover'
+		'looking_for_cover',
+		'college_type'
 	];
 
 	private static $privateTerms = [
@@ -142,7 +144,8 @@ abstract class Cards {
 		'healthy',
 		'disability_details',
 		'cover',
-		'looking_for_cover'
+		'looking_for_cover',
+		'college_type'
 	];
 
 	protected $labeledItems = ['age' => 'גיל'];

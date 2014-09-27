@@ -379,6 +379,13 @@ $femaleProps = [
 			'בעיה נפשית',
 			'בעיה חברתית'
 		]
+	],
+	'college_type' => [
+		'label' => 'סוג סמינר',
+		'options' => [
+			'סמינר אשכנזי',
+			'סמינר ספרדי'
+		]
 	]
 ];
 
@@ -450,7 +457,14 @@ $maleProps = [
 		],
 		'compare' => 'IN'
 	],
-	'looking_for_cover' => $femaleProps['cover']
+	'looking_for_cover' => $femaleProps['cover'],
+	'college_type' => [
+		'label' => 'סוג ישיבה',
+		'options' => [
+			'ישיבה אשכנזית',
+			'ישיבה ספרדית'
+		]
+	]
 ];
 
 $maleLabels = [
