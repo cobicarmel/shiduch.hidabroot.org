@@ -265,6 +265,24 @@ get_header();
 					</div>
 				</div>
 			</fieldset>
+			<?
+			if(! $gender) {
+				?>
+				<fieldset>
+					<legend>מעוניין ב-</legend>
+					<div class="row">
+						<div class="label-top">
+							<label for="cf-looking_for_cover">כיסוי ראש</label>
+							<select id="cf-looking_for_cover" name="looking_for_cover">
+								<option></option>
+								<? Matchrepo::listOptions($props['looking_for_cover']['options']) ?>
+							</select>
+						</div>
+					</div>
+				</fieldset>
+			<?
+			}
+			?>
 			<fieldset>
 				<legend>שונות</legend>
 				<? if($gender) { ?>

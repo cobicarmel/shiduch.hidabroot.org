@@ -323,6 +323,69 @@ $globalProps = [
 	]
 ];
 
+$femaleProps = [
+
+	'status' => [
+		'options' => [
+			'רווקה',
+			'גרושה',
+			'אלמנה'
+		]
+	],
+
+	'community' => [
+		'options' => [
+			'אשכנזיה',
+			'ספרדיה',
+			'תמניה'
+		]
+	],
+
+	'conception' => [
+		'options' => [
+			'ליטאית',
+			'ספרדית',
+			'חסידית'
+		]
+	],
+
+	'cover' => [
+		'label' => __('Cover', THEME_NAME),
+		'type' => 'bool',
+		'options' => [
+			'פאה בלבד',
+			'מטפחת בלבד',
+			'פאה ומטפחת'
+		],
+		'pattern' => '',
+		'compare' => 'IN'
+	],
+
+	'healthy' => [
+		'options' => [
+			'בריאה לחלוטין',
+			'בעיה קלה',
+			'בעלת מוגבלות'
+		]
+	],
+
+	'disability_details' => [
+		'options' => [
+			'לקוית שמיעה',
+			'לקוית ראיה',
+			'תלויה בזולת',
+			'נעזרת חלקית',
+			'עצמאית',
+			'בעיה נפשית',
+			'בעיה חברתית'
+		]
+	]
+];
+
+$femaleLabels = [
+	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'female', THEME_NAME)
+];
+
 $maleProps = [
 
 	'status' => [
@@ -386,74 +449,12 @@ $maleProps = [
 			'עובד ולומד'
 		],
 		'compare' => 'IN'
-	]
+	],
+	'looking_for_cover' => $femaleProps['cover']
 ];
 
 $maleLabels = [
 	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'male', THEME_NAME)
-];
-
-$femaleProps = [
-
-	'status' => [
-		'options' => [
-			'רווקה',
-			'גרושה',
-			'אלמנה'
-		]
-	],
-
-	'community' => [
-		'options' => [
-			'אשכנזיה',
-			'ספרדיה',
-			'תמניה'
-		]
-	],
-
-	'conception' => [
-		'options' => [
-			'ליטאית',
-			'ספרדית',
-			'חסידית'
-		]
-	],
-
-	'cover' => [
-		'label' => __('Cover', THEME_NAME),
-		'type' => 'bool',
-		'options' => [
-			'פאה בלבד',
-			'מטפחת בלבד',
-			'פאה ומטפחת'
-		],
-		'pattern' => '',
-		'compare' => 'IN'
-	],
-
-	'healthy' => [
-		'options' => [
-			'בריאה לחלוטין',
-			'בעיה קלה',
-			'בעלת מוגבלות'
-		]
-	],
-
-	'disability_details' => [
-		'options' => [
-			'לקוית שמיעה',
-			'לקוית ראיה',
-			'תלויה בזולת',
-			'נעזרת חלקית',
-			'עצמאית',
-			'בעיה נפשית',
-			'בעיה חברתית'
-		]
-	]
-];
-
-$femaleLabels = [
-	'Little_About_The_Candidate' => _x('Little_About_The_Candidate', 'female', THEME_NAME)
 ];
 
 $globalProps['father_community']['options'] = $globalProps['community']['options'];

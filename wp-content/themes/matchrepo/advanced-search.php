@@ -191,6 +191,17 @@ get_header();
 			</span>
 		</p>
 	</div>
+	<div class="toggle-affected-group" data-show="male" data-hide="female">
+		<h4>מעוניין ב-</h4>
+
+		<p>
+			<label for="cf-looking_for_cover">כיסוי ראש</label>
+			<select id="cf-looking_for_cover" name="looking_for_cover">
+				<option></option>
+				<? Matchrepo::listOptions(Male::$props['looking_for_cover']['options']) ?>
+			</select>
+		</p>
+	</div>
 	<h4>גובה</h4>
 
 	<p>

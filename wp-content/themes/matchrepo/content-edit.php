@@ -177,6 +177,24 @@ $props = $MCard::$props;
 		</div>
 	</div>
 </fieldset>
+<?
+if($gender == 'male') {
+	?>
+	<fieldset>
+		<legend>מעוניין ב-</legend>
+		<div class="row">
+			<div class="label-top">
+				<label for="cf-looking_for_cover">כיסוי ראש</label>
+				<select id="cf-looking_for_cover" name="looking_for_cover">
+					<option></option>
+					<? Matchrepo::listOptions($props['looking_for_cover']['options'], $meta['looking_for_cover']) ?>
+				</select>
+			</div>
+		</div>
+	</fieldset>
+<?
+}
+?>
 <fieldset>
 	<legend>שונות</legend>
 	<div>

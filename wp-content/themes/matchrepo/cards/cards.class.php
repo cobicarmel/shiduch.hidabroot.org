@@ -48,6 +48,7 @@ abstract class Cards {
 		'smoke',
 		'license',
 		'cover',
+		'looking_for_cover',
 		'inquiries',
 		'privacy'
 	];
@@ -88,7 +89,8 @@ abstract class Cards {
 		'mother_work',
 		'family_children',
 		'work',
-		'inquiries'
+		'inquiries',
+		'looking_for_cover'
 	];
 
 	private static $privateTerms = [
@@ -139,7 +141,8 @@ abstract class Cards {
 		'license',
 		'healthy',
 		'disability_details',
-		'cover'
+		'cover',
+		'looking_for_cover'
 	];
 
 	protected $labeledItems = ['age' => 'גיל'];
