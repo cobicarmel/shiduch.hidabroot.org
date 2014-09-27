@@ -651,6 +651,28 @@ if(function_exists("register_field_group"))
 				'multiple' => 0,
 			),
 			array (
+				'key' => 'field_54b625d31a8a0',
+				'label' => 'מעוניין בכיסוי ראש',
+				'name' => 'looking_for_cover',
+				'type' => 'select',
+				'required' => 0,
+				'conditional_logic' => array (
+					'status' => 1,
+					'rules' => array (
+						array (
+							'field' => 'field_539a56d552cf5',
+							'operator' => '==',
+							'value' => '0',
+						),
+					),
+					'allorany' => 'all',
+				),
+				'choices' => Male::$props['looking_for_cover']['options'],
+				'default_value' => '',
+				'allow_null' => 0,
+				'multiple' => 0,
+			),
+			array (
 				'key' => 'field_54a625d31a8a0',
 				'label' => 'זקן',
 				'name' => 'beard',
