@@ -565,11 +565,8 @@ footer {
 
 .query-response {
     background-color: #FFF;
-    border-right-width: 4px;
-    border-right-style: solid;
     margin-bottom: 20px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    padding: 1px 20px;
     line-height: 1;
     border-color: #7ad03a;
 }
@@ -579,5 +576,16 @@ footer {
 }
 
 .query-response p {
-    margin: 7px 0;
+    padding: 7px 20px;
+    margin: 0;
+    border-right-width: 4px;
+    border-right-style: solid;
+}
+
+.query-response p.qr-message {
+    border-color: #7ad03a;
+}
+
+.query-response p.qr-error {
+    border-color: #DD3D36;
 }

@@ -8,23 +8,43 @@ abstract class QueryResponse {
 
 	private static $responsesList = [
 		'account_saved' => [
-			1 => 'השינויים נשמרו.'
+			1 => [
+				'type' => 'message',
+				'label' => 'השינויים נשמרו.'
+			]
 		],
 		'card_saved' => [
-			1 => 'הכרטיס עודכן בהצלחה.'
+			0 => [
+				'type' => 'error',
+				'label' => 'אירעה שגיאה במהלך שמירת הכרטיס.'
+			],
+			1 => [
+				'type' => 'message',
+				'label' => 'הכרטיס עודכן בהצלחה.'
+			]
 		],
 		'card_trashed' => [
-			1 => 'הכרטיס נמחק.'
+			1 => [
+				'type' => 'message',
+				'label' => 'הכרטיס נמחק.'
+			]
 		],
 		'pass_changed' => [
-			1 => 'סיסמת החשבון שונתה.'
+			1 => [
+				'type' => 'message',
+				'label' => 'סיסמת החשבון שונתה.'
+			]
 		]
 	];
 
 	public static function prepareList($response){
 
 		$paragraphs = array_map(function($res){
-			return '<p>' . $res . '</p>';
+
+			$class = "qr-$res[type]";
+
+			return "<p class='$class'>$res[label]</p>";
+
 		}, $response);
 
 		return implode('', $paragraphs);
