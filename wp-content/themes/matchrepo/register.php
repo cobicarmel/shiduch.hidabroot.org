@@ -89,6 +89,10 @@ if($_POST){
 		}
 	}
 
+	$errorMsg = array_map(function($error){
+		return ['type' => 'error', 'label' => $error];
+	}, $errorMsg);
+
 	$errorMsg = QueryResponse::prepareList($errorMsg);
 }
 
