@@ -45,7 +45,7 @@ $args = [
 	'meta_query' => $metaArgs,
 	'posts_per_page' => 10,
 	'paged' => get_query_var('paged', 1),
-	'post_status' => 'publish'
+	'perm' => 'readable'
 ];
 
 query_posts($args);
