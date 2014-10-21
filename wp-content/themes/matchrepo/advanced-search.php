@@ -259,17 +259,17 @@ get_header();
 		</p>
 	</div>
 
-	<div id="cf-disability" class="toggle-affected-group switch-affected" data-affected="healthy"
+	<!--<div id="cf-disability" class="toggle-affected-group switch-affected" data-affected="healthy"
 		 style="display: none">
 		<h4>פירוט מוגבלות</h4>
 
 		<p>
-			<? Matchrepo::listCheckboxes(Cards::$props['disability_details']['options'], [
+			<?/* Matchrepo::listCheckboxes(Cards::$props['disability_details']['options'], [
 				'wrapTag' => 'span',
 				'name' => 'disability_details'
-			]) ?>
+			]) */?>
 		</p>
-	</div>
+	</div>-->
 	</div>
 	<div id="submit">
 		<input type="submit" value="<? _e('Search') ?>">
