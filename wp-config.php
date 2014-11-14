@@ -32,7 +32,7 @@ define('WPCF7_LOAD_CSS', false);
 
 define('WPCF7_LOAD_JS', false);
 
-$table_prefix  = IS_LOCAL ? 'wp_' : 'hidabroo_';
+$table_prefix  = 'hidabroo_';
 
 define ('WPLANG', 'he_IL');
 
