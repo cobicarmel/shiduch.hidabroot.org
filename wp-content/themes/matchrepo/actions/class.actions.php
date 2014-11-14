@@ -39,18 +39,43 @@ abstract class MR_actions {
 
 	static function manage_card_columns($columns){
 
-		$custom_fields = [
-			'cb' => array_shift($columns),
-			'title' => 'שם המועמד/ת',
-			'id' => 'מספר כרטיס'
-		];
+		$order = ['cb', 'title', 'last_name', 'age', 'id', 'author', 'date'];
 
-		return array_merge($custom_fields, $columns);
+		$columns['id'] = 'מספר כרטיס';
+
+		$columns['title'] = 'שם המועמד/ת';
+
+		$columns['last_name'] = 'שם משפחה';
+
+		$columns['age'] = 'גיל';
+
+		return array_merge(array_flip($order), $columns);
 	}
 
 	static function manage_card_custom_column($column_name, $id){
-		if($column_name == 'id')
+
+		if($column_name == 'id'){
+
 			echo $id;
+
+			return;
+		}
+
+		$customColumns = ['last_name', 'age'];
+
+		if(! in_array($column_name, $customColumns))
+			return;
+
+		$post = (array) get_post($id);
+
+		$gender = CardHelpers::get_gender($post);
+
+		/** @var Cards $card */
+		$card = new $gender($post);
+
+		$meta = $card->get_meta();
+
+		echo $meta[$column_name];
 	}
 
 	static function restrict_admin(){
