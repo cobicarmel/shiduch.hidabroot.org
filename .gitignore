@@ -3,3 +3,4 @@ Dev
 .idea
 wp-content/uploads
 wp-content/themes/matchrepo/framework
+*.db
