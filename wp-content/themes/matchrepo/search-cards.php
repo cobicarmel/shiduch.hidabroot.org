@@ -48,6 +48,9 @@ $args = [
 	'perm' => 'readable'
 ];
 
+if(! empty($_GET['search-ns']) && $userID = get_current_user_id())
+	$args['author'] = $userID;
+
 query_posts($args);
 
 global $posts;

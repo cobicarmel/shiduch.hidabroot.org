@@ -258,6 +258,20 @@ get_header();
 			</select>
 		</p>
 	</div>
+	<? if(is_user_logged_in()) { ?>
+	<div>
+		<h4>
+			<label for="cf-ns">מרחב חיפוש</label>
+		</h4>
+
+		<p>
+			<select id="cf-ns" name="search-ns">
+				<option value="0">כל הכרטיסים</option>
+				<option value="1">כרטיסים שלי</option>
+			</select>
+		</p>
+	</div>
+	<? } ?>
 
 	<!--<div id="cf-disability" class="toggle-affected-group switch-affected" data-affected="healthy"
 		 style="display: none">
