@@ -17,5 +17,3 @@ require STYLESHEETPATH . '/init/sidebars.php';
 require STYLESHEETPATH . '/inc/Matchrepo.class.php';
 
 require STYLESHEETPATH . '/inc/QueryResponse.class.php';
-
-require STYLESHEETPATH . '/acf/fields.php';
