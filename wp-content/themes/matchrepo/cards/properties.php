@@ -320,6 +320,9 @@ $globalProps = [
 
 	'family_children' => [
 		'label' => 'מספר ילדים במשפחה'
+	],
+	'more_details' => [
+		'label' => 'מידע נוסף'
 	]
 ];
 

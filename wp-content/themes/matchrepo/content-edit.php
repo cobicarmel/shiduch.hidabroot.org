@@ -339,6 +339,11 @@ if($gender == 'male') {
 			</div>
 		<? } ?>
 	</fieldset>
+
+	<fieldset>
+		<legend>מידע נוסף</legend>
+		<textarea name="more_details" placeholder="טקסט חופשי"><?= $meta['more_details'] ?></textarea>
+	</fieldset>
 </div>
 
 <fieldset>

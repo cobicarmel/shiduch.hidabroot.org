@@ -14,7 +14,8 @@ legend {
   padding: 0 10px;
   color: teal;
 }
-#cf-content {
+#cf-content,
+#cf-more {
   height: 150px;
 }
 textarea {

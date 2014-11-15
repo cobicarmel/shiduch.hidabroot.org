@@ -51,6 +51,7 @@ abstract class Cards {
 		'cover',
 		'looking_for_cover',
 		'inquiries',
+		'more_details',
 		'privacy'
 	];
 
@@ -92,7 +93,8 @@ abstract class Cards {
 		'work',
 		'inquiries',
 		'looking_for_cover',
-		'college_type'
+		'college_type',
+		'more_details'
 	];
 
 	private static $privateTerms = [
@@ -107,6 +109,7 @@ abstract class Cards {
 		'yeshiva_g',
 		'work',
 		'inquiries',
+		'more_details'
 	];
 
 	public static $user_types = [
@@ -252,8 +255,15 @@ abstract class Cards {
 
 		$terms = Cards::getTerms();
 
-		foreach($terms as $term)
-			$stack[$term] = isset($meta[$term]) ? maybe_unserialize($meta[$term][0]) : '';
+		foreach($terms as $term){
+
+			if(! isset($meta[$term]))
+				$stack[$term] = null;
+			elseif(count($meta[$term]) == 1)
+				$stack[$term] = maybe_unserialize($meta[$term][0]);
+			else
+				$stack[$term] = $meta[$term];
+		}
 
 		$this->meta = $stack;
 	}
