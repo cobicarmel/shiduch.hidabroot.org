@@ -39,7 +39,7 @@ abstract class MR_actions {
 
 	static function manage_card_columns($columns){
 
-		$order = ['cb', 'title', 'last_name', 'age', 'id', 'author', 'date'];
+		$order = ['cb', 'title', 'last_name', 'age', 'id', 'taxonomy-origins', 'author', 'date'];
 
 		$columns['id'] = 'מספר כרטיס';
 

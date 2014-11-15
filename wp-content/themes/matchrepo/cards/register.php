@@ -43,6 +43,29 @@ function register_card(){
 	register_post_type('card', $args);
 }
 
+function register_card_taxonomy(){
+
+	$labels = [
+		'name' => 'עדות',
+		'singular_name' => 'עדה',
+		'search_items' => 'חיפוש עדות',
+		'all_items' => 'כל העדות',
+		'edit_item' => 'עריכת עדה',
+		'update_item' => 'עדכון עדה',
+		'add_new_item' => 'הוספת עדה חדשה',
+		'new_item_name' => 'שם עדה',
+		'menu_name' => 'עדות',
+	];
+
+	$args = [
+		'hierarchical' => true,
+		'show_admin_column' => true,
+		'labels' => $labels
+	];
+
+	register_taxonomy('origins', 'card', $args);
+}
+
 function manage_caps(){
 
 	$capsGroups = [
@@ -114,10 +137,12 @@ function manage_caps(){
 		$role = get_role($roleName);
 
 		foreach($caps as $capName => $grant)
-			$role ->add_cap($capName, $grant);
+			$role->add_cap($capName, $grant);
 	}
 }
 
 add_action('init', 'register_card', 0);
+
+add_action('init', 'register_card_taxonomy', 0);
 
 add_action('admin_init', 'manage_caps', 0);
