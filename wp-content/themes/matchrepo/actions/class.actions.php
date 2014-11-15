@@ -39,7 +39,7 @@ abstract class MR_actions {
 
 	static function manage_card_columns($columns){
 
-		$order = ['cb', 'title', 'last_name', 'age', 'id', 'taxonomy-origins', 'author', 'date'];
+		$order = ['cb', 'title', 'last_name', 'age', 'id', 'origins', 'author', 'date'];
 
 		$columns['id'] = 'מספר כרטיס';
 
@@ -48,6 +48,8 @@ abstract class MR_actions {
 		$columns['last_name'] = 'שם משפחה';
 
 		$columns['age'] = 'גיל';
+
+		$columns['origins'] = 'עדה';
 
 		return array_merge(array_flip($order), $columns);
 	}
@@ -61,7 +63,7 @@ abstract class MR_actions {
 			return;
 		}
 
-		$customColumns = ['last_name', 'age'];
+		$customColumns = ['last_name', 'age', 'origins'];
 
 		if(! in_array($column_name, $customColumns))
 			return;
