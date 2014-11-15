@@ -19,6 +19,3 @@ require STYLESHEETPATH . '/inc/Matchrepo.class.php';
 require STYLESHEETPATH . '/inc/QueryResponse.class.php';
 
 require STYLESHEETPATH . '/acf/fields.php';
-
-if(IS_LOCAL)
-	require STYLESHEETPATH . '/framework/init/init.php';
