@@ -368,6 +368,15 @@ get_header();
 							<input id="cf-mother-work" type="text" name="mother_work">
 						</div>
 					</div>
+					<div class="row">
+						<div class="label-top w33">
+							<label for="cf-origins">עדה</label>
+							<select id="cf-origins" name="origins">
+								<option></option>
+								<? Matchrepo::listOptions($props['origins']['options'], null, true) ?>
+							</select>
+						</div>
+					</div>
 				</fieldset>
 				<fieldset>
 					<legend>לימודים</legend>

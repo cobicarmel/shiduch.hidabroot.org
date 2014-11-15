@@ -26,6 +26,7 @@ abstract class Cards {
 		'community',
 		'conception',
 		'hasidism',
+		'origins',
 		'father_name',
 		'mother_name',
 		'father_community',
@@ -94,7 +95,8 @@ abstract class Cards {
 		'inquiries',
 		'looking_for_cover',
 		'college_type',
-		'more_details'
+		'more_details',
+		'origins'
 	];
 
 	private static $privateTerms = [
@@ -109,7 +111,8 @@ abstract class Cards {
 		'yeshiva_g',
 		'work',
 		'inquiries',
-		'more_details'
+		'more_details',
+		'origins'
 	];
 
 	public static $user_types = [

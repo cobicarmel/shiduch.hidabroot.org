@@ -273,6 +273,15 @@ if($gender == 'male') {
 				<input id="cf-mother-work" type="text" name="mother_work" value="<?= $meta['mother_work'] ?>">
 			</div>
 		</div>
+		<div class="row">
+			<div class="label-top w33">
+				<label for="cf-origins">עדה</label>
+				<select id="cf-origins" name="origins">
+					<option></option>
+					<? Matchrepo::listOptions($props['origins']['options'], $meta['origins'], true) ?>
+				</select>
+			</div>
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>לימודים</legend>
@@ -342,7 +351,7 @@ if($gender == 'male') {
 
 	<fieldset>
 		<legend>מידע נוסף</legend>
-		<textarea name="more_details" placeholder="טקסט חופשי"><?= $meta['more_details'] ?></textarea>
+		<textarea id="cf-more" name="more_details" placeholder="טקסט חופשי"><?= $meta['more_details'] ?></textarea>
 	</fieldset>
 </div>
 
