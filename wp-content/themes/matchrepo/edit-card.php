@@ -38,9 +38,20 @@ if($_POST) {
 
 		foreach($cardTerms as $term){
 
-			$newTerm = isset($_POST[$term]) ? $_POST[$term] : null;
+			if(! isset($_POST[$term])){
+				update_post_meta($post_id, $term, null);
+				continue;
+			}
 
-			update_post_meta($post_id, $term, $newTerm);
+			if(is_array($_POST[$term])){
+
+				delete_post_meta($post_id, $term);
+
+				foreach($_POST[$term] as $item)
+					add_post_meta($post_id, $term, $item);
+			}
+			else
+				update_post_meta($post_id, $term, $_POST[$term]);
 		}
 	}
 

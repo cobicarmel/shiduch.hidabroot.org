@@ -51,8 +51,21 @@ if($level == 3) {
 
 			$cardTerms = Cards::getTerms();
 
-			foreach($cardTerms as $term)
-				update_post_meta($post, $term, @$_POST[$term]);
+			foreach($cardTerms as $term){
+
+				if(! isset($_POST[$term])){
+					update_post_meta($post, $term, null);
+					continue;
+				}
+
+				if(is_array($_POST[$term])){
+
+					foreach($_POST[$term] as $item)
+						add_post_meta($post, $term, $item);
+				}
+				else
+					update_post_meta($post, $term, $_POST[$term]);
+			}
 
 			$register_successful = true;
 		}
@@ -413,6 +426,10 @@ get_header();
 							</div>
 						</div>
 					<? } ?>
+				</fieldset>
+				<fieldset>
+					<legend>מידע נוסף</legend>
+					<textarea id="cf-more" name="more_details" placeholder="טקסט חופשי"></textarea>
 				</fieldset>
 			</div>
 			<fieldset>
