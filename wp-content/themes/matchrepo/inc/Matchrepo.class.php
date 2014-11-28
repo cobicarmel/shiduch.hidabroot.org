@@ -35,7 +35,9 @@ abstract class Matchrepo {
 			if($options['name'])
 				$options['id'] = $options['name'];
 			else
-				$options['id'] = 'checkbox_' . self::$checkboxLists;
+				$options['id'] = 'checkbox_';
+
+			$options['id'] .= self::$checkboxLists;
 		}
 
 		$count = 1;
@@ -49,13 +51,13 @@ abstract class Matchrepo {
 
 			$checked = '';
 
-			if($options['compare'] !== null) {
+			if($options['compare'] !== null && $options['compare'] != '') {
 
 				if(is_array($options['compare'])) {
 					if(in_array($value, $options['compare']))
 						$checked = ' checked';
 				}
-				elseif($options['compare'] === $value)
+				elseif($options['compare'] == $value)
 					$checked = ' checked';
 			}
 
