@@ -142,7 +142,30 @@ get_header();
 			]) ?>
 		</span>
 	</p>
+	<div class="toggle-affected-group" data-show="male" data-hide="female">
+		<h4>סוג ישיבה</h4>
 
+		<p>
+			<input type="checkbox" id="as-ctm-all" class="toggle-trigger select-all"
+				   data-toggle-key="ctm" checked>
+			<label for="as-ctm-all">הכל</label>
+			<span class="toggle-affected-group" data-check-group="ctm">
+				<? Matchrepo::listCheckboxes(Male::$props['college_type']['options'], ['wrapTag' => '', 'name' => 'college_type']) ?>
+			</span>
+		</p>
+	</div>
+	<div class="toggle-affected-group" data-show="female" data-hide="male" style="display: none">
+		<h4>סוג סמינר</h4>
+
+		<p>
+			<input type="checkbox" id="as-ctf-all" class="toggle-trigger select-all"
+				   data-toggle-key="ctf" checked>
+			<label for="as-ctf-all">הכל</label>
+			<span class="toggle-affected-group" data-check-group="ctf">
+				<? Matchrepo::listCheckboxes(Female::$props['college_type']['options'], ['wrapTag' => '', 'name' => 'college_type']) ?>
+			</span>
+		</p>
+	</div>
 	<div class="toggle-affected-group" data-show="male" data-hide="female">
 		<h4>עיסוק</h4>
 
