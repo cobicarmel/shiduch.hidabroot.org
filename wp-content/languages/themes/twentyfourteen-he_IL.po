@@ -38,6 +38,7 @@ msgstr "גלריות נוספות"
 msgid "More asides"
 msgstr "הערות נוספות"
 
+#. translators: used with More archives link
 #: inc/widgets.php:206
 msgid "%s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "%s <span class=\"meta-nav\">&larr;</span>"
@@ -52,6 +53,7 @@ msgstr "featured"
 msgid "Use this widget to list your recent Aside, Quote, Video, Audio, Image, Gallery, and Link posts."
 msgstr "השתמשו בוידג'ט זה כדי להציג הערות, ציטוטים, וידיאו, אודיו, תמונות, גלריות, וקישורים אחרונים."
 
+#. Theme URI of the plugin/theme
 msgid "http://wordpress.org/themes/twentyfourteen"
 msgstr "http://wordpress.org/themes/twentyfourteen"
 
@@ -93,6 +95,7 @@ msgstr "שם תגית"
 msgid "Don&rsquo;t display tag on front end."
 msgstr "אל תציג תגיות האתר."
 
+#. Description of the plugin/theme
 msgid "In 2014, our default theme lets you create a responsive magazine website with a sleek, modern design. Feature your favorite homepage content in either a grid or a slider. Use the three widget areas to customize your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. Creating a magazine website with WordPress has never been easier."
 msgstr "ב-2014, ערכת העיצוב בברירת מחדל מאפשרת לכם ליצור עיצוב מגזיני המותאם גם להצגה במכשירים סלולריים וטאבלטים. הציגו את התוכן האהוב עליכם בעמוד הראשי באמצעות סליידר או רשת תמונות. עשו שימוש בשלושת אזורי הווידג'טים השונים להתאים את האתר והתוכן לצרכים שלכם. בנוסף, כוללת ערכת העיצוב גם תבניות רוחב-מלא לעמודים, ותבנית כותבים להצגת הכותבים באתר. יצירת אתר בעיצוב מגזיני עם וורדפרס מעולם לא הייתה קלה יותר."
 
@@ -215,6 +218,7 @@ msgstr "מספר פוסטים להצגה:"
 msgid "Post format to show:"
 msgstr "פורמטים להצגה:"
 
+#. Template Name of the plugin/theme
 msgid "Contributor Page"
 msgstr "עמוד כותבים"
 
@@ -301,6 +305,8 @@ msgstr "% תגובות"
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "המשך לקרוא <span class=\"meta-nav\">&larr;</span>"
 
+#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 1.2)  #-#-#-#-#
+#. Author URI of the plugin/theme
 #: footer.php:21
 msgid "http://wordpress.org/"
 msgstr "http://wordpress.org/"
@@ -414,12 +420,16 @@ msgstr "ציטוטים"
 msgid "Search Results for: %s"
 msgstr "תוצאות חיפוש עבור %s"
 
+#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 1.2)  #-#-#-#-#
+#. Theme Name of the plugin/theme
 #: inc/customizer.php:99
 msgid "Twenty Fourteen"
 msgstr "Twenty Fourteen"
 
+#. Author of the plugin/theme
 msgid "the WordPress team"
 msgstr "צוות וורדפרס"
 
+#. Template Name of the plugin/theme
 msgid "Full Width Page"
 msgstr "רוחב מלא"
