@@ -100,6 +100,7 @@ abstract class Cards {
 	];
 
 	private static $privateTerms = [
+		'birthday',
 		'college',
 		'family_children',
 		'father_name',
@@ -292,6 +293,19 @@ abstract class Cards {
 		return $statuses;
 	}
 
+	public function getHebrewDate(){
+
+		$birthdayTime = strtotime($this->meta['birthday']);
+
+		$gDate = date('d/m/Y', $birthdayTime);
+
+		$jTime = call_user_func_array('gregoriantojd', explode('/', date('m/d/Y', $birthdayTime)));
+
+		$jewDate = jdtojewish($jTime, true, CAL_JEWISH_ADD_GERESHAYIM);
+
+		return $gDate . ' (' . iconv ('WINDOWS-1255', 'UTF-8', $jewDate) . ')';
+	}
+
 	function get_excerpt(){
 
 		$excerpt_items = ['age', 'status'];
@@ -352,7 +366,9 @@ abstract class Cards {
 
 		$meta = $this->meta;
 
-		unset($meta['birthday'], $meta['gender']);
+		unset($meta['gender']);
+
+		$meta['birthday']= $this->getHebrewDate();
 
 		/* preparing optional terms */
 
