@@ -263,10 +263,15 @@ abstract class Cards {
 
 			if(! isset($meta[$term]))
 				$stack[$term] = null;
-			elseif(count($meta[$term]) == 1)
+			elseif(count($meta[$term]) <= 1)
 				$stack[$term] = maybe_unserialize($meta[$term][0]);
-			else
+			else{
+
+				foreach($meta[$term] as & $item)
+					$item = maybe_unserialize($item);
+
 				$stack[$term] = $meta[$term];
+			}
 		}
 
 		$this->meta = $stack;
