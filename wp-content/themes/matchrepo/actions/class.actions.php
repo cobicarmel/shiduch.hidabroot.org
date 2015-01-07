@@ -150,6 +150,8 @@ abstract class MR_actions {
 
 		wp_register_script('register', get_stylesheet_directory_uri() . '/register/register.js', [], '', true);
 
+		wp_register_script('account-search', get_stylesheet_directory_uri() . '/js/account-search.js', [], '', true);
+
 		wp_enqueue_script('jquery');
 
 		wp_enqueue_script('main-script');

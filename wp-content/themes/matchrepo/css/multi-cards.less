@@ -2,9 +2,47 @@ article {
   border-bottom: 10px solid rgba(255, 255, 255, 0.4);
 }
 
+#account-search {
+  margin-bottom: 10px;
+
+  form {
+	overflow: hidden;
+
+	> * {
+	  float: right;
+	}
+  }
+
+  select {
+	border-radius: 0;
+	padding: 5.4px;
+  }
+
+  input:not([type=submit]), select {
+	width: 27%;
+	padding-right: 10px;
+	margin-left: 10px;
+  }
+
+  [type=submit]{
+	padding: 6.5px;
+	width: 14.5%;
+   }
+}
+
+#ma-clear-search {
+  font-size: 16px;
+  font-weight: normal;
+  text-decoration: underline;
+  margin-right: 10px;
+}
+
 #user-managing {
 	margin: 10px 0 25px;
 
+  a {
+    text-decoration: none;
+  }
 	button {
 		font-size: 27px;
 	}
