@@ -66,7 +66,7 @@ abstract class Matchrepo {
 
 			$option = '';
 
-			$value = $options['valueByText'] ? '' : " value='$value'";
+			$value = " value='$value'";
 
 			if($options['wrapTag'])
 				$option .= "<$options[wrapTag]>";

@@ -11,33 +11,35 @@ $metaArgs = [];
 
 $compareAfter = ['disability_details'];
 
-foreach($_GET as $key => $value){
+foreach($_GET as $key => $value) {
 
-	if(
-		! isset($props[$key]) ||
-		(is_string($value) && trim($value) == '') ||
-		in_array($key, $compareAfter)
+	if(! isset($props[$key]) || (is_string($value) && trim($value) == '') || in_array($key, $compareAfter)
 	)
 		continue;
 
 	$tempArgs = [];
 
-	if(isset($props[$key])){
+	if(isset($props[$key]['queryValue']))
+		$value = call_user_func($props[$key]['queryValue'], $value);
 
-		if(isset($props[$key]['queryValue']))
-			$value = call_user_func($props[$key]['queryValue'], $value);
+	$compare = '=';
 
-		$tempArgs = [
-			'key' => isset($props[$key]['queryKey']) ? $props[$key]['queryKey'] : $key,
-			'value' => $value,
-			'compare' => isset($props[$key]['compare']) ? $props[$key]['compare'] : '='
-		];
+	if(! empty($props[$key]['compare']))
+		$compare = $props[$key]['compare'];
 
-		if(isset($props[$key]['queryType']))
-			$tempArgs['type'] = $props[$key]['queryType'];
+	if($compare == 'IN' && ! is_array($value))
+		$compare = '=';
 
-		$metaArgs[] = $tempArgs;
-	}
+	$tempArgs = [
+		'key' => isset($props[$key]['queryKey']) ? $props[$key]['queryKey'] : $key,
+		'value' => $value,
+		'compare' => $compare
+	];
+
+	if(isset($props[$key]['queryType']))
+		$tempArgs['type'] = $props[$key]['queryType'];
+
+	$metaArgs[] = $tempArgs;
 }
 
 $args = [
@@ -63,10 +65,7 @@ get_header();
 	<main id="main" class="site-main" role="main">
 		<div id="user-crumbs">
 			<?
-			printf(
-				__('Found %d Cards For Search', THEME_NAME),
-				$wp_query ->found_posts
-			)
+			printf(__('Found %d Cards For Search', THEME_NAME), $wp_query->found_posts)
 			?>
 		</div>
 		<div class="background-area">
