@@ -83,10 +83,10 @@ get_header();
 		<select name="country" class="toggle-trigger switch-trigger" data-compare="in" data-toggle-key="zone"
 				data-param="ישראל">
 			<option value="">הכל</option>
-			<? Matchrepo::listOptions(Cards::$props['country']['options'], null, true) ?>
+			<? Matchrepo::listOptions(Cards::$props['country']['options'], 'ישראל', true) ?>
 		</select>
 	</p>
-	<div class="toggle-affected-group switch-affected" data-affected="zone" style="display: none">
+	<div class="toggle-affected-group switch-affected" data-affected="zone">
 		<h4>אזור מגורים</h4>
 
 		<p>
