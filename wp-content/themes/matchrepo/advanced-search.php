@@ -65,7 +65,6 @@ get_header();
 			<label for="as-single">רווק</label>
 			<input name="status[]" type="checkbox" id="as-divorcee" class="maybe-children" value="1">
 			<label for="as-divorcee">גרוש</label>
-			<br>
 			<input name="status[]" type="checkbox" id="as-widow" class="maybe-children" value="2">
 			<label for="as-widow">אלמן</label>
 		</span>
