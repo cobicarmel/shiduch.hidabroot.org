@@ -155,13 +155,6 @@ abstract class MR_actions {
 		wp_enqueue_script('jquery');
 
 		wp_enqueue_script('main-script');
-
-		if(! IS_LOCAL){
-			
-			wp_register_script('ga', get_stylesheet_directory_uri() . '/js/ga.js');
-
-			wp_enqueue_script('ga');
-		}
 	}
 
 	static function remove_default_widgets() {
