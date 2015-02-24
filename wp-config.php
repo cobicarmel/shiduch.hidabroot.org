@@ -4,7 +4,7 @@ define('IS_LOCAL', $_SERVER['HTTP_HOST'] == 'localhost');
 
 if(IS_LOCAL){
 
-	define('DB_NAME', 'matchrepo');
+	define('DB_NAME', 'shiduch');
 
 	define('DB_USER', 'root');
 
