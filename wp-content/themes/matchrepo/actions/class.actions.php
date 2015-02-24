@@ -136,6 +136,8 @@ abstract class MR_actions {
 
 		wp_register_style('register', get_stylesheet_directory_uri() . '/register/register.css');
 
+		wp_register_style('login-style', get_stylesheet_directory_uri() . '/css/login.css');
+
 		wp_register_style('jquery-ui', get_stylesheet_directory_uri() . '/css/jquery-ui-1.10.4.custom.min.css');
 
 		wp_enqueue_style('style', get_stylesheet_uri());

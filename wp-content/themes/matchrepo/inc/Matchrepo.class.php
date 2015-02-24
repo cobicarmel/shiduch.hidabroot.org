@@ -146,7 +146,9 @@ abstract class Matchrepo {
 	static function redirect_not_logged(){
 
 		if(! is_user_logged_in()) {
-			wp_redirect(self::get_register_url());
+
+			wp_redirect(self::get_login_url());
+
 			exit;
 		}
 	}
@@ -160,6 +162,14 @@ abstract class Matchrepo {
 		});
 	}
 
+	static function loginHeader(){
+
+		add_action('wp_enqueue_scripts', function (){
+
+			wp_enqueue_style('login-style');
+		});
+	}
+
 	/**
 	 * @return string
 	 */
@@ -167,6 +177,11 @@ abstract class Matchrepo {
 	static function get_register_url(){
 
 		return get_permalink(get_page_by_title('הרשמה'));
+	}
+
+    static function get_login_url(){
+
+		return get_permalink(get_page_by_title('התחברות'));
 	}
 
 	static function textToDBDate($dateText){
